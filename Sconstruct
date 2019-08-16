@@ -29,23 +29,32 @@ frameworks = [
 cpp_path = ['./',
 			'src',
 			'src/cpu',
-			'src/cpu/decoder',
-			'src/cpu/fpu',
-			'src/memory',
-			'src/iodev',
-			'src/gui',
-			'src/cpu/cpudb',
-			'src/instrument/stubs',
-			'src/disasm',
+
+			'src/bochs',
+			'src/bochs/cpu',
+			'src/bochs/cpu/decoder',
+			'src/bochs/cpu/fpu',
+			'src/bochs/cpu/cpudb',
+			'src/bochs/cpu/cpudb/amd',
+			'src/bochs/cpu/cpudb/intel',
+
+			'src/bochs/memory',
+			'src/bochs/iodev',
+			'src/bochs/gui',
+			
+			'src/bochs/instrument/stubs',
+			'src/bochs/disasm',
 
 
 ]
 
 refuse_files = set([
 	"test.cpp",
-	"src/pc_system.cc",
-	"src/iodev/devices.cc",
+	# "src/pc_system.cc",
+	# "src/iodev/devices.cc",
 	# "src/gui/siminterface.cc",
+	'src/bochs/ltdl.c',
+	
 	])
 include_path = list(cpp_path)
 include_path.extend([
