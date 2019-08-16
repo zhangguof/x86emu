@@ -530,7 +530,7 @@ int WINAPI WinMain(
 #if !defined(__WXMSW__)
 // normal main function, presently in for all cases except for
 // wxWidgets under win32.
-int CDECL main(int argc, char *argv[])
+int CDECL main1(int argc, char *argv[])
 {
   bx_startup_flags.argc = argc;
   bx_startup_flags.argv = argv;

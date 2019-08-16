@@ -39,7 +39,12 @@ cpp_path = ['./',
 			'src/bochs/cpu/cpudb/intel',
 
 			'src/bochs/memory',
+			# 'src/bochs/misc',
+			
 			'src/bochs/iodev',
+			'src/bochs/iodev/hdimage',
+			'src/bochs/iodev/display',
+
 			'src/bochs/gui',
 			
 			'src/bochs/instrument/stubs',
@@ -53,8 +58,21 @@ refuse_files = set([
 	# "src/pc_system.cc",
 	# "src/iodev/devices.cc",
 	# "src/gui/siminterface.cc",
+	# 'src/bochs/main.cc',
+
 	'src/bochs/ltdl.c',
-	
+	'src/bochs/gdbstub.cc',
+	'src/bochs/iodev/gameport.cc',
+
+
+	'src/bochs/gui/win32paramdlg.cc',
+	'src/bochs/gui/win32dialog.cc',
+
+	'src/bochs/misc/niclist.c',
+	'src/bochs/misc/bxhub.cc',
+	'src/bochs/misc/bximage.cc',
+	'src/bochs/misc/spoolpipe.c',
+
 	])
 include_path = list(cpp_path)
 include_path.extend([

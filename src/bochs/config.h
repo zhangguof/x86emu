@@ -843,7 +843,7 @@ typedef
 // MS bus mouse support
 #define BX_SUPPORT_BUSMOUSE 0
 
-#define BX_SUPPORT_CDROM 1
+#define BX_SUPPORT_CDROM 0
 
 #if BX_SUPPORT_CDROM
    // This is the C++ class name to use if we are supporting

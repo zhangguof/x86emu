@@ -191,7 +191,7 @@ static struct _CDTOC * ReadTOC(const char *devpath)
   mach_port_t port = 0;
   char *devname;
 
-  if ((devname = strrchr(devpath, '/')) != NULL) {
+  if ((devname = (char *) strrchr(devpath, '/')) != NULL) {
     ++devname;
   }
   else {
