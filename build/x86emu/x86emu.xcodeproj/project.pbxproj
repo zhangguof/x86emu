@@ -1,0 +1,2014 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EAB726A52306AE56000019F0 /* x86.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB724072306AE55000019F0 /* x86.cpp */; };
+		EAB726A62306AE56000019F0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB724082306AE55000019F0 /* main.cpp */; };
+		EAB726A72306AE56000019F0 /* main.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7240A2306AE55000019F0 /* main.cc */; };
+		EAB726B42306AE56000019F0 /* osdep.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7241F2306AE55000019F0 /* osdep.cc */; };
+		EAB726B52306AE56000019F0 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = EAB724252306AE55000019F0 /* Makefile */; };
+		EAB726B62306AE56000019F0 /* misc_mem.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724262306AE55000019F0 /* misc_mem.cc */; };
+		EAB726B72306AE56000019F0 /* memory.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724282306AE55000019F0 /* memory.cc */; };
+		EAB726B82306AE56000019F0 /* logio.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724292306AE55000019F0 /* logio.cc */; };
+		EAB726B92306AE56000019F0 /* load32bitOShack.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7242A2306AE55000019F0 /* load32bitOShack.cc */; };
+		EAB726BA2306AE56000019F0 /* instrument.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7242E2306AE55000019F0 /* instrument.cc */; };
+		EAB726BB2306AE56000019F0 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = EAB7242F2306AE55000019F0 /* Makefile */; };
+		EAB726BF2306AE56000019F0 /* proc_ctrl.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724402306AE55000019F0 /* proc_ctrl.cc */; };
+		EAB726C02306AE56000019F0 /* load.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724412306AE55000019F0 /* load.cc */; };
+		EAB726C12306AE56000019F0 /* init.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724422306AE55000019F0 /* init.cc */; };
+		EAB726C22306AE56000019F0 /* soft_int.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724432306AE55000019F0 /* soft_int.cc */; };
+		EAB726C32306AE56000019F0 /* generic_cpuid.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724452306AE55000019F0 /* generic_cpuid.cc */; };
+		EAB726C42306AE56000019F0 /* svm.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724462306AE55000019F0 /* svm.cc */; };
+		EAB726C52306AE56000019F0 /* flag_ctrl.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724472306AE55000019F0 /* flag_ctrl.cc */; };
+		EAB726C62306AE56000019F0 /* data_xfer64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724482306AE55000019F0 /* data_xfer64.cc */; };
+		EAB726C72306AE56000019F0 /* mult16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724492306AE55000019F0 /* mult16.cc */; };
+		EAB726C82306AE56000019F0 /* mult32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7244A2306AE55000019F0 /* mult32.cc */; };
+		EAB726C92306AE56000019F0 /* string.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7244B2306AE55000019F0 /* string.cc */; };
+		EAB726CA2306AE56000019F0 /* logical64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7244D2306AE55000019F0 /* logical64.cc */; };
+		EAB726CB2306AE56000019F0 /* bcd.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7244E2306AE55000019F0 /* bcd.cc */; };
+		EAB726CC2306AE56000019F0 /* rdrand.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7244F2306AE55000019F0 /* rdrand.cc */; };
+		EAB726CD2306AE56000019F0 /* bit64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724502306AE55000019F0 /* bit64.cc */; };
+		EAB726CE2306AE56000019F0 /* sse_pfp.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724512306AE55000019F0 /* sse_pfp.cc */; };
+		EAB726CF2306AE56000019F0 /* corei7_haswell_4770.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724562306AE55000019F0 /* corei7_haswell_4770.cc */; };
+		EAB726D02306AE56000019F0 /* core_duo_t2400_yonah.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724582306AE55000019F0 /* core_duo_t2400_yonah.cc */; };
+		EAB726D12306AE56000019F0 /* corei7_ivy_bridge_3770K.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7245E2306AE55000019F0 /* corei7_ivy_bridge_3770K.cc */; };
+		EAB726D22306AE56000019F0 /* broadwell_ult.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724652306AE55000019F0 /* broadwell_ult.cc */; };
+		EAB726D32306AE56000019F0 /* pentium.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724692306AE55000019F0 /* pentium.cc */; };
+		EAB726D42306AE56000019F0 /* atom_n270.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7246B2306AE55000019F0 /* atom_n270.cc */; };
+		EAB726D52306AE56000019F0 /* corei5_arrandale_m520.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7246C2306AE55000019F0 /* corei5_arrandale_m520.cc */; };
+		EAB726D62306AE56000019F0 /* pentium_mmx.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7246D2306AE55000019F0 /* pentium_mmx.cc */; };
+		EAB726D72306AE56000019F0 /* corei5_lynnfield_750.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724712306AE55000019F0 /* corei5_lynnfield_750.cc */; };
+		EAB726D82306AE56000019F0 /* p3_katmai.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724742306AE55000019F0 /* p3_katmai.cc */; };
+		EAB726D92306AE56000019F0 /* core2_penryn_t9600.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724752306AE55000019F0 /* core2_penryn_t9600.cc */; };
+		EAB726DA2306AE56000019F0 /* p2_klamath.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724762306AE55000019F0 /* p2_klamath.cc */; };
+		EAB726DB2306AE56000019F0 /* corei7_sandy_bridge_2600K.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7247E2306AE55000019F0 /* corei7_sandy_bridge_2600K.cc */; };
+		EAB726DC2306AE56000019F0 /* p4_willamette.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7247F2306AE55000019F0 /* p4_willamette.cc */; };
+		EAB726DD2306AE56000019F0 /* p4_prescott_celeron_336.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724802306AE55000019F0 /* p4_prescott_celeron_336.cc */; };
+		EAB726DE2306AE56000019F0 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = EAB724812306AE55000019F0 /* Makefile */; };
+		EAB726DF2306AE56000019F0 /* amd_k6_2_chomper.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724852306AE55000019F0 /* amd_k6_2_chomper.cc */; };
+		EAB726E02306AE56000019F0 /* trinity_apu.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7248E2306AE55000019F0 /* trinity_apu.cc */; };
+		EAB726E12306AE56000019F0 /* phenomx3_8650_toliman.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7248F2306AE55000019F0 /* phenomx3_8650_toliman.cc */; };
+		EAB726E22306AE56000019F0 /* athlon64_clawhammer.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724912306AE55000019F0 /* athlon64_clawhammer.cc */; };
+		EAB726E32306AE56000019F0 /* ryzen.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724922306AE55000019F0 /* ryzen.cc */; };
+		EAB726E42306AE56000019F0 /* athlon64_venice.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724932306AE55000019F0 /* athlon64_venice.cc */; };
+		EAB726E52306AE56000019F0 /* zambezi.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724962306AE55000019F0 /* zambezi.cc */; };
+		EAB726E62306AE56000019F0 /* turion64_tyler.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724982306AE55000019F0 /* turion64_tyler.cc */; };
+		EAB726E72306AE56000019F0 /* mmx.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7249D2306AE55000019F0 /* mmx.cc */; };
+		EAB726E82306AE56000019F0 /* stack64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7249E2306AE55000019F0 /* stack64.cc */; };
+		EAB726E92306AE56000019F0 /* paging.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724A02306AE55000019F0 /* paging.cc */; };
+		EAB726EA2306AE56000019F0 /* arith32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724A22306AE55000019F0 /* arith32.cc */; };
+		EAB726EB2306AE56000019F0 /* ctrl_xfer16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724A32306AE55000019F0 /* ctrl_xfer16.cc */; };
+		EAB726EC2306AE56000019F0 /* mult8.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724A42306AE55000019F0 /* mult8.cc */; };
+		EAB726ED2306AE56000019F0 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = EAB724A62306AE55000019F0 /* Makefile */; };
+		EAB726EE2306AE56000019F0 /* vmexit.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724A72306AE55000019F0 /* vmexit.cc */; };
+		EAB726EF2306AE56000019F0 /* iret.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724A82306AE55000019F0 /* iret.cc */; };
+		EAB726F02306AE56000019F0 /* sha.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724A92306AE55000019F0 /* sha.cc */; };
+		EAB726F12306AE56000019F0 /* arith16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724AA2306AE55000019F0 /* arith16.cc */; };
+		EAB726F22306AE56000019F0 /* ctrl_xfer32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724AB2306AE55000019F0 /* ctrl_xfer32.cc */; };
+		EAB726F32306AE56000019F0 /* bmi32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724AF2306AE55000019F0 /* bmi32.cc */; };
+		EAB726F42306AE56000019F0 /* fetchdecode32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724B82306AE55000019F0 /* fetchdecode32.cc */; };
+		EAB726F52306AE56000019F0 /* fetchdecode64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724BD2306AE55000019F0 /* fetchdecode64.cc */; };
+		EAB726F62306AE56000019F0 /* disasm.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724BF2306AE55000019F0 /* disasm.cc */; };
+		EAB726F72306AE56000019F0 /* vmfunc.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724C02306AE55000019F0 /* vmfunc.cc */; };
+		EAB726F82306AE56000019F0 /* protect_ctrl.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724C32306AE55000019F0 /* protect_ctrl.cc */; };
+		EAB726F92306AE56000019F0 /* bit.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724C42306AE55000019F0 /* bit.cc */; };
+		EAB726FA2306AE56000019F0 /* shift64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724C62306AE55000019F0 /* shift64.cc */; };
+		EAB726FB2306AE56000019F0 /* stack.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724C72306AE55000019F0 /* stack.cc */; };
+		EAB726FC2306AE56000019F0 /* icache.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724C82306AE55000019F0 /* icache.cc */; };
+		EAB726FD2306AE56000019F0 /* segment_ctrl.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724C92306AE55000019F0 /* segment_ctrl.cc */; };
+		EAB726FE2306AE56000019F0 /* crc32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724CA2306AE55000019F0 /* crc32.cc */; };
+		EAB726FF2306AE56000019F0 /* ret_far.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724CD2306AE55000019F0 /* ret_far.cc */; };
+		EAB727002306AE56000019F0 /* data_xfer8.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724CE2306AE55000019F0 /* data_xfer8.cc */; };
+		EAB727012306AE56000019F0 /* ctrl_xfer_pro.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724CF2306AE55000019F0 /* ctrl_xfer_pro.cc */; };
+		EAB727022306AE56000019F0 /* flag_ctrl_pro.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D02306AE55000019F0 /* flag_ctrl_pro.cc */; };
+		EAB727032306AE56000019F0 /* cpu.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D12306AE55000019F0 /* cpu.cc */; };
+		EAB727042306AE56000019F0 /* xsave.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D22306AE55000019F0 /* xsave.cc */; };
+		EAB727052306AE56000019F0 /* io.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D32306AE55000019F0 /* io.cc */; };
+		EAB727062306AE56000019F0 /* shift16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D42306AE55000019F0 /* shift16.cc */; };
+		EAB727072306AE56000019F0 /* bmi64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D52306AE55000019F0 /* bmi64.cc */; };
+		EAB727082306AE56000019F0 /* vm8086.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D62306AE55000019F0 /* vm8086.cc */; };
+		EAB727092306AE56000019F0 /* debugstuff.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D72306AE55000019F0 /* debugstuff.cc */; };
+		EAB7270A2306AE56000019F0 /* jmp_far.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D82306AE55000019F0 /* jmp_far.cc */; };
+		EAB7270B2306AE56000019F0 /* shift32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D92306AE55000019F0 /* shift32.cc */; };
+		EAB7270C2306AE56000019F0 /* aes.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724DA2306AE55000019F0 /* aes.cc */; };
+		EAB7270D2306AE56000019F0 /* logical8.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724DB2306AE55000019F0 /* logical8.cc */; };
+		EAB7270E2306AE56000019F0 /* call_far.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724DC2306AE55000019F0 /* call_far.cc */; };
+		EAB7270F2306AE56000019F0 /* avx512_mask16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724DF2306AE55000019F0 /* avx512_mask16.cc */; };
+		EAB727102306AE56000019F0 /* avx_cvt.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724E02306AE55000019F0 /* avx_cvt.cc */; };
+		EAB727112306AE56000019F0 /* avx512_mask32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724E12306AE55000019F0 /* avx512_mask32.cc */; };
+		EAB727122306AE56000019F0 /* avx512_pfp.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724E22306AE55000019F0 /* avx512_pfp.cc */; };
+		EAB727132306AE56000019F0 /* avx512_rcp14.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724E32306AE55000019F0 /* avx512_rcp14.cc */; };
+		EAB727142306AE56000019F0 /* avx512.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724E42306AE55000019F0 /* avx512.cc */; };
+		EAB727152306AE56000019F0 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = EAB724E52306AE55000019F0 /* Makefile */; };
+		EAB727162306AE56000019F0 /* avx512_mask8.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724E62306AE55000019F0 /* avx512_mask8.cc */; };
+		EAB727172306AE56000019F0 /* avx2.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724E72306AE55000019F0 /* avx2.cc */; };
+		EAB727182306AE56000019F0 /* avx_pfp.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724E82306AE55000019F0 /* avx_pfp.cc */; };
+		EAB727192306AE56000019F0 /* avx512_move.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724E92306AE55000019F0 /* avx512_move.cc */; };
+		EAB7271A2306AE56000019F0 /* avx512_cvt.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724EA2306AE55000019F0 /* avx512_cvt.cc */; };
+		EAB7271B2306AE56000019F0 /* tbm32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724EB2306AE55000019F0 /* tbm32.cc */; };
+		EAB7271C2306AE56000019F0 /* tbm64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724EC2306AE55000019F0 /* tbm64.cc */; };
+		EAB7271D2306AE56000019F0 /* avx512_fma.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724ED2306AE55000019F0 /* avx512_fma.cc */; };
+		EAB7271E2306AE56000019F0 /* xop.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724EE2306AE55000019F0 /* xop.cc */; };
+		EAB7271F2306AE56000019F0 /* avx512_rsqrt14.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724EF2306AE55000019F0 /* avx512_rsqrt14.cc */; };
+		EAB727202306AE56000019F0 /* gather.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724F02306AE55000019F0 /* gather.cc */; };
+		EAB727212306AE56000019F0 /* avx.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724F12306AE55000019F0 /* avx.cc */; };
+		EAB727222306AE56000019F0 /* avx512_conflict.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724F22306AE55000019F0 /* avx512_conflict.cc */; };
+		EAB727232306AE56000019F0 /* avx_fma.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724F42306AE55000019F0 /* avx_fma.cc */; };
+		EAB727242306AE56000019F0 /* avx512_mask64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724F52306AE55000019F0 /* avx512_mask64.cc */; };
+		EAB727252306AE56000019F0 /* cpuid.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724F62306AE55000019F0 /* cpuid.cc */; };
+		EAB727262306AE56000019F0 /* sse.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724F72306AE55000019F0 /* sse.cc */; };
+		EAB727272306AE56000019F0 /* msr.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724FA2306AE55000019F0 /* msr.cc */; };
+		EAB727282306AE56000019F0 /* access.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724FB2306AE55000019F0 /* access.cc */; };
+		EAB727292306AE56000019F0 /* vapic.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724FC2306AE55000019F0 /* vapic.cc */; };
+		EAB7272A2306AE56000019F0 /* arith64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724FD2306AE55000019F0 /* arith64.cc */; };
+		EAB7272B2306AE56000019F0 /* sse_string.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724FE2306AE55000019F0 /* sse_string.cc */; };
+		EAB7272C2306AE56000019F0 /* 3dnow.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724FF2306AE55000019F0 /* 3dnow.cc */; };
+		EAB7272D2306AE56000019F0 /* ctrl_xfer64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725002306AE55000019F0 /* ctrl_xfer64.cc */; };
+		EAB7272E2306AE56000019F0 /* fpu_emu.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725022306AE55000019F0 /* fpu_emu.cc */; };
+		EAB7272F2306AE56000019F0 /* stack32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725032306AE55000019F0 /* stack32.cc */; };
+		EAB727302306AE56000019F0 /* stack16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725042306AE55000019F0 /* stack16.cc */; };
+		EAB727312306AE56000019F0 /* exception.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725062306AE55000019F0 /* exception.cc */; };
+		EAB727322306AE56000019F0 /* event.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725072306AE55000019F0 /* event.cc */; };
+		EAB727332306AE56000019F0 /* logical32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725082306AE55000019F0 /* logical32.cc */; };
+		EAB727342306AE56000019F0 /* sse_rcp.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7250A2306AE55000019F0 /* sse_rcp.cc */; };
+		EAB727352306AE56000019F0 /* bit16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7250B2306AE55000019F0 /* bit16.cc */; };
+		EAB727362306AE56000019F0 /* access2.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7250C2306AE55000019F0 /* access2.cc */; };
+		EAB727372306AE56000019F0 /* apic.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7250D2306AE55000019F0 /* apic.cc */; };
+		EAB727382306AE56000019F0 /* bit32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7250E2306AE55000019F0 /* bit32.cc */; };
+		EAB727392306AE56000019F0 /* logical16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7250F2306AE55000019F0 /* logical16.cc */; };
+		EAB7273A2306AE56000019F0 /* crregs.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725102306AE55000019F0 /* crregs.cc */; };
+		EAB7273B2306AE56000019F0 /* arith8.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725112306AE55000019F0 /* arith8.cc */; };
+		EAB7273C2306AE56000019F0 /* data_xfer32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725122306AE55000019F0 /* data_xfer32.cc */; };
+		EAB7273D2306AE56000019F0 /* fpu_cmov.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725152306AE55000019F0 /* fpu_cmov.cc */; };
+		EAB7273E2306AE56000019F0 /* fpu_misc.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725162306AE55000019F0 /* fpu_misc.cc */; };
+		EAB7273F2306AE56000019F0 /* fpu.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725192306AE55000019F0 /* fpu.cc */; };
+		EAB727402306AE56000019F0 /* fyl2x.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7251A2306AE55000019F0 /* fyl2x.cc */; };
+		EAB727412306AE56000019F0 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = EAB7251B2306AE55000019F0 /* Makefile */; };
+		EAB727422306AE56000019F0 /* softfloat-muladd.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7251C2306AE55000019F0 /* softfloat-muladd.cc */; };
+		EAB727432306AE56000019F0 /* softfloatx80.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7251D2306AE55000019F0 /* softfloatx80.cc */; };
+		EAB727442306AE56000019F0 /* fpu_load_store.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7251F2306AE55000019F0 /* fpu_load_store.cc */; };
+		EAB727452306AE56000019F0 /* fprem.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725202306AE55000019F0 /* fprem.cc */; };
+		EAB727462306AE56000019F0 /* softfloat.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725212306AE55000019F0 /* softfloat.cc */; };
+		EAB727472306AE56000019F0 /* fpu_compare.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725232306AE55000019F0 /* fpu_compare.cc */; };
+		EAB727482306AE56000019F0 /* fpatan.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725242306AE55000019F0 /* fpatan.cc */; };
+		EAB727492306AE56000019F0 /* softfloat16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725262306AE55000019F0 /* softfloat16.cc */; };
+		EAB7274A2306AE56000019F0 /* poly.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725282306AE55000019F0 /* poly.cc */; };
+		EAB7274B2306AE56000019F0 /* softfloat-round-pack.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725292306AE55000019F0 /* softfloat-round-pack.cc */; };
+		EAB7274C2306AE56000019F0 /* fpu_const.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7252A2306AE55000019F0 /* fpu_const.cc */; };
+		EAB7274D2306AE56000019F0 /* f2xm1.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7252B2306AE55000019F0 /* f2xm1.cc */; };
+		EAB7274E2306AE56000019F0 /* fsincos.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7252C2306AE55000019F0 /* fsincos.cc */; };
+		EAB7274F2306AE56000019F0 /* fpu_arith.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725302306AE55000019F0 /* fpu_arith.cc */; };
+		EAB727502306AE56000019F0 /* fpu_trans.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725312306AE55000019F0 /* fpu_trans.cc */; };
+		EAB727512306AE56000019F0 /* softfloat-specialize.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725342306AE55000019F0 /* softfloat-specialize.cc */; };
+		EAB727522306AE56000019F0 /* ferr.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725352306AE55000019F0 /* ferr.cc */; };
+		EAB727532306AE56000019F0 /* vmx.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725372306AE55000019F0 /* vmx.cc */; };
+		EAB727542306AE56000019F0 /* mult64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725382306AE55000019F0 /* mult64.cc */; };
+		EAB727552306AE56000019F0 /* data_xfer16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725392306AE55000019F0 /* data_xfer16.cc */; };
+		EAB727562306AE56000019F0 /* vmcs.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7253A2306AE55000019F0 /* vmcs.cc */; };
+		EAB727572306AE56000019F0 /* sse_move.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7253B2306AE55000019F0 /* sse_move.cc */; };
+		EAB727582306AE56000019F0 /* segment_ctrl_pro.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7253C2306AE55000019F0 /* segment_ctrl_pro.cc */; };
+		EAB727592306AE56000019F0 /* shift8.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7253E2306AE55000019F0 /* shift8.cc */; };
+		EAB7275A2306AE56000019F0 /* smm.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7253F2306AE55000019F0 /* smm.cc */; };
+		EAB7275B2306AE56000019F0 /* tasking.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725402306AE55000019F0 /* tasking.cc */; };
+		EAB7275C2306AE56000019F0 /* dis_tables_x87.inc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725432306AE55000019F0 /* dis_tables_x87.inc */; };
+		EAB7275D2306AE56000019F0 /* dis_tables_sse.inc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725442306AE55000019F0 /* dis_tables_sse.inc */; };
+		EAB7275E2306AE56000019F0 /* opcodes.inc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725452306AE55000019F0 /* opcodes.inc */; };
+		EAB7275F2306AE56000019F0 /* dis_tables_xop.inc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725462306AE55000019F0 /* dis_tables_xop.inc */; };
+		EAB727602306AE56000019F0 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = EAB725472306AE55000019F0 /* Makefile */; };
+		EAB727612306AE56000019F0 /* dis_decode.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725482306AE55000019F0 /* dis_decode.cc */; };
+		EAB727622306AE56000019F0 /* syntax.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725492306AE55000019F0 /* syntax.cc */; };
+		EAB727632306AE56000019F0 /* dis_tables.inc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7254C2306AE55000019F0 /* dis_tables.inc */; };
+		EAB727642306AE56000019F0 /* dis_tables_avx.inc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7254E2306AE55000019F0 /* dis_tables_avx.inc */; };
+		EAB727652306AE56000019F0 /* dis_groups.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7254F2306AE55000019F0 /* dis_groups.cc */; };
+		EAB727662306AE56000019F0 /* resolve.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725502306AE55000019F0 /* resolve.cc */; };
+		EAB727672306AE56000019F0 /* linux.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725522306AE55000019F0 /* linux.cc */; };
+		EAB727682306AE56000019F0 /* symbols.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725542306AE55000019F0 /* symbols.cc */; };
+		EAB727692306AE56000019F0 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = EAB725562306AE55000019F0 /* Makefile */; };
+		EAB7276A2306AE56000019F0 /* lexer.l in Sources */ = {isa = PBXBuildFile; fileRef = EAB725572306AE55000019F0 /* lexer.l */; };
+		EAB7276B2306AE56000019F0 /* lexer.c in Sources */ = {isa = PBXBuildFile; fileRef = EAB725592306AE55000019F0 /* lexer.c */; };
+		EAB7276C2306AE56000019F0 /* dbg_main.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7255B2306AE55000019F0 /* dbg_main.cc */; };
+		EAB7276E2306AE56000019F0 /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = EAB7255D2306AE55000019F0 /* parser.c */; };
+		EAB7276F2306AE56000019F0 /* plugin.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7255F2306AE55000019F0 /* plugin.cc */; };
+		EAB727702306AE56000019F0 /* pc_system.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725612306AE55000019F0 /* pc_system.cc */; };
+		EAB727722306AE56000019F0 /* parallel.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725652306AE55000019F0 /* parallel.cc */; };
+		EAB727732306AE56000019F0 /* harddrv.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725662306AE55000019F0 /* harddrv.cc */; };
+		EAB727742306AE56000019F0 /* pit.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7256A2306AE55000019F0 /* pit.cc */; };
+		EAB727752306AE56000019F0 /* vmware4.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7256C2306AE55000019F0 /* vmware4.cc */; };
+		EAB727762306AE56000019F0 /* hdimage.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7256D2306AE55000019F0 /* hdimage.cc */; };
+		EAB727772306AE56000019F0 /* cdrom_win32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7256E2306AE55000019F0 /* cdrom_win32.cc */; };
+		EAB727782306AE56000019F0 /* vvfat.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7256F2306AE55000019F0 /* vvfat.cc */; };
+		EAB727792306AE56000019F0 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = EAB725732306AE55000019F0 /* Makefile */; };
+		EAB7277A2306AE56000019F0 /* cdrom_misc.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725762306AE55000019F0 /* cdrom_misc.cc */; };
+		EAB7277B2306AE56000019F0 /* vbox.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725782306AE55000019F0 /* vbox.cc */; };
+		EAB7277C2306AE56000019F0 /* cdrom_osx.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7257B2306AE56000019F0 /* cdrom_osx.cc */; };
+		EAB7277D2306AE56000019F0 /* cdrom_amigaos.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7257C2306AE56000019F0 /* cdrom_amigaos.cc */; };
+		EAB7277E2306AE56000019F0 /* vpc-img.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725822306AE56000019F0 /* vpc-img.cc */; };
+		EAB7277F2306AE56000019F0 /* vmware3.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725832306AE56000019F0 /* vmware3.cc */; };
+		EAB727802306AE56000019F0 /* cdrom.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725842306AE56000019F0 /* cdrom.cc */; };
+		EAB727812306AE56000019F0 /* slowdown_timer.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725862306AE56000019F0 /* slowdown_timer.cc */; };
+		EAB727822306AE56000019F0 /* speaker.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725882306AE56000019F0 /* speaker.cc */; };
+		EAB727832306AE56000019F0 /* virt_timer.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7258A2306AE56000019F0 /* virt_timer.cc */; };
+		EAB727842306AE56000019F0 /* floppy.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7258B2306AE56000019F0 /* floppy.cc */; };
+		EAB727862306AE56000019F0 /* pit82c54.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7258D2306AE56000019F0 /* pit82c54.cc */; };
+		EAB727872306AE56000019F0 /* keyboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7258E2306AE56000019F0 /* keyboard.cc */; };
+		EAB727882306AE56000019F0 /* acpi.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7258F2306AE56000019F0 /* acpi.cc */; };
+		EAB727892306AE56000019F0 /* biosdev.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725912306AE56000019F0 /* biosdev.cc */; };
+		EAB7278A2306AE56000019F0 /* devices.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725922306AE56000019F0 /* devices.cc */; };
+		EAB7278B2306AE56000019F0 /* iodebug.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725932306AE56000019F0 /* iodebug.cc */; };
+		EAB7278C2306AE56000019F0 /* unmapped.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725952306AE56000019F0 /* unmapped.cc */; };
+		EAB7278D2306AE56000019F0 /* pci2isa.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725962306AE56000019F0 /* pci2isa.cc */; };
+		EAB7278E2306AE56000019F0 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = EAB725972306AE56000019F0 /* Makefile */; };
+		EAB7278F2306AE56000019F0 /* serial_raw.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725982306AE56000019F0 /* serial_raw.cc */; };
+		EAB727B42306AE56000019F0 /* pic.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725DD2306AE56000019F0 /* pic.cc */; };
+		EAB727B52306AE56000019F0 /* serial.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725DF2306AE56000019F0 /* serial.cc */; };
+		EAB727B62306AE56000019F0 /* extfpuirq.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725E12306AE56000019F0 /* extfpuirq.cc */; };
+		EAB727B72306AE56000019F0 /* busmouse.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725E22306AE56000019F0 /* busmouse.cc */; };
+		EAB727C52306AE56000019F0 /* pcidev.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726092306AE56000019F0 /* pcidev.cc */; };
+		EAB727C62306AE56000019F0 /* dma.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7260A2306AE56000019F0 /* dma.cc */; };
+		EAB727C72306AE56000019F0 /* vga.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7260D2306AE56000019F0 /* vga.cc */; };
+		EAB727C82306AE56000019F0 /* vgacore.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726102306AE56000019F0 /* vgacore.cc */; };
+		EAB727C92306AE56000019F0 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = EAB726112306AE56000019F0 /* Makefile */; };
+		EAB727CA2306AE56000019F0 /* svga_cirrus.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726152306AE56000019F0 /* svga_cirrus.cc */; };
+		EAB727CB2306AE56000019F0 /* voodoo.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7261A2306AE56000019F0 /* voodoo.cc */; };
+		EAB727CC2306AE56000019F0 /* pci_ide.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7261D2306AE56000019F0 /* pci_ide.cc */; };
+		EAB727DA2306AE56000019F0 /* ioapic.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7263B2306AE56000019F0 /* ioapic.cc */; };
+		EAB727DB2306AE56000019F0 /* scancodes.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7263C2306AE56000019F0 /* scancodes.cc */; };
+		EAB727DC2306AE56000019F0 /* pci.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7263D2306AE56000019F0 /* pci.cc */; };
+		EAB727DD2306AE56000019F0 /* cmos.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726402306AE56000019F0 /* cmos.cc */; };
+		EAB727DE2306AE56000019F0 /* wxdialog.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726422306AE56000019F0 /* wxdialog.cc */; };
+		EAB727DF2306AE56000019F0 /* nogui.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726432306AE56000019F0 /* nogui.cc */; };
+		EAB727E02306AE56000019F0 /* sdl.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726452306AE56000019F0 /* sdl.cc */; };
+		EAB727E12306AE56000019F0 /* wx.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726612306AE56000019F0 /* wx.cc */; };
+		EAB727E22306AE56000019F0 /* textconfig.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726632306AE56000019F0 /* textconfig.cc */; };
+		EAB727E32306AE56000019F0 /* svga.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726642306AE56000019F0 /* svga.cc */; };
+		EAB727E42306AE56000019F0 /* gui.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726682306AE56000019F0 /* gui.cc */; };
+		EAB727E52306AE56000019F0 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = EAB726692306AE56000019F0 /* Makefile */; };
+		EAB727E62306AE56000019F0 /* macintosh.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7266A2306AE56000019F0 /* macintosh.cc */; };
+		EAB727E72306AE56000019F0 /* gtk_enh_dbg_osdep.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7266B2306AE56000019F0 /* gtk_enh_dbg_osdep.cc */; };
+		EAB727E82306AE56000019F0 /* enh_dbg.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7266E2306AE56000019F0 /* enh_dbg.cc */; };
+		EAB727EA2306AE56000019F0 /* rfb.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726812306AE56000019F0 /* rfb.cc */; };
+		EAB727EB2306AE56000019F0 /* sdl2.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726832306AE56000019F0 /* sdl2.cc */; };
+		EAB727EC2306AE56000019F0 /* term.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726852306AE56000019F0 /* term.cc */; };
+		EAB727ED2306AE56000019F0 /* vncsrv.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726862306AE56000019F0 /* vncsrv.cc */; };
+		EAB727EF2306AE56000019F0 /* keymap.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726882306AE56000019F0 /* keymap.cc */; };
+		EAB727F02306AE56000019F0 /* x.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726892306AE56000019F0 /* x.cc */; };
+		EAB727F12306AE56000019F0 /* carbon.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7268A2306AE56000019F0 /* carbon.cc */; };
+		EAB727F22306AE56000019F0 /* win32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7268B2306AE56000019F0 /* win32.cc */; };
+		EAB727F32306AE56000019F0 /* siminterface.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7268F2306AE56000019F0 /* siminterface.cc */; };
+		EAB727F42306AE56000019F0 /* paramtree.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726952306AE56000019F0 /* paramtree.cc */; };
+		EAB727F52306AE56000019F0 /* wxmain.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726962306AE56000019F0 /* wxmain.cc */; };
+		EAB727F62306AE56000019F0 /* amigaos.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726982306AE56000019F0 /* amigaos.cc */; };
+		EAB727F72306AE56000019F0 /* scrollwin.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726992306AE56000019F0 /* scrollwin.cc */; };
+		EAB727F82306AE56000019F0 /* win32_enh_dbg_osdep.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7269B2306AE56000019F0 /* win32_enh_dbg_osdep.cc */; };
+		EAB727FA2306AE56000019F0 /* crc.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726A02306AE56000019F0 /* crc.cc */; };
+		EAB727FB2306AE56000019F0 /* config.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726A42306AE56000019F0 /* config.cc */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EAB71E512306AD95000019F0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		EAB71E532306AD95000019F0 /* x86emu */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = x86emu; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAB724062306AE55000019F0 /* x86.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x86.h; sourceTree = "<group>"; };
+		EAB724072306AE55000019F0 /* x86.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = x86.cpp; sourceTree = "<group>"; };
+		EAB724082306AE55000019F0 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		EAB7240A2306AE55000019F0 /* main.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cc; path = ../../src/bochs/main.cc; sourceTree = SOURCE_ROOT; };
+		EAB7241F2306AE55000019F0 /* osdep.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = osdep.cc; sourceTree = "<group>"; };
+		EAB724202306AE55000019F0 /* cpudb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpudb.h; sourceTree = "<group>"; };
+		EAB724212306AE55000019F0 /* osdep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osdep.h; sourceTree = "<group>"; };
+		EAB724222306AE55000019F0 /* plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plugin.h; sourceTree = "<group>"; };
+		EAB724242306AE55000019F0 /* memory-bochs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "memory-bochs.h"; sourceTree = "<group>"; };
+		EAB724252306AE55000019F0 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		EAB724262306AE55000019F0 /* misc_mem.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = misc_mem.cc; sourceTree = "<group>"; };
+		EAB724272306AE55000019F0 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		EAB724282306AE55000019F0 /* memory.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memory.cc; sourceTree = "<group>"; };
+		EAB724292306AE55000019F0 /* logio.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = logio.cc; sourceTree = "<group>"; };
+		EAB7242A2306AE55000019F0 /* load32bitOShack.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = load32bitOShack.cc; sourceTree = "<group>"; };
+		EAB7242B2306AE55000019F0 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		EAB7242E2306AE55000019F0 /* instrument.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = instrument.cc; sourceTree = "<group>"; };
+		EAB7242F2306AE55000019F0 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		EAB724302306AE55000019F0 /* instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = instrument.h; sourceTree = "<group>"; };
+		EAB724312306AE55000019F0 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		EAB724332306AE55000019F0 /* instrument.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = instrument.cc; sourceTree = "<group>"; };
+		EAB724342306AE55000019F0 /* instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = instrument.h; sourceTree = "<group>"; };
+		EAB724352306AE55000019F0 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		EAB724372306AE55000019F0 /* instrument.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = instrument.cc; sourceTree = "<group>"; };
+		EAB724382306AE55000019F0 /* instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = instrument.h; sourceTree = "<group>"; };
+		EAB724392306AE55000019F0 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		EAB7243B2306AE55000019F0 /* instrument.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = instrument.cc; sourceTree = "<group>"; };
+		EAB7243C2306AE55000019F0 /* instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = instrument.h; sourceTree = "<group>"; };
+		EAB7243D2306AE55000019F0 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		EAB7243E2306AE55000019F0 /* instrumentation.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = instrumentation.txt; sourceTree = "<group>"; };
+		EAB724402306AE55000019F0 /* proc_ctrl.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = proc_ctrl.cc; sourceTree = "<group>"; };
+		EAB724412306AE55000019F0 /* load.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = load.cc; sourceTree = "<group>"; };
+		EAB724422306AE55000019F0 /* init.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = init.cc; sourceTree = "<group>"; };
+		EAB724432306AE55000019F0 /* soft_int.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = soft_int.cc; sourceTree = "<group>"; };
+		EAB724442306AE55000019F0 /* simd_int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simd_int.h; sourceTree = "<group>"; };
+		EAB724452306AE55000019F0 /* generic_cpuid.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = generic_cpuid.cc; sourceTree = "<group>"; };
+		EAB724462306AE55000019F0 /* svm.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = svm.cc; sourceTree = "<group>"; };
+		EAB724472306AE55000019F0 /* flag_ctrl.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = flag_ctrl.cc; sourceTree = "<group>"; };
+		EAB724482306AE55000019F0 /* data_xfer64.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_xfer64.cc; sourceTree = "<group>"; };
+		EAB724492306AE55000019F0 /* mult16.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mult16.cc; sourceTree = "<group>"; };
+		EAB7244A2306AE55000019F0 /* mult32.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mult32.cc; sourceTree = "<group>"; };
+		EAB7244B2306AE55000019F0 /* string.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string.cc; sourceTree = "<group>"; };
+		EAB7244C2306AE55000019F0 /* i387.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = i387.h; sourceTree = "<group>"; };
+		EAB7244D2306AE55000019F0 /* logical64.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = logical64.cc; sourceTree = "<group>"; };
+		EAB7244E2306AE55000019F0 /* bcd.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bcd.cc; sourceTree = "<group>"; };
+		EAB7244F2306AE55000019F0 /* rdrand.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rdrand.cc; sourceTree = "<group>"; };
+		EAB724502306AE55000019F0 /* bit64.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bit64.cc; sourceTree = "<group>"; };
+		EAB724512306AE55000019F0 /* sse_pfp.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sse_pfp.cc; sourceTree = "<group>"; };
+		EAB724542306AE55000019F0 /* pentium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pentium.h; sourceTree = "<group>"; };
+		EAB724552306AE55000019F0 /* corei5_arrandale_m520.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = corei5_arrandale_m520.h; sourceTree = "<group>"; };
+		EAB724562306AE55000019F0 /* corei7_haswell_4770.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = corei7_haswell_4770.cc; sourceTree = "<group>"; };
+		EAB724572306AE55000019F0 /* core_duo_t2400_yonah.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = core_duo_t2400_yonah.txt; sourceTree = "<group>"; };
+		EAB724582306AE55000019F0 /* core_duo_t2400_yonah.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = core_duo_t2400_yonah.cc; sourceTree = "<group>"; };
+		EAB724592306AE55000019F0 /* atom_n270.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = atom_n270.txt; sourceTree = "<group>"; };
+		EAB7245A2306AE55000019F0 /* p4_willamette.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = p4_willamette.txt; sourceTree = "<group>"; };
+		EAB7245B2306AE55000019F0 /* corei7_sandy_bridge_2600K.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = corei7_sandy_bridge_2600K.txt; sourceTree = "<group>"; };
+		EAB7245C2306AE55000019F0 /* corei7_ivy_bridge_3770K.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = corei7_ivy_bridge_3770K.h; sourceTree = "<group>"; };
+		EAB7245D2306AE55000019F0 /* p4_willamette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = p4_willamette.h; sourceTree = "<group>"; };
+		EAB7245E2306AE55000019F0 /* corei7_ivy_bridge_3770K.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = corei7_ivy_bridge_3770K.cc; sourceTree = "<group>"; };
+		EAB7245F2306AE55000019F0 /* broadwell_ult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = broadwell_ult.h; sourceTree = "<group>"; };
+		EAB724602306AE55000019F0 /* p2_klamath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = p2_klamath.h; sourceTree = "<group>"; };
+		EAB724612306AE55000019F0 /* core2_penryn_t9600.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core2_penryn_t9600.h; sourceTree = "<group>"; };
+		EAB724622306AE55000019F0 /* pentium_mmx.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pentium_mmx.txt; sourceTree = "<group>"; };
+		EAB724632306AE55000019F0 /* atom_n270.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = atom_n270.h; sourceTree = "<group>"; };
+		EAB724642306AE55000019F0 /* p4_prescott_celeron_336.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = p4_prescott_celeron_336.txt; sourceTree = "<group>"; };
+		EAB724652306AE55000019F0 /* broadwell_ult.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = broadwell_ult.cc; sourceTree = "<group>"; };
+		EAB724662306AE55000019F0 /* pentium_mmx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pentium_mmx.h; sourceTree = "<group>"; };
+		EAB724672306AE55000019F0 /* corei7_haswell_4770.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = corei7_haswell_4770.h; sourceTree = "<group>"; };
+		EAB724682306AE55000019F0 /* p4_prescott_celeron_336.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = p4_prescott_celeron_336.h; sourceTree = "<group>"; };
+		EAB724692306AE55000019F0 /* pentium.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pentium.cc; sourceTree = "<group>"; };
+		EAB7246A2306AE55000019F0 /* core_duo_t2400_yonah.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core_duo_t2400_yonah.h; sourceTree = "<group>"; };
+		EAB7246B2306AE55000019F0 /* atom_n270.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = atom_n270.cc; sourceTree = "<group>"; };
+		EAB7246C2306AE55000019F0 /* corei5_arrandale_m520.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = corei5_arrandale_m520.cc; sourceTree = "<group>"; };
+		EAB7246D2306AE55000019F0 /* pentium_mmx.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pentium_mmx.cc; sourceTree = "<group>"; };
+		EAB7246E2306AE55000019F0 /* corei5_arrandale_m520.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = corei5_arrandale_m520.txt; sourceTree = "<group>"; };
+		EAB7246F2306AE55000019F0 /* core2_penryn_t9600.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = core2_penryn_t9600.txt; sourceTree = "<group>"; };
+		EAB724702306AE55000019F0 /* corei7_ivy_bridge_3770K.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = corei7_ivy_bridge_3770K.txt; sourceTree = "<group>"; };
+		EAB724712306AE55000019F0 /* corei5_lynnfield_750.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = corei5_lynnfield_750.cc; sourceTree = "<group>"; };
+		EAB724722306AE55000019F0 /* p3_katmai.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = p3_katmai.txt; sourceTree = "<group>"; };
+		EAB724732306AE55000019F0 /* corei5_lynnfield_750.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = corei5_lynnfield_750.h; sourceTree = "<group>"; };
+		EAB724742306AE55000019F0 /* p3_katmai.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = p3_katmai.cc; sourceTree = "<group>"; };
+		EAB724752306AE55000019F0 /* core2_penryn_t9600.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = core2_penryn_t9600.cc; sourceTree = "<group>"; };
+		EAB724762306AE55000019F0 /* p2_klamath.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = p2_klamath.cc; sourceTree = "<group>"; };
+		EAB724772306AE55000019F0 /* p2_klamath.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = p2_klamath.txt; sourceTree = "<group>"; };
+		EAB724782306AE55000019F0 /* corei7_haswell_4770.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = corei7_haswell_4770.txt; sourceTree = "<group>"; };
+		EAB724792306AE55000019F0 /* corei7_sandy_bridge_2600K.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = corei7_sandy_bridge_2600K.h; sourceTree = "<group>"; };
+		EAB7247A2306AE55000019F0 /* broadwell_ult.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = broadwell_ult.txt; sourceTree = "<group>"; };
+		EAB7247B2306AE55000019F0 /* pentium.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pentium.txt; sourceTree = "<group>"; };
+		EAB7247C2306AE55000019F0 /* p3_katmai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = p3_katmai.h; sourceTree = "<group>"; };
+		EAB7247D2306AE55000019F0 /* corei5_lynnfield_750.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = corei5_lynnfield_750.txt; sourceTree = "<group>"; };
+		EAB7247E2306AE55000019F0 /* corei7_sandy_bridge_2600K.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = corei7_sandy_bridge_2600K.cc; sourceTree = "<group>"; };
+		EAB7247F2306AE55000019F0 /* p4_willamette.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = p4_willamette.cc; sourceTree = "<group>"; };
+		EAB724802306AE55000019F0 /* p4_prescott_celeron_336.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = p4_prescott_celeron_336.cc; sourceTree = "<group>"; };
+		EAB724812306AE55000019F0 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		EAB724832306AE55000019F0 /* zambezi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zambezi.h; sourceTree = "<group>"; };
+		EAB724842306AE55000019F0 /* amd_k6_2_chomper.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = amd_k6_2_chomper.txt; sourceTree = "<group>"; };
+		EAB724852306AE55000019F0 /* amd_k6_2_chomper.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = amd_k6_2_chomper.cc; sourceTree = "<group>"; };
+		EAB724862306AE55000019F0 /* ryzen.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ryzen.txt; sourceTree = "<group>"; };
+		EAB724872306AE55000019F0 /* athlon64_venice.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = athlon64_venice.txt; sourceTree = "<group>"; };
+		EAB724882306AE55000019F0 /* zambezi.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zambezi.txt; sourceTree = "<group>"; };
+		EAB724892306AE55000019F0 /* turion64_tyler.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = turion64_tyler.txt; sourceTree = "<group>"; };
+		EAB7248A2306AE55000019F0 /* trinity_apu.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = trinity_apu.txt; sourceTree = "<group>"; };
+		EAB7248B2306AE55000019F0 /* phenomx3_8650_toliman.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phenomx3_8650_toliman.txt; sourceTree = "<group>"; };
+		EAB7248C2306AE55000019F0 /* ryzen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ryzen.h; sourceTree = "<group>"; };
+		EAB7248D2306AE55000019F0 /* amd_k6_2_chomper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amd_k6_2_chomper.h; sourceTree = "<group>"; };
+		EAB7248E2306AE55000019F0 /* trinity_apu.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trinity_apu.cc; sourceTree = "<group>"; };
+		EAB7248F2306AE55000019F0 /* phenomx3_8650_toliman.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = phenomx3_8650_toliman.cc; sourceTree = "<group>"; };
+		EAB724902306AE55000019F0 /* turion64_tyler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = turion64_tyler.h; sourceTree = "<group>"; };
+		EAB724912306AE55000019F0 /* athlon64_clawhammer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = athlon64_clawhammer.cc; sourceTree = "<group>"; };
+		EAB724922306AE55000019F0 /* ryzen.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ryzen.cc; sourceTree = "<group>"; };
+		EAB724932306AE55000019F0 /* athlon64_venice.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = athlon64_venice.cc; sourceTree = "<group>"; };
+		EAB724942306AE55000019F0 /* athlon64_clawhammer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = athlon64_clawhammer.h; sourceTree = "<group>"; };
+		EAB724952306AE55000019F0 /* trinity_apu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trinity_apu.h; sourceTree = "<group>"; };
+		EAB724962306AE55000019F0 /* zambezi.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zambezi.cc; sourceTree = "<group>"; };
+		EAB724972306AE55000019F0 /* phenomx3_8650_toliman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = phenomx3_8650_toliman.h; sourceTree = "<group>"; };
+		EAB724982306AE55000019F0 /* turion64_tyler.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = turion64_tyler.cc; sourceTree = "<group>"; };
+		EAB724992306AE55000019F0 /* athlon64_clawhammer.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = athlon64_clawhammer.txt; sourceTree = "<group>"; };
+		EAB7249A2306AE55000019F0 /* athlon64_venice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = athlon64_venice.h; sourceTree = "<group>"; };
+		EAB7249B2306AE55000019F0 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		EAB7249C2306AE55000019F0 /* scalar_arith.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scalar_arith.h; sourceTree = "<group>"; };
+		EAB7249D2306AE55000019F0 /* mmx.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mmx.cc; sourceTree = "<group>"; };
+		EAB7249E2306AE55000019F0 /* stack64.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stack64.cc; sourceTree = "<group>"; };
+		EAB7249F2306AE55000019F0 /* cpuid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpuid.h; sourceTree = "<group>"; };
+		EAB724A02306AE55000019F0 /* paging.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = paging.cc; sourceTree = "<group>"; };
+		EAB724A12306AE55000019F0 /* cpustats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpustats.h; sourceTree = "<group>"; };
+		EAB724A22306AE55000019F0 /* arith32.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arith32.cc; sourceTree = "<group>"; };
+		EAB724A32306AE55000019F0 /* ctrl_xfer16.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ctrl_xfer16.cc; sourceTree = "<group>"; };
+		EAB724A42306AE55000019F0 /* mult8.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mult8.cc; sourceTree = "<group>"; };
+		EAB724A52306AE55000019F0 /* tlb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tlb.h; sourceTree = "<group>"; };
+		EAB724A62306AE55000019F0 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		EAB724A72306AE55000019F0 /* vmexit.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vmexit.cc; sourceTree = "<group>"; };
+		EAB724A82306AE55000019F0 /* iret.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iret.cc; sourceTree = "<group>"; };
+		EAB724A92306AE55000019F0 /* sha.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sha.cc; sourceTree = "<group>"; };
+		EAB724AA2306AE55000019F0 /* arith16.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arith16.cc; sourceTree = "<group>"; };
+		EAB724AB2306AE55000019F0 /* ctrl_xfer32.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ctrl_xfer32.cc; sourceTree = "<group>"; };
+		EAB724AC2306AE55000019F0 /* crregs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crregs.h; sourceTree = "<group>"; };
+		EAB724AD2306AE55000019F0 /* descriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = descriptor.h; sourceTree = "<group>"; };
+		EAB724AE2306AE55000019F0 /* xmm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmm.h; sourceTree = "<group>"; };
+		EAB724AF2306AE55000019F0 /* bmi32.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bmi32.cc; sourceTree = "<group>"; };
+		EAB724B02306AE55000019F0 /* apic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = apic.h; sourceTree = "<group>"; };
+		EAB724B22306AE55000019F0 /* fetchdecode_x87.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fetchdecode_x87.h; sourceTree = "<group>"; };
+		EAB724B32306AE55000019F0 /* ia_opcodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ia_opcodes.h; sourceTree = "<group>"; };
+		EAB724B42306AE55000019F0 /* fetchdecode_opmap_0f3a.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fetchdecode_opmap_0f3a.h; sourceTree = "<group>"; };
+		EAB724B52306AE55000019F0 /* fetchdecode_opmap_0f38.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fetchdecode_opmap_0f38.h; sourceTree = "<group>"; };
+		EAB724B62306AE55000019F0 /* fetchdecode_opmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fetchdecode_opmap.h; sourceTree = "<group>"; };
+		EAB724B72306AE55000019F0 /* decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decoder.h; sourceTree = "<group>"; };
+		EAB724B82306AE55000019F0 /* fetchdecode32.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fetchdecode32.cc; sourceTree = "<group>"; };
+		EAB724B92306AE55000019F0 /* fetchdecode_evex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fetchdecode_evex.h; sourceTree = "<group>"; };
+		EAB724BA2306AE55000019F0 /* fetchdecode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fetchdecode.h; sourceTree = "<group>"; };
+		EAB724BB2306AE55000019F0 /* fetchdecode_avx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fetchdecode_avx.h; sourceTree = "<group>"; };
+		EAB724BC2306AE55000019F0 /* instr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = instr.h; sourceTree = "<group>"; };
+		EAB724BD2306AE55000019F0 /* fetchdecode64.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fetchdecode64.cc; sourceTree = "<group>"; };
+		EAB724BE2306AE55000019F0 /* fetchdecode_xop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fetchdecode_xop.h; sourceTree = "<group>"; };
+		EAB724BF2306AE55000019F0 /* disasm.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = disasm.cc; sourceTree = "<group>"; };
+		EAB724C02306AE55000019F0 /* vmfunc.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vmfunc.cc; sourceTree = "<group>"; };
+		EAB724C12306AE55000019F0 /* lazy_flags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lazy_flags.h; sourceTree = "<group>"; };
+		EAB724C22306AE55000019F0 /* svm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svm.h; sourceTree = "<group>"; };
+		EAB724C32306AE55000019F0 /* protect_ctrl.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = protect_ctrl.cc; sourceTree = "<group>"; };
+		EAB724C42306AE55000019F0 /* bit.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bit.cc; sourceTree = "<group>"; };
+		EAB724C52306AE55000019F0 /* simd_pfp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simd_pfp.h; sourceTree = "<group>"; };
+		EAB724C62306AE55000019F0 /* shift64.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shift64.cc; sourceTree = "<group>"; };
+		EAB724C72306AE55000019F0 /* stack.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stack.cc; sourceTree = "<group>"; };
+		EAB724C82306AE55000019F0 /* icache.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = icache.cc; sourceTree = "<group>"; };
+		EAB724C92306AE55000019F0 /* segment_ctrl.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = segment_ctrl.cc; sourceTree = "<group>"; };
+		EAB724CA2306AE55000019F0 /* crc32.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crc32.cc; sourceTree = "<group>"; };
+		EAB724CB2306AE55000019F0 /* todo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo; sourceTree = "<group>"; };
+		EAB724CC2306AE55000019F0 /* smm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = smm.h; sourceTree = "<group>"; };
+		EAB724CD2306AE55000019F0 /* ret_far.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ret_far.cc; sourceTree = "<group>"; };
+		EAB724CE2306AE55000019F0 /* data_xfer8.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_xfer8.cc; sourceTree = "<group>"; };
+		EAB724CF2306AE55000019F0 /* ctrl_xfer_pro.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ctrl_xfer_pro.cc; sourceTree = "<group>"; };
+		EAB724D02306AE55000019F0 /* flag_ctrl_pro.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = flag_ctrl_pro.cc; sourceTree = "<group>"; };
+		EAB724D12306AE55000019F0 /* cpu.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cpu.cc; sourceTree = "<group>"; };
+		EAB724D22306AE55000019F0 /* xsave.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xsave.cc; sourceTree = "<group>"; };
+		EAB724D32306AE55000019F0 /* io.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = io.cc; sourceTree = "<group>"; };
+		EAB724D42306AE55000019F0 /* shift16.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shift16.cc; sourceTree = "<group>"; };
+		EAB724D52306AE55000019F0 /* bmi64.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bmi64.cc; sourceTree = "<group>"; };
+		EAB724D62306AE55000019F0 /* vm8086.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vm8086.cc; sourceTree = "<group>"; };
+		EAB724D72306AE55000019F0 /* debugstuff.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = debugstuff.cc; sourceTree = "<group>"; };
+		EAB724D82306AE55000019F0 /* jmp_far.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jmp_far.cc; sourceTree = "<group>"; };
+		EAB724D92306AE55000019F0 /* shift32.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shift32.cc; sourceTree = "<group>"; };
+		EAB724DA2306AE55000019F0 /* aes.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aes.cc; sourceTree = "<group>"; };
+		EAB724DB2306AE55000019F0 /* logical8.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = logical8.cc; sourceTree = "<group>"; };
+		EAB724DC2306AE55000019F0 /* call_far.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = call_far.cc; sourceTree = "<group>"; };
+		EAB724DD2306AE55000019F0 /* access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = access.h; sourceTree = "<group>"; };
+		EAB724DF2306AE55000019F0 /* avx512_mask16.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = avx512_mask16.cc; sourceTree = "<group>"; };
+		EAB724E02306AE55000019F0 /* avx_cvt.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = avx_cvt.cc; sourceTree = "<group>"; };
+		EAB724E12306AE55000019F0 /* avx512_mask32.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = avx512_mask32.cc; sourceTree = "<group>"; };
+		EAB724E22306AE55000019F0 /* avx512_pfp.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = avx512_pfp.cc; sourceTree = "<group>"; };
+		EAB724E32306AE55000019F0 /* avx512_rcp14.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = avx512_rcp14.cc; sourceTree = "<group>"; };
+		EAB724E42306AE55000019F0 /* avx512.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = avx512.cc; sourceTree = "<group>"; };
+		EAB724E52306AE55000019F0 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		EAB724E62306AE55000019F0 /* avx512_mask8.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = avx512_mask8.cc; sourceTree = "<group>"; };
+		EAB724E72306AE55000019F0 /* avx2.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = avx2.cc; sourceTree = "<group>"; };
+		EAB724E82306AE55000019F0 /* avx_pfp.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = avx_pfp.cc; sourceTree = "<group>"; };
+		EAB724E92306AE55000019F0 /* avx512_move.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = avx512_move.cc; sourceTree = "<group>"; };
+		EAB724EA2306AE55000019F0 /* avx512_cvt.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = avx512_cvt.cc; sourceTree = "<group>"; };
+		EAB724EB2306AE55000019F0 /* tbm32.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tbm32.cc; sourceTree = "<group>"; };
+		EAB724EC2306AE55000019F0 /* tbm64.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tbm64.cc; sourceTree = "<group>"; };
+		EAB724ED2306AE55000019F0 /* avx512_fma.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = avx512_fma.cc; sourceTree = "<group>"; };
+		EAB724EE2306AE55000019F0 /* xop.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xop.cc; sourceTree = "<group>"; };
+		EAB724EF2306AE55000019F0 /* avx512_rsqrt14.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = avx512_rsqrt14.cc; sourceTree = "<group>"; };
+		EAB724F02306AE55000019F0 /* gather.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gather.cc; sourceTree = "<group>"; };
+		EAB724F12306AE55000019F0 /* avx.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = avx.cc; sourceTree = "<group>"; };
+		EAB724F22306AE55000019F0 /* avx512_conflict.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = avx512_conflict.cc; sourceTree = "<group>"; };
+		EAB724F32306AE55000019F0 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		EAB724F42306AE55000019F0 /* avx_fma.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = avx_fma.cc; sourceTree = "<group>"; };
+		EAB724F52306AE55000019F0 /* avx512_mask64.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = avx512_mask64.cc; sourceTree = "<group>"; };
+		EAB724F62306AE55000019F0 /* cpuid.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cpuid.cc; sourceTree = "<group>"; };
+		EAB724F72306AE55000019F0 /* sse.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sse.cc; sourceTree = "<group>"; };
+		EAB724F82306AE55000019F0 /* cpu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpu.h; sourceTree = "<group>"; };
+		EAB724F92306AE55000019F0 /* stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stack.h; sourceTree = "<group>"; };
+		EAB724FA2306AE55000019F0 /* msr.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = msr.cc; sourceTree = "<group>"; };
+		EAB724FB2306AE55000019F0 /* access.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = access.cc; sourceTree = "<group>"; };
+		EAB724FC2306AE55000019F0 /* vapic.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vapic.cc; sourceTree = "<group>"; };
+		EAB724FD2306AE55000019F0 /* arith64.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arith64.cc; sourceTree = "<group>"; };
+		EAB724FE2306AE55000019F0 /* sse_string.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sse_string.cc; sourceTree = "<group>"; };
+		EAB724FF2306AE55000019F0 /* 3dnow.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = 3dnow.cc; sourceTree = "<group>"; };
+		EAB725002306AE55000019F0 /* ctrl_xfer64.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ctrl_xfer64.cc; sourceTree = "<group>"; };
+		EAB725012306AE55000019F0 /* generic_cpuid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = generic_cpuid.h; sourceTree = "<group>"; };
+		EAB725022306AE55000019F0 /* fpu_emu.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fpu_emu.cc; sourceTree = "<group>"; };
+		EAB725032306AE55000019F0 /* stack32.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stack32.cc; sourceTree = "<group>"; };
+		EAB725042306AE55000019F0 /* stack16.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stack16.cc; sourceTree = "<group>"; };
+		EAB725052306AE55000019F0 /* vmx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vmx.h; sourceTree = "<group>"; };
+		EAB725062306AE55000019F0 /* exception.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception.cc; sourceTree = "<group>"; };
+		EAB725072306AE55000019F0 /* event.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = event.cc; sourceTree = "<group>"; };
+		EAB725082306AE55000019F0 /* logical32.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = logical32.cc; sourceTree = "<group>"; };
+		EAB725092306AE55000019F0 /* simd_compare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simd_compare.h; sourceTree = "<group>"; };
+		EAB7250A2306AE55000019F0 /* sse_rcp.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sse_rcp.cc; sourceTree = "<group>"; };
+		EAB7250B2306AE55000019F0 /* bit16.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bit16.cc; sourceTree = "<group>"; };
+		EAB7250C2306AE55000019F0 /* access2.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = access2.cc; sourceTree = "<group>"; };
+		EAB7250D2306AE55000019F0 /* apic.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = apic.cc; sourceTree = "<group>"; };
+		EAB7250E2306AE55000019F0 /* bit32.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bit32.cc; sourceTree = "<group>"; };
+		EAB7250F2306AE55000019F0 /* logical16.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = logical16.cc; sourceTree = "<group>"; };
+		EAB725102306AE55000019F0 /* crregs.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crregs.cc; sourceTree = "<group>"; };
+		EAB725112306AE55000019F0 /* arith8.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arith8.cc; sourceTree = "<group>"; };
+		EAB725122306AE55000019F0 /* data_xfer32.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_xfer32.cc; sourceTree = "<group>"; };
+		EAB725132306AE55000019F0 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		EAB725152306AE55000019F0 /* fpu_cmov.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fpu_cmov.cc; sourceTree = "<group>"; };
+		EAB725162306AE55000019F0 /* fpu_misc.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fpu_misc.cc; sourceTree = "<group>"; };
+		EAB725172306AE55000019F0 /* fpu_constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fpu_constant.h; sourceTree = "<group>"; };
+		EAB725182306AE55000019F0 /* status_w.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = status_w.h; sourceTree = "<group>"; };
+		EAB725192306AE55000019F0 /* fpu.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fpu.cc; sourceTree = "<group>"; };
+		EAB7251A2306AE55000019F0 /* fyl2x.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fyl2x.cc; sourceTree = "<group>"; };
+		EAB7251B2306AE55000019F0 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		EAB7251C2306AE55000019F0 /* softfloat-muladd.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "softfloat-muladd.cc"; sourceTree = "<group>"; };
+		EAB7251D2306AE55000019F0 /* softfloatx80.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = softfloatx80.cc; sourceTree = "<group>"; };
+		EAB7251E2306AE55000019F0 /* softfloatx80.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = softfloatx80.h; sourceTree = "<group>"; };
+		EAB7251F2306AE55000019F0 /* fpu_load_store.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fpu_load_store.cc; sourceTree = "<group>"; };
+		EAB725202306AE55000019F0 /* fprem.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fprem.cc; sourceTree = "<group>"; };
+		EAB725212306AE55000019F0 /* softfloat.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = softfloat.cc; sourceTree = "<group>"; };
+		EAB725222306AE55000019F0 /* softfloat-specialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "softfloat-specialize.h"; sourceTree = "<group>"; };
+		EAB725232306AE55000019F0 /* fpu_compare.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fpu_compare.cc; sourceTree = "<group>"; };
+		EAB725242306AE55000019F0 /* fpatan.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fpatan.cc; sourceTree = "<group>"; };
+		EAB725252306AE55000019F0 /* todo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo; sourceTree = "<group>"; };
+		EAB725262306AE55000019F0 /* softfloat16.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = softfloat16.cc; sourceTree = "<group>"; };
+		EAB725272306AE55000019F0 /* softfloat-round-pack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "softfloat-round-pack.h"; sourceTree = "<group>"; };
+		EAB725282306AE55000019F0 /* poly.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = poly.cc; sourceTree = "<group>"; };
+		EAB725292306AE55000019F0 /* softfloat-round-pack.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "softfloat-round-pack.cc"; sourceTree = "<group>"; };
+		EAB7252A2306AE55000019F0 /* fpu_const.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fpu_const.cc; sourceTree = "<group>"; };
+		EAB7252B2306AE55000019F0 /* f2xm1.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = f2xm1.cc; sourceTree = "<group>"; };
+		EAB7252C2306AE55000019F0 /* fsincos.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fsincos.cc; sourceTree = "<group>"; };
+		EAB7252D2306AE55000019F0 /* softfloat-macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "softfloat-macros.h"; sourceTree = "<group>"; };
+		EAB7252E2306AE55000019F0 /* softfloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = softfloat.h; sourceTree = "<group>"; };
+		EAB7252F2306AE55000019F0 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		EAB725302306AE55000019F0 /* fpu_arith.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fpu_arith.cc; sourceTree = "<group>"; };
+		EAB725312306AE55000019F0 /* fpu_trans.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fpu_trans.cc; sourceTree = "<group>"; };
+		EAB725322306AE55000019F0 /* tag_w.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tag_w.h; sourceTree = "<group>"; };
+		EAB725332306AE55000019F0 /* control_w.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = control_w.h; sourceTree = "<group>"; };
+		EAB725342306AE55000019F0 /* softfloat-specialize.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "softfloat-specialize.cc"; sourceTree = "<group>"; };
+		EAB725352306AE55000019F0 /* ferr.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ferr.cc; sourceTree = "<group>"; };
+		EAB725362306AE55000019F0 /* softfloat-compare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "softfloat-compare.h"; sourceTree = "<group>"; };
+		EAB725372306AE55000019F0 /* vmx.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vmx.cc; sourceTree = "<group>"; };
+		EAB725382306AE55000019F0 /* mult64.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mult64.cc; sourceTree = "<group>"; };
+		EAB725392306AE55000019F0 /* data_xfer16.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data_xfer16.cc; sourceTree = "<group>"; };
+		EAB7253A2306AE55000019F0 /* vmcs.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vmcs.cc; sourceTree = "<group>"; };
+		EAB7253B2306AE55000019F0 /* sse_move.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sse_move.cc; sourceTree = "<group>"; };
+		EAB7253C2306AE55000019F0 /* segment_ctrl_pro.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = segment_ctrl_pro.cc; sourceTree = "<group>"; };
+		EAB7253D2306AE55000019F0 /* icache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = icache.h; sourceTree = "<group>"; };
+		EAB7253E2306AE55000019F0 /* shift8.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shift8.cc; sourceTree = "<group>"; };
+		EAB7253F2306AE55000019F0 /* smm.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = smm.cc; sourceTree = "<group>"; };
+		EAB725402306AE55000019F0 /* tasking.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tasking.cc; sourceTree = "<group>"; };
+		EAB725412306AE55000019F0 /* extplugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extplugin.h; sourceTree = "<group>"; };
+		EAB725432306AE55000019F0 /* dis_tables_x87.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = dis_tables_x87.inc; sourceTree = "<group>"; };
+		EAB725442306AE55000019F0 /* dis_tables_sse.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = dis_tables_sse.inc; sourceTree = "<group>"; };
+		EAB725452306AE55000019F0 /* opcodes.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = opcodes.inc; sourceTree = "<group>"; };
+		EAB725462306AE55000019F0 /* dis_tables_xop.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = dis_tables_xop.inc; sourceTree = "<group>"; };
+		EAB725472306AE55000019F0 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		EAB725482306AE55000019F0 /* dis_decode.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dis_decode.cc; sourceTree = "<group>"; };
+		EAB725492306AE55000019F0 /* syntax.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = syntax.cc; sourceTree = "<group>"; };
+		EAB7254A2306AE55000019F0 /* dis_tables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dis_tables.h; sourceTree = "<group>"; };
+		EAB7254B2306AE55000019F0 /* disasm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = disasm.h; sourceTree = "<group>"; };
+		EAB7254C2306AE55000019F0 /* dis_tables.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = dis_tables.inc; sourceTree = "<group>"; };
+		EAB7254D2306AE55000019F0 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		EAB7254E2306AE55000019F0 /* dis_tables_avx.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = dis_tables_avx.inc; sourceTree = "<group>"; };
+		EAB7254F2306AE55000019F0 /* dis_groups.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dis_groups.cc; sourceTree = "<group>"; };
+		EAB725502306AE55000019F0 /* resolve.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = resolve.cc; sourceTree = "<group>"; };
+		EAB725522306AE55000019F0 /* linux.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = linux.cc; sourceTree = "<group>"; };
+		EAB725532306AE55000019F0 /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
+		EAB725542306AE55000019F0 /* symbols.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = symbols.cc; sourceTree = "<group>"; };
+		EAB725552306AE55000019F0 /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parser.h; sourceTree = "<group>"; };
+		EAB725562306AE55000019F0 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		EAB725572306AE55000019F0 /* lexer.l */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lex; path = lexer.l; sourceTree = "<group>"; };
+		EAB725582306AE55000019F0 /* syscalls-linux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "syscalls-linux.h"; sourceTree = "<group>"; };
+		EAB725592306AE55000019F0 /* lexer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lexer.c; sourceTree = "<group>"; };
+		EAB7255A2306AE55000019F0 /* make-syscalls-linux.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = "make-syscalls-linux.pl"; sourceTree = "<group>"; };
+		EAB7255B2306AE55000019F0 /* dbg_main.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dbg_main.cc; sourceTree = "<group>"; };
+		EAB7255C2306AE55000019F0 /* parser.y */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.yacc; path = parser.y; sourceTree = "<group>"; };
+		EAB7255D2306AE55000019F0 /* parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = parser.c; sourceTree = "<group>"; };
+		EAB7255E2306AE55000019F0 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		EAB7255F2306AE55000019F0 /* plugin.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = plugin.cc; sourceTree = "<group>"; };
+		EAB725602306AE55000019F0 /* ltdlconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ltdlconf.h; sourceTree = "<group>"; };
+		EAB725612306AE55000019F0 /* pc_system.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pc_system.cc; sourceTree = "<group>"; };
+		EAB725622306AE55000019F0 /* ltdl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ltdl.c; sourceTree = "<group>"; };
+		EAB725632306AE55000019F0 /* ltdl-bochs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ltdl-bochs.h"; sourceTree = "<group>"; };
+		EAB725652306AE55000019F0 /* parallel.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parallel.cc; sourceTree = "<group>"; };
+		EAB725662306AE55000019F0 /* harddrv.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = harddrv.cc; sourceTree = "<group>"; };
+		EAB725672306AE55000019F0 /* harddrv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = harddrv.h; sourceTree = "<group>"; };
+		EAB725682306AE55000019F0 /* scancodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scancodes.h; sourceTree = "<group>"; };
+		EAB725692306AE55000019F0 /* devices.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = devices.txt; sourceTree = "<group>"; };
+		EAB7256A2306AE55000019F0 /* pit.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pit.cc; sourceTree = "<group>"; };
+		EAB7256C2306AE55000019F0 /* vmware4.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vmware4.cc; sourceTree = "<group>"; };
+		EAB7256D2306AE55000019F0 /* hdimage.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hdimage.cc; sourceTree = "<group>"; };
+		EAB7256E2306AE55000019F0 /* cdrom_win32.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cdrom_win32.cc; sourceTree = "<group>"; };
+		EAB7256F2306AE55000019F0 /* vvfat.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vvfat.cc; sourceTree = "<group>"; };
+		EAB725702306AE55000019F0 /* hdimage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hdimage.h; sourceTree = "<group>"; };
+		EAB725712306AE55000019F0 /* cdrom_amigaos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cdrom_amigaos.h; sourceTree = "<group>"; };
+		EAB725722306AE55000019F0 /* vbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vbox.h; sourceTree = "<group>"; };
+		EAB725732306AE55000019F0 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		EAB725742306AE55000019F0 /* vpc-img.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "vpc-img.h"; sourceTree = "<group>"; };
+		EAB725752306AE55000019F0 /* cdrom_osx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cdrom_osx.h; sourceTree = "<group>"; };
+		EAB725762306AE55000019F0 /* cdrom_misc.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cdrom_misc.cc; sourceTree = "<group>"; };
+		EAB725772306AE55000019F0 /* vvfat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vvfat.h; sourceTree = "<group>"; };
+		EAB725782306AE55000019F0 /* vbox.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vbox.cc; sourceTree = "<group>"; };
+		EAB725792306AE55000019F0 /* vmware3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vmware3.h; sourceTree = "<group>"; };
+		EAB7257A2306AE56000019F0 /* cdrom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cdrom.h; sourceTree = "<group>"; };
+		EAB7257B2306AE56000019F0 /* cdrom_osx.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cdrom_osx.cc; sourceTree = "<group>"; };
+		EAB7257C2306AE56000019F0 /* cdrom_amigaos.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cdrom_amigaos.cc; sourceTree = "<group>"; };
+		EAB7257D2306AE56000019F0 /* scsi_commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scsi_commands.h; sourceTree = "<group>"; };
+		EAB7257E2306AE56000019F0 /* vmware4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vmware4.h; sourceTree = "<group>"; };
+		EAB7257F2306AE56000019F0 /* cdrom_misc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cdrom_misc.h; sourceTree = "<group>"; };
+		EAB725802306AE56000019F0 /* cdrom_win32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cdrom_win32.h; sourceTree = "<group>"; };
+		EAB725812306AE56000019F0 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		EAB725822306AE56000019F0 /* vpc-img.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "vpc-img.cc"; sourceTree = "<group>"; };
+		EAB725832306AE56000019F0 /* vmware3.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vmware3.cc; sourceTree = "<group>"; };
+		EAB725842306AE56000019F0 /* cdrom.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cdrom.cc; sourceTree = "<group>"; };
+		EAB725852306AE56000019F0 /* dma.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dma.h; sourceTree = "<group>"; };
+		EAB725862306AE56000019F0 /* slowdown_timer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = slowdown_timer.cc; sourceTree = "<group>"; };
+		EAB725872306AE56000019F0 /* cmos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cmos.h; sourceTree = "<group>"; };
+		EAB725882306AE56000019F0 /* speaker.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = speaker.cc; sourceTree = "<group>"; };
+		EAB725892306AE56000019F0 /* iodebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iodebug.h; sourceTree = "<group>"; };
+		EAB7258A2306AE56000019F0 /* virt_timer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = virt_timer.cc; sourceTree = "<group>"; };
+		EAB7258B2306AE56000019F0 /* floppy.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = floppy.cc; sourceTree = "<group>"; };
+		EAB7258C2306AE56000019F0 /* gameport.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gameport.cc; sourceTree = "<group>"; };
+		EAB7258D2306AE56000019F0 /* pit82c54.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pit82c54.cc; sourceTree = "<group>"; };
+		EAB7258E2306AE56000019F0 /* keyboard.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = keyboard.cc; sourceTree = "<group>"; };
+		EAB7258F2306AE56000019F0 /* acpi.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = acpi.cc; sourceTree = "<group>"; };
+		EAB725902306AE56000019F0 /* iodev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iodev.h; sourceTree = "<group>"; };
+		EAB725912306AE56000019F0 /* biosdev.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = biosdev.cc; sourceTree = "<group>"; };
+		EAB725922306AE56000019F0 /* devices.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = devices.cc; sourceTree = "<group>"; };
+		EAB725932306AE56000019F0 /* iodebug.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iodebug.cc; sourceTree = "<group>"; };
+		EAB725942306AE56000019F0 /* floppy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = floppy.h; sourceTree = "<group>"; };
+		EAB725952306AE56000019F0 /* unmapped.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = unmapped.cc; sourceTree = "<group>"; };
+		EAB725962306AE56000019F0 /* pci2isa.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pci2isa.cc; sourceTree = "<group>"; };
+		EAB725972306AE56000019F0 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		EAB725982306AE56000019F0 /* serial_raw.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = serial_raw.cc; sourceTree = "<group>"; };
+		EAB725DB2306AE56000019F0 /* gameport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameport.h; sourceTree = "<group>"; };
+		EAB725DC2306AE56000019F0 /* acpi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = acpi.h; sourceTree = "<group>"; };
+		EAB725DD2306AE56000019F0 /* pic.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pic.cc; sourceTree = "<group>"; };
+		EAB725DE2306AE56000019F0 /* pit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pit.h; sourceTree = "<group>"; };
+		EAB725DF2306AE56000019F0 /* serial.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = serial.cc; sourceTree = "<group>"; };
+		EAB725E02306AE56000019F0 /* extfpuirq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extfpuirq.h; sourceTree = "<group>"; };
+		EAB725E12306AE56000019F0 /* extfpuirq.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = extfpuirq.cc; sourceTree = "<group>"; };
+		EAB725E22306AE56000019F0 /* busmouse.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = busmouse.cc; sourceTree = "<group>"; };
+		EAB725E32306AE56000019F0 /* serial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serial.h; sourceTree = "<group>"; };
+		EAB725FF2306AE56000019F0 /* pcidev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcidev.h; sourceTree = "<group>"; };
+		EAB726002306AE56000019F0 /* ioapic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapic.h; sourceTree = "<group>"; };
+		EAB726012306AE56000019F0 /* pci_ide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pci_ide.h; sourceTree = "<group>"; };
+		EAB726022306AE56000019F0 /* pic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pic.h; sourceTree = "<group>"; };
+		EAB726032306AE56000019F0 /* serial_raw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serial_raw.h; sourceTree = "<group>"; };
+		EAB726042306AE56000019F0 /* keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyboard.h; sourceTree = "<group>"; };
+		EAB726052306AE56000019F0 /* biosdev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = biosdev.h; sourceTree = "<group>"; };
+		EAB726062306AE56000019F0 /* unmapped.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unmapped.h; sourceTree = "<group>"; };
+		EAB726072306AE56000019F0 /* virt_timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = virt_timer.h; sourceTree = "<group>"; };
+		EAB726082306AE56000019F0 /* pit82c54.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pit82c54.h; sourceTree = "<group>"; };
+		EAB726092306AE56000019F0 /* pcidev.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pcidev.cc; sourceTree = "<group>"; };
+		EAB7260A2306AE56000019F0 /* dma.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dma.cc; sourceTree = "<group>"; };
+		EAB7260B2306AE56000019F0 /* speaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = speaker.h; sourceTree = "<group>"; };
+		EAB7260D2306AE56000019F0 /* vga.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vga.cc; sourceTree = "<group>"; };
+		EAB7260E2306AE56000019F0 /* voodoo_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = voodoo_data.h; sourceTree = "<group>"; };
+		EAB7260F2306AE56000019F0 /* svga_cirrus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svga_cirrus.h; sourceTree = "<group>"; };
+		EAB726102306AE56000019F0 /* vgacore.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vgacore.cc; sourceTree = "<group>"; };
+		EAB726112306AE56000019F0 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		EAB726122306AE56000019F0 /* voodoo_main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = voodoo_main.h; sourceTree = "<group>"; };
+		EAB726132306AE56000019F0 /* vga.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vga.h; sourceTree = "<group>"; };
+		EAB726142306AE56000019F0 /* voodoo_raster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = voodoo_raster.h; sourceTree = "<group>"; };
+		EAB726152306AE56000019F0 /* svga_cirrus.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = svga_cirrus.cc; sourceTree = "<group>"; };
+		EAB726162306AE56000019F0 /* voodoo_func.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = voodoo_func.h; sourceTree = "<group>"; };
+		EAB726172306AE56000019F0 /* voodoo_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = voodoo_types.h; sourceTree = "<group>"; };
+		EAB726182306AE56000019F0 /* vgacore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vgacore.h; sourceTree = "<group>"; };
+		EAB726192306AE56000019F0 /* voodoo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = voodoo.h; sourceTree = "<group>"; };
+		EAB7261A2306AE56000019F0 /* voodoo.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = voodoo.cc; sourceTree = "<group>"; };
+		EAB7261B2306AE56000019F0 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		EAB7261C2306AE56000019F0 /* slowdown_timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = slowdown_timer.h; sourceTree = "<group>"; };
+		EAB7261D2306AE56000019F0 /* pci_ide.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pci_ide.cc; sourceTree = "<group>"; };
+		EAB7261E2306AE56000019F0 /* pci.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pci.h; sourceTree = "<group>"; };
+		EAB726392306AE56000019F0 /* parallel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parallel.h; sourceTree = "<group>"; };
+		EAB7263A2306AE56000019F0 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		EAB7263B2306AE56000019F0 /* ioapic.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ioapic.cc; sourceTree = "<group>"; };
+		EAB7263C2306AE56000019F0 /* scancodes.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scancodes.cc; sourceTree = "<group>"; };
+		EAB7263D2306AE56000019F0 /* pci.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pci.cc; sourceTree = "<group>"; };
+		EAB7263E2306AE56000019F0 /* busmouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = busmouse.h; sourceTree = "<group>"; };
+		EAB7263F2306AE56000019F0 /* pci2isa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pci2isa.h; sourceTree = "<group>"; };
+		EAB726402306AE56000019F0 /* cmos.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cmos.cc; sourceTree = "<group>"; };
+		EAB726422306AE56000019F0 /* wxdialog.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wxdialog.cc; sourceTree = "<group>"; };
+		EAB726432306AE56000019F0 /* nogui.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nogui.cc; sourceTree = "<group>"; };
+		EAB726442306AE56000019F0 /* win32dialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = win32dialog.h; sourceTree = "<group>"; };
+		EAB726452306AE56000019F0 /* sdl.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sdl.cc; sourceTree = "<group>"; };
+		EAB726462306AE56000019F0 /* icon_bochs.xpm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = icon_bochs.xpm; sourceTree = "<group>"; };
+		EAB726482306AE56000019F0 /* power.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = power.h; sourceTree = "<group>"; };
+		EAB726492306AE56000019F0 /* configbutton.xpm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = configbutton.xpm; sourceTree = "<group>"; };
+		EAB7264A2306AE56000019F0 /* userbutton.xpm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = userbutton.xpm; sourceTree = "<group>"; };
+		EAB7264B2306AE56000019F0 /* userbutton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userbutton.h; sourceTree = "<group>"; };
+		EAB7264C2306AE56000019F0 /* mouse.xpm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mouse.xpm; sourceTree = "<group>"; };
+		EAB7264D2306AE56000019F0 /* copy.xpm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copy.xpm; sourceTree = "<group>"; };
+		EAB7264E2306AE56000019F0 /* paste.xpm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = paste.xpm; sourceTree = "<group>"; };
+		EAB7264F2306AE56000019F0 /* mouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mouse.h; sourceTree = "<group>"; };
+		EAB726502306AE56000019F0 /* saverestore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = saverestore.h; sourceTree = "<group>"; };
+		EAB726512306AE56000019F0 /* floppya.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = floppya.h; sourceTree = "<group>"; };
+		EAB726522306AE56000019F0 /* cdromd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cdromd.h; sourceTree = "<group>"; };
+		EAB726532306AE56000019F0 /* paste.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = paste.h; sourceTree = "<group>"; };
+		EAB726542306AE56000019F0 /* saverestore.xpm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = saverestore.xpm; sourceTree = "<group>"; };
+		EAB726552306AE56000019F0 /* reset.xpm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reset.xpm; sourceTree = "<group>"; };
+		EAB726562306AE56000019F0 /* configbutton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = configbutton.h; sourceTree = "<group>"; };
+		EAB726572306AE56000019F0 /* cdromd.xpm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cdromd.xpm; sourceTree = "<group>"; };
+		EAB726582306AE56000019F0 /* floppyb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = floppyb.h; sourceTree = "<group>"; };
+		EAB726592306AE56000019F0 /* snapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = snapshot.h; sourceTree = "<group>"; };
+		EAB7265A2306AE56000019F0 /* reset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reset.h; sourceTree = "<group>"; };
+		EAB7265B2306AE56000019F0 /* power.xpm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = power.xpm; sourceTree = "<group>"; };
+		EAB7265C2306AE56000019F0 /* snapshot.xpm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = snapshot.xpm; sourceTree = "<group>"; };
+		EAB7265D2306AE56000019F0 /* floppyb.xpm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = floppyb.xpm; sourceTree = "<group>"; };
+		EAB7265E2306AE56000019F0 /* floppya.xpm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = floppya.xpm; sourceTree = "<group>"; };
+		EAB7265F2306AE56000019F0 /* copy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = copy.h; sourceTree = "<group>"; };
+		EAB726602306AE56000019F0 /* rfb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rfb.h; sourceTree = "<group>"; };
+		EAB726612306AE56000019F0 /* wx.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wx.cc; sourceTree = "<group>"; };
+		EAB726622306AE56000019F0 /* siminterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = siminterface.h; sourceTree = "<group>"; };
+		EAB726632306AE56000019F0 /* textconfig.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = textconfig.cc; sourceTree = "<group>"; };
+		EAB726642306AE56000019F0 /* svga.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = svga.cc; sourceTree = "<group>"; };
+		EAB726652306AE56000019F0 /* icon_bochs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = icon_bochs.h; sourceTree = "<group>"; };
+		EAB726662306AE56000019F0 /* scrollwin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scrollwin.h; sourceTree = "<group>"; };
+		EAB726672306AE56000019F0 /* wxdialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wxdialog.h; sourceTree = "<group>"; };
+		EAB726682306AE56000019F0 /* gui.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gui.cc; sourceTree = "<group>"; };
+		EAB726692306AE56000019F0 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		EAB7266A2306AE56000019F0 /* macintosh.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macintosh.cc; sourceTree = "<group>"; };
+		EAB7266B2306AE56000019F0 /* gtk_enh_dbg_osdep.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gtk_enh_dbg_osdep.cc; sourceTree = "<group>"; };
+		EAB7266C2306AE56000019F0 /* wxmain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wxmain.h; sourceTree = "<group>"; };
+		EAB7266D2306AE56000019F0 /* sdlkeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sdlkeys.h; sourceTree = "<group>"; };
+		EAB7266E2306AE56000019F0 /* enh_dbg.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = enh_dbg.cc; sourceTree = "<group>"; };
+		EAB726702306AE56000019F0 /* x11-pc-it.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "x11-pc-it.map"; sourceTree = "<group>"; };
+		EAB726712306AE56000019F0 /* x11-pc-de.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "x11-pc-de.map"; sourceTree = "<group>"; };
+		EAB726722306AE56000019F0 /* x11-pc-da.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "x11-pc-da.map"; sourceTree = "<group>"; };
+		EAB726732306AE56000019F0 /* x11-pc-si.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "x11-pc-si.map"; sourceTree = "<group>"; };
+		EAB726742306AE56000019F0 /* x11-pc-es.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "x11-pc-es.map"; sourceTree = "<group>"; };
+		EAB726752306AE56000019F0 /* sdl2-pc-us.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "sdl2-pc-us.map"; sourceTree = "<group>"; };
+		EAB726762306AE56000019F0 /* x11-pc-be.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "x11-pc-be.map"; sourceTree = "<group>"; };
+		EAB726772306AE56000019F0 /* sdl-pc-de.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "sdl-pc-de.map"; sourceTree = "<group>"; };
+		EAB726782306AE56000019F0 /* x11-pc-uk.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "x11-pc-uk.map"; sourceTree = "<group>"; };
+		EAB726792306AE56000019F0 /* x11-pc-us.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "x11-pc-us.map"; sourceTree = "<group>"; };
+		EAB7267A2306AE56000019F0 /* x11-pc-ru.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "x11-pc-ru.map"; sourceTree = "<group>"; };
+		EAB7267B2306AE56000019F0 /* sdl-pc-us.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "sdl-pc-us.map"; sourceTree = "<group>"; };
+		EAB7267C2306AE56000019F0 /* x11-pc-fr.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "x11-pc-fr.map"; sourceTree = "<group>"; };
+		EAB7267D2306AE56000019F0 /* x11-pc-se.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "x11-pc-se.map"; sourceTree = "<group>"; };
+		EAB7267E2306AE56000019F0 /* sdl2-pc-de.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "sdl2-pc-de.map"; sourceTree = "<group>"; };
+		EAB726802306AE56000019F0 /* win32res.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = win32res.h; sourceTree = "<group>"; };
+		EAB726812306AE56000019F0 /* rfb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rfb.cc; sourceTree = "<group>"; };
+		EAB726822306AE56000019F0 /* paramtree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = paramtree.h; sourceTree = "<group>"; };
+		EAB726832306AE56000019F0 /* sdl2.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sdl2.cc; sourceTree = "<group>"; };
+		EAB726842306AE56000019F0 /* gui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gui.h; sourceTree = "<group>"; };
+		EAB726852306AE56000019F0 /* term.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = term.cc; sourceTree = "<group>"; };
+		EAB726862306AE56000019F0 /* vncsrv.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vncsrv.cc; sourceTree = "<group>"; };
+		EAB726882306AE56000019F0 /* keymap.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = keymap.cc; sourceTree = "<group>"; };
+		EAB726892306AE56000019F0 /* x.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = x.cc; sourceTree = "<group>"; };
+		EAB7268A2306AE56000019F0 /* carbon.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = carbon.cc; sourceTree = "<group>"; };
+		EAB7268B2306AE56000019F0 /* win32.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = win32.cc; sourceTree = "<group>"; };
+		EAB7268C2306AE56000019F0 /* rfbkeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rfbkeys.h; sourceTree = "<group>"; };
+		EAB7268D2306AE56000019F0 /* amigagui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amigagui.h; sourceTree = "<group>"; };
+		EAB7268E2306AE56000019F0 /* wenhdbg_res.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wenhdbg_res.h; sourceTree = "<group>"; };
+		EAB7268F2306AE56000019F0 /* siminterface.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = siminterface.cc; sourceTree = "<group>"; };
+		EAB726912306AE56000019F0 /* vga.bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vga.bitmap.h; sourceTree = "<group>"; };
+		EAB726922306AE56000019F0 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		EAB726932306AE56000019F0 /* sdl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sdl.h; sourceTree = "<group>"; };
+		EAB726942306AE56000019F0 /* enh_dbg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enh_dbg.h; sourceTree = "<group>"; };
+		EAB726952306AE56000019F0 /* paramtree.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = paramtree.cc; sourceTree = "<group>"; };
+		EAB726962306AE56000019F0 /* wxmain.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wxmain.cc; sourceTree = "<group>"; };
+		EAB726972306AE56000019F0 /* textconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textconfig.h; sourceTree = "<group>"; };
+		EAB726982306AE56000019F0 /* amigaos.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = amigaos.cc; sourceTree = "<group>"; };
+		EAB726992306AE56000019F0 /* scrollwin.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scrollwin.cc; sourceTree = "<group>"; };
+		EAB7269A2306AE56000019F0 /* win32paramdlg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = win32paramdlg.h; sourceTree = "<group>"; };
+		EAB7269B2306AE56000019F0 /* win32_enh_dbg_osdep.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = win32_enh_dbg_osdep.cc; sourceTree = "<group>"; };
+		EAB7269C2306AE56000019F0 /* keymap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keymap.h; sourceTree = "<group>"; };
+		EAB7269D2306AE56000019F0 /* gdbstub.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gdbstub.cc; sourceTree = "<group>"; };
+		EAB7269E2306AE56000019F0 /* bxversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bxversion.h; sourceTree = "<group>"; };
+		EAB7269F2306AE56000019F0 /* pc_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pc_system.h; sourceTree = "<group>"; };
+		EAB726A02306AE56000019F0 /* crc.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crc.cc; sourceTree = "<group>"; };
+		EAB726A12306AE56000019F0 /* param_names.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = param_names.h; sourceTree = "<group>"; };
+		EAB726A22306AE56000019F0 /* bochs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bochs.h; sourceTree = "<group>"; };
+		EAB726A32306AE56000019F0 /* PARAM_TREE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PARAM_TREE.txt; sourceTree = "<group>"; };
+		EAB726A42306AE56000019F0 /* config.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = config.cc; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EAB71E502306AD95000019F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EAB71E4A2306AD95000019F0 = {
+			isa = PBXGroup;
+			children = (
+				EAB724042306AE55000019F0 /* src */,
+				EAB71E542306AD95000019F0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EAB71E542306AD95000019F0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EAB71E532306AD95000019F0 /* x86emu */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EAB724042306AE55000019F0 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				EAB724052306AE55000019F0 /* cpu */,
+				EAB724082306AE55000019F0 /* main.cpp */,
+				EAB724092306AE55000019F0 /* bochs */,
+			);
+			name = src;
+			path = ../../src;
+			sourceTree = SOURCE_ROOT;
+		};
+		EAB724052306AE55000019F0 /* cpu */ = {
+			isa = PBXGroup;
+			children = (
+				EAB724062306AE55000019F0 /* x86.h */,
+				EAB724072306AE55000019F0 /* x86.cpp */,
+			);
+			path = cpu;
+			sourceTree = "<group>";
+		};
+		EAB724092306AE55000019F0 /* bochs */ = {
+			isa = PBXGroup;
+			children = (
+				EAB7240A2306AE55000019F0 /* main.cc */,
+				EAB7241F2306AE55000019F0 /* osdep.cc */,
+				EAB724202306AE55000019F0 /* cpudb.h */,
+				EAB724212306AE55000019F0 /* osdep.h */,
+				EAB724222306AE55000019F0 /* plugin.h */,
+				EAB724232306AE55000019F0 /* memory */,
+				EAB724292306AE55000019F0 /* logio.cc */,
+				EAB7242A2306AE55000019F0 /* load32bitOShack.cc */,
+				EAB7242B2306AE55000019F0 /* config.h */,
+				EAB7242C2306AE55000019F0 /* instrument */,
+				EAB7243F2306AE55000019F0 /* cpu */,
+				EAB725412306AE55000019F0 /* extplugin.h */,
+				EAB725422306AE55000019F0 /* disasm */,
+				EAB725512306AE55000019F0 /* bx_debug */,
+				EAB7255F2306AE55000019F0 /* plugin.cc */,
+				EAB725602306AE55000019F0 /* ltdlconf.h */,
+				EAB725612306AE55000019F0 /* pc_system.cc */,
+				EAB725622306AE55000019F0 /* ltdl.c */,
+				EAB725632306AE55000019F0 /* ltdl-bochs.h */,
+				EAB725642306AE55000019F0 /* iodev */,
+				EAB726412306AE56000019F0 /* gui */,
+				EAB7269D2306AE56000019F0 /* gdbstub.cc */,
+				EAB7269E2306AE56000019F0 /* bxversion.h */,
+				EAB7269F2306AE56000019F0 /* pc_system.h */,
+				EAB726A02306AE56000019F0 /* crc.cc */,
+				EAB726A12306AE56000019F0 /* param_names.h */,
+				EAB726A22306AE56000019F0 /* bochs.h */,
+				EAB726A32306AE56000019F0 /* PARAM_TREE.txt */,
+				EAB726A42306AE56000019F0 /* config.cc */,
+			);
+			path = bochs;
+			sourceTree = "<group>";
+		};
+		EAB724232306AE55000019F0 /* memory */ = {
+			isa = PBXGroup;
+			children = (
+				EAB724242306AE55000019F0 /* memory-bochs.h */,
+				EAB724252306AE55000019F0 /* Makefile */,
+				EAB724262306AE55000019F0 /* misc_mem.cc */,
+				EAB724272306AE55000019F0 /* Makefile.in */,
+				EAB724282306AE55000019F0 /* memory.cc */,
+			);
+			path = memory;
+			sourceTree = "<group>";
+		};
+		EAB7242C2306AE55000019F0 /* instrument */ = {
+			isa = PBXGroup;
+			children = (
+				EAB7242D2306AE55000019F0 /* stubs */,
+				EAB724322306AE55000019F0 /* example2 */,
+				EAB724362306AE55000019F0 /* example1 */,
+				EAB7243A2306AE55000019F0 /* example0 */,
+				EAB7243E2306AE55000019F0 /* instrumentation.txt */,
+			);
+			path = instrument;
+			sourceTree = "<group>";
+		};
+		EAB7242D2306AE55000019F0 /* stubs */ = {
+			isa = PBXGroup;
+			children = (
+				EAB7242E2306AE55000019F0 /* instrument.cc */,
+				EAB7242F2306AE55000019F0 /* Makefile */,
+				EAB724302306AE55000019F0 /* instrument.h */,
+				EAB724312306AE55000019F0 /* Makefile.in */,
+			);
+			path = stubs;
+			sourceTree = "<group>";
+		};
+		EAB724322306AE55000019F0 /* example2 */ = {
+			isa = PBXGroup;
+			children = (
+				EAB724332306AE55000019F0 /* instrument.cc */,
+				EAB724342306AE55000019F0 /* instrument.h */,
+				EAB724352306AE55000019F0 /* Makefile.in */,
+			);
+			path = example2;
+			sourceTree = "<group>";
+		};
+		EAB724362306AE55000019F0 /* example1 */ = {
+			isa = PBXGroup;
+			children = (
+				EAB724372306AE55000019F0 /* instrument.cc */,
+				EAB724382306AE55000019F0 /* instrument.h */,
+				EAB724392306AE55000019F0 /* Makefile.in */,
+			);
+			path = example1;
+			sourceTree = "<group>";
+		};
+		EAB7243A2306AE55000019F0 /* example0 */ = {
+			isa = PBXGroup;
+			children = (
+				EAB7243B2306AE55000019F0 /* instrument.cc */,
+				EAB7243C2306AE55000019F0 /* instrument.h */,
+				EAB7243D2306AE55000019F0 /* Makefile.in */,
+			);
+			path = example0;
+			sourceTree = "<group>";
+		};
+		EAB7243F2306AE55000019F0 /* cpu */ = {
+			isa = PBXGroup;
+			children = (
+				EAB724402306AE55000019F0 /* proc_ctrl.cc */,
+				EAB724412306AE55000019F0 /* load.cc */,
+				EAB724422306AE55000019F0 /* init.cc */,
+				EAB724432306AE55000019F0 /* soft_int.cc */,
+				EAB724442306AE55000019F0 /* simd_int.h */,
+				EAB724452306AE55000019F0 /* generic_cpuid.cc */,
+				EAB724462306AE55000019F0 /* svm.cc */,
+				EAB724472306AE55000019F0 /* flag_ctrl.cc */,
+				EAB724482306AE55000019F0 /* data_xfer64.cc */,
+				EAB724492306AE55000019F0 /* mult16.cc */,
+				EAB7244A2306AE55000019F0 /* mult32.cc */,
+				EAB7244B2306AE55000019F0 /* string.cc */,
+				EAB7244C2306AE55000019F0 /* i387.h */,
+				EAB7244D2306AE55000019F0 /* logical64.cc */,
+				EAB7244E2306AE55000019F0 /* bcd.cc */,
+				EAB7244F2306AE55000019F0 /* rdrand.cc */,
+				EAB724502306AE55000019F0 /* bit64.cc */,
+				EAB724512306AE55000019F0 /* sse_pfp.cc */,
+				EAB724522306AE55000019F0 /* cpudb */,
+				EAB7249C2306AE55000019F0 /* scalar_arith.h */,
+				EAB7249D2306AE55000019F0 /* mmx.cc */,
+				EAB7249E2306AE55000019F0 /* stack64.cc */,
+				EAB7249F2306AE55000019F0 /* cpuid.h */,
+				EAB724A02306AE55000019F0 /* paging.cc */,
+				EAB724A12306AE55000019F0 /* cpustats.h */,
+				EAB724A22306AE55000019F0 /* arith32.cc */,
+				EAB724A32306AE55000019F0 /* ctrl_xfer16.cc */,
+				EAB724A42306AE55000019F0 /* mult8.cc */,
+				EAB724A52306AE55000019F0 /* tlb.h */,
+				EAB724A62306AE55000019F0 /* Makefile */,
+				EAB724A72306AE55000019F0 /* vmexit.cc */,
+				EAB724A82306AE55000019F0 /* iret.cc */,
+				EAB724A92306AE55000019F0 /* sha.cc */,
+				EAB724AA2306AE55000019F0 /* arith16.cc */,
+				EAB724AB2306AE55000019F0 /* ctrl_xfer32.cc */,
+				EAB724AC2306AE55000019F0 /* crregs.h */,
+				EAB724AD2306AE55000019F0 /* descriptor.h */,
+				EAB724AE2306AE55000019F0 /* xmm.h */,
+				EAB724AF2306AE55000019F0 /* bmi32.cc */,
+				EAB724B02306AE55000019F0 /* apic.h */,
+				EAB724B12306AE55000019F0 /* decoder */,
+				EAB724C02306AE55000019F0 /* vmfunc.cc */,
+				EAB724C12306AE55000019F0 /* lazy_flags.h */,
+				EAB724C22306AE55000019F0 /* svm.h */,
+				EAB724C32306AE55000019F0 /* protect_ctrl.cc */,
+				EAB724C42306AE55000019F0 /* bit.cc */,
+				EAB724C52306AE55000019F0 /* simd_pfp.h */,
+				EAB724C62306AE55000019F0 /* shift64.cc */,
+				EAB724C72306AE55000019F0 /* stack.cc */,
+				EAB724C82306AE55000019F0 /* icache.cc */,
+				EAB724C92306AE55000019F0 /* segment_ctrl.cc */,
+				EAB724CA2306AE55000019F0 /* crc32.cc */,
+				EAB724CB2306AE55000019F0 /* todo */,
+				EAB724CC2306AE55000019F0 /* smm.h */,
+				EAB724CD2306AE55000019F0 /* ret_far.cc */,
+				EAB724CE2306AE55000019F0 /* data_xfer8.cc */,
+				EAB724CF2306AE55000019F0 /* ctrl_xfer_pro.cc */,
+				EAB724D02306AE55000019F0 /* flag_ctrl_pro.cc */,
+				EAB724D12306AE55000019F0 /* cpu.cc */,
+				EAB724D22306AE55000019F0 /* xsave.cc */,
+				EAB724D32306AE55000019F0 /* io.cc */,
+				EAB724D42306AE55000019F0 /* shift16.cc */,
+				EAB724D52306AE55000019F0 /* bmi64.cc */,
+				EAB724D62306AE55000019F0 /* vm8086.cc */,
+				EAB724D72306AE55000019F0 /* debugstuff.cc */,
+				EAB724D82306AE55000019F0 /* jmp_far.cc */,
+				EAB724D92306AE55000019F0 /* shift32.cc */,
+				EAB724DA2306AE55000019F0 /* aes.cc */,
+				EAB724DB2306AE55000019F0 /* logical8.cc */,
+				EAB724DC2306AE55000019F0 /* call_far.cc */,
+				EAB724DD2306AE55000019F0 /* access.h */,
+				EAB724DE2306AE55000019F0 /* avx */,
+				EAB724F62306AE55000019F0 /* cpuid.cc */,
+				EAB724F72306AE55000019F0 /* sse.cc */,
+				EAB724F82306AE55000019F0 /* cpu.h */,
+				EAB724F92306AE55000019F0 /* stack.h */,
+				EAB724FA2306AE55000019F0 /* msr.cc */,
+				EAB724FB2306AE55000019F0 /* access.cc */,
+				EAB724FC2306AE55000019F0 /* vapic.cc */,
+				EAB724FD2306AE55000019F0 /* arith64.cc */,
+				EAB724FE2306AE55000019F0 /* sse_string.cc */,
+				EAB724FF2306AE55000019F0 /* 3dnow.cc */,
+				EAB725002306AE55000019F0 /* ctrl_xfer64.cc */,
+				EAB725012306AE55000019F0 /* generic_cpuid.h */,
+				EAB725022306AE55000019F0 /* fpu_emu.cc */,
+				EAB725032306AE55000019F0 /* stack32.cc */,
+				EAB725042306AE55000019F0 /* stack16.cc */,
+				EAB725052306AE55000019F0 /* vmx.h */,
+				EAB725062306AE55000019F0 /* exception.cc */,
+				EAB725072306AE55000019F0 /* event.cc */,
+				EAB725082306AE55000019F0 /* logical32.cc */,
+				EAB725092306AE55000019F0 /* simd_compare.h */,
+				EAB7250A2306AE55000019F0 /* sse_rcp.cc */,
+				EAB7250B2306AE55000019F0 /* bit16.cc */,
+				EAB7250C2306AE55000019F0 /* access2.cc */,
+				EAB7250D2306AE55000019F0 /* apic.cc */,
+				EAB7250E2306AE55000019F0 /* bit32.cc */,
+				EAB7250F2306AE55000019F0 /* logical16.cc */,
+				EAB725102306AE55000019F0 /* crregs.cc */,
+				EAB725112306AE55000019F0 /* arith8.cc */,
+				EAB725122306AE55000019F0 /* data_xfer32.cc */,
+				EAB725132306AE55000019F0 /* Makefile.in */,
+				EAB725142306AE55000019F0 /* fpu */,
+				EAB725372306AE55000019F0 /* vmx.cc */,
+				EAB725382306AE55000019F0 /* mult64.cc */,
+				EAB725392306AE55000019F0 /* data_xfer16.cc */,
+				EAB7253A2306AE55000019F0 /* vmcs.cc */,
+				EAB7253B2306AE55000019F0 /* sse_move.cc */,
+				EAB7253C2306AE55000019F0 /* segment_ctrl_pro.cc */,
+				EAB7253D2306AE55000019F0 /* icache.h */,
+				EAB7253E2306AE55000019F0 /* shift8.cc */,
+				EAB7253F2306AE55000019F0 /* smm.cc */,
+				EAB725402306AE55000019F0 /* tasking.cc */,
+			);
+			path = cpu;
+			sourceTree = "<group>";
+		};
+		EAB724522306AE55000019F0 /* cpudb */ = {
+			isa = PBXGroup;
+			children = (
+				EAB724532306AE55000019F0 /* intel */,
+				EAB724812306AE55000019F0 /* Makefile */,
+				EAB724822306AE55000019F0 /* amd */,
+				EAB7249B2306AE55000019F0 /* Makefile.in */,
+			);
+			path = cpudb;
+			sourceTree = "<group>";
+		};
+		EAB724532306AE55000019F0 /* intel */ = {
+			isa = PBXGroup;
+			children = (
+				EAB724542306AE55000019F0 /* pentium.h */,
+				EAB724552306AE55000019F0 /* corei5_arrandale_m520.h */,
+				EAB724562306AE55000019F0 /* corei7_haswell_4770.cc */,
+				EAB724572306AE55000019F0 /* core_duo_t2400_yonah.txt */,
+				EAB724582306AE55000019F0 /* core_duo_t2400_yonah.cc */,
+				EAB724592306AE55000019F0 /* atom_n270.txt */,
+				EAB7245A2306AE55000019F0 /* p4_willamette.txt */,
+				EAB7245B2306AE55000019F0 /* corei7_sandy_bridge_2600K.txt */,
+				EAB7245C2306AE55000019F0 /* corei7_ivy_bridge_3770K.h */,
+				EAB7245D2306AE55000019F0 /* p4_willamette.h */,
+				EAB7245E2306AE55000019F0 /* corei7_ivy_bridge_3770K.cc */,
+				EAB7245F2306AE55000019F0 /* broadwell_ult.h */,
+				EAB724602306AE55000019F0 /* p2_klamath.h */,
+				EAB724612306AE55000019F0 /* core2_penryn_t9600.h */,
+				EAB724622306AE55000019F0 /* pentium_mmx.txt */,
+				EAB724632306AE55000019F0 /* atom_n270.h */,
+				EAB724642306AE55000019F0 /* p4_prescott_celeron_336.txt */,
+				EAB724652306AE55000019F0 /* broadwell_ult.cc */,
+				EAB724662306AE55000019F0 /* pentium_mmx.h */,
+				EAB724672306AE55000019F0 /* corei7_haswell_4770.h */,
+				EAB724682306AE55000019F0 /* p4_prescott_celeron_336.h */,
+				EAB724692306AE55000019F0 /* pentium.cc */,
+				EAB7246A2306AE55000019F0 /* core_duo_t2400_yonah.h */,
+				EAB7246B2306AE55000019F0 /* atom_n270.cc */,
+				EAB7246C2306AE55000019F0 /* corei5_arrandale_m520.cc */,
+				EAB7246D2306AE55000019F0 /* pentium_mmx.cc */,
+				EAB7246E2306AE55000019F0 /* corei5_arrandale_m520.txt */,
+				EAB7246F2306AE55000019F0 /* core2_penryn_t9600.txt */,
+				EAB724702306AE55000019F0 /* corei7_ivy_bridge_3770K.txt */,
+				EAB724712306AE55000019F0 /* corei5_lynnfield_750.cc */,
+				EAB724722306AE55000019F0 /* p3_katmai.txt */,
+				EAB724732306AE55000019F0 /* corei5_lynnfield_750.h */,
+				EAB724742306AE55000019F0 /* p3_katmai.cc */,
+				EAB724752306AE55000019F0 /* core2_penryn_t9600.cc */,
+				EAB724762306AE55000019F0 /* p2_klamath.cc */,
+				EAB724772306AE55000019F0 /* p2_klamath.txt */,
+				EAB724782306AE55000019F0 /* corei7_haswell_4770.txt */,
+				EAB724792306AE55000019F0 /* corei7_sandy_bridge_2600K.h */,
+				EAB7247A2306AE55000019F0 /* broadwell_ult.txt */,
+				EAB7247B2306AE55000019F0 /* pentium.txt */,
+				EAB7247C2306AE55000019F0 /* p3_katmai.h */,
+				EAB7247D2306AE55000019F0 /* corei5_lynnfield_750.txt */,
+				EAB7247E2306AE55000019F0 /* corei7_sandy_bridge_2600K.cc */,
+				EAB7247F2306AE55000019F0 /* p4_willamette.cc */,
+				EAB724802306AE55000019F0 /* p4_prescott_celeron_336.cc */,
+			);
+			path = intel;
+			sourceTree = "<group>";
+		};
+		EAB724822306AE55000019F0 /* amd */ = {
+			isa = PBXGroup;
+			children = (
+				EAB724832306AE55000019F0 /* zambezi.h */,
+				EAB724842306AE55000019F0 /* amd_k6_2_chomper.txt */,
+				EAB724852306AE55000019F0 /* amd_k6_2_chomper.cc */,
+				EAB724862306AE55000019F0 /* ryzen.txt */,
+				EAB724872306AE55000019F0 /* athlon64_venice.txt */,
+				EAB724882306AE55000019F0 /* zambezi.txt */,
+				EAB724892306AE55000019F0 /* turion64_tyler.txt */,
+				EAB7248A2306AE55000019F0 /* trinity_apu.txt */,
+				EAB7248B2306AE55000019F0 /* phenomx3_8650_toliman.txt */,
+				EAB7248C2306AE55000019F0 /* ryzen.h */,
+				EAB7248D2306AE55000019F0 /* amd_k6_2_chomper.h */,
+				EAB7248E2306AE55000019F0 /* trinity_apu.cc */,
+				EAB7248F2306AE55000019F0 /* phenomx3_8650_toliman.cc */,
+				EAB724902306AE55000019F0 /* turion64_tyler.h */,
+				EAB724912306AE55000019F0 /* athlon64_clawhammer.cc */,
+				EAB724922306AE55000019F0 /* ryzen.cc */,
+				EAB724932306AE55000019F0 /* athlon64_venice.cc */,
+				EAB724942306AE55000019F0 /* athlon64_clawhammer.h */,
+				EAB724952306AE55000019F0 /* trinity_apu.h */,
+				EAB724962306AE55000019F0 /* zambezi.cc */,
+				EAB724972306AE55000019F0 /* phenomx3_8650_toliman.h */,
+				EAB724982306AE55000019F0 /* turion64_tyler.cc */,
+				EAB724992306AE55000019F0 /* athlon64_clawhammer.txt */,
+				EAB7249A2306AE55000019F0 /* athlon64_venice.h */,
+			);
+			path = amd;
+			sourceTree = "<group>";
+		};
+		EAB724B12306AE55000019F0 /* decoder */ = {
+			isa = PBXGroup;
+			children = (
+				EAB724B22306AE55000019F0 /* fetchdecode_x87.h */,
+				EAB724B32306AE55000019F0 /* ia_opcodes.h */,
+				EAB724B42306AE55000019F0 /* fetchdecode_opmap_0f3a.h */,
+				EAB724B52306AE55000019F0 /* fetchdecode_opmap_0f38.h */,
+				EAB724B62306AE55000019F0 /* fetchdecode_opmap.h */,
+				EAB724B72306AE55000019F0 /* decoder.h */,
+				EAB724B82306AE55000019F0 /* fetchdecode32.cc */,
+				EAB724B92306AE55000019F0 /* fetchdecode_evex.h */,
+				EAB724BA2306AE55000019F0 /* fetchdecode.h */,
+				EAB724BB2306AE55000019F0 /* fetchdecode_avx.h */,
+				EAB724BC2306AE55000019F0 /* instr.h */,
+				EAB724BD2306AE55000019F0 /* fetchdecode64.cc */,
+				EAB724BE2306AE55000019F0 /* fetchdecode_xop.h */,
+				EAB724BF2306AE55000019F0 /* disasm.cc */,
+			);
+			path = decoder;
+			sourceTree = "<group>";
+		};
+		EAB724DE2306AE55000019F0 /* avx */ = {
+			isa = PBXGroup;
+			children = (
+				EAB724DF2306AE55000019F0 /* avx512_mask16.cc */,
+				EAB724E02306AE55000019F0 /* avx_cvt.cc */,
+				EAB724E12306AE55000019F0 /* avx512_mask32.cc */,
+				EAB724E22306AE55000019F0 /* avx512_pfp.cc */,
+				EAB724E32306AE55000019F0 /* avx512_rcp14.cc */,
+				EAB724E42306AE55000019F0 /* avx512.cc */,
+				EAB724E52306AE55000019F0 /* Makefile */,
+				EAB724E62306AE55000019F0 /* avx512_mask8.cc */,
+				EAB724E72306AE55000019F0 /* avx2.cc */,
+				EAB724E82306AE55000019F0 /* avx_pfp.cc */,
+				EAB724E92306AE55000019F0 /* avx512_move.cc */,
+				EAB724EA2306AE55000019F0 /* avx512_cvt.cc */,
+				EAB724EB2306AE55000019F0 /* tbm32.cc */,
+				EAB724EC2306AE55000019F0 /* tbm64.cc */,
+				EAB724ED2306AE55000019F0 /* avx512_fma.cc */,
+				EAB724EE2306AE55000019F0 /* xop.cc */,
+				EAB724EF2306AE55000019F0 /* avx512_rsqrt14.cc */,
+				EAB724F02306AE55000019F0 /* gather.cc */,
+				EAB724F12306AE55000019F0 /* avx.cc */,
+				EAB724F22306AE55000019F0 /* avx512_conflict.cc */,
+				EAB724F32306AE55000019F0 /* Makefile.in */,
+				EAB724F42306AE55000019F0 /* avx_fma.cc */,
+				EAB724F52306AE55000019F0 /* avx512_mask64.cc */,
+			);
+			path = avx;
+			sourceTree = "<group>";
+		};
+		EAB725142306AE55000019F0 /* fpu */ = {
+			isa = PBXGroup;
+			children = (
+				EAB725152306AE55000019F0 /* fpu_cmov.cc */,
+				EAB725162306AE55000019F0 /* fpu_misc.cc */,
+				EAB725172306AE55000019F0 /* fpu_constant.h */,
+				EAB725182306AE55000019F0 /* status_w.h */,
+				EAB725192306AE55000019F0 /* fpu.cc */,
+				EAB7251A2306AE55000019F0 /* fyl2x.cc */,
+				EAB7251B2306AE55000019F0 /* Makefile */,
+				EAB7251C2306AE55000019F0 /* softfloat-muladd.cc */,
+				EAB7251D2306AE55000019F0 /* softfloatx80.cc */,
+				EAB7251E2306AE55000019F0 /* softfloatx80.h */,
+				EAB7251F2306AE55000019F0 /* fpu_load_store.cc */,
+				EAB725202306AE55000019F0 /* fprem.cc */,
+				EAB725212306AE55000019F0 /* softfloat.cc */,
+				EAB725222306AE55000019F0 /* softfloat-specialize.h */,
+				EAB725232306AE55000019F0 /* fpu_compare.cc */,
+				EAB725242306AE55000019F0 /* fpatan.cc */,
+				EAB725252306AE55000019F0 /* todo */,
+				EAB725262306AE55000019F0 /* softfloat16.cc */,
+				EAB725272306AE55000019F0 /* softfloat-round-pack.h */,
+				EAB725282306AE55000019F0 /* poly.cc */,
+				EAB725292306AE55000019F0 /* softfloat-round-pack.cc */,
+				EAB7252A2306AE55000019F0 /* fpu_const.cc */,
+				EAB7252B2306AE55000019F0 /* f2xm1.cc */,
+				EAB7252C2306AE55000019F0 /* fsincos.cc */,
+				EAB7252D2306AE55000019F0 /* softfloat-macros.h */,
+				EAB7252E2306AE55000019F0 /* softfloat.h */,
+				EAB7252F2306AE55000019F0 /* Makefile.in */,
+				EAB725302306AE55000019F0 /* fpu_arith.cc */,
+				EAB725312306AE55000019F0 /* fpu_trans.cc */,
+				EAB725322306AE55000019F0 /* tag_w.h */,
+				EAB725332306AE55000019F0 /* control_w.h */,
+				EAB725342306AE55000019F0 /* softfloat-specialize.cc */,
+				EAB725352306AE55000019F0 /* ferr.cc */,
+				EAB725362306AE55000019F0 /* softfloat-compare.h */,
+			);
+			path = fpu;
+			sourceTree = "<group>";
+		};
+		EAB725422306AE55000019F0 /* disasm */ = {
+			isa = PBXGroup;
+			children = (
+				EAB725432306AE55000019F0 /* dis_tables_x87.inc */,
+				EAB725442306AE55000019F0 /* dis_tables_sse.inc */,
+				EAB725452306AE55000019F0 /* opcodes.inc */,
+				EAB725462306AE55000019F0 /* dis_tables_xop.inc */,
+				EAB725472306AE55000019F0 /* Makefile */,
+				EAB725482306AE55000019F0 /* dis_decode.cc */,
+				EAB725492306AE55000019F0 /* syntax.cc */,
+				EAB7254A2306AE55000019F0 /* dis_tables.h */,
+				EAB7254B2306AE55000019F0 /* disasm.h */,
+				EAB7254C2306AE55000019F0 /* dis_tables.inc */,
+				EAB7254D2306AE55000019F0 /* Makefile.in */,
+				EAB7254E2306AE55000019F0 /* dis_tables_avx.inc */,
+				EAB7254F2306AE55000019F0 /* dis_groups.cc */,
+				EAB725502306AE55000019F0 /* resolve.cc */,
+			);
+			path = disasm;
+			sourceTree = "<group>";
+		};
+		EAB725512306AE55000019F0 /* bx_debug */ = {
+			isa = PBXGroup;
+			children = (
+				EAB725522306AE55000019F0 /* linux.cc */,
+				EAB725532306AE55000019F0 /* debug.h */,
+				EAB725542306AE55000019F0 /* symbols.cc */,
+				EAB725552306AE55000019F0 /* parser.h */,
+				EAB725562306AE55000019F0 /* Makefile */,
+				EAB725572306AE55000019F0 /* lexer.l */,
+				EAB725582306AE55000019F0 /* syscalls-linux.h */,
+				EAB725592306AE55000019F0 /* lexer.c */,
+				EAB7255A2306AE55000019F0 /* make-syscalls-linux.pl */,
+				EAB7255B2306AE55000019F0 /* dbg_main.cc */,
+				EAB7255C2306AE55000019F0 /* parser.y */,
+				EAB7255D2306AE55000019F0 /* parser.c */,
+				EAB7255E2306AE55000019F0 /* Makefile.in */,
+			);
+			path = bx_debug;
+			sourceTree = "<group>";
+		};
+		EAB725642306AE55000019F0 /* iodev */ = {
+			isa = PBXGroup;
+			children = (
+				EAB725652306AE55000019F0 /* parallel.cc */,
+				EAB725662306AE55000019F0 /* harddrv.cc */,
+				EAB725672306AE55000019F0 /* harddrv.h */,
+				EAB725682306AE55000019F0 /* scancodes.h */,
+				EAB725692306AE55000019F0 /* devices.txt */,
+				EAB7256A2306AE55000019F0 /* pit.cc */,
+				EAB7256B2306AE55000019F0 /* hdimage */,
+				EAB725852306AE56000019F0 /* dma.h */,
+				EAB725862306AE56000019F0 /* slowdown_timer.cc */,
+				EAB725872306AE56000019F0 /* cmos.h */,
+				EAB725882306AE56000019F0 /* speaker.cc */,
+				EAB725892306AE56000019F0 /* iodebug.h */,
+				EAB7258A2306AE56000019F0 /* virt_timer.cc */,
+				EAB7258B2306AE56000019F0 /* floppy.cc */,
+				EAB7258C2306AE56000019F0 /* gameport.cc */,
+				EAB7258D2306AE56000019F0 /* pit82c54.cc */,
+				EAB7258E2306AE56000019F0 /* keyboard.cc */,
+				EAB7258F2306AE56000019F0 /* acpi.cc */,
+				EAB725902306AE56000019F0 /* iodev.h */,
+				EAB725912306AE56000019F0 /* biosdev.cc */,
+				EAB725922306AE56000019F0 /* devices.cc */,
+				EAB725932306AE56000019F0 /* iodebug.cc */,
+				EAB725942306AE56000019F0 /* floppy.h */,
+				EAB725952306AE56000019F0 /* unmapped.cc */,
+				EAB725962306AE56000019F0 /* pci2isa.cc */,
+				EAB725972306AE56000019F0 /* Makefile */,
+				EAB725982306AE56000019F0 /* serial_raw.cc */,
+				EAB725DB2306AE56000019F0 /* gameport.h */,
+				EAB725DC2306AE56000019F0 /* acpi.h */,
+				EAB725DD2306AE56000019F0 /* pic.cc */,
+				EAB725DE2306AE56000019F0 /* pit.h */,
+				EAB725DF2306AE56000019F0 /* serial.cc */,
+				EAB725E02306AE56000019F0 /* extfpuirq.h */,
+				EAB725E12306AE56000019F0 /* extfpuirq.cc */,
+				EAB725E22306AE56000019F0 /* busmouse.cc */,
+				EAB725E32306AE56000019F0 /* serial.h */,
+				EAB725FF2306AE56000019F0 /* pcidev.h */,
+				EAB726002306AE56000019F0 /* ioapic.h */,
+				EAB726012306AE56000019F0 /* pci_ide.h */,
+				EAB726022306AE56000019F0 /* pic.h */,
+				EAB726032306AE56000019F0 /* serial_raw.h */,
+				EAB726042306AE56000019F0 /* keyboard.h */,
+				EAB726052306AE56000019F0 /* biosdev.h */,
+				EAB726062306AE56000019F0 /* unmapped.h */,
+				EAB726072306AE56000019F0 /* virt_timer.h */,
+				EAB726082306AE56000019F0 /* pit82c54.h */,
+				EAB726092306AE56000019F0 /* pcidev.cc */,
+				EAB7260A2306AE56000019F0 /* dma.cc */,
+				EAB7260B2306AE56000019F0 /* speaker.h */,
+				EAB7260C2306AE56000019F0 /* display */,
+				EAB7261C2306AE56000019F0 /* slowdown_timer.h */,
+				EAB7261D2306AE56000019F0 /* pci_ide.cc */,
+				EAB7261E2306AE56000019F0 /* pci.h */,
+				EAB726392306AE56000019F0 /* parallel.h */,
+				EAB7263A2306AE56000019F0 /* Makefile.in */,
+				EAB7263B2306AE56000019F0 /* ioapic.cc */,
+				EAB7263C2306AE56000019F0 /* scancodes.cc */,
+				EAB7263D2306AE56000019F0 /* pci.cc */,
+				EAB7263E2306AE56000019F0 /* busmouse.h */,
+				EAB7263F2306AE56000019F0 /* pci2isa.h */,
+				EAB726402306AE56000019F0 /* cmos.cc */,
+			);
+			path = iodev;
+			sourceTree = "<group>";
+		};
+		EAB7256B2306AE55000019F0 /* hdimage */ = {
+			isa = PBXGroup;
+			children = (
+				EAB7256C2306AE55000019F0 /* vmware4.cc */,
+				EAB7256D2306AE55000019F0 /* hdimage.cc */,
+				EAB7256E2306AE55000019F0 /* cdrom_win32.cc */,
+				EAB7256F2306AE55000019F0 /* vvfat.cc */,
+				EAB725702306AE55000019F0 /* hdimage.h */,
+				EAB725712306AE55000019F0 /* cdrom_amigaos.h */,
+				EAB725722306AE55000019F0 /* vbox.h */,
+				EAB725732306AE55000019F0 /* Makefile */,
+				EAB725742306AE55000019F0 /* vpc-img.h */,
+				EAB725752306AE55000019F0 /* cdrom_osx.h */,
+				EAB725762306AE55000019F0 /* cdrom_misc.cc */,
+				EAB725772306AE55000019F0 /* vvfat.h */,
+				EAB725782306AE55000019F0 /* vbox.cc */,
+				EAB725792306AE55000019F0 /* vmware3.h */,
+				EAB7257A2306AE56000019F0 /* cdrom.h */,
+				EAB7257B2306AE56000019F0 /* cdrom_osx.cc */,
+				EAB7257C2306AE56000019F0 /* cdrom_amigaos.cc */,
+				EAB7257D2306AE56000019F0 /* scsi_commands.h */,
+				EAB7257E2306AE56000019F0 /* vmware4.h */,
+				EAB7257F2306AE56000019F0 /* cdrom_misc.h */,
+				EAB725802306AE56000019F0 /* cdrom_win32.h */,
+				EAB725812306AE56000019F0 /* Makefile.in */,
+				EAB725822306AE56000019F0 /* vpc-img.cc */,
+				EAB725832306AE56000019F0 /* vmware3.cc */,
+				EAB725842306AE56000019F0 /* cdrom.cc */,
+			);
+			path = hdimage;
+			sourceTree = "<group>";
+		};
+		EAB7260C2306AE56000019F0 /* display */ = {
+			isa = PBXGroup;
+			children = (
+				EAB7260D2306AE56000019F0 /* vga.cc */,
+				EAB7260E2306AE56000019F0 /* voodoo_data.h */,
+				EAB7260F2306AE56000019F0 /* svga_cirrus.h */,
+				EAB726102306AE56000019F0 /* vgacore.cc */,
+				EAB726112306AE56000019F0 /* Makefile */,
+				EAB726122306AE56000019F0 /* voodoo_main.h */,
+				EAB726132306AE56000019F0 /* vga.h */,
+				EAB726142306AE56000019F0 /* voodoo_raster.h */,
+				EAB726152306AE56000019F0 /* svga_cirrus.cc */,
+				EAB726162306AE56000019F0 /* voodoo_func.h */,
+				EAB726172306AE56000019F0 /* voodoo_types.h */,
+				EAB726182306AE56000019F0 /* vgacore.h */,
+				EAB726192306AE56000019F0 /* voodoo.h */,
+				EAB7261A2306AE56000019F0 /* voodoo.cc */,
+				EAB7261B2306AE56000019F0 /* Makefile.in */,
+			);
+			path = display;
+			sourceTree = "<group>";
+		};
+		EAB726412306AE56000019F0 /* gui */ = {
+			isa = PBXGroup;
+			children = (
+				EAB726422306AE56000019F0 /* wxdialog.cc */,
+				EAB726432306AE56000019F0 /* nogui.cc */,
+				EAB726442306AE56000019F0 /* win32dialog.h */,
+				EAB726452306AE56000019F0 /* sdl.cc */,
+				EAB726462306AE56000019F0 /* icon_bochs.xpm */,
+				EAB726472306AE56000019F0 /* bitmaps */,
+				EAB726602306AE56000019F0 /* rfb.h */,
+				EAB726612306AE56000019F0 /* wx.cc */,
+				EAB726622306AE56000019F0 /* siminterface.h */,
+				EAB726632306AE56000019F0 /* textconfig.cc */,
+				EAB726642306AE56000019F0 /* svga.cc */,
+				EAB726652306AE56000019F0 /* icon_bochs.h */,
+				EAB726662306AE56000019F0 /* scrollwin.h */,
+				EAB726672306AE56000019F0 /* wxdialog.h */,
+				EAB726682306AE56000019F0 /* gui.cc */,
+				EAB726692306AE56000019F0 /* Makefile */,
+				EAB7266A2306AE56000019F0 /* macintosh.cc */,
+				EAB7266B2306AE56000019F0 /* gtk_enh_dbg_osdep.cc */,
+				EAB7266C2306AE56000019F0 /* wxmain.h */,
+				EAB7266D2306AE56000019F0 /* sdlkeys.h */,
+				EAB7266E2306AE56000019F0 /* enh_dbg.cc */,
+				EAB7266F2306AE56000019F0 /* keymaps */,
+				EAB726802306AE56000019F0 /* win32res.h */,
+				EAB726812306AE56000019F0 /* rfb.cc */,
+				EAB726822306AE56000019F0 /* paramtree.h */,
+				EAB726832306AE56000019F0 /* sdl2.cc */,
+				EAB726842306AE56000019F0 /* gui.h */,
+				EAB726852306AE56000019F0 /* term.cc */,
+				EAB726862306AE56000019F0 /* vncsrv.cc */,
+				EAB726882306AE56000019F0 /* keymap.cc */,
+				EAB726892306AE56000019F0 /* x.cc */,
+				EAB7268A2306AE56000019F0 /* carbon.cc */,
+				EAB7268B2306AE56000019F0 /* win32.cc */,
+				EAB7268C2306AE56000019F0 /* rfbkeys.h */,
+				EAB7268D2306AE56000019F0 /* amigagui.h */,
+				EAB7268E2306AE56000019F0 /* wenhdbg_res.h */,
+				EAB7268F2306AE56000019F0 /* siminterface.cc */,
+				EAB726902306AE56000019F0 /* font */,
+				EAB726922306AE56000019F0 /* Makefile.in */,
+				EAB726932306AE56000019F0 /* sdl.h */,
+				EAB726942306AE56000019F0 /* enh_dbg.h */,
+				EAB726952306AE56000019F0 /* paramtree.cc */,
+				EAB726962306AE56000019F0 /* wxmain.cc */,
+				EAB726972306AE56000019F0 /* textconfig.h */,
+				EAB726982306AE56000019F0 /* amigaos.cc */,
+				EAB726992306AE56000019F0 /* scrollwin.cc */,
+				EAB7269A2306AE56000019F0 /* win32paramdlg.h */,
+				EAB7269B2306AE56000019F0 /* win32_enh_dbg_osdep.cc */,
+				EAB7269C2306AE56000019F0 /* keymap.h */,
+			);
+			path = gui;
+			sourceTree = "<group>";
+		};
+		EAB726472306AE56000019F0 /* bitmaps */ = {
+			isa = PBXGroup;
+			children = (
+				EAB726482306AE56000019F0 /* power.h */,
+				EAB726492306AE56000019F0 /* configbutton.xpm */,
+				EAB7264A2306AE56000019F0 /* userbutton.xpm */,
+				EAB7264B2306AE56000019F0 /* userbutton.h */,
+				EAB7264C2306AE56000019F0 /* mouse.xpm */,
+				EAB7264D2306AE56000019F0 /* copy.xpm */,
+				EAB7264E2306AE56000019F0 /* paste.xpm */,
+				EAB7264F2306AE56000019F0 /* mouse.h */,
+				EAB726502306AE56000019F0 /* saverestore.h */,
+				EAB726512306AE56000019F0 /* floppya.h */,
+				EAB726522306AE56000019F0 /* cdromd.h */,
+				EAB726532306AE56000019F0 /* paste.h */,
+				EAB726542306AE56000019F0 /* saverestore.xpm */,
+				EAB726552306AE56000019F0 /* reset.xpm */,
+				EAB726562306AE56000019F0 /* configbutton.h */,
+				EAB726572306AE56000019F0 /* cdromd.xpm */,
+				EAB726582306AE56000019F0 /* floppyb.h */,
+				EAB726592306AE56000019F0 /* snapshot.h */,
+				EAB7265A2306AE56000019F0 /* reset.h */,
+				EAB7265B2306AE56000019F0 /* power.xpm */,
+				EAB7265C2306AE56000019F0 /* snapshot.xpm */,
+				EAB7265D2306AE56000019F0 /* floppyb.xpm */,
+				EAB7265E2306AE56000019F0 /* floppya.xpm */,
+				EAB7265F2306AE56000019F0 /* copy.h */,
+			);
+			path = bitmaps;
+			sourceTree = "<group>";
+		};
+		EAB7266F2306AE56000019F0 /* keymaps */ = {
+			isa = PBXGroup;
+			children = (
+				EAB726702306AE56000019F0 /* x11-pc-it.map */,
+				EAB726712306AE56000019F0 /* x11-pc-de.map */,
+				EAB726722306AE56000019F0 /* x11-pc-da.map */,
+				EAB726732306AE56000019F0 /* x11-pc-si.map */,
+				EAB726742306AE56000019F0 /* x11-pc-es.map */,
+				EAB726752306AE56000019F0 /* sdl2-pc-us.map */,
+				EAB726762306AE56000019F0 /* x11-pc-be.map */,
+				EAB726772306AE56000019F0 /* sdl-pc-de.map */,
+				EAB726782306AE56000019F0 /* x11-pc-uk.map */,
+				EAB726792306AE56000019F0 /* x11-pc-us.map */,
+				EAB7267A2306AE56000019F0 /* x11-pc-ru.map */,
+				EAB7267B2306AE56000019F0 /* sdl-pc-us.map */,
+				EAB7267C2306AE56000019F0 /* x11-pc-fr.map */,
+				EAB7267D2306AE56000019F0 /* x11-pc-se.map */,
+				EAB7267E2306AE56000019F0 /* sdl2-pc-de.map */,
+			);
+			path = keymaps;
+			sourceTree = "<group>";
+		};
+		EAB726902306AE56000019F0 /* font */ = {
+			isa = PBXGroup;
+			children = (
+				EAB726912306AE56000019F0 /* vga.bitmap.h */,
+			);
+			path = font;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EAB71E522306AD95000019F0 /* x86emu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAB71E5A2306AD95000019F0 /* Build configuration list for PBXNativeTarget "x86emu" */;
+			buildPhases = (
+				EAB71E4F2306AD95000019F0 /* Sources */,
+				EAB71E502306AD95000019F0 /* Frameworks */,
+				EAB71E512306AD95000019F0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = x86emu;
+			productName = x86emu;
+			productReference = EAB71E532306AD95000019F0 /* x86emu */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EAB71E4B2306AD95000019F0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = tony;
+				TargetAttributes = {
+					EAB71E522306AD95000019F0 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+				};
+			};
+			buildConfigurationList = EAB71E4E2306AD95000019F0 /* Build configuration list for PBXProject "x86emu" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EAB71E4A2306AD95000019F0;
+			productRefGroup = EAB71E542306AD95000019F0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EAB71E522306AD95000019F0 /* x86emu */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EAB71E4F2306AD95000019F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAB7278E2306AE56000019F0 /* Makefile in Sources */,
+				EAB727F32306AE56000019F0 /* siminterface.cc in Sources */,
+				EAB7277D2306AE56000019F0 /* cdrom_amigaos.cc in Sources */,
+				EAB727032306AE56000019F0 /* cpu.cc in Sources */,
+				EAB727392306AE56000019F0 /* logical16.cc in Sources */,
+				EAB727532306AE56000019F0 /* vmx.cc in Sources */,
+				EAB7271D2306AE56000019F0 /* avx512_fma.cc in Sources */,
+				EAB727232306AE56000019F0 /* avx_fma.cc in Sources */,
+				EAB727DA2306AE56000019F0 /* ioapic.cc in Sources */,
+				EAB726ED2306AE56000019F0 /* Makefile in Sources */,
+				EAB727242306AE56000019F0 /* avx512_mask64.cc in Sources */,
+				EAB727682306AE56000019F0 /* symbols.cc in Sources */,
+				EAB727222306AE56000019F0 /* avx512_conflict.cc in Sources */,
+				EAB7278A2306AE56000019F0 /* devices.cc in Sources */,
+				EAB727CC2306AE56000019F0 /* pci_ide.cc in Sources */,
+				EAB7277B2306AE56000019F0 /* vbox.cc in Sources */,
+				EAB726C72306AE56000019F0 /* mult16.cc in Sources */,
+				EAB7275C2306AE56000019F0 /* dis_tables_x87.inc in Sources */,
+				EAB727862306AE56000019F0 /* pit82c54.cc in Sources */,
+				EAB726BF2306AE56000019F0 /* proc_ctrl.cc in Sources */,
+				EAB726EA2306AE56000019F0 /* arith32.cc in Sources */,
+				EAB726A72306AE56000019F0 /* main.cc in Sources */,
+				EAB727312306AE56000019F0 /* exception.cc in Sources */,
+				EAB7276C2306AE56000019F0 /* dbg_main.cc in Sources */,
+				EAB727582306AE56000019F0 /* segment_ctrl_pro.cc in Sources */,
+				EAB7278F2306AE56000019F0 /* serial_raw.cc in Sources */,
+				EAB726C82306AE56000019F0 /* mult32.cc in Sources */,
+				EAB726C02306AE56000019F0 /* load.cc in Sources */,
+				EAB7273A2306AE56000019F0 /* crregs.cc in Sources */,
+				EAB726F82306AE56000019F0 /* protect_ctrl.cc in Sources */,
+				EAB727802306AE56000019F0 /* cdrom.cc in Sources */,
+				EAB7274E2306AE56000019F0 /* fsincos.cc in Sources */,
+				EAB727842306AE56000019F0 /* floppy.cc in Sources */,
+				EAB726EB2306AE56000019F0 /* ctrl_xfer16.cc in Sources */,
+				EAB727772306AE56000019F0 /* cdrom_win32.cc in Sources */,
+				EAB727732306AE56000019F0 /* harddrv.cc in Sources */,
+				EAB727DD2306AE56000019F0 /* cmos.cc in Sources */,
+				EAB727412306AE56000019F0 /* Makefile in Sources */,
+				EAB727832306AE56000019F0 /* virt_timer.cc in Sources */,
+				EAB727542306AE56000019F0 /* mult64.cc in Sources */,
+				EAB727442306AE56000019F0 /* fpu_load_store.cc in Sources */,
+				EAB7276F2306AE56000019F0 /* plugin.cc in Sources */,
+				EAB726F12306AE56000019F0 /* arith16.cc in Sources */,
+				EAB727762306AE56000019F0 /* hdimage.cc in Sources */,
+				EAB7270B2306AE56000019F0 /* shift32.cc in Sources */,
+				EAB727782306AE56000019F0 /* vvfat.cc in Sources */,
+				EAB726FA2306AE56000019F0 /* shift64.cc in Sources */,
+				EAB727592306AE56000019F0 /* shift8.cc in Sources */,
+				EAB727462306AE56000019F0 /* softfloat.cc in Sources */,
+				EAB727502306AE56000019F0 /* fpu_trans.cc in Sources */,
+				EAB7270C2306AE56000019F0 /* aes.cc in Sources */,
+				EAB727892306AE56000019F0 /* biosdev.cc in Sources */,
+				EAB727522306AE56000019F0 /* ferr.cc in Sources */,
+				EAB726FC2306AE56000019F0 /* icache.cc in Sources */,
+				EAB727402306AE56000019F0 /* fyl2x.cc in Sources */,
+				EAB7271E2306AE56000019F0 /* xop.cc in Sources */,
+				EAB727B42306AE56000019F0 /* pic.cc in Sources */,
+				EAB727672306AE56000019F0 /* linux.cc in Sources */,
+				EAB727492306AE56000019F0 /* softfloat16.cc in Sources */,
+				EAB727002306AE56000019F0 /* data_xfer8.cc in Sources */,
+				EAB727512306AE56000019F0 /* softfloat-specialize.cc in Sources */,
+				EAB7275D2306AE56000019F0 /* dis_tables_sse.inc in Sources */,
+				EAB727EB2306AE56000019F0 /* sdl2.cc in Sources */,
+				EAB727342306AE56000019F0 /* sse_rcp.cc in Sources */,
+				EAB7275A2306AE56000019F0 /* smm.cc in Sources */,
+				EAB7277A2306AE56000019F0 /* cdrom_misc.cc in Sources */,
+				EAB726A62306AE56000019F0 /* main.cpp in Sources */,
+				EAB7274D2306AE56000019F0 /* f2xm1.cc in Sources */,
+				EAB727ED2306AE56000019F0 /* vncsrv.cc in Sources */,
+				EAB727602306AE56000019F0 /* Makefile in Sources */,
+				EAB727352306AE56000019F0 /* bit16.cc in Sources */,
+				EAB7274B2306AE56000019F0 /* softfloat-round-pack.cc in Sources */,
+				EAB7276A2306AE56000019F0 /* lexer.l in Sources */,
+				EAB726C22306AE56000019F0 /* soft_int.cc in Sources */,
+				EAB726FD2306AE56000019F0 /* segment_ctrl.cc in Sources */,
+				EAB7272C2306AE56000019F0 /* 3dnow.cc in Sources */,
+				EAB7277F2306AE56000019F0 /* vmware3.cc in Sources */,
+				EAB727152306AE56000019F0 /* Makefile in Sources */,
+				EAB727632306AE56000019F0 /* dis_tables.inc in Sources */,
+				EAB727DF2306AE56000019F0 /* nogui.cc in Sources */,
+				EAB727642306AE56000019F0 /* dis_tables_avx.inc in Sources */,
+				EAB727382306AE56000019F0 /* bit32.cc in Sources */,
+				EAB727F52306AE56000019F0 /* wxmain.cc in Sources */,
+				EAB727362306AE56000019F0 /* access2.cc in Sources */,
+				EAB726D02306AE56000019F0 /* core_duo_t2400_yonah.cc in Sources */,
+				EAB726F02306AE56000019F0 /* sha.cc in Sources */,
+				EAB727292306AE56000019F0 /* vapic.cc in Sources */,
+				EAB727F82306AE56000019F0 /* win32_enh_dbg_osdep.cc in Sources */,
+				EAB727272306AE56000019F0 /* msr.cc in Sources */,
+				EAB7271B2306AE56000019F0 /* tbm32.cc in Sources */,
+				EAB727082306AE56000019F0 /* vm8086.cc in Sources */,
+				EAB726BB2306AE56000019F0 /* Makefile in Sources */,
+				EAB7275F2306AE56000019F0 /* dis_tables_xop.inc in Sources */,
+				EAB726C32306AE56000019F0 /* generic_cpuid.cc in Sources */,
+				EAB727052306AE56000019F0 /* io.cc in Sources */,
+				EAB726BA2306AE56000019F0 /* instrument.cc in Sources */,
+				EAB726E12306AE56000019F0 /* phenomx3_8650_toliman.cc in Sources */,
+				EAB727792306AE56000019F0 /* Makefile in Sources */,
+				EAB726A52306AE56000019F0 /* x86.cpp in Sources */,
+				EAB727F12306AE56000019F0 /* carbon.cc in Sources */,
+				EAB726D42306AE56000019F0 /* atom_n270.cc in Sources */,
+				EAB726E92306AE56000019F0 /* paging.cc in Sources */,
+				EAB727F22306AE56000019F0 /* win32.cc in Sources */,
+				EAB727182306AE56000019F0 /* avx_pfp.cc in Sources */,
+				EAB727702306AE56000019F0 /* pc_system.cc in Sources */,
+				EAB7272F2306AE56000019F0 /* stack32.cc in Sources */,
+				EAB727742306AE56000019F0 /* pit.cc in Sources */,
+				EAB727022306AE56000019F0 /* flag_ctrl_pro.cc in Sources */,
+				EAB727C92306AE56000019F0 /* Makefile in Sources */,
+				EAB7272B2306AE56000019F0 /* sse_string.cc in Sources */,
+				EAB727062306AE56000019F0 /* shift16.cc in Sources */,
+				EAB727212306AE56000019F0 /* avx.cc in Sources */,
+				EAB727322306AE56000019F0 /* event.cc in Sources */,
+				EAB726F92306AE56000019F0 /* bit.cc in Sources */,
+				EAB7278B2306AE56000019F0 /* iodebug.cc in Sources */,
+				EAB7273B2306AE56000019F0 /* arith8.cc in Sources */,
+				EAB727562306AE56000019F0 /* vmcs.cc in Sources */,
+				EAB727EA2306AE56000019F0 /* rfb.cc in Sources */,
+				EAB727472306AE56000019F0 /* fpu_compare.cc in Sources */,
+				EAB727F72306AE56000019F0 /* scrollwin.cc in Sources */,
+				EAB726D12306AE56000019F0 /* corei7_ivy_bridge_3770K.cc in Sources */,
+				EAB726DE2306AE56000019F0 /* Makefile in Sources */,
+				EAB726C12306AE56000019F0 /* init.cc in Sources */,
+				EAB727552306AE56000019F0 /* data_xfer16.cc in Sources */,
+				EAB727F42306AE56000019F0 /* paramtree.cc in Sources */,
+				EAB727262306AE56000019F0 /* sse.cc in Sources */,
+				EAB726CE2306AE56000019F0 /* sse_pfp.cc in Sources */,
+				EAB726B82306AE56000019F0 /* logio.cc in Sources */,
+				EAB726EC2306AE56000019F0 /* mult8.cc in Sources */,
+				EAB7270A2306AE56000019F0 /* jmp_far.cc in Sources */,
+				EAB7271A2306AE56000019F0 /* avx512_cvt.cc in Sources */,
+				EAB727162306AE56000019F0 /* avx512_mask8.cc in Sources */,
+				EAB727252306AE56000019F0 /* cpuid.cc in Sources */,
+				EAB727752306AE56000019F0 /* vmware4.cc in Sources */,
+				EAB727CA2306AE56000019F0 /* svga_cirrus.cc in Sources */,
+				EAB727422306AE56000019F0 /* softfloat-muladd.cc in Sources */,
+				EAB7273F2306AE56000019F0 /* fpu.cc in Sources */,
+				EAB727DC2306AE56000019F0 /* pci.cc in Sources */,
+				EAB7272E2306AE56000019F0 /* fpu_emu.cc in Sources */,
+				EAB727E12306AE56000019F0 /* wx.cc in Sources */,
+				EAB727012306AE56000019F0 /* ctrl_xfer_pro.cc in Sources */,
+				EAB726FE2306AE56000019F0 /* crc32.cc in Sources */,
+				EAB726EF2306AE56000019F0 /* iret.cc in Sources */,
+				EAB727692306AE56000019F0 /* Makefile in Sources */,
+				EAB726C52306AE56000019F0 /* flag_ctrl.cc in Sources */,
+				EAB727812306AE56000019F0 /* slowdown_timer.cc in Sources */,
+				EAB727092306AE56000019F0 /* debugstuff.cc in Sources */,
+				EAB726B72306AE56000019F0 /* memory.cc in Sources */,
+				EAB727FB2306AE56000019F0 /* config.cc in Sources */,
+				EAB727192306AE56000019F0 /* avx512_move.cc in Sources */,
+				EAB7276E2306AE56000019F0 /* parser.c in Sources */,
+				EAB7276B2306AE56000019F0 /* lexer.c in Sources */,
+				EAB727482306AE56000019F0 /* fpatan.cc in Sources */,
+				EAB726D82306AE56000019F0 /* p3_katmai.cc in Sources */,
+				EAB726CA2306AE56000019F0 /* logical64.cc in Sources */,
+				EAB726B62306AE56000019F0 /* misc_mem.cc in Sources */,
+				EAB726D72306AE56000019F0 /* corei5_lynnfield_750.cc in Sources */,
+				EAB7275B2306AE56000019F0 /* tasking.cc in Sources */,
+				EAB727B52306AE56000019F0 /* serial.cc in Sources */,
+				EAB727B72306AE56000019F0 /* busmouse.cc in Sources */,
+				EAB727FA2306AE56000019F0 /* crc.cc in Sources */,
+				EAB727E22306AE56000019F0 /* textconfig.cc in Sources */,
+				EAB726F72306AE56000019F0 /* vmfunc.cc in Sources */,
+				EAB726B42306AE56000019F0 /* osdep.cc in Sources */,
+				EAB726D62306AE56000019F0 /* pentium_mmx.cc in Sources */,
+				EAB727F02306AE56000019F0 /* x.cc in Sources */,
+				EAB727EC2306AE56000019F0 /* term.cc in Sources */,
+				EAB726CB2306AE56000019F0 /* bcd.cc in Sources */,
+				EAB7270E2306AE56000019F0 /* call_far.cc in Sources */,
+				EAB726EE2306AE56000019F0 /* vmexit.cc in Sources */,
+				EAB726D32306AE56000019F0 /* pentium.cc in Sources */,
+				EAB727C72306AE56000019F0 /* vga.cc in Sources */,
+				EAB7277E2306AE56000019F0 /* vpc-img.cc in Sources */,
+				EAB7272D2306AE56000019F0 /* ctrl_xfer64.cc in Sources */,
+				EAB726B52306AE56000019F0 /* Makefile in Sources */,
+				EAB727132306AE56000019F0 /* avx512_rcp14.cc in Sources */,
+				EAB7271C2306AE56000019F0 /* tbm64.cc in Sources */,
+				EAB726CF2306AE56000019F0 /* corei7_haswell_4770.cc in Sources */,
+				EAB727C82306AE56000019F0 /* vgacore.cc in Sources */,
+				EAB727572306AE56000019F0 /* sse_move.cc in Sources */,
+				EAB727042306AE56000019F0 /* xsave.cc in Sources */,
+				EAB726F22306AE56000019F0 /* ctrl_xfer32.cc in Sources */,
+				EAB727F62306AE56000019F0 /* amigaos.cc in Sources */,
+				EAB727E02306AE56000019F0 /* sdl.cc in Sources */,
+				EAB727612306AE56000019F0 /* dis_decode.cc in Sources */,
+				EAB7270D2306AE56000019F0 /* logical8.cc in Sources */,
+				EAB7274A2306AE56000019F0 /* poly.cc in Sources */,
+				EAB726CC2306AE56000019F0 /* rdrand.cc in Sources */,
+				EAB726F32306AE56000019F0 /* bmi32.cc in Sources */,
+				EAB726E32306AE56000019F0 /* ryzen.cc in Sources */,
+				EAB727DE2306AE56000019F0 /* wxdialog.cc in Sources */,
+				EAB727432306AE56000019F0 /* softfloatx80.cc in Sources */,
+				EAB727122306AE56000019F0 /* avx512_pfp.cc in Sources */,
+				EAB726D52306AE56000019F0 /* corei5_arrandale_m520.cc in Sources */,
+				EAB727142306AE56000019F0 /* avx512.cc in Sources */,
+				EAB727E72306AE56000019F0 /* gtk_enh_dbg_osdep.cc in Sources */,
+				EAB727DB2306AE56000019F0 /* scancodes.cc in Sources */,
+				EAB727E42306AE56000019F0 /* gui.cc in Sources */,
+				EAB7278C2306AE56000019F0 /* unmapped.cc in Sources */,
+				EAB727B62306AE56000019F0 /* extfpuirq.cc in Sources */,
+				EAB727302306AE56000019F0 /* stack16.cc in Sources */,
+				EAB726FB2306AE56000019F0 /* stack.cc in Sources */,
+				EAB726B92306AE56000019F0 /* load32bitOShack.cc in Sources */,
+				EAB727202306AE56000019F0 /* gather.cc in Sources */,
+				EAB726E42306AE56000019F0 /* athlon64_venice.cc in Sources */,
+				EAB726E22306AE56000019F0 /* athlon64_clawhammer.cc in Sources */,
+				EAB7275E2306AE56000019F0 /* opcodes.inc in Sources */,
+				EAB726DA2306AE56000019F0 /* p2_klamath.cc in Sources */,
+				EAB727E52306AE56000019F0 /* Makefile in Sources */,
+				EAB7274F2306AE56000019F0 /* fpu_arith.cc in Sources */,
+				EAB726E02306AE56000019F0 /* trinity_apu.cc in Sources */,
+				EAB727372306AE56000019F0 /* apic.cc in Sources */,
+				EAB726DB2306AE56000019F0 /* corei7_sandy_bridge_2600K.cc in Sources */,
+				EAB726D92306AE56000019F0 /* core2_penryn_t9600.cc in Sources */,
+				EAB727E82306AE56000019F0 /* enh_dbg.cc in Sources */,
+				EAB726C42306AE56000019F0 /* svm.cc in Sources */,
+				EAB727882306AE56000019F0 /* acpi.cc in Sources */,
+				EAB727452306AE56000019F0 /* fprem.cc in Sources */,
+				EAB726C92306AE56000019F0 /* string.cc in Sources */,
+				EAB726D22306AE56000019F0 /* broadwell_ult.cc in Sources */,
+				EAB727332306AE56000019F0 /* logical32.cc in Sources */,
+				EAB727E62306AE56000019F0 /* macintosh.cc in Sources */,
+				EAB7273E2306AE56000019F0 /* fpu_misc.cc in Sources */,
+				EAB726DC2306AE56000019F0 /* p4_willamette.cc in Sources */,
+				EAB727622306AE56000019F0 /* syntax.cc in Sources */,
+				EAB727CB2306AE56000019F0 /* voodoo.cc in Sources */,
+				EAB726DF2306AE56000019F0 /* amd_k6_2_chomper.cc in Sources */,
+				EAB727662306AE56000019F0 /* resolve.cc in Sources */,
+				EAB726CD2306AE56000019F0 /* bit64.cc in Sources */,
+				EAB727102306AE56000019F0 /* avx_cvt.cc in Sources */,
+				EAB7278D2306AE56000019F0 /* pci2isa.cc in Sources */,
+				EAB727652306AE56000019F0 /* dis_groups.cc in Sources */,
+				EAB727112306AE56000019F0 /* avx512_mask32.cc in Sources */,
+				EAB727282306AE56000019F0 /* access.cc in Sources */,
+				EAB727822306AE56000019F0 /* speaker.cc in Sources */,
+				EAB7277C2306AE56000019F0 /* cdrom_osx.cc in Sources */,
+				EAB726F42306AE56000019F0 /* fetchdecode32.cc in Sources */,
+				EAB7274C2306AE56000019F0 /* fpu_const.cc in Sources */,
+				EAB727C62306AE56000019F0 /* dma.cc in Sources */,
+				EAB727C52306AE56000019F0 /* pcidev.cc in Sources */,
+				EAB7273D2306AE56000019F0 /* fpu_cmov.cc in Sources */,
+				EAB726E72306AE56000019F0 /* mmx.cc in Sources */,
+				EAB7272A2306AE56000019F0 /* arith64.cc in Sources */,
+				EAB726F62306AE56000019F0 /* disasm.cc in Sources */,
+				EAB726FF2306AE56000019F0 /* ret_far.cc in Sources */,
+				EAB727EF2306AE56000019F0 /* keymap.cc in Sources */,
+				EAB726E62306AE56000019F0 /* turion64_tyler.cc in Sources */,
+				EAB727722306AE56000019F0 /* parallel.cc in Sources */,
+				EAB727872306AE56000019F0 /* keyboard.cc in Sources */,
+				EAB727172306AE56000019F0 /* avx2.cc in Sources */,
+				EAB726C62306AE56000019F0 /* data_xfer64.cc in Sources */,
+				EAB7270F2306AE56000019F0 /* avx512_mask16.cc in Sources */,
+				EAB726E52306AE56000019F0 /* zambezi.cc in Sources */,
+				EAB726DD2306AE56000019F0 /* p4_prescott_celeron_336.cc in Sources */,
+				EAB726F52306AE56000019F0 /* fetchdecode64.cc in Sources */,
+				EAB727072306AE56000019F0 /* bmi64.cc in Sources */,
+				EAB727E32306AE56000019F0 /* svga.cc in Sources */,
+				EAB726E82306AE56000019F0 /* stack64.cc in Sources */,
+				EAB7273C2306AE56000019F0 /* data_xfer32.cc in Sources */,
+				EAB7271F2306AE56000019F0 /* avx512_rsqrt14.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		EAB71E582306AD95000019F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../../src",
+					"$(PROJECT_DIR)/../../src/cpu",
+					"$(PROJECT_DIR)/../../src/bochs",
+				);
+			};
+			name = Debug;
+		};
+		EAB71E592306AD95000019F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../../src",
+					"$(PROJECT_DIR)/../../src/cpu",
+					"$(PROJECT_DIR)/../../src/bochs",
+				);
+			};
+			name = Release;
+		};
+		EAB71E5B2306AD95000019F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QZCGQLBGFN;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EAB71E5C2306AD95000019F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QZCGQLBGFN;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EAB71E4E2306AD95000019F0 /* Build configuration list for PBXProject "x86emu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAB71E582306AD95000019F0 /* Debug */,
+				EAB71E592306AD95000019F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EAB71E5A2306AD95000019F0 /* Build configuration list for PBXNativeTarget "x86emu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAB71E5B2306AD95000019F0 /* Debug */,
+				EAB71E5C2306AD95000019F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EAB71E4B2306AD95000019F0 /* Project object */;
+}
