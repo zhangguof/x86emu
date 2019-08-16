@@ -201,7 +201,8 @@ void print_statistics_tree(bx_param_c *node, int level = 0);
 #if BX_SUPPORT_SMP
 #define BX_CPU(x)                   (bx_cpu_array[x])
 #else
-#define BX_CPU(x)                   (&bx_cpu)
+//#define BX_CPU(x)                   (&bx_cpu)
+#define BX_CPU(x)                      (bx_cpu)
 #endif
 
 #define BX_MEM(x)                   (&bx_mem)

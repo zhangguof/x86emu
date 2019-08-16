@@ -34,7 +34,7 @@ BOCHSAPI extern class bx_pc_system_c bx_pc_system;
 extern double m_ips;
 #endif
 
-class BOCHSAPI bx_pc_system_c : private logfunctions {
+class BOCHSAPI bx_pc_system_c : public logfunctions {
 private:
 
   // ===============================

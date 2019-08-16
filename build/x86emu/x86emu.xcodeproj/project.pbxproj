@@ -16,7 +16,6 @@
 		EAB726B72306AE56000019F0 /* memory.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724282306AE55000019F0 /* memory.cc */; };
 		EAB726B82306AE56000019F0 /* logio.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724292306AE55000019F0 /* logio.cc */; };
 		EAB726B92306AE56000019F0 /* load32bitOShack.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7242A2306AE55000019F0 /* load32bitOShack.cc */; };
-		EAB726BA2306AE56000019F0 /* instrument.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7242E2306AE55000019F0 /* instrument.cc */; };
 		EAB726BB2306AE56000019F0 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = EAB7242F2306AE55000019F0 /* Makefile */; };
 		EAB726BF2306AE56000019F0 /* proc_ctrl.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724402306AE55000019F0 /* proc_ctrl.cc */; };
 		EAB726C02306AE56000019F0 /* load.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724412306AE55000019F0 /* load.cc */; };
@@ -267,6 +266,7 @@
 		EAB727F82306AE56000019F0 /* win32_enh_dbg_osdep.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7269B2306AE56000019F0 /* win32_enh_dbg_osdep.cc */; };
 		EAB727FA2306AE56000019F0 /* crc.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726A02306AE56000019F0 /* crc.cc */; };
 		EAB727FB2306AE56000019F0 /* config.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726A42306AE56000019F0 /* config.cc */; };
+		EAB727FD230730CE000019F0 /* instrument.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7242E2306AE55000019F0 /* instrument.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1677,7 +1677,6 @@
 				EAB7275F2306AE56000019F0 /* dis_tables_xop.inc in Sources */,
 				EAB726C32306AE56000019F0 /* generic_cpuid.cc in Sources */,
 				EAB727052306AE56000019F0 /* io.cc in Sources */,
-				EAB726BA2306AE56000019F0 /* instrument.cc in Sources */,
 				EAB726E12306AE56000019F0 /* phenomx3_8650_toliman.cc in Sources */,
 				EAB727792306AE56000019F0 /* Makefile in Sources */,
 				EAB726A52306AE56000019F0 /* x86.cpp in Sources */,
@@ -1693,6 +1692,7 @@
 				EAB727C92306AE56000019F0 /* Makefile in Sources */,
 				EAB7272B2306AE56000019F0 /* sse_string.cc in Sources */,
 				EAB727062306AE56000019F0 /* shift16.cc in Sources */,
+				EAB727FD230730CE000019F0 /* instrument.cc in Sources */,
 				EAB727212306AE56000019F0 /* avx.cc in Sources */,
 				EAB727322306AE56000019F0 /* event.cc in Sources */,
 				EAB726F92306AE56000019F0 /* bit.cc in Sources */,

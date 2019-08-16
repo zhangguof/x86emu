@@ -2,25 +2,32 @@
 #define _X86_H_
 
 
- #include <stdint.h>
+#include <stdint.h>
+#include "bochs/bochs.h"
+#include "bochs/cpu/cpu.h"
 
-// #define MASK32Bit (0xFFFFFFFF)
-// #define MASK16Bit (0xFFFF)
 
+
+class BOCHSAPI XE_CPU_C: public BX_CPU_C
+{
+public:
+    void cpu_loop(void);
+    
+};
 
 
 class CPU
 {
 public:
-	CPU(){}
-	void init();
-	int64_t regs[16];
-	int32_t flags;
-	
-	void run();
-	void htl();
+    XE_CPU_C* cpu_ptr;
+    BX_MEM_C* bx_mem_ptr;
+    CPU(){
+        cpu_ptr = nullptr;
+        bx_mem_ptr = nullptr;
+    }
+    void init();
+    
+    void run();
 };
-
-// extern CPU* g_cpu;
 
 #endif 

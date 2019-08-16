@@ -547,7 +547,7 @@ typedef void (BX_CPU_C::*BxRepIterationPtr_tR)(bxInstruction_c *) BX_CPP_AttrReg
 BOCHSAPI extern BX_CPU_C **bx_cpu_array;
 #else
 // single processor simulation, so there's one of everything
-BOCHSAPI extern BX_CPU_C   bx_cpu;
+BOCHSAPI extern BX_CPU_C*   bx_cpu;
 #endif
 
 // notify internal debugger/instrumentation about memory access
@@ -4416,7 +4416,7 @@ public: // for now...
   BX_SMF void atexit(void);
 
   // now for some ancillary functions...
-  BX_SMF void cpu_loop(void);
+  virtual void cpu_loop(void);
 #if BX_SUPPORT_SMP
   BX_SMF void cpu_run_trace(void);
 #endif

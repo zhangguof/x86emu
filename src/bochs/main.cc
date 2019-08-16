@@ -27,6 +27,7 @@
 #endif
 #include "cpu/cpu.h"
 #include "iodev/iodev.h"
+#include "cpu/x86.h"
 
 #ifdef HAVE_LOCALE_H
 #include <locale.h>
@@ -88,7 +89,7 @@ typedef BX_CPU_C *BX_CPU_C_PTR;
 BOCHSAPI BX_CPU_C_PTR *bx_cpu_array = NULL;
 #else
 // single processor simulation, so there's one of everything
-BOCHSAPI BX_CPU_C bx_cpu;
+BOCHSAPI BX_CPU_C* bx_cpu;
 #endif
 
 BOCHSAPI BX_MEM_C bx_mem;
@@ -1363,7 +1364,7 @@ void bx_init_hardware()
   }
 #endif
 
-  DEV_init_devices();
+//  DEV_init_devices();
   // unload optional plugins which are unused and marked for removal
   SIM->opt_plugin_ctrl("*", 0);
   bx_pc_system.register_state();
