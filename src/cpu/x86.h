@@ -16,12 +16,12 @@ public:
 };
 
 
-class CPU
+class Engine
 {
 public:
     XE_CPU_C* cpu_ptr;
     BX_MEM_C* bx_mem_ptr;
-    CPU(){
+    Engine(){
         cpu_ptr = nullptr;
         bx_mem_ptr = nullptr;
     }

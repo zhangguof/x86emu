@@ -7,7 +7,7 @@ extern void bx_init_hardware();
 
 
 
-void CPU::init()
+void Engine::init()
 {
 //    bx_cpu_ptr = &::bx_cpu; //global bx cpu!
     if(bx_cpu)
@@ -47,7 +47,7 @@ void CPU::init()
     
 }
 
-void CPU::run()
+void Engine::run()
 {
     cpu_ptr->cpu_loop();
 }
@@ -84,7 +84,7 @@ void XE_CPU_C::cpu_loop()
         bxICacheEntry_c *entry = getICacheEntry();
         bxInstruction_c *i = entry->i;
         
-#if BX_SUPPORT_HANDLERS_CHAINING_SPEEDUPS
+//#if BX_SUPPORT_HANDLERS_CHAINING_SPEEDUPS
         for(;;) {
             // want to allow changing of the instruction inside instrumentation callback
             BX_INSTR_BEFORE_EXECUTION(BX_CPU_ID, i);
@@ -98,32 +98,32 @@ void XE_CPU_C::cpu_loop()
             
             i = getICacheEntry()->i;
         }
-#else // BX_SUPPORT_HANDLERS_CHAINING_SPEEDUPS == 0
-        
-        bxInstruction_c *last = i + (entry->tlen);
-        
-        for(;;) {
-            
-            // want to allow changing of the instruction inside instrumentation callback
-            BX_INSTR_BEFORE_EXECUTION(BX_CPU_ID, i);
-            RIP += i->ilen();
-            BX_CPU_CALL_METHOD(i->execute1, (i)); // might iterate repeat instruction
-            BX_CPU_THIS_PTR prev_rip = RIP; // commit new RIP
-            BX_INSTR_AFTER_EXECUTION(BX_CPU_ID, i);
-            BX_CPU_THIS_PTR icount++;
-            
-            BX_SYNC_TIME_IF_SINGLE_PROCESSOR(0);
-        
-            
-            if (BX_CPU_THIS_PTR async_event) break;
-            
-            if (++i == last) {
-                entry = getICacheEntry();
-                i = entry->i;
-                last = i + (entry->tlen);
-            }
-        }
-#endif
+//#else // BX_SUPPORT_HANDLERS_CHAINING_SPEEDUPS == 0
+//
+//        bxInstruction_c *last = i + (entry->tlen);
+//
+//        for(;;) {
+//
+//            // want to allow changing of the instruction inside instrumentation callback
+//            BX_INSTR_BEFORE_EXECUTION(BX_CPU_ID, i);
+//            RIP += i->ilen();
+//            BX_CPU_CALL_METHOD(i->execute1, (i)); // might iterate repeat instruction
+//            BX_CPU_THIS_PTR prev_rip = RIP; // commit new RIP
+//            BX_INSTR_AFTER_EXECUTION(BX_CPU_ID, i);
+//            BX_CPU_THIS_PTR icount++;
+//
+//            BX_SYNC_TIME_IF_SINGLE_PROCESSOR(0);
+//
+//
+//            if (BX_CPU_THIS_PTR async_event) break;
+//
+//            if (++i == last) {
+//                entry = getICacheEntry();
+//                i = entry->i;
+//                last = i + (entry->tlen);
+//            }
+//        }
+//#endif
         
         // clear stop trace magic indication that probably was set by repeat or branch32/64
         BX_CPU_THIS_PTR async_event &= ~BX_ASYNC_EVENT_STOP_TRACE;
