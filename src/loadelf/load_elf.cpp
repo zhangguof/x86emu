@@ -211,7 +211,7 @@ void load_elf64(uint8_t* buf,Elf64_Ehdr* elf_h)
 
 }
 
-void load_elf_bin(const char* path,uint8_t **pdata)
+void load_elf_bin(const char* path,uint8_t **pdata,uint32_t &size)
 {
 	uint8_t buf[MAX_FILE_BUF];
 	int ret = load_file(path,buf);
@@ -222,6 +222,7 @@ void load_elf_bin(const char* path,uint8_t **pdata)
 	uint32_t filesz = ret;
 	*pdata = new uint8_t[filesz];
 	memcpy(*pdata, buf,filesz);
+    size = filesz;
 
 	uint8_t* p_bytes = buf;
 	uint8_t elf_ident[] = {0x7F,'E','L','F'};

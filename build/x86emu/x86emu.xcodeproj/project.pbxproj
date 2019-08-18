@@ -267,6 +267,9 @@
 		EAB727FA2306AE56000019F0 /* crc.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726A02306AE56000019F0 /* crc.cc */; };
 		EAB727FB2306AE56000019F0 /* config.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726A42306AE56000019F0 /* config.cc */; };
 		EAB727FD230730CE000019F0 /* instrument.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7242E2306AE55000019F0 /* instrument.cc */; };
+		EAB72812230944B2000019F0 /* load_elf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB72809230944B2000019F0 /* load_elf.cpp */; };
+		EAB72815230944B2000019F0 /* testelf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB7280F230944B2000019F0 /* testelf.cpp */; };
+		EAB7281823098CA4000019F0 /* mmu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB7281623098CA4000019F0 /* mmu.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -790,6 +793,12 @@
 		EAB726A22306AE56000019F0 /* bochs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bochs.h; sourceTree = "<group>"; };
 		EAB726A32306AE56000019F0 /* PARAM_TREE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PARAM_TREE.txt; sourceTree = "<group>"; };
 		EAB726A42306AE56000019F0 /* config.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = config.cc; sourceTree = "<group>"; };
+		EAB72809230944B2000019F0 /* load_elf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = load_elf.cpp; sourceTree = "<group>"; };
+		EAB7280A230944B2000019F0 /* elf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = elf.h; sourceTree = "<group>"; };
+		EAB7280E230944B2000019F0 /* elf-em.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "elf-em.h"; sourceTree = "<group>"; };
+		EAB7280F230944B2000019F0 /* testelf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testelf.cpp; sourceTree = "<group>"; };
+		EAB7281623098CA4000019F0 /* mmu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mmu.cpp; sourceTree = "<group>"; };
+		EAB7281723098CA4000019F0 /* mmu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mmu.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -822,6 +831,7 @@
 		EAB724042306AE55000019F0 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				EAB72805230944B2000019F0 /* loadelf */,
 				EAB724052306AE55000019F0 /* cpu */,
 				EAB724082306AE55000019F0 /* main.cpp */,
 				EAB724092306AE55000019F0 /* bochs */,
@@ -835,6 +845,8 @@
 			children = (
 				EAB724062306AE55000019F0 /* x86.h */,
 				EAB724072306AE55000019F0 /* x86.cpp */,
+				EAB7281623098CA4000019F0 /* mmu.cpp */,
+				EAB7281723098CA4000019F0 /* mmu.hpp */,
 			);
 			path = cpu;
 			sourceTree = "<group>";
@@ -1526,6 +1538,17 @@
 			path = font;
 			sourceTree = "<group>";
 		};
+		EAB72805230944B2000019F0 /* loadelf */ = {
+			isa = PBXGroup;
+			children = (
+				EAB72809230944B2000019F0 /* load_elf.cpp */,
+				EAB7280A230944B2000019F0 /* elf.h */,
+				EAB7280E230944B2000019F0 /* elf-em.h */,
+				EAB7280F230944B2000019F0 /* testelf.cpp */,
+			);
+			path = loadelf;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1678,6 +1701,7 @@
 				EAB726C32306AE56000019F0 /* generic_cpuid.cc in Sources */,
 				EAB727052306AE56000019F0 /* io.cc in Sources */,
 				EAB726E12306AE56000019F0 /* phenomx3_8650_toliman.cc in Sources */,
+				EAB7281823098CA4000019F0 /* mmu.cpp in Sources */,
 				EAB727792306AE56000019F0 /* Makefile in Sources */,
 				EAB726A52306AE56000019F0 /* x86.cpp in Sources */,
 				EAB727F12306AE56000019F0 /* carbon.cc in Sources */,
@@ -1760,6 +1784,7 @@
 				EAB727132306AE56000019F0 /* avx512_rcp14.cc in Sources */,
 				EAB7271C2306AE56000019F0 /* tbm64.cc in Sources */,
 				EAB726CF2306AE56000019F0 /* corei7_haswell_4770.cc in Sources */,
+				EAB72815230944B2000019F0 /* testelf.cpp in Sources */,
 				EAB727C82306AE56000019F0 /* vgacore.cc in Sources */,
 				EAB727572306AE56000019F0 /* sse_move.cc in Sources */,
 				EAB727042306AE56000019F0 /* xsave.cc in Sources */,
@@ -1825,6 +1850,7 @@
 				EAB7273D2306AE56000019F0 /* fpu_cmov.cc in Sources */,
 				EAB726E72306AE56000019F0 /* mmx.cc in Sources */,
 				EAB7272A2306AE56000019F0 /* arith64.cc in Sources */,
+				EAB72812230944B2000019F0 /* load_elf.cpp in Sources */,
 				EAB726F62306AE56000019F0 /* disasm.cc in Sources */,
 				EAB726FF2306AE56000019F0 /* ret_far.cc in Sources */,
 				EAB727EF2306AE56000019F0 /* keymap.cc in Sources */,
@@ -1908,6 +1934,7 @@
 					"$(PROJECT_DIR)/../../src",
 					"$(PROJECT_DIR)/../../src/cpu",
 					"$(PROJECT_DIR)/../../src/bochs",
+					"$(PROJECT_DIR)/../../src/loadelf",
 				);
 			};
 			name = Debug;
@@ -1965,6 +1992,7 @@
 					"$(PROJECT_DIR)/../../src",
 					"$(PROJECT_DIR)/../../src/cpu",
 					"$(PROJECT_DIR)/../../src/bochs",
+					"$(PROJECT_DIR)/../../src/loadelf",
 				);
 			};
 			name = Release;

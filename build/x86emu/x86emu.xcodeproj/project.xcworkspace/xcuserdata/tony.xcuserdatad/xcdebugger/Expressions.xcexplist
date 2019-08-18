@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "GLOBAL">
+         <PersistentStrings>
+            <PersistentString
+               value = "bx_cpu-&gt;gen_reg[16].rrx">
+            </PersistentString>
+            <PersistentString
+               value = "bx_cpu-&gt;sregs[1]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "XE_MEM_C::alloca_pagebit64(unsigned long):mmu.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "bx_mem">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BX_CPU_C::getICacheEntry():cpu.cc">
+         <PersistentStrings>
+            <PersistentString
+               value = "bx_cpu">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BX_MEM_C::load_ROM(char const*, unsigned long, unsigned char):misc_mem.cc">
+         <PersistentStrings>
+            <PersistentString
+               value = "stat_buf.st_size">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "XE_CPU_C::cpu_loop():x86.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "bx_mem.rom">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

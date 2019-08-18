@@ -37,12 +37,6 @@ void env_init()
 int main()
 {
 	printf("x86 simualte start!\n");
-	Bit8u* p_elf_data = NULL;
-
-	const char* elf_file = "test/tiniytest/tiniy";
-	load_elf_bin(elf_file,&p_elf_data);
-	Elf64_Ehdr* p_elf_h = (Elf64_Ehdr*) p_elf_data;
-	print_elf_info(p_elf_h);
 
 //    Engine x86emu;
     auto p_x86emu = std::make_shared<Engine>();

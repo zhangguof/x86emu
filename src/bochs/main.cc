@@ -92,7 +92,7 @@ BOCHSAPI BX_CPU_C_PTR *bx_cpu_array = NULL;
 BOCHSAPI BX_CPU_C* bx_cpu;
 #endif
 
-BOCHSAPI BX_MEM_C bx_mem;
+BOCHSAPI BX_MEM_C* bx_mem;
 
 char *bochsrc_filename = NULL;
 

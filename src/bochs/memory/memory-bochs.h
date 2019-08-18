@@ -170,7 +170,7 @@ public:
   friend void memory_param_restore_handler(void *devptr, bx_param_c *param, Bit64s val);
 };
 
-BOCHSAPI extern BX_MEM_C bx_mem;
+BOCHSAPI extern BX_MEM_C* bx_mem;
 
 // must be power of two
 #define BX_MEM_BLOCK_LEN (128*1024) /* 128K blocks */
