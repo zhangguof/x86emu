@@ -4,3 +4,4 @@
 *.obj
 *.dSYM
 src/loadelf/loadelf
+tiniy
