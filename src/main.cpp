@@ -4,6 +4,12 @@
 #include "bochs.h"
 #include "cpu/x86.h"
 //#include "plugin.h"
+#include <memory>
+
+#include "elf.h"
+
+extern void load_elf_bin(const char*path, Bit8u** pdata);
+extern void print_elf_info(Elf64_Ehdr* p_elfh);
 
 
 extern void bx_init_options();
@@ -11,7 +17,7 @@ extern void bx_init_siminterface();
 extern void bx_init_hardware();
 //extern void plugin_startup();
 
-void init()
+void env_init()
 {
 //    plugin_startup();
 //    pluginlog = new logfunctions();
@@ -31,12 +37,20 @@ void init()
 int main()
 {
 	printf("x86 simualte start!\n");
-    CPU x86cpu;
+	Bit8u* p_elf_data = NULL;
 
-    init();
+	const char* elf_file = "test/tiniytest/tiniy";
+	load_elf_bin(elf_file,&p_elf_data);
+	Elf64_Ehdr* p_elf_h = (Elf64_Ehdr*) p_elf_data;
+	print_elf_info(p_elf_h);
+
+//    Engine x86emu;
+    auto p_x86emu = std::make_shared<Engine>();
+
+    env_init();
     
-    x86cpu.init();
-    x86cpu.run();
+    p_x86emu->init();
+    p_x86emu->run();
     
     
 	return 0;

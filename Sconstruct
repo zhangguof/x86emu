@@ -50,6 +50,8 @@ cpp_path = ['./',
 			'src/bochs/instrument/stubs',
 			'src/bochs/disasm',
 
+			'src/loadelf',
+
 
 ]
 

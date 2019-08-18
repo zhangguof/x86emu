@@ -22,7 +22,7 @@ int load_file(const char* path, uint8_t* data)
 	if(ret)
 	{
 		close(fd);
-		printf("Error! open file!\n");
+		printf("Error! open file!:%s\n",path);
 		return 0;
 	}
 	uint32_t size = stat_buf.st_size;
@@ -102,21 +102,51 @@ Elf64_Sym* load_symbol_table(uint8_t* buf,Elf64_Shdr* p_sh,int &n)
 
 	return symtab;
 
-
 }
+
+Elf64_Phdr* load_elf64ph(uint8_t* buf,Elf64_Ehdr* elf_h,int &num)
+{
+	int n = elf_h->e_phnum;
+	num = n;
+	if(n==0) return NULL;
+	assert(sizeof(Elf64_Phdr) == elf_h->e_phentsize);
+
+	Elf64_Phdr* elf_phs = new Elf64_Phdr[n];
+	Elf64_Phdr* p_ph = (Elf64_Phdr*)(buf + elf_h->e_phoff);
+
+	for(int i=0;i<n;++i)
+	{
+		elf_phs[i] = p_ph[i];
+	}
+	return elf_phs;
+}
+
+void print_elf_program_header(Elf64_Phdr* ph)
+{
+	PRINT_ATTR(p_type,ph);
+	PRINT_ATTR(p_flags,ph);
+	PRINT_ATTR(p_offset,ph);   /* Segment file offset */
+	PRINT_ATTR(p_vaddr,ph);    /* Segment virtual address */
+	PRINT_ATTR(p_paddr,ph);    /* Segment physical address */
+	PRINT_ATTR(p_filesz,ph);   /* Segment size in file */
+	PRINT_ATTR(p_memsz,ph);    /* Segment size in memory */
+	PRINT_ATTR(p_align,ph);    /* Segment alignment, file & memory */
+}
+
 
 void load_elf64(uint8_t* buf,Elf64_Ehdr* elf_h)
 {
 	Elf64_Ehdr* p_elfh = (Elf64_Ehdr*)buf;
 	*elf_h = *p_elfh;
-	print_elf_info(p_elfh);
+
+	
 	
 	assert(sizeof(Elf64_Ehdr) == elf_h->e_ehsize);
 	assert(sizeof(Elf64_Shdr) == elf_h->e_shentsize);
 
 
 	int elf_shnum = elf_h->e_shnum; //section header num
-	Elf64_Shdr* elf_sh = new Elf64_Shdr[elf_shnum];
+	Elf64_Shdr* elf_shs = new Elf64_Shdr[elf_shnum];
 	uint32_t offset = elf_h->e_shoff; //section header offset
 	Elf64_Shdr* p_sh =(Elf64_Shdr*)(buf + offset);
 
@@ -131,19 +161,38 @@ void load_elf64(uint8_t* buf,Elf64_Ehdr* elf_h)
 
 	for(int i=0;i<elf_shnum;++i)
 	{
-		elf_sh[i] = p_sh[i];
-		const char* sec_name = shstrtab + elf_sh[i].sh_name;
-		printf("===seciton #%d:%s\n",i, sec_name);
+		elf_shs[i] = p_sh[i];
+		const char* sec_name = shstrtab + elf_shs[i].sh_name;
 		if(strcmp(sec_name,".strtab")==0)
 		{
-			strtab = load_str_table_section(buf,elf_sh + i);
+			strtab = load_str_table_section(buf,elf_shs + i);
 		}
 		else if(strcmp(sec_name,".symtab")==0)
 		{
-			symtab = load_symbol_table(buf,elf_sh+i,nsymtab);
+			symtab = load_symbol_table(buf,elf_shs+i,nsymtab);
 		}
-		print_elf_seciton_info(&elf_sh[i]);
 	}
+
+	//load program header
+	int elf_phnum = 0;
+	Elf64_Phdr* elf_phs = load_elf64ph(buf,elf_h,elf_phnum);
+
+#ifdef ELFTEST
+	print_elf_info(p_elfh);
+
+	for(int i=0;i<elf_shnum;++i)
+	{
+		const char* sec_name = shstrtab + elf_shs[i].sh_name;
+		printf("===seciton #%d:%s\n",i, sec_name);
+		print_elf_seciton_info(&elf_shs[i]);
+	}
+
+	for(int i=0;i<elf_phnum;++i)
+	{
+		printf("===program header:#%d\n",i);
+		print_elf_program_header(elf_phs+i);
+	}
+
 
 	printf("===Symbol table:\n");
 	for(int i=0;i<nsymtab;++i)
@@ -158,18 +207,11 @@ void load_elf64(uint8_t* buf,Elf64_Ehdr* elf_h)
 		PRINT_ATTR(st_value,symtab+i);
 		PRINT_ATTR(st_size,symtab+i);
 	}
-
-	//section header table section
-	// Elf64_Shdr* p_sh_str = elf_sh + elf_h->e_shstrndx;
-	// char sec_strtable[p_sh_str->sh_size];
-	// memcpy(sec_strtable,buf+p_sh_str->sh_offset,
-	// 	   p_sh_str->sh_size);
-
-	//load section header table section
+#endif
 
 }
 
-void load_elf_bin(const char* path)
+void load_elf_bin(const char* path,uint8_t **pdata)
 {
 	uint8_t buf[MAX_FILE_BUF];
 	int ret = load_file(path,buf);
@@ -177,6 +219,10 @@ void load_elf_bin(const char* path)
 	{
 		return;
 	}
+	uint32_t filesz = ret;
+	*pdata = new uint8_t[filesz];
+	memcpy(*pdata, buf,filesz);
+
 	uint8_t* p_bytes = buf;
 	uint8_t elf_ident[] = {0x7F,'E','L','F'};
 	ret = memcmp(p_bytes,elf_ident,
@@ -189,21 +235,16 @@ void load_elf_bin(const char* path)
 	bool is_bit64 = p_bytes[4]==2?true:false;
 	if(is_bit64)
 	{
-		printf("load elf64!\n");
+		printf("loading elf64....\n");
 		Elf64_Ehdr elf64;
 		load_elf64(buf,&elf64);
 	}
 	else
 	{
-		printf("load elf32\n");
+		printf("loading elf32....\n");
 	}
 
+
 }
 
 
-
-int main()
-{
-	load_elf_bin("../../test/add.o");
-	return 0;
-}
