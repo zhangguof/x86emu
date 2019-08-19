@@ -5217,6 +5217,9 @@ public: // for now...
 #if BX_CONFIGURE_MSRS
   int load_MSRs(const char *file);
 #endif
+    virtual bx_bool is_host_call(Bit64u addr){return 0;}
+    virtual void call_host_func(bxInstruction_c* i){}
+    
 };
 
 #if BX_CPU_LEVEL >= 5

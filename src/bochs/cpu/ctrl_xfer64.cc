@@ -400,7 +400,13 @@ BX_INSF_TYPE BX_CPP_AttrRegparmN(1) BX_CPU_C::JMP_EqR(bxInstruction_c *i)
     BX_ERROR(("%s: canonical RIP violation", i->getIaOpcodeNameShort()));
     exception(BX_GP_EXCEPTION, 0);
   }
-
+  
+  if(BX_CPU(0)->is_host_call(op1_64))
+  {
+      BX_CPU(0)->call_host_func(i);
+      op1_64 = RIP;
+  }
+    
   RIP = op1_64;
 
   BX_INSTR_UCNEAR_BRANCH(BX_CPU_ID, BX_INSTR_IS_JMP_INDIRECT, PREV_RIP, RIP);

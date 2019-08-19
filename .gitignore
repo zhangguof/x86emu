@@ -5,3 +5,4 @@
 *.dSYM
 src/loadelf/loadelf
 tiniy
+test/cpptest
