@@ -2,17 +2,17 @@
 
 CC=gcc
 AS=nasm
-LD=ld
+LD=gcc
 
-
-CFLAGS= -c -fno-builtin
+#-fno-builtin
+CFLAGS= -c  -I. -fno-stack-protector 
 ASFLAG= -f elf64
-LDFLAGS= -static -T tiniy.lds
+LDFLAGS= -static -T tiniy.lds  -nostdlib -ffreestanding -L./libs 
 
 all: tiniy
 
-tiniy: main.o add.o asm.o
-	$(LD) $(LDFLAGS) -o $@ $^
+tiniy: main.o add.o asm.o host_func.o libs.o
+	$(LD) $(LDFLAGS) -o $@ $^ -lc
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ $^
