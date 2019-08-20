@@ -42,6 +42,7 @@ void Engine::load_elf(const char* elf_file)
     bx_phy_address entry_addr = p_elf_h->e_entry;
     
     mem_ptr->load_RAM_from_data(p_elf_data,filesz,base_addr);
+//    mem_ptr->load_RAM(elf_file,base_addr);
     
     cpu_ptr->prev_rip = cpu_ptr->gen_reg[BX_64BIT_REG_RIP].rrx = entry_addr;
     
@@ -92,6 +93,7 @@ void Engine::setup_os_env()
     
     cpu_ptr->efer.set_LME(1);
     cpu_ptr->efer.set_LMA(1);
+    cpu_ptr->efer.set_SCE(1); //syscall enable; 
     
     cpu_ptr->handleCpuModeChange();
     cpu_ptr->SetCR3(cr3_val);

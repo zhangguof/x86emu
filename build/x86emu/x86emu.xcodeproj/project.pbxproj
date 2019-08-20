@@ -270,6 +270,10 @@
 		EAB72812230944B2000019F0 /* load_elf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB72809230944B2000019F0 /* load_elf.cpp */; };
 		EAB72815230944B2000019F0 /* testelf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB7280F230944B2000019F0 /* testelf.cpp */; };
 		EAB7281823098CA4000019F0 /* mmu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB7281623098CA4000019F0 /* mmu.cpp */; };
+		EAB7281B230ADD36000019F0 /* engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB72819230ADD36000019F0 /* engine.cpp */; };
+		EAB7281E230ADFDC000019F0 /* host_call.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB7281D230ADFDC000019F0 /* host_call.cpp */; };
+		EAB72822230BEEAF000019F0 /* host_sys_call.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB72820230BEEAF000019F0 /* host_sys_call.cpp */; };
+		EAB72825230BFAE5000019F0 /* linux_sys_call_imp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB72824230BFAE5000019F0 /* linux_sys_call_imp.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -799,6 +803,14 @@
 		EAB7280F230944B2000019F0 /* testelf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testelf.cpp; sourceTree = "<group>"; };
 		EAB7281623098CA4000019F0 /* mmu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mmu.cpp; sourceTree = "<group>"; };
 		EAB7281723098CA4000019F0 /* mmu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mmu.hpp; sourceTree = "<group>"; };
+		EAB72819230ADD36000019F0 /* engine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = engine.cpp; sourceTree = "<group>"; };
+		EAB7281A230ADD36000019F0 /* engine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = engine.hpp; sourceTree = "<group>"; };
+		EAB7281D230ADFDC000019F0 /* host_call.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = host_call.cpp; sourceTree = "<group>"; };
+		EAB72820230BEEAF000019F0 /* host_sys_call.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = host_sys_call.cpp; sourceTree = "<group>"; };
+		EAB72821230BEEAF000019F0 /* host_sys_call.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = host_sys_call.hpp; sourceTree = "<group>"; };
+		EAB72823230BF462000019F0 /* linux_sys_call.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = linux_sys_call.hpp; sourceTree = "<group>"; };
+		EAB72824230BFAE5000019F0 /* linux_sys_call_imp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = linux_sys_call_imp.cpp; sourceTree = "<group>"; };
+		EAB72826230BFC7D000019F0 /* linux_sys_call_imp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = linux_sys_call_imp.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -831,6 +843,7 @@
 		EAB724042306AE55000019F0 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				EAB7281F230BEE7E000019F0 /* sys_call */,
 				EAB72805230944B2000019F0 /* loadelf */,
 				EAB724052306AE55000019F0 /* cpu */,
 				EAB724082306AE55000019F0 /* main.cpp */,
@@ -845,8 +858,11 @@
 			children = (
 				EAB724062306AE55000019F0 /* x86.h */,
 				EAB724072306AE55000019F0 /* x86.cpp */,
+				EAB72819230ADD36000019F0 /* engine.cpp */,
+				EAB7281A230ADD36000019F0 /* engine.hpp */,
 				EAB7281623098CA4000019F0 /* mmu.cpp */,
 				EAB7281723098CA4000019F0 /* mmu.hpp */,
+				EAB7281D230ADFDC000019F0 /* host_call.cpp */,
 			);
 			path = cpu;
 			sourceTree = "<group>";
@@ -1549,6 +1565,18 @@
 			path = loadelf;
 			sourceTree = "<group>";
 		};
+		EAB7281F230BEE7E000019F0 /* sys_call */ = {
+			isa = PBXGroup;
+			children = (
+				EAB72820230BEEAF000019F0 /* host_sys_call.cpp */,
+				EAB72821230BEEAF000019F0 /* host_sys_call.hpp */,
+				EAB72823230BF462000019F0 /* linux_sys_call.hpp */,
+				EAB72824230BFAE5000019F0 /* linux_sys_call_imp.cpp */,
+				EAB72826230BFC7D000019F0 /* linux_sys_call_imp.hpp */,
+			);
+			path = sys_call;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1695,6 +1723,7 @@
 				EAB727F82306AE56000019F0 /* win32_enh_dbg_osdep.cc in Sources */,
 				EAB727272306AE56000019F0 /* msr.cc in Sources */,
 				EAB7271B2306AE56000019F0 /* tbm32.cc in Sources */,
+				EAB7281E230ADFDC000019F0 /* host_call.cpp in Sources */,
 				EAB727082306AE56000019F0 /* vm8086.cc in Sources */,
 				EAB726BB2306AE56000019F0 /* Makefile in Sources */,
 				EAB7275F2306AE56000019F0 /* dis_tables_xop.inc in Sources */,
@@ -1846,7 +1875,9 @@
 				EAB726F42306AE56000019F0 /* fetchdecode32.cc in Sources */,
 				EAB7274C2306AE56000019F0 /* fpu_const.cc in Sources */,
 				EAB727C62306AE56000019F0 /* dma.cc in Sources */,
+				EAB7281B230ADD36000019F0 /* engine.cpp in Sources */,
 				EAB727C52306AE56000019F0 /* pcidev.cc in Sources */,
+				EAB72825230BFAE5000019F0 /* linux_sys_call_imp.cpp in Sources */,
 				EAB7273D2306AE56000019F0 /* fpu_cmov.cc in Sources */,
 				EAB726E72306AE56000019F0 /* mmx.cc in Sources */,
 				EAB7272A2306AE56000019F0 /* arith64.cc in Sources */,
@@ -1864,6 +1895,7 @@
 				EAB726DD2306AE56000019F0 /* p4_prescott_celeron_336.cc in Sources */,
 				EAB726F52306AE56000019F0 /* fetchdecode64.cc in Sources */,
 				EAB727072306AE56000019F0 /* bmi64.cc in Sources */,
+				EAB72822230BEEAF000019F0 /* host_sys_call.cpp in Sources */,
 				EAB727E32306AE56000019F0 /* svga.cc in Sources */,
 				EAB726E82306AE56000019F0 /* stack64.cc in Sources */,
 				EAB7273C2306AE56000019F0 /* data_xfer32.cc in Sources */,
@@ -1935,6 +1967,7 @@
 					"$(PROJECT_DIR)/../../src/cpu",
 					"$(PROJECT_DIR)/../../src/bochs",
 					"$(PROJECT_DIR)/../../src/loadelf",
+					"$(PROJECT_DIR)/../../src/sys_call",
 				);
 			};
 			name = Debug;
@@ -1993,6 +2026,7 @@
 					"$(PROJECT_DIR)/../../src/cpu",
 					"$(PROJECT_DIR)/../../src/bochs",
 					"$(PROJECT_DIR)/../../src/loadelf",
+					"$(PROJECT_DIR)/../../src/sys_call",
 				);
 			};
 			name = Release;

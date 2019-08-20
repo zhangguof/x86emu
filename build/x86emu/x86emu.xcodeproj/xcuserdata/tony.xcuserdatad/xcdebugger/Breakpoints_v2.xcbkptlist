@@ -9,14 +9,46 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../src/bochs/gui/siminterface.cc"
-            timestampString = "587678787.372885"
+            filePath = "../../src/bochs/cpu/ctrl_xfer64.cc"
+            timestampString = "587936496.234108"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "278"
-            endingLineNumber = "278"
-            landmarkName = "bx_real_sim_c::get_param_num(const char *pname, bx_param_c *base)"
-            landmarkType = "7">
+            startingLineNumber = "397"
+            endingLineNumber = "397"
+            landmarkName = "JMP_EqR(bxInstruction_c *i)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../src/cpu/host_call.cpp"
+            timestampString = "587993362.369262"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "do_call_host_func(Bit32u idx,HOST_CALL_5ARGS&amp; args)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../src/cpu/host_call.cpp"
+            timestampString = "587993362.369603"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "getMemAddr(Bit64u addr)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,44 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../src/cpu/x86.cpp"
-            timestampString = "587847260.935109"
+            timestampString = "587993362.369661"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "Engine::load_elf(const char* elf_file)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../src/cpu/mmu.cpp"
-            timestampString = "587847260.935554"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "XE_MEM_C::alloca_pagebit64(Bit64u start_addr)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../src/cpu/x86.cpp"
-            timestampString = "587847260.935622"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "Engine::load_elf(const char* elf_file)"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "XE_CPU_C::cpu_loop()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,14 +73,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../src/cpu/x86.cpp"
-            timestampString = "587847260.935941"
+            filePath = "../../src/bochs/cpu/proc_ctrl.cc"
+            timestampString = "587993362.369854"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
-            landmarkName = "XE_CPU_C::cpu_loop()"
-            landmarkType = "7">
+            startingLineNumber = "1115"
+            endingLineNumber = "1115"
+            landmarkName = "SYSCALL(bxInstruction_c *i)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../src/sys_call/host_sys_call.cpp"
+            timestampString = "587993362.370139"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "do_host_sys_call(SYS_CALL_ARGS args)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../src/sys_call/linux_sys_call_imp.cpp"
+            timestampString = "587993362.370371"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "sys_write(Bit64u idx,SYS_CALL_ARGS args)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

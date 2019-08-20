@@ -26,6 +26,8 @@
 #include "cpu.h"
 #define LOG_THIS BX_CPU_THIS_PTR
 
+#include "sys_call/host_sys_call.hpp"
+
 BX_INSF_TYPE BX_CPP_AttrRegparmN(1) BX_CPU_C::BxError(bxInstruction_c *i)
 {
   unsigned ia_opcode = i->getIaOpcode();
@@ -1109,6 +1111,7 @@ BX_INSF_TYPE BX_CPP_AttrRegparmN(1) BX_CPU_C::SYSEXIT(bxInstruction_c *i)
   BX_NEXT_TRACE(i);
 }
 
+
 BX_INSF_TYPE BX_CPP_AttrRegparmN(1) BX_CPU_C::SYSCALL(bxInstruction_c *i)
 {
 #if BX_CPU_LEVEL >= 5
@@ -1127,6 +1130,11 @@ BX_INSF_TYPE BX_CPP_AttrRegparmN(1) BX_CPU_C::SYSCALL(bxInstruction_c *i)
 #if BX_SUPPORT_X86_64
   if (long_mode())
   {
+      //
+//      BX_CPU(0)->call_host_func(i);
+      Bit64u ret = host_sys_call();
+      RAX = ret;
+      return;
     RCX = RIP;
     R11 = read_eflags() & ~(EFlagsRFMask);
 

@@ -9,7 +9,7 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 
-const int MAX_FILE_BUF = 512*1024; //512k;
+const int MAX_FILE_BUF = 2*1024*1024; //2M;
 
 int load_file(const char* path, uint8_t* data)
 {

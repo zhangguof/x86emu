@@ -5218,7 +5218,7 @@ public: // for now...
   int load_MSRs(const char *file);
 #endif
     virtual bx_bool is_host_call(Bit64u addr){return 0;}
-    virtual void call_host_func(bxInstruction_c* i){}
+    virtual Bit64u call_host_func(bxInstruction_c* i){return 0;}
     
 };
 
