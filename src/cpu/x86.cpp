@@ -8,13 +8,52 @@
 #define LOG_THIS this->
 
 
-
 void XE_MEM_C::load_RAM_from_data(Bit8u* data, Bit32u len, bx_phy_address ramaddress)
 {
 //    Bit32u size, offset;
 //    offset = ramaddress;
+    //load every 128k block 0x20000
+//    assert((ramaddress & (BX_MEM_BLOCK_LEN-1))==0);
+#define BLCOK_MASK (BX_MEM_BLOCK_LEN-1)
+    bx_phy_address start = ramaddress;
+    bx_phy_address end = ramaddress + len;
     
-    memcpy(this->get_vector(ramaddress),data,len);
+    Bit8u* pdst = this->get_vector(start);
+    int load_size = 0;
+    int remain_size = len;
+    //check high bits
+    if((start & ~BLCOK_MASK) == ((end-1) & ~BLCOK_MASK))
+    {
+        //in one block!
+        assert(remain_size<=BX_MEM_BLOCK_LEN);
+        load_size = remain_size;
+        memcpy(pdst, data,load_size);
+        return;
+    }
+    else
+    {
+        assert(remain_size >= BX_MEM_BLOCK_LEN);
+        bx_phy_address next_addr = ((start/BX_MEM_BLOCK_LEN)+1)*BX_MEM_BLOCK_LEN;
+        load_size = (next_addr - start);
+        memcpy(pdst, data, load_size);
+        remain_size -= load_size;
+//        pdst  += load_size;
+        start += load_size;
+        data  += load_size;
+    }
+   assert((start & BLCOK_MASK)==0);
+    
+    while(remain_size>0)
+    {
+        pdst = this->get_vector(start);
+        load_size = remain_size > BX_MEM_BLOCK_LEN?BX_MEM_BLOCK_LEN:remain_size;
+        memcpy(pdst,data,load_size);
+        remain_size -= load_size;
+//        pdst  += load_size;
+        data += load_size;
+        start += load_size;
+    }
+    
 //    BX_INFO(("ram at 0x%05x/%u ('%s')",(unsigned) ramaddress,(unsigned) len));
     
     BX_INFO(("rom at 0x%05x/%u ",ramaddress,len));
@@ -31,10 +70,10 @@ inline bx_bool XE_CPU_C::is_host_call(Bit64u addr)
 
 //HOST_CALL_4ARGS
 
-extern void do_call_host_func(Bit32u idx,HOST_CALL_5ARGS& args);
+extern Bit64u do_call_host_func(Bit32u idx,HOST_CALL_5ARGS& args);
 
 
-void XE_CPU_C::call_host_func(bxInstruction_c* i)
+Bit64u XE_CPU_C::call_host_func(bxInstruction_c* i)
 {
     printf("call from guest !\n");
     Bit32u idx = EDI;
@@ -44,7 +83,7 @@ void XE_CPU_C::call_host_func(bxInstruction_c* i)
 //    Bit8u* paddr = BX_MEM(0)->getHostMemAddr(this, data_addr, BX_RW);
 //    printf("idx:%0x,data:%0x,len:%u\n",idx,data_addr,len);
     
-    do_call_host_func(idx,arg5);
+    return do_call_host_func(idx,arg5);
 }
 
 
