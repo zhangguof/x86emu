@@ -124,6 +124,27 @@ typedef __s64	Elf64_Sxword;
 #define DT_LOPROC	0x70000000
 #define DT_HIPROC	0x7fffffff
 
+/* DT_* entries which fall between DT_ADDRRNGHI & DT_ADDRRNGLO use the
+   Dyn.d_un.d_ptr field of the Elf*_Dyn structure.
+
+   If any adjustment is made to the ELF object after it has been
+   built these entries will need to be adjusted.  */
+#define DT_ADDRRNGLO	0x6ffffe00
+#define DT_GNU_HASH		0x6ffffef5
+#define DT_TLSDESC_PLT	0x6ffffef6
+#define DT_TLSDESC_GOT	0x6ffffef7
+#define DT_GNU_CONFLICT	0x6ffffef8	/* Start of conflict section */
+#define DT_GNU_LIBLIST	0x6ffffef9	/* Library list */
+#define DT_CONFIG	0x6ffffefa	/* Configuration information.  */
+#define DT_DEPAUDIT	0x6ffffefb	/* Dependency auditing.  */
+#define DT_AUDIT	0x6ffffefc	/* Object auditing.  */
+#define	DT_PLTPAD	0x6ffffefd	/* PLT padding.  */
+#define	DT_MOVETAB	0x6ffffefe	/* Move table.  */
+#define DT_SYMINFO	0x6ffffeff	/* Syminfo table.  */
+#define DT_ADDRRNGHI	0x6ffffeff
+#define DT_ADDRTAGIDX(tag)	(DT_ADDRRNGHI - (tag))	/* Reverse order! */
+#define DT_ADDRNUM 10
+
 /* This info is needed when parsing the symbol table */
 #define STB_LOCAL  0
 #define STB_GLOBAL 1
@@ -451,5 +472,98 @@ typedef struct elf64_note {
   Elf64_Word n_descsz;	/* Content size */
   Elf64_Word n_type;	/* Content type */
 } Elf64_Nhdr;
+
+#ifdef ELFTEST
+
+struct lookup { size_t n; const char s[20]; };
+static struct lookup dtag[] = {
+  { 0, "DT_NULL"},
+  { 1, "DT_NEEDED" },
+  { 2, "DT_PLTRELSZ" },
+  { 3, "DT_PLTGOT" },
+  { 4, "DT_HASH" },
+  { 5, "DT_STRTAB" },
+  { 6, "DT_SYMTAB" },
+  { 7, "DT_RELA" },
+  { 8, "DT_RELASZ" },
+  { 9, "DT_RELAENT" },
+  { 10, "DT_STRSZ" },
+  { 11, "DT_SYMENT" },
+  { 12, "DT_INIT" },
+  { 13, "DT_FINI" },
+  { 14, "DT_SONAME" },
+  { 15, "DT_RPATH" },
+  { 16, "DT_SYMBOLIC" },
+  { 17, "DT_REL" },
+  { 18, "DT_RELSZ" },
+  { 19, "DT_RELENT" },
+  { 20, "DT_PLTREL" },
+  { 21, "DT_DEBUG" },
+  { 22, "DT_TEXTREL" },
+  { 23, "DT_JMPREL" },
+  { 24, "DT_BIND_NOW" },
+  { 25, "DT_INIT_ARRAY" },
+  { 26, "DT_FINI_ARRAY" },
+  { 27, "DT_INIT_ARRAYSZ" },
+  { 28, "DT_FINI_ARRAYSZ" },
+  { 29, "DT_RUNPATH" },
+  { 30, "DT_FLAGS" },
+  { 32, "DT_ENCODING" },
+  { 32, "DT_PREINIT_ARRAY" },
+  { 33, "DT_PREINIT_ARRAYSZ" },
+  { 34, "DT_NUM" },
+  { 0x6000000d, "DT_LOOS" },
+  { 0x6ffff000, "DT_HIOS" },
+  { 0x6ffffef5, "DT_GNU_HASH" },
+  { 0x6ffffff9, "DT_RELACOUNT" },
+  { 0x6ffffffa, "DT_RELCOUNT" },
+  { 0x6ffffffb, "DT_FLAGS_1" },
+  { 0x70000000, "DT_LOPROC" },
+  { 0x7fffffff, "DT_HIPROC" },
+  { 0xFFFFFFFF, "UNKONW" }
+};
+
+
+#define TAG(name,val) \
+	{val,#name},
+
+static struct lookup rtype[] = {
+TAG(R_X86_64_NONE,		0)	/* No reloc */
+TAG(R_X86_64_64,		1)	/* Direct 64 bit  */
+TAG(R_X86_64_PC32,		2)	/* PC relative 32 bit signed */
+TAG(R_X86_64_GOT32,		3)	/* 32 bit GOT entry */
+TAG(R_X86_64_PLT32,		4)	/* 32 bit PLT address */
+TAG(R_X86_64_COPY	,	5)	/* Copy symbol at runtime */
+TAG(R_X86_64_GLOB_DAT,	6)	/* Create GOT entry */
+TAG(R_X86_64_JUMP_SLOT,	7)	/* Create PLT entry */
+TAG(R_X86_64_RELATIVE,8)	/*) Adjust by program base */
+TAG(R_X86_64_GOTPCREL,	9)	/* 32 bit signed PC relative
+					   off)set to GOT */
+TAG(R_X86_64_32,		10)	/* Direct 32 bit zero extended */
+TAG(R_X86_64_32S,		11)	/* Direct 32 bit sign extended */
+TAG(R_X86_64_16,		12)	/* Direct 16 bit zero extended */
+TAG(R_X86_64_PC16,		13)	/* 16 bit sign extended pc relative */
+TAG(R_X86_64_8,		14	)/*) Direct 8 bit sign extended  */
+TAG(R_X86_64_PC8,		15)	/* 8 bit sign extended pc relative */
+TAG(R_X86_64_DTPMOD64,	16)	/* ID of module containing symbol */
+TAG(R_X86_64_DTPOFF64,	17)	/* Offset in module's TLS block */
+TAG(R_X86_64_TPOFF64,	18)	/* Offset in initial TLS block */
+TAG(R_X86_64_TLSGD	,	19)	/* 32 bit signed PC relative offset
+					   to )two GOT entries for GD symbol */
+TAG(R_X86_64_TLSLD	,	20)	/* 32 bit signed PC relative offset
+					   to )two GOT entries for LD symbol */
+TAG(R_X86_64_DTPOFF32,	21)	/* Offset in TLS block */
+TAG(R_X86_64_GOTTPOFF,	22)	/* 32 bit signed PC relative offset
+					   to )GOT entry for IE symbol */
+TAG(R_X86_64_TPOFF32,	23)	/* Offset in initial TLS block */
+
+TAG(R_X86_64_NUM	,	24)
+TAG(UNKONW	,	0xFFFFFFFF)
+
+};
+
+#endif
+
+
 
 #endif /* _UAPI_LINUX_ELF_H */

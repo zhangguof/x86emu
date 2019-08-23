@@ -9,10 +9,16 @@
 #define NEED_CPU_REG_SHORTCUTS 1
 
 #include "cpu/x86.h"
-#include "elf.h"
+
 #include "mmu.hpp"
 
 #include "engine.hpp"
+#include <algorithm>
+#include <string>
+
+// #define ELFTEST
+#include "elf.h"
+#include "elf-ext.hpp"
 
 // g_cpu = NULL;
 extern void bx_init_hardware();
@@ -26,6 +32,12 @@ const Bit64u PAGE_BASE_ADDR = (0x100000);
 
 #define BX_CR3_PAGING_MASK    (BX_CONST64(0x000ffffffffff000))
 
+std::string work_home = "/Users/tony/workspace/github/x86emu/TiniyOs/ldso/";
+std::string start_elf_file = "libtest.so";
+
+extern dll* load_lib(ehdr* eh,bx_phy_address base_addr);
+extern void load_dyn(dll* p_dll);
+
 void Engine::load_elf(const char* elf_file)
 {
     // The RESET function will have been called first.
@@ -37,16 +49,26 @@ void Engine::load_elf(const char* elf_file)
     Bit32u filesz = 0;
     load_elf_bin(elf_file,&p_elf_data,filesz);
     Elf64_Ehdr* p_elf_h = (Elf64_Ehdr*) p_elf_data;
-    print_elf_info(p_elf_h);
+//    print_elf_info(p_elf_h);
     bx_phy_address base_addr = RUN_BASE_ADDR; //2M start.
     bx_phy_address entry_addr = p_elf_h->e_entry;
+//    Elf64_Phdr* ph = (Elf64_Phdr*)(p_elf_data + p_elf_h->e_phoff);
+//    int phnum = p_elf_h->e_phnum;
+    auto ret_dll = load_lib(p_elf_h,base_addr);
+//    load_dyn(ret_dll);
     
-    mem_ptr->load_RAM_from_data(p_elf_data,filesz,base_addr);
+    //dyn info
+//    int dn = 0;
+//    Elf64_Dyn* pd = NULL;
+
+    
+//    mem_ptr->load_RAM_from_data(p_elf_data,filesz,base_addr);
 //    mem_ptr->load_RAM(elf_file,base_addr);
     
     cpu_ptr->prev_rip = cpu_ptr->gen_reg[BX_64BIT_REG_RIP].rrx = entry_addr;
     
     setup_os_env();
+    delete[]p_elf_data;
 }
 
 
@@ -127,11 +149,13 @@ void Engine::init()
     Bit64u memSize = 32*1024*1024; //32M
     Bit64u hostMemSize = 32*1023*1024;
     const char* rom_path = "/Users/tony/workspace/github/x86emu/tool/BIOS-bochs-latest";
-    const char* elf_file = "/Users/tony/workspace/github/x86emu/TiniyOs/tiniy";
+//    const char* elf_file = "/Users/tony/workspace/github/x86emu/TiniyOs/tiniy";
+//    const char* elf_file = "/ldso";
+    auto elf_file = work_home + start_elf_file;
     
     Bit32u ips = 4000000;
     
-    bx_pc_system.setonoff(LOGLEV_DEBUG, ACT_REPORT);
+//    bx_pc_system.setonoff(LOGLEV_DEBUG, ACT_REPORT);
     bx_pc_system.initialize(ips);
     
     mem_ptr->init_memory(memSize, hostMemSize);
@@ -140,12 +164,12 @@ void Engine::init()
     cpu_ptr->initialize();
     cpu_ptr->sanity_checks();
     cpu_ptr->register_state();
-    cpu_ptr->setonoff(LOGLEV_DEBUG, ACT_REPORT);
+//    cpu_ptr->setonoff(LOGLEV_DEBUG, ACT_REPORT);
     
     bx_pc_system.register_state();
     // will enable A20 line and reset CPU and devices
     bx_pc_system.Reset(BX_RESET_HARDWARE);
-    load_elf(elf_file);
+    load_elf(elf_file.c_str());
     
     // First load the system BIOS (VGABIOS loading moved to the vga code)
     //    SIM->get_param_string(BXPN_ROM_PATH)->set(rom_path);

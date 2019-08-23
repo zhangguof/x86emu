@@ -33,6 +33,7 @@ Bit64u sys_write(Bit64u idx,SYS_CALL_ARGS args)
     auto buf =reinterpret_cast<const char*>(getMemAddr(args[1]));
     auto count = static_cast<size_t>(args[2]);
     
-    return write(fd,buf,count);
+    auto ret = write(fd,buf,count);
+    return ret;
 }
 

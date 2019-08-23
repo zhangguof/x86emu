@@ -134,6 +134,7 @@ public:
 
   BX_MEM_SMF void    load_ROM(const char *path, bx_phy_address romaddress, Bit8u type);
   BX_MEM_SMF void    load_RAM(const char *path, bx_phy_address romaddress);
+    virtual  void    load_RAM_from_data(Bit8u* data, Bit32u len, bx_phy_address  ram_addr){}
 
 #if (BX_DEBUGGER || BX_DISASM || BX_GDBSTUB)
   BX_MEM_SMF bx_bool dbg_fetch_mem(BX_CPU_C *cpu, bx_phy_address addr, unsigned len, Bit8u *buf);

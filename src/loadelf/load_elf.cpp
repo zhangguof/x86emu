@@ -1,13 +1,18 @@
-#include "elf.h"
-#include "stdio.h"
-#include "string.h"
-#include "assert.h"
+
+#include <stdio.h>
+#include <string.h>
+#include <assert.h>
+#include <stddef.h>
 
 #include <sys/types.h>
 #include <sys/uio.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+#include <algorithm>
+
+#include "elf.h"
+
 
 const int MAX_FILE_BUF = 2*1024*1024; //2M;
 
@@ -49,7 +54,7 @@ void load_elf32(uint8_t* buf,Elf32_Ehdr* elf_h)
 }
 
 #define PRINT_ATTR(name,ptr) \
-printf(#name":0x%0x\n",(ptr)->name);
+printf(#name":0x%0llx\n",(ptr)->name);
 
 void print_elf_info(Elf64_Ehdr* p_elfh)
 {
@@ -134,6 +139,125 @@ void print_elf_program_header(Elf64_Phdr* ph)
 }
 
 
+#ifdef ELFTEST
+
+void print_sym_info(Elf64_Sym* sym)
+{
+    PRINT_ATTR(st_name,sym);        /* Symbol name, index in string tbl */
+    PRINT_ATTR(st_info,sym);    /* Type and binding attributes */
+    PRINT_ATTR(st_other,sym);    /* No defined meaning, 0 */
+    PRINT_ATTR(st_shndx,sym);        /* Associated section index */
+    PRINT_ATTR(st_value,sym);        /* Value of the symbol */
+    PRINT_ATTR(st_size,sym);        /* Associated symbol size */
+    
+}
+
+const char* get_tag_name(uint32_t tag)
+{
+	size_t n = sizeof(dtag)/sizeof(lookup);
+	lookup t = {tag,"0"};
+	auto ite = std::lower_bound(dtag,dtag+n,t,
+		[](const lookup& a,const lookup& b){
+			return a.n < b.n;
+	});
+	return ite->s;
+}
+const char* get_rtype_name(uint32_t tag)
+{
+	size_t n = sizeof(rtype)/sizeof(lookup);
+	lookup t = {tag,"0"};
+	auto ite = std::lower_bound(rtype,rtype+n,t,
+		[](const lookup& a,const lookup& b){
+			return a.n < b.n;
+	});
+	return ite->s;
+}
+#endif
+
+void load_elf64_dyn(Elf64_Ehdr* e)
+{
+	uint8_t* buf = (uint8_t*) e;
+	int num = 0;
+	Elf64_Phdr* ph=load_elf64ph((uint8_t*)e,e,num);
+	Elf64_Phdr* ph_dyn = NULL; //find section .dynamic
+	int dn = 0;
+	Elf64_Dyn* pd = NULL; //
+	for(int i=0;i<num;++i)
+	{
+		printf("====%d:type:0x%0x\n",i,ph[i].p_type);
+		if(ph[i].p_type == PT_DYNAMIC)
+		{
+			ph_dyn = ph+i;
+			dn = ph_dyn->p_memsz / (sizeof(Elf64_Dyn));
+			pd = (Elf64_Dyn*)(buf + ph_dyn->p_offset);
+			break;
+		}
+	}
+	printf("==load dyn head:%d\n",dn);
+	Elf64_Sym* dy_sym = NULL;
+	char* dy_strtab = NULL;
+	Elf64_Rela* rela = NULL; // section .rela.dyn, rel for .got
+	Elf64_Rela* plt_rela = NULL; //section .rela.plt rel for .plt
+	int rnum = 0; //rel num;
+	int plt_rnum = 0; //plt rel num;
+	for(int i=0;i<dn;++i)
+	{
+		Elf64_Dyn* p = pd + i;
+//        printf("==dyn:#%d,tag:%s(0x%0x),d_val:0x%0x\n",i,
+//                get_tag_name(p->d_tag),p->d_tag,p->d_un.d_val);
+		switch(p->d_tag)
+		{
+			case DT_STRTAB:
+				dy_strtab = (char*)(buf + p->d_un.d_ptr);
+				break;
+			case DT_SYMTAB:
+				dy_sym = (Elf64_Sym*)(buf + p->d_un.d_ptr);
+				break;
+			case DT_RELA:
+				rela = (Elf64_Rela*)(buf + p->d_un.d_ptr);
+				break;
+			case DT_RELASZ:
+				rnum = p->d_un.d_val / (sizeof(Elf64_Rela));
+				break;
+			case DT_PLTRELSZ:
+				plt_rnum = p->d_un.d_val / (sizeof(Elf64_Rela));
+				break;
+			case DT_JMPREL:
+				plt_rela = (Elf64_Rela*)(buf + p->d_un.d_ptr);
+				break;
+			case DT_NULL:
+			default:
+				break;
+		}
+		if(p->d_tag == DT_NULL) break;
+	}
+//    printf("===rel sym num:%d,sizeof:%d\n",rnum,sizeof(Elf64_Rela));
+	for(int i=0;i<rnum;++i)
+	{
+		Elf64_Rela* r = rela + i;
+		auto sym = dy_sym[ELF64_R_SYM(r->r_info)];
+		uint32_t r_type = ELF64_R_TYPE(r->r_info);
+//        printf("=====rel:#%d,addr:r_offset:%0x,r_type:%s(0x%0x),name:%s,r_addend:0x%0x\n",
+//                i,r->r_offset,get_rtype_name(r_type),r_type,
+//                dy_strtab+sym.st_name,r->r_addend);
+//        print_sym_info(&sym);
+
+	}
+	for(int i=0;i<plt_rnum;++i)
+	{
+		Elf64_Rela* r = plt_rela + i;
+		auto sym = dy_sym[ELF64_R_SYM(r->r_info)];
+		uint32_t r_type = ELF64_R_TYPE(r->r_info);
+//        printf("=====pot:#%d,addr:r_offset:%0x,r_type:%s(0x%0x),name:%s,r_addend:0x%0x\n",
+//                i,r->r_offset,get_rtype_name(r_type),r_type,
+//                dy_strtab+sym.st_name,r->r_addend);
+//        print_sym_info(&sym);
+	}
+
+
+}
+
+
 void load_elf64(uint8_t* buf,Elf64_Ehdr* elf_h)
 {
 	Elf64_Ehdr* p_elfh = (Elf64_Ehdr*)buf;
@@ -207,9 +331,12 @@ void load_elf64(uint8_t* buf,Elf64_Ehdr* elf_h)
 		PRINT_ATTR(st_value,symtab+i);
 		PRINT_ATTR(st_size,symtab+i);
 	}
+	load_elf64_dyn((Elf64_Ehdr*)buf);
 #endif
 
 }
+
+
 
 void load_elf_bin(const char* path,uint8_t **pdata,uint32_t &size)
 {

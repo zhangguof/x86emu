@@ -38,6 +38,8 @@ void env_init()
 int main()
 {
 	printf("x86 simualte start!\n");
+//    const char* test="=====test!!!!!!\n";
+//    write(1,test,4);
 
 //    Engine x86emu;
     auto p_x86emu = std::make_shared<Engine>();

@@ -274,6 +274,7 @@
 		EAB7281E230ADFDC000019F0 /* host_call.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB7281D230ADFDC000019F0 /* host_call.cpp */; };
 		EAB72822230BEEAF000019F0 /* host_sys_call.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB72820230BEEAF000019F0 /* host_sys_call.cpp */; };
 		EAB72825230BFAE5000019F0 /* linux_sys_call_imp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB72824230BFAE5000019F0 /* linux_sys_call_imp.cpp */; };
+		EAEA8CB3230F199400F8BEBD /* load_so.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAEA8CB2230F199400F8BEBD /* load_so.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -811,6 +812,8 @@
 		EAB72823230BF462000019F0 /* linux_sys_call.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = linux_sys_call.hpp; sourceTree = "<group>"; };
 		EAB72824230BFAE5000019F0 /* linux_sys_call_imp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = linux_sys_call_imp.cpp; sourceTree = "<group>"; };
 		EAB72826230BFC7D000019F0 /* linux_sys_call_imp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = linux_sys_call_imp.hpp; sourceTree = "<group>"; };
+		EAEA8CB2230F199400F8BEBD /* load_so.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = load_so.cpp; sourceTree = "<group>"; };
+		EAEA8CB42310580500F8BEBD /* elf-ext.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "elf-ext.hpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1558,7 +1561,9 @@
 			isa = PBXGroup;
 			children = (
 				EAB72809230944B2000019F0 /* load_elf.cpp */,
+				EAEA8CB2230F199400F8BEBD /* load_so.cpp */,
 				EAB7280A230944B2000019F0 /* elf.h */,
+				EAEA8CB42310580500F8BEBD /* elf-ext.hpp */,
 				EAB7280E230944B2000019F0 /* elf-em.h */,
 				EAB7280F230944B2000019F0 /* testelf.cpp */,
 			);
@@ -1674,6 +1679,7 @@
 				EAB727832306AE56000019F0 /* virt_timer.cc in Sources */,
 				EAB727542306AE56000019F0 /* mult64.cc in Sources */,
 				EAB727442306AE56000019F0 /* fpu_load_store.cc in Sources */,
+				EAEA8CB3230F199400F8BEBD /* load_so.cpp in Sources */,
 				EAB7276F2306AE56000019F0 /* plugin.cc in Sources */,
 				EAB726F12306AE56000019F0 /* arith16.cc in Sources */,
 				EAB727762306AE56000019F0 /* hdimage.cc in Sources */,

@@ -1,0 +1,32 @@
+#Build in x86 ubuntu
+
+# CC=../libs/dietlibc-0.34/bin-x86_64/diet -v gcc -v
+CC=gcc
+AS=nasm
+LD=$(CC)
+
+#-fno-builtin
+CFLAGS= -c  -I. -fno-builtin -nostdlib -ffreestanding -fno-stack-protector -fPIC -DDEBUG -g
+ASFLAG= -f elf64
+LDFLAGS= -fPIC  -fno-builtin -nostdlib -ffreestanding -L../libs -Wl,-z,max-page-size=0x1000 
+EXLDFLAG= -T ldso.lds
+
+all: libtest.so ldso
+
+ldso: ldso.o libtest.so
+	$(LD) $(LDFLAGS)  \
+	-o $@ $^ -Wl,-rpath=. -ldiet \
+	$(EXLDFLAG) 
+
+libtest.so: testso.o
+	$(LD) $(LDFLAGS)  -Wl,-Bstatic -ldiet -shared -o $@ $^ 
+
+%.o: %.c
+	$(CC) $(CFLAGS) -o $@ $^
+%.o: %.s
+	$(AS) $(ASFLAG) -o $@ $^
+
+clean:
+	rm -rf *.o 
+	rm -rf *.so
+
