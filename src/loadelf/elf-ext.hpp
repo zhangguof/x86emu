@@ -61,6 +61,13 @@ struct dll_dyn
     rela_got(nullptr),nrela(0),rela_plt(nullptr),nplt(0){}
 };
 
+struct Needlist
+{
+    struct Needlist* next;
+    const char* name;
+    Needlist():next(nullptr),name(nullptr){}
+};
+
 struct dll {
     struct dll* next;
     ehdr* e;
@@ -72,10 +79,11 @@ struct dll {
 //    uint32_t dn;
 //    gnu_hash_table* g_hash_table;
     struct dll_dyn dyn;
+    struct Needlist* need_list;
     char name[1];        // asciiz of library name
     dll():next(nullptr),e(nullptr),
     code(nullptr),data(nullptr),host_code(nullptr),host_data(nullptr),
-    codelen(0),datalen(0),codeplus(0)
+    codelen(0),datalen(0),codeplus(0),need_list(nullptr)
 //    p_dyn(nullptr),dn(0),g_hash_table(nullptr)
     {}
 };

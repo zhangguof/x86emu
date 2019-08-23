@@ -6,3 +6,6 @@
 src/loadelf/loadelf
 tiniy
 test/cpptest
+TiniyOs/libs/dietlibc-0.34
+*.xz
+TiniyOs/so

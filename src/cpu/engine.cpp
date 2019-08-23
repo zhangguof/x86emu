@@ -33,7 +33,7 @@ const Bit64u PAGE_BASE_ADDR = (0x100000);
 #define BX_CR3_PAGING_MASK    (BX_CONST64(0x000ffffffffff000))
 
 std::string work_home = "/Users/tony/workspace/github/x86emu/TiniyOs/ldso/";
-std::string start_elf_file = "libtest.so";
+std::string start_elf_file = "ldso";
 
 extern dll* load_lib(ehdr* eh,bx_phy_address base_addr);
 extern void load_dyn(dll* p_dll);

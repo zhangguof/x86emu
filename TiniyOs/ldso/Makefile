@@ -13,12 +13,15 @@ EXLDFLAG= -T ldso.lds
 
 all: libtest.so ldso
 
-ldso: ldso.o libtest.so
+ldso: ldso.o libtest.so libtest2.so
 	$(LD) $(LDFLAGS)  \
 	-o $@ $^ -Wl,-rpath=. -ldiet \
 	$(EXLDFLAG) 
 
 libtest.so: testso.o
+	$(LD) $(LDFLAGS)  -Wl,-Bstatic -ldiet -shared -o $@ $^ 
+
+libtest2.so: testso2.o
 	$(LD) $(LDFLAGS)  -Wl,-Bstatic -ldiet -shared -o $@ $^ 
 
 %.o: %.c
