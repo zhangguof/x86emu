@@ -16,23 +16,26 @@
 #include <algorithm>
 #include <string>
 
+
 // #define ELFTEST
 #include "elf.h"
 #include "elf-ext.hpp"
 
 // g_cpu = NULL;
 extern void bx_init_hardware();
-void load_elf_bin(const char* path,uint8_t **pdata,uint32_t &size);
-extern void print_elf_info(Elf64_Ehdr*);
 
-#define RUN_BASE_ADDR (0x400000) //4M start.
-const Bit64u PAGE_BASE_ADDR = (0x100000);
+const Bit64u PAGE_BASE_ADDR = (0x100000);// page data.
+const Bit64u RUN_BASE_ADDR  = (0x400000); //4M start. load exe
+const Bit64u DLL_LAOD_BASE =  RUN_BASE_ADDR + 0x200000; //load dll,so
+Bit64u dll_next_ptr = DLL_LAOD_BASE;
+
 
 #define BX_CR3_PAGING_MASK    (BX_CONST64(0x000ffffffffff000))
 
 #define BX_CR3_PAGING_MASK    (BX_CONST64(0x000ffffffffff000))
 
 std::string work_home = "/Users/tony/workspace/github/x86emu/TiniyOs/ldso/";
+std::string g_so_path = work_home;
 std::string start_elf_file = "ldso";
 
 extern dll* load_lib(ehdr* eh,bx_phy_address base_addr);
@@ -44,17 +47,31 @@ void Engine::load_elf(const char* elf_file)
     // Set CPU and memory features which are assumed at this point.
     
     //    bx_load_kernel_image(SIM->get_param_string(BXPN_LOAD32BITOS_PATH)->getptr(), 0x100000);
-    Bit8u* p_elf_data = NULL;
+//    Bit8u* p_elf_data = NULL;
+    std::shared_ptr<Buffer> p_elf_data = nullptr;
     
     Bit32u filesz = 0;
-    load_elf_bin(elf_file,&p_elf_data,filesz);
-    Elf64_Ehdr* p_elf_h = (Elf64_Ehdr*) p_elf_data;
+    load_elf_bin(elf_file,p_elf_data);
+    filesz = p_elf_data->size;
+    Elf64_Ehdr* p_elf_h = (Elf64_Ehdr*) p_elf_data->get_data();
 //    print_elf_info(p_elf_h);
     bx_phy_address base_addr = RUN_BASE_ADDR; //2M start.
     bx_phy_address entry_addr = p_elf_h->e_entry;
 //    Elf64_Phdr* ph = (Elf64_Phdr*)(p_elf_data + p_elf_h->e_phoff);
 //    int phnum = p_elf_h->e_phnum;
     auto ret_dll = load_lib(p_elf_h,base_addr);
+    
+//    delete[]p_elf_data;
+    p_elf_data = nullptr;
+    
+    auto next_dll = ret_dll->need_list;
+    while (next_dll!=nullptr) {
+        const char* name = next_dll->name;
+        printf("try to load need so:%s!\n",name);
+        const char* so_path = (g_so_path + name).c_str();
+        
+        next_dll = next_dll->next;
+    }
 //    load_dyn(ret_dll);
     
     //dyn info
@@ -68,7 +85,7 @@ void Engine::load_elf(const char* elf_file)
     cpu_ptr->prev_rip = cpu_ptr->gen_reg[BX_64BIT_REG_RIP].rrx = entry_addr;
     
     setup_os_env();
-    delete[]p_elf_data;
+    
 }
 
 
@@ -181,3 +198,5 @@ void Engine::run()
 {
     cpu_ptr->cpu_loop();
 }
+
+

@@ -7,10 +7,8 @@
 #include <memory>
 
 #include "elf.h"
+#include "elf-ext.hpp"
 #include "engine.hpp"
-
-extern void load_elf_bin(const char*path, Bit8u** pdata);
-extern void print_elf_info(Elf64_Ehdr* p_elfh);
 
 
 extern void bx_init_options();

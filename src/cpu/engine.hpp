@@ -10,6 +10,8 @@
 #define engine_hpp
 
 #include <stdio.h>
+#include "buffer.hpp"
+
 
 class Engine
 {

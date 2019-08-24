@@ -12,11 +12,13 @@
 #include <algorithm>
 
 #include "elf.h"
+#include "elf-ext.hpp"
+#include "buffer.hpp"
 
 
 const int MAX_FILE_BUF = 2*1024*1024; //2M;
 
-int load_file(const char* path, uint8_t* data)
+int load_file(const char* path, BufPtr &pdata)
 {
 	int fd;
 	fd = open(path,O_RDONLY);
@@ -31,7 +33,10 @@ int load_file(const char* path, uint8_t* data)
 		return 0;
 	}
 	uint32_t size = stat_buf.st_size;
-	uint8_t* ptr_buf = data;
+    pdata = new_buffer(size);
+    
+	uint8_t* ptr_buf = pdata->get_data();
+    
 	while(size > 0)
 	{
 		ret = read(fd,ptr_buf,size);
@@ -44,8 +49,7 @@ int load_file(const char* path, uint8_t* data)
 		ptr_buf += ret;
 	}
 	close(fd);
-	return ptr_buf - data;
-
+	return ptr_buf - pdata->get_data();
 }
 
 void load_elf32(uint8_t* buf,Elf32_Ehdr* elf_h)
@@ -298,8 +302,8 @@ void load_elf64(uint8_t* buf,Elf64_Ehdr* elf_h)
 	}
 
 	//load program header
-	int elf_phnum = 0;
-	Elf64_Phdr* elf_phs = load_elf64ph(buf,elf_h,elf_phnum);
+//    int elf_phnum = 0;
+//    Elf64_Phdr* elf_phs = load_elf64ph(buf,elf_h,elf_phnum);
 
 #ifdef ELFTEST
 	print_elf_info(p_elfh);
@@ -338,18 +342,19 @@ void load_elf64(uint8_t* buf,Elf64_Ehdr* elf_h)
 
 
 
-void load_elf_bin(const char* path,uint8_t **pdata,uint32_t &size)
+void load_elf_bin(const char* path,std::shared_ptr<Buffer>& p_data)
 {
-	uint8_t buf[MAX_FILE_BUF];
-	int ret = load_file(path,buf);
+//    uint8_t buf[MAX_FILE_BUF];
+	int ret = load_file(path,p_data);
 	if(ret<=0)
 	{
 		return;
 	}
+    assert(p_data != nullptr && p_data->size == ret);
+    
 	uint32_t filesz = ret;
-	*pdata = new uint8_t[filesz];
-	memcpy(*pdata, buf,filesz);
-    size = filesz;
+    uint8_t* buf = p_data->get_data();
+
 
 	uint8_t* p_bytes = buf;
 	uint8_t elf_ident[] = {0x7F,'E','L','F'};
@@ -361,6 +366,10 @@ void load_elf_bin(const char* path,uint8_t **pdata,uint32_t &size)
 		return;
 	}
 	bool is_bit64 = p_bytes[4]==2?true:false;
+//    *pdata = new uint8_t[filesz];
+//    memcpy(*pdata, buf,filesz);
+//    size = filesz;
+    
 	if(is_bit64)
 	{
 		printf("loading elf64....\n");
@@ -371,8 +380,6 @@ void load_elf_bin(const char* path,uint8_t **pdata,uint32_t &size)
 	{
 		printf("loading elf32....\n");
 	}
-
-
 }
 
 

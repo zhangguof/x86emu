@@ -2,9 +2,8 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "elf.h"
-
-
-void load_elf_bin(const char* path,uint8_t **pdata,uint32_t &size);
+#include "elf-ext.hpp"
+#include "buffer.hpp"
 
 
 #ifdef ELFTEST
@@ -15,15 +14,16 @@ int main(int argn,const char* argv[])
 	{
 		path = argv[1];
 	}
-	uint8_t* pdata = NULL;
-	uint32_t size = 0;
-	load_elf_bin(path,&pdata,size);
-	Elf64_Ehdr* p_elfh = (Elf64_Ehdr*) pdata;
+//    uint8_t* pdata = NULL;
+//    uint32_t size = 0;
+    BufPtr pdata = nullptr;
+	load_elf_bin(path,&pdata);
+	Elf64_Ehdr* p_elfh = (Elf64_Ehdr*) pdata->get_data();
     
 
 	printf("load success!!\n");
-	printf("section num:%d,Segment num:%d\n",
-	       p_elfh->e_shnum,p_elfh->e_phnum,size);
+    printf("section num:%d,Segment num:%d,size:%d\n",
+	       p_elfh->e_shnum,p_elfh->e_phnum,pdata->size);
 
 	return 0;
 }

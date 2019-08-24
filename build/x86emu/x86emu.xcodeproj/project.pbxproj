@@ -275,6 +275,7 @@
 		EAB72822230BEEAF000019F0 /* host_sys_call.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB72820230BEEAF000019F0 /* host_sys_call.cpp */; };
 		EAB72825230BFAE5000019F0 /* linux_sys_call_imp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB72824230BFAE5000019F0 /* linux_sys_call_imp.cpp */; };
 		EAEA8CB3230F199400F8BEBD /* load_so.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAEA8CB2230F199400F8BEBD /* load_so.cpp */; };
+		EAEA8CB723119C8900F8BEBD /* buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAEA8CB523119C8800F8BEBD /* buffer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -814,6 +815,8 @@
 		EAB72826230BFC7D000019F0 /* linux_sys_call_imp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = linux_sys_call_imp.hpp; sourceTree = "<group>"; };
 		EAEA8CB2230F199400F8BEBD /* load_so.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = load_so.cpp; sourceTree = "<group>"; };
 		EAEA8CB42310580500F8BEBD /* elf-ext.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "elf-ext.hpp"; sourceTree = "<group>"; };
+		EAEA8CB523119C8800F8BEBD /* buffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = buffer.cpp; sourceTree = "<group>"; };
+		EAEA8CB623119C8800F8BEBD /* buffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = buffer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -851,6 +854,8 @@
 				EAB724052306AE55000019F0 /* cpu */,
 				EAB724082306AE55000019F0 /* main.cpp */,
 				EAB724092306AE55000019F0 /* bochs */,
+				EAEA8CB523119C8800F8BEBD /* buffer.cpp */,
+				EAEA8CB623119C8800F8BEBD /* buffer.hpp */,
 			);
 			name = src;
 			path = ../../src;
@@ -1872,6 +1877,7 @@
 				EAB727662306AE56000019F0 /* resolve.cc in Sources */,
 				EAB726CD2306AE56000019F0 /* bit64.cc in Sources */,
 				EAB727102306AE56000019F0 /* avx_cvt.cc in Sources */,
+				EAEA8CB723119C8900F8BEBD /* buffer.cpp in Sources */,
 				EAB7278D2306AE56000019F0 /* pci2isa.cc in Sources */,
 				EAB727652306AE56000019F0 /* dis_groups.cc in Sources */,
 				EAB727112306AE56000019F0 /* avx512_mask32.cc in Sources */,

@@ -8,6 +8,8 @@
 
 #ifndef elf_ext_h
 #define elf_ext_h
+#include "buffer.hpp"
+#include <functional>
 
 typedef Elf64_Ehdr ehdr;
 
@@ -87,6 +89,18 @@ struct dll {
 //    p_dyn(nullptr),dn(0),g_hash_table(nullptr)
     {}
 };
+
+class ELF
+{
+    typedef Elf64_Ehdr Elf_Ehdr;
+    typedef Elf64_Dyn Elf_Dyn;
+    typedef Elf64_Sym Elf_Sym;
+    
+};
+
+void load_elf_bin(const char*path, BufPtr& pdata);
+void print_elf_info(Elf64_Ehdr* p_elfh);
+
 
 
 #endif /* elf_ext_h */
