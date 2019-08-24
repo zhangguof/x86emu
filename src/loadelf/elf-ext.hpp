@@ -10,6 +10,7 @@
 #define elf_ext_h
 #include "buffer.hpp"
 #include <functional>
+#include "bochs/bochs.h"
 
 typedef Elf64_Ehdr ehdr;
 
@@ -80,14 +81,24 @@ struct dll {
 //    Elf64_Dyn* p_dyn;
 //    uint32_t dn;
 //    gnu_hash_table* g_hash_table;
-    struct dll_dyn dyn;
+    struct dll_dyn* dyn;
     struct Needlist* need_list;
+//    bool is_so;
+    uint64_t vaddr_base; // so file adjust
     char name[1];        // asciiz of library name
     dll():next(nullptr),e(nullptr),
     code(nullptr),data(nullptr),host_code(nullptr),host_data(nullptr),
-    codelen(0),datalen(0),codeplus(0),need_list(nullptr)
+    codelen(0),datalen(0),codeplus(0),
+    dyn(nullptr),need_list(nullptr),vaddr_base(0)
 //    p_dyn(nullptr),dn(0),g_hash_table(nullptr)
     {}
+    ~dll(){
+        if(dyn)
+        {
+            delete dyn;
+            dyn = nullptr;
+        }
+    }
 };
 
 class ELF
@@ -101,6 +112,9 @@ class ELF
 void load_elf_bin(const char*path, BufPtr& pdata);
 void print_elf_info(Elf64_Ehdr* p_elfh);
 
+dll* load_lib(ehdr* eh,bx_phy_address *base_addr,bool is_so = false);
+void load_dyn(dll* p_dll);
+dll* try_load_so(const char* name,bx_phy_address* base_addr, bool is_so=false);
 
 
 #endif /* elf_ext_h */

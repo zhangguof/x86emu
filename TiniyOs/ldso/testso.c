@@ -3,12 +3,8 @@ int a = 0x10000;
 int* pa = &a;
 // int xx = 0x2000;
 // extern void test_ext(int a);
-int test_f1()
-{
-	return 1;
-}
 
-int test_f2(int x)
+int test1_f2(int x)
 {
 	return x+1;
 }
@@ -18,23 +14,16 @@ int test_f2(int x)
 // }
 typedef int(*fun_ptr_t)(int);
 
-fun_ptr_t p_fun = test_f1;
+// fun_ptr_t p_fun = test_f1;
 
-int test_f()
+int test1_f()
 {
-	// puts("111111\n");
-	// int a = 0x1000;
-	// test_ext(111);
-
-	int aa = *pa;
-
-	int b = 0x2000 + a;
-	b += test_f2(1);
-	// int *pa = &a;
-	int c = b + test_f1();
-	// int c = a+b+xx+test_f1();
-	// c = test_f2(c)+test_f3(1);
-	printf("====a+b=%d\n",c);
+	printf("in libtest.so:test1_f\n");
+	// int aa = *pa;
+	// printf("=======:%d,%0lx\n",a,&a);
+	int c = a;
+	c += a + test1_f2(1);
+	printf("in test1_f:%0x\n",c);
 	return c;
 
 }

@@ -6,15 +6,18 @@
          contextName = "GLOBAL">
          <PersistentStrings>
             <PersistentString
-               value = "bx_cpu-&gt;sregs[1]">
+               value = "bx_cpu-&gt;gen_reg[16].rrx">
             </PersistentString>
             <PersistentString
-               value = "bx_cpu-&gt;gen_reg[16].rrx">
+               value = "bx_cpu-&gt;sregs[1]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "XE_CPU_C::call_host_func(bxInstruction_c*):x86.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "load_lib(elf64_hdr*, unsigned long&amp;, bool):load_so.cpp">
       </ContextState>
       <ContextState
          contextName = "BX_MEM_C::load_ROM(char const*, unsigned long, unsigned char):misc_mem.cc">
@@ -48,6 +51,14 @@
          <PersistentStrings>
             <PersistentString
                value = "bx_mem">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "do_rela_sym(dll*, elf64_rela*):load_so.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "global_sym_tbl">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

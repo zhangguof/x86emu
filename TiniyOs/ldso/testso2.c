@@ -1,6 +1,6 @@
 
 
-int test_f222()
+int test2_f()
 {
 
 	return 42;

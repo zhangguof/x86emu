@@ -27,7 +27,7 @@ extern void bx_init_hardware();
 const Bit64u PAGE_BASE_ADDR = (0x100000);// page data.
 const Bit64u RUN_BASE_ADDR  = (0x400000); //4M start. load exe
 const Bit64u DLL_LAOD_BASE =  RUN_BASE_ADDR + 0x200000; //load dll,so
-Bit64u dll_next_ptr = DLL_LAOD_BASE;
+Bit64u g_dll_next_ptr = DLL_LAOD_BASE;
 
 
 #define BX_CR3_PAGING_MASK    (BX_CONST64(0x000ffffffffff000))
@@ -38,45 +38,54 @@ std::string work_home = "/Users/tony/workspace/github/x86emu/TiniyOs/ldso/";
 std::string g_so_path = work_home;
 std::string start_elf_file = "ldso";
 
-extern dll* load_lib(ehdr* eh,bx_phy_address base_addr);
-extern void load_dyn(dll* p_dll);
+/*
+ load Tiniy os exe file.
+ load elf --> load needed so --> load other so file.
+ 
+ 
+ */
 
-void Engine::load_elf(const char* elf_file)
+
+void Engine::load_elf(const char* elf_file_name)
 {
     // The RESET function will have been called first.
     // Set CPU and memory features which are assumed at this point.
     
     //    bx_load_kernel_image(SIM->get_param_string(BXPN_LOAD32BITOS_PATH)->getptr(), 0x100000);
 //    Bit8u* p_elf_data = NULL;
-    std::shared_ptr<Buffer> p_elf_data = nullptr;
     
-    Bit32u filesz = 0;
-    load_elf_bin(elf_file,p_elf_data);
-    filesz = p_elf_data->size;
-    Elf64_Ehdr* p_elf_h = (Elf64_Ehdr*) p_elf_data->get_data();
-//    print_elf_info(p_elf_h);
     bx_phy_address base_addr = RUN_BASE_ADDR; //2M start.
+    
+//    std::shared_ptr<Buffer> p_elf_data = nullptr;
+    auto pdll = try_load_so(elf_file_name, &base_addr,false);
+    
+//    Bit32u filesz = 0;
+//    load_elf_bin(elf_file_name,p_elf_data);
+//    filesz = p_elf_data->size;
+    Elf64_Ehdr* p_elf_h = (Elf64_Ehdr*) pdll->host_code;
+//    print_elf_info(p_elf_h);
+    
     bx_phy_address entry_addr = p_elf_h->e_entry;
 //    Elf64_Phdr* ph = (Elf64_Phdr*)(p_elf_data + p_elf_h->e_phoff);
 //    int phnum = p_elf_h->e_phnum;
-    auto ret_dll = load_lib(p_elf_h,base_addr);
+//    auto ret_dll = load_lib(p_elf_h,base_addr);
     
 //    delete[]p_elf_data;
-    p_elf_data = nullptr;
+//    p_elf_data = nullptr;
     
-    auto next_dll = ret_dll->need_list;
-    while (next_dll!=nullptr) {
-        const char* name = next_dll->name;
-        printf("try to load need so:%s!\n",name);
-        const char* so_path = (g_so_path + name).c_str();
-        
-        next_dll = next_dll->next;
-    }
-//    load_dyn(ret_dll);
-    
-    //dyn info
-//    int dn = 0;
-//    Elf64_Dyn* pd = NULL;
+//    auto next_dll = ret_dll->need_list;
+//    while (next_dll!=nullptr) {
+//        const char* name = next_dll->name;
+//        printf("try to load need so:%s!\n",name);
+//        const char* so_path = (g_so_path + name).c_str();
+//        load_elf_bin(so_path, p_elf_data);
+//        if(p_elf_data)
+//        {
+//            auto new_dll = load_lib((Elf64_Ehdr*)p_elf_data->get_data(),g_dll_next_ptr,true);
+//        }
+//
+//        next_dll = next_dll->next;
+//    }
 
     
 //    mem_ptr->load_RAM_from_data(p_elf_data,filesz,base_addr);
@@ -168,8 +177,7 @@ void Engine::init()
     const char* rom_path = "/Users/tony/workspace/github/x86emu/tool/BIOS-bochs-latest";
 //    const char* elf_file = "/Users/tony/workspace/github/x86emu/TiniyOs/tiniy";
 //    const char* elf_file = "/ldso";
-    auto elf_file = work_home + start_elf_file;
-    
+
     Bit32u ips = 4000000;
     
 //    bx_pc_system.setonoff(LOGLEV_DEBUG, ACT_REPORT);
@@ -186,7 +194,7 @@ void Engine::init()
     bx_pc_system.register_state();
     // will enable A20 line and reset CPU and devices
     bx_pc_system.Reset(BX_RESET_HARDWARE);
-    load_elf(elf_file.c_str());
+    load_elf(start_elf_file.c_str());
     
     // First load the system BIOS (VGABIOS loading moved to the vga code)
     //    SIM->get_param_string(BXPN_ROM_PATH)->set(rom_path);

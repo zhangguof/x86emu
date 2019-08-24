@@ -20,11 +20,12 @@
 #include "elf-ext.hpp" //gnu_hash_table
 #include "buffer.hpp"
 
-extern std::string g_so_path;
+extern std::string g_so_path,work_home;
 
 
+std::unordered_map<std::string, bx_phy_address> global_sym_tbl;
 
-std::unordered_map<const char*, bx_phy_address> global_sym_tbl;
+const uint32_t max_needed = 32;
 
 
 //get host mem
@@ -200,43 +201,31 @@ void load_hash_info(uint8_t* hashtab,Elf64_Sym* dyn_sym_tab,const char* str_tab)
     
 }
 
-#define get_dyn(pd,name) (pd)->dyn.name
+#define get_dyn(pd,name) (pd)->dyn->name
 
+//so has adjust by base addr.
 void load_global_sym_tbl(dll* p_dll)
 {
     Elf64_Sym* dynsym = get_dyn(p_dll, dynsym);
     const char* strtab = get_dyn(p_dll, strtab);
     if(get_dyn(p_dll, g_hash_table) != nullptr)
     {
-        p_dll->dyn.g_hash_table->walk_all_hash([&dynsym, &strtab](uint64_t symix, uint32_t hash){
+        get_dyn(p_dll, g_hash_table)->walk_all_hash([&dynsym, &strtab,&p_dll](uint64_t symix, uint32_t hash){
             const char* name = strtab + dynsym[symix].st_name;
 //            global_sym_tbl[name] = dynsym+symix;
-            global_sym_tbl[name] = dynsym[symix].st_value;
+            global_sym_tbl[name] = dynsym[symix].st_value + p_dll->vaddr_base;
         });
     }
 }
 
-const size_t max_needed = 32;
-void try_load_so(const char* name)
-{
-    std::string so_path = g_so_path + name;
-    const char* c_path = so_path.c_str();
-//    uint8_t* pdata = nullptr;
-    uint32_t len = 0;
-
-    
-}
 
 void load_dyn(dll* p_dll)
 {
-//    if(p_dll->dyn.p_dyn != nullptr) return;
-    
-//    int dn = p_dll->dyn.dn;
-//    Elf64_Dyn *pdyn = p_dll->dyn.p_dyn;
     int dn = get_dyn(p_dll, dn);
     Elf64_Dyn* pdyn = get_dyn(p_dll, p_dyn);
     
     uint8_t* buf = (uint8_t*)p_dll->host_code;
+    auto vaddr_base = p_dll->vaddr_base;
     
     printf("==loading dyn head:%d\n",dn);
     Elf64_Sym* dy_sym = nullptr;
@@ -261,24 +250,24 @@ void load_dyn(dll* p_dll)
         {
             case DT_STRTAB:
 //                dy_strtab = (char*)(buf + p->d_un.d_ptr);
-                dy_strtab = (char*)get_addr(p->d_un.d_ptr, p_dll);
+                dy_strtab = (char*)get_addr(p->d_un.d_ptr + vaddr_base, p_dll);
 //                p_dll->dyn.strtab = dy_strtab;
                 get_dyn(p_dll, strtab) = dy_strtab;
                 break;
             case DT_SYMTAB:
 //                dy_sym = (Elf64_Sym*)(buf + p->d_un.d_ptr);
-                dy_sym = (Elf64_Sym*)get_addr(p->d_un.d_ptr, p_dll);
+                dy_sym = (Elf64_Sym*)get_addr(p->d_un.d_ptr + vaddr_base, p_dll);
 //                p_dll->dyn.dynsym = dy_sym;
                 get_dyn(p_dll, dynsym) = dy_sym;
                 break;
             case DT_RELA:
 //                rela = (Elf64_Rela*)(buf + p->d_un.d_ptr);
-                rela = (Elf64_Rela*)get_addr(p->d_un.d_ptr, p_dll);
+                rela = (Elf64_Rela*)get_addr(p->d_un.d_ptr + vaddr_base, p_dll);
                 get_dyn(p_dll, rela_got) = rela;
                 break;
             case DT_JMPREL:
                 //                plt_rela = (Elf64_Rela*)(buf + p->d_un.d_ptr);
-                plt_rela = (Elf64_Rela*)get_addr(p->d_un.d_ptr, p_dll);
+                plt_rela = (Elf64_Rela*)get_addr(p->d_un.d_ptr + vaddr_base, p_dll);
                 get_dyn(p_dll, rela_plt) = plt_rela;
                 break;
             case DT_RELASZ:
@@ -290,7 +279,7 @@ void load_dyn(dll* p_dll)
                 get_dyn(p_dll, nplt) = plt_rnum;
                 break;
             case DT_GNU_HASH:
-                gnu_hash_tab = (uint8_t*)get_addr(p->d_un.d_ptr, p_dll);
+                gnu_hash_tab = (uint8_t*)get_addr(p->d_un.d_ptr + vaddr_base, p_dll);
                 get_dyn(p_dll, g_hash_table) = new gnu_hash_table(gnu_hash_tab);
                 break;
             case DT_NEEDED:
@@ -333,7 +322,7 @@ void load_dyn(dll* p_dll)
 //        print_sym_info(&sym);
 //
 //    }
-//
+
 //    for(int i=0;i<plt_rnum;++i)
 //    {
 //        Elf64_Rela* r = plt_rela + i;
@@ -345,16 +334,81 @@ void load_dyn(dll* p_dll)
 //        print_sym_info(&sym);
 //
 //    }
-    p_dll->dyn.g_hash_table->print_all_hash(dy_sym, dy_strtab);
+//    get_dyn(p_dll, g_hash_table)->print_all_hash(dy_sym, dy_strtab);
     load_global_sym_tbl(p_dll);
 }
 
-dll* load_lib(ehdr* eh,bx_phy_address base_addr)
+void do_rela_sym(dll* pdll, Elf64_Rela* p_rela)
+{
+    uint64_t rtype = ELF64_R_TYPE(p_rela->r_info);
+    auto sym = get_dyn(pdll,dynsym)[ELF64_R_SYM(p_rela->r_info)];
+    const char* name = get_dyn(pdll,strtab) + sym.st_name;
+    uint32_t r_type = ELF64_R_TYPE(p_rela->r_info);
+//    bx_phy_address base_addr = (bx_phy_address)pdll->code;
+//    void* host_base_mem = (void*) pdll->host_code;
+    bx_phy_address vaddr = pdll->vaddr_base + p_rela->r_offset;
+    uint64_t* host_addr = (uint64_t*)getMemAddr(vaddr);
+    auto it = global_sym_tbl.end();
+    switch (r_type) {
+        //just relocate in module
+        case R_X86_64_64:
+            *host_addr = pdll->vaddr_base + sym.st_value;
+            printf("do R_X86_64_64  relocate:%s,%0lx->%0lx\n",name,vaddr,pdll->vaddr_base + sym.st_value);
+            break;
+        case R_X86_64_GLOB_DAT: //got
+        case R_X86_64_JUMP_SLOT: //plt
+            //reload by global tbl;
+            it = global_sym_tbl.find(name);
+            if(it!=global_sym_tbl.end())
+            {
+                *host_addr = it->second;
+                printf("do R_X86_64_JUMP_SLOT|R_X86_64_GLOB_DAT  relocate:%s,%0lx->%0lx\n",name,vaddr,it->second);
+            }
+            else{
+                *host_addr = 0;
+                printf("!!!!!can't find symbol:%s\n",name);
+            }
+            break;
+        default:
+            break;
+    }
+}
+//has load all needed so.
+//last reload it.
+void relocate_sym(dll* pdll)
+{
+//    dll_dyn* pdyn = pdll->dyn;
+    dll_dyn* p_dll_dyn = pdll->dyn;
+    if(p_dll_dyn)
+    {
+//        Elf64_Dyn* p_elf_dyn = p_dll_dyn->p_dyn;
+        //do relocation
+        //reloca got
+        for(size_t i=0;i<p_dll_dyn->nrela;++i)
+        {
+            auto p_rela = p_dll_dyn->rela_got + i;
+            do_rela_sym(pdll, p_rela);
+        }
+        //reloat plt
+        
+        for(size_t i = 0;i<p_dll_dyn->nplt;++i)
+        {
+            auto p_rela = p_dll_dyn->rela_plt + i;
+            do_rela_sym(pdll, p_rela);
+        }
+    }
+}
+
+dll* load_lib(ehdr* eh,bx_phy_address *base_addr,bool is_so)
 {
     //load from file buf
+    //buf will release!!
     uint8_t* buf = (uint8_t*) eh;
     dll* pdll = new dll;
     pdll->next =  nullptr;
+//    pdll->is_so = is_so;
+    if(is_so) pdll->vaddr_base = *base_addr;
+    
     int phnum = eh->e_phnum;
     Elf64_Phdr* ph = (Elf64_Phdr*)(buf + eh->e_phoff);
     
@@ -364,35 +418,38 @@ dll* load_lib(ehdr* eh,bx_phy_address base_addr)
     for(int i=0;i<phnum;++i)
     {
         auto p = ph + i;
+        //for exe vaddr_base = 0
+        bx_phy_address vaddr = p->p_vaddr + pdll->vaddr_base;
         if(p->p_type == PT_LOAD)
         {
-            load_ram(buf+p->p_offset, p->p_filesz, p->p_vaddr);
-            Bit8u* host_mem = getMemAddr(p->p_vaddr);
+            load_ram(buf+p->p_offset, p->p_filesz, vaddr);
+            Bit8u* host_mem = getMemAddr(vaddr);
             if(pdll->code == nullptr)
             {
-                pdll->code = (void*)p->p_vaddr;
+                pdll->code = (void*)vaddr;
                 pdll->codelen = p->p_memsz;
                 pdll->host_code = host_mem;
             }
             else if(pdll->data == nullptr)
             {
-                pdll->data = (void*)p->p_vaddr;
+                pdll->data = (void*)vaddr;
                 pdll->datalen = p->p_memsz;
                 pdll->host_data = host_mem;
             }
-            printf("ELF loading:%0x,size:%d\n",p->p_vaddr,p->p_filesz);
+            printf("ELF loading:%0x,size:%d\n",vaddr,p->p_filesz);
                 
         }
         else if(p->p_type == PT_DYNAMIC)
         {
-            Bit8u* host_mem = getMemAddr(p->p_vaddr);
+            //.dynamic has load in guest mem.
+            assert(pdll->code || pdll->data);
+            
+            Bit8u* host_mem = getMemAddr(vaddr);
             dn = p->p_memsz / sizeof(Elf64_Dyn);
-//            pdyn = (Elf64_Dyn*)(host_mem);
-            pdyn = (Elf64_Dyn*)(buf + p->p_offset);
-//            pdll->p_dyn = pdyn;
-//            pdll->dn = dn;
-            pdll->dyn.p_dyn = pdyn;
-            pdll->dyn.dn = dn;
+            pdyn = (Elf64_Dyn*)(host_mem);
+            pdll->dyn = new dll_dyn;
+            get_dyn(pdll, p_dyn) = pdyn;
+            get_dyn(pdll, dn)    = dn;
         }
     }
     if(dllroot==nullptr)
@@ -406,10 +463,62 @@ dll* load_lib(ehdr* eh,bx_phy_address base_addr)
         dlls->next = pdll;
         dlls = pdll;
     }
-    if(pdll->dyn.p_dyn)
+    if(get_dyn(pdll,p_dyn))
     {
         load_dyn(pdll);
     }
+    if(is_so)
+    {
+        //update next base ptr
+        *base_addr = (bx_phy_address)pdll->code +  pdll->codelen;
+        if(pdll->data)
+        {
+            *base_addr = (bx_phy_address)pdll->data + pdll->datalen;
+        }
+        
+        //4k page alignment 1<<12
+        const uint64_t align = 0x1000;
+        if((*base_addr & (align-1)) != 0)
+        {
+            //next page
+            *base_addr = (*base_addr + align) & (~(align-1));
+        }
+        
+        printf("next dll ptr:0x%0lx\n",*base_addr);
+    }
     
     return pdll;
+}
+
+extern bx_phy_address g_dll_next_ptr;
+
+dll* try_load_so(const char* name,bx_phy_address* base_addr, bool is_so)
+{
+    std::string so_path = "";
+    if(is_so)
+        so_path = g_so_path + name;
+    else
+        so_path = work_home + name;
+    
+    const char* c_path = so_path.c_str();
+    std::shared_ptr<Buffer> p_elf_data = nullptr;
+    
+    load_elf_bin(c_path,p_elf_data);
+    Elf64_Ehdr* p_elf_h = (Elf64_Ehdr*) p_elf_data->get_data();
+
+    auto ret_dll = load_lib(p_elf_h,base_addr,is_so);
+    
+    //    delete[]p_elf_data;
+    p_elf_data = nullptr;
+    
+    auto next_dll = ret_dll->need_list;
+    while (next_dll!=nullptr) {
+        const char* name = next_dll->name;
+        printf("try to loading need so:%s!\n",name);
+        try_load_so(name, &g_dll_next_ptr,true);
+        next_dll = next_dll->next;
+    }
+    //has load all needed so
+    relocate_sym(ret_dll);
+    return ret_dll;
 }
