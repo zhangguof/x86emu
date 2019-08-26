@@ -8,6 +8,10 @@
 
 #include "mmu.hpp"
 #include "x86.h"
+#include "engine.hpp"
+
+#include <algorithm>
+#include <unordered_map>
 //memory manage unit
 const Bit32u PAGE_SIZE = 4*1024 ; //4kb page size
 const Bit32u PDE_NUM = (1<<9) ; //page directory entry max num;
@@ -29,12 +33,16 @@ void XE_MEM_C::alloca_pagebit64(Bit64u start_addr)
     Bit64u base_addr = 0;
     PTE tmp_pte;
     tmp_pte.set64(0);
+    tmp_pte.set_phaddr(0);
+    //first page can't access
+    ptes[0].set64(tmp_pte.get64());
+    
     tmp_pte.set_P(1);
     tmp_pte.set_RW(1);
     tmp_pte.set_US(1);
     tmp_pte.set_A(1);
     
-    for(int i = 0;i<npte;++i)
+    for(int i = 1;i<npte;++i)
     {
         base_addr = i*PAGE_SIZE;
         tmp_pte.set_phaddr(base_addr);
@@ -135,4 +143,202 @@ void XE_MEM_C::alloca_pagebit64(Bit64u start_addr)
     
     //set cr3
     
+}
+
+static bx_phy_address heap_start_addr = 0;
+static bx_phy_address heap_end_addr = 0;
+
+//less than 2kb
+//min=1<<4 = 16 = 4b mask 0xf
+const uint32_t mini_mem[]={1<<4,1<<5,1<<6,1<<7,1<<8,1<<9,1<<10,1<<11};
+const uint32_t max_mem_idx = sizeof(mini_mem)/sizeof(uint32_t) - 1;
+const uint64_t max_free_mem_size = 1<<11;
+alloc_t* _free_mem[max_mem_idx+1];
+alloc_t* _any_free_mem; //any size free mem
+//alloc_t* _used_mem[max_mem_idx+1];
+//guest mem addr -> guest mem addr size
+std::unordered_map<void*, Bit64u> _used_mem;
+const Bit64u min_alloc_size = 0x10; //16B
+
+inline Bit64u GETSIZE(Bit64u size)
+{
+    if((size & (~(min_alloc_size-1))) == size)
+        return size;
+    return (size+0xF)&(~(min_alloc_size-1));
+}
+
+alloc_t* find_next_insert(alloc_t* free,Bit64u size)
+{
+    auto tmp = free;
+//    if(tmp && tmp->size >= size) return tmp;
+    assert(tmp && tmp->size < size);
+    while(tmp && tmp->next)
+    {
+        if(tmp->next->size >= size)
+            break;
+        tmp = tmp->next;
+    }
+    return tmp;
+}
+
+void print_any_free_list()
+{
+    printf("===any_free_list=====\n");
+    auto tmp = _any_free_mem;
+    while(tmp)
+    {
+        printf("0x%0lx(%lu)->",tmp->vaddr,tmp->size);
+        tmp = tmp->next;
+    }
+    printf("\n");
+}
+
+//sorted list!
+void add_any_free_mem(alloc_t* host_ptr)
+{
+    alloc_t* f = _any_free_mem;
+    if(f==nullptr || f->size >= host_ptr->size)
+    {
+        host_ptr->next = f;
+        _any_free_mem = host_ptr;
+    }
+    else
+    {
+        auto tmp = find_next_insert(_any_free_mem, host_ptr->size);
+        //insert in tmp->next
+        assert(tmp->size < host_ptr->size);
+        assert(tmp->next == nullptr || tmp->next->size >= host_ptr->size);
+        
+        host_ptr->next = tmp->next;
+        tmp->next = host_ptr;
+    }
+    
+}
+
+void init_mem_allocate(bx_phy_address start, bx_phy_address end)
+{
+    assert(start< end);
+    heap_start_addr = start;
+    heap_end_addr = end;
+    int n = sizeof(mini_mem) / sizeof(uint32_t);
+    for(int i=0;i<n;++i)
+    {
+        _free_mem[i] =  nullptr;
+    }
+    _used_mem.clear();
+    _any_free_mem = nullptr;
+}
+
+uint32_t get_mem_idx(Bit64u size)
+{
+    auto idx = std::lower_bound(mini_mem, mini_mem+max_mem_idx+1, size);
+    assert(size <= mini_mem[*idx]);
+    return idx - mini_mem;
+}
+
+void* do_guest_mem_allocate(Bit64u size)
+{
+    if(heap_start_addr + size < heap_end_addr)
+    {
+        void* ret = (void*) heap_start_addr;
+        heap_start_addr += size;
+        printf("===guest_mem allocate:0x%0lx,%lu\n",ret,size);
+        return ret;
+    }
+    printf("!!!!Full memory!!!\n");
+    return nullptr;
+}
+
+void* host_malloc(Bit64u size)
+{
+    size = GETSIZE(size);
+    
+    if(size <= max_free_mem_size)
+    {
+        auto idx = get_mem_idx(size);
+        alloc_t* free_ptr = _free_mem[idx];
+        void* ptr = nullptr;
+        if(free_ptr == nullptr)
+        {
+//            free_ptr =do_guest_mem_allocate
+            ptr = do_guest_mem_allocate(size);
+        }
+        else
+        {
+            alloc_t* next = free_ptr->next;
+            _free_mem[idx] = next;
+            ptr = (void*)free_ptr->vaddr;
+        }
+        _used_mem[ptr] = size;
+        printf("[host_malloc]0x%0lx,%u\n",ptr,size);
+        return ptr;
+    }
+    
+    void* ptr = nullptr;
+    do{
+        //remove list
+//        print_any_free_list();
+        
+        if(_any_free_mem)
+        {
+            alloc_t* f = _any_free_mem;
+            if(f->size >= size)
+            {
+                _any_free_mem = f->next;
+                ptr = (void*)f->vaddr;
+                break;
+//                _used_mem[ptr] = size;
+//                return ptr;
+            }
+            else
+            {
+                f = find_next_insert(_any_free_mem, size);
+                assert(f->size < size);
+                if(f->next == nullptr)
+                    break;
+                assert(f->next->size >= size);
+                auto tmp = f->next;
+                f->next = tmp->next;
+                ptr = (void*)tmp->vaddr;
+                break;
+//                _used_mem[ptr] = size;
+//                return ptr;
+            }
+        }
+    }while(0);
+    
+    if(ptr==nullptr)
+        ptr = do_guest_mem_allocate(size);
+    
+    _used_mem[ptr] = size;
+    printf("[host_malloc]0x%0lx,%u\n",ptr,size);
+    return ptr;
+}
+void host_free(void* ptr)
+{
+    auto p = _used_mem.find(ptr);
+    if(p==_used_mem.end()||_used_mem[ptr]==0)
+    {
+        printf("error not malloc mem!!!\n");
+        return;
+    }
+    auto size = _used_mem[ptr];
+    alloc_t* host_ptr = (alloc_t*)g_engine->getHostMemAddr((bx_phy_address)ptr);
+    
+    host_ptr->size = size;
+    host_ptr->vaddr = (bx_phy_address) ptr;
+    if(size<=max_free_mem_size)
+    {
+        auto idx = get_mem_idx(size);
+        alloc_t* f = _free_mem[idx];
+        host_ptr->next = f;
+        _free_mem[idx] = host_ptr;
+    }
+    else
+    {
+        add_any_free_mem(host_ptr);
+//        print_any_free_list();
+    }
+    _used_mem[ptr] = 0;
+    printf("[host_free]0x%0lx,%u\n",ptr,size);
 }

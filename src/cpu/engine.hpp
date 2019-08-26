@@ -37,6 +37,9 @@ public:
     void load_elf(const char* path);
     void setup_os_env();
     void init();
+    Bit8u* getHostMemAddr(bx_phy_address addr){
+        return mem_ptr->getHostMemAddr(cpu_ptr, addr, BX_RW);
+    }
     
     void run();
     void call_guest_method1(const char* method,uint64_t arg1);

@@ -98,5 +98,18 @@ struct PTE
         val64 = (val64 & ~PML4EMASK) | (val & PML4EMASK);
     }
 };
+//at least 16b
+struct alloc_t
+{
+    alloc_t* next;  //addr in host
+    size_t size;
+    bx_phy_address vaddr;//addr in guest
+};
 
+//extern bx_phy_address heap_start_addr;
+
+void* host_malloc(Bit64u size);
+void host_free(void* ptr);
+
+void init_mem_allocate(bx_phy_address start, bx_phy_address end);
 

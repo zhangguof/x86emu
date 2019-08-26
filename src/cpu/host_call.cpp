@@ -46,10 +46,10 @@ inline Bit8u* getMemAddr(Bit64u addr)
     return ret;
 }
 
-Bit64u do_ret(int64_t ret_code)
+inline Bit64u do_ret(int64_t ret_code)
 {
 //    g_engine->last_ret = code;
-    printf("return from guset code!:%ld\n",ret_code);
+//    printf("return from guset code!:%ld\n",ret_code);
     g_engine->cpu_ptr->is_exit = true;
     g_engine->last_ret = ret_code;
     return 0;
@@ -67,6 +67,15 @@ HOST_FUN_C host_func_table[] = {
         ARG1_T arg1 = (ARG1_T)(getMemAddr(args[0]));
         return puts(arg1);}
                   ),
+    DEF_HOST_FUNC(host_malloc, [](Bit64u* args){
+        Bit64u size = args[0];
+        return  (Bit64u)host_malloc(size);
+    }),
+    DEF_HOST_FUNC(host_free, [](Bit64u* args){
+        void* ptr = (void*)args[0];
+        host_free(ptr);
+        return 0;
+    }),
     
 };
 
@@ -75,8 +84,6 @@ HOST_FUN_C host_func_table[] = {
 Bit64u do_call_host_func(Bit32u idx,HOST_CALL_5ARGS& args)
 {
     auto fe = host_func_table[idx];
-//    static_cast<HFun_i_s>(ptr)(paddr);
-//    ((HFun_is)f.ptr)((const char*)paddr);
     return fe.pf(args);
 }
 
