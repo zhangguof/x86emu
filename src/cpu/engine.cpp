@@ -21,14 +21,32 @@
 #include "elf.h"
 #include "elf-ext.hpp"
 
-// g_cpu = NULL;
+extern void bx_init_options();
+extern void bx_init_siminterface();
 extern void bx_init_hardware();
+//extern void plugin_startup();
+
+void env_init()
+{
+    //    plugin_startup();
+    //    pluginlog = new logfunctions();
+    //    pluginlog->put("PLUGIN");
+    
+    SAFE_GET_IOFUNC();  // never freed
+    SAFE_GET_GENLOG();  // never freed
+    genlog->setonoff(LOGLEV_DEBUG, ACT_REPORT);
+    
+    bx_init_siminterface();
+    bx_init_options();
+    //    bx_init_hardware();
+}
 
 const Bit64u PAGE_BASE_ADDR = (0x100000);// page data.
 const Bit64u RUN_BASE_ADDR  = (0x400000); //4M start. load exe
 const Bit64u DLL_LAOD_BASE =  RUN_BASE_ADDR + 0x200000; //load dll,so
 Bit64u g_dll_next_ptr = DLL_LAOD_BASE;
 
+const Bit64u BASE_HEAP_ADDR_END = g_dll_next_ptr;
 
 #define BX_CR3_PAGING_MASK    (BX_CONST64(0x000ffffffffff000))
 
@@ -93,6 +111,18 @@ void Engine::load_elf(const char* elf_file_name)
     
     this->entry_addr = entry_addr;
 //    cpu_ptr->prev_rip = cpu_ptr->gen_reg[BX_64BIT_REG_RIP].rrx = entry_addr;
+    bx_phy_address heap_start = 0;
+    if(pdll->data)
+    {
+        heap_start = (bx_phy_address)pdll->data + pdll->datalen;
+        
+    }
+    else
+    {
+        heap_start = (bx_phy_address)pdll->code + pdll->codelen;
+    }
+    heap_start = (heap_start+0xff) & (~0xff);
+    init_mem_allocate(heap_start, BASE_HEAP_ADDR_END);
     
     
     setup_os_env();
@@ -163,6 +193,7 @@ void Engine::setup_os_env()
 
 void Engine::init()
 {
+    env_init();
     //    bx_cpu_ptr = &::bx_cpu; //global bx cpu!
     if(bx_cpu)
     {
@@ -212,6 +243,8 @@ void Engine::init()
     // First load the system BIOS (VGABIOS loading moved to the vga code)
     //    SIM->get_param_string(BXPN_ROM_PATH)->set(rom_path);
     //    bx_init_hardware();
+    
+    
     
 }
 

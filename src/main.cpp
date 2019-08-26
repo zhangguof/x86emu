@@ -11,28 +11,6 @@
 #include "engine.hpp"
 
 
-extern void bx_init_options();
-extern void bx_init_siminterface();
-extern void bx_init_hardware();
-//extern void plugin_startup();
-
-void env_init()
-{
-//    plugin_startup();
-//    pluginlog = new logfunctions();
-//    pluginlog->put("PLUGIN");
-
-    SAFE_GET_IOFUNC();  // never freed
-    SAFE_GET_GENLOG();  // never freed
-    genlog->setonoff(LOGLEV_DEBUG, ACT_REPORT);
-    
-    bx_init_siminterface();
-    bx_init_options();
-//    bx_init_hardware();
-    
-    
-}
-
 int main()
 {
 	printf("x86 simualte start!\n");
@@ -43,7 +21,6 @@ int main()
     auto p_x86emu = std::make_shared<Engine>();
     g_engine = p_x86emu;
 
-    env_init();
     
     p_x86emu->init();
     
