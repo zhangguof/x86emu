@@ -75,7 +75,6 @@ extern Bit64u do_call_host_func(Bit32u idx,HOST_CALL_5ARGS& args);
 
 Bit64u XE_CPU_C::call_host_func(bxInstruction_c* i)
 {
-    printf("call from guest !\n");
     Bit32u idx = EDI;
 //    Bit64u data_addr = RSI;
 //    Bit32u len = EDX;
@@ -123,6 +122,10 @@ void XE_CPU_C::cpu_loop()
         for(;;) {
             // want to allow changing of the instruction inside instrumentation callback
             BX_INSTR_BEFORE_EXECUTION(BX_CPU_ID, i);
+//            if(RIP == 0x400aee)
+//            {
+//                ;
+//            }
             RIP += i->ilen();
             // when handlers chaining is enabled this single call will execute entire trace
             BX_CPU_CALL_METHOD(i->execute1, (i)); // might iterate repeat instruction

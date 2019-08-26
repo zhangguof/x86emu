@@ -244,8 +244,8 @@ void load_dyn(dll* p_dll)
     for(int i=0;i<dn;++i)
     {
         Elf64_Dyn* p = pdyn + i;
-        printf("==dyn:#%d,tag:%s(0x%0x),d_val:0x%0x\n",i,
-               get_tag_name(p->d_tag),p->d_tag,p->d_un.d_val);
+//        printf("==dyn:#%d,tag:%s(0x%0x),d_val:0x%0x\n",i,
+//               get_tag_name(p->d_tag),p->d_tag,p->d_un.d_val);
         switch(p->d_tag)
         {
             case DT_STRTAB:
