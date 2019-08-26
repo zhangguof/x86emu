@@ -6,10 +6,10 @@
          contextName = "GLOBAL">
          <PersistentStrings>
             <PersistentString
-               value = "bx_cpu-&gt;gen_reg[16].rrx">
+               value = "bx_cpu-&gt;sregs[1]">
             </PersistentString>
             <PersistentString
-               value = "bx_cpu-&gt;sregs[1]">
+               value = "bx_cpu-&gt;gen_reg[16].rrx">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -17,7 +17,7 @@
          contextName = "XE_CPU_C::call_host_func(bxInstruction_c*):x86.cpp">
       </ContextState>
       <ContextState
-         contextName = "load_lib(elf64_hdr*, unsigned long&amp;, bool):load_so.cpp">
+         contextName = "gnu_hash_table::print_all_hash(elf64_sym*, char const*):load_so.cpp">
       </ContextState>
       <ContextState
          contextName = "BX_MEM_C::load_ROM(char const*, unsigned long, unsigned char):misc_mem.cc">
@@ -64,9 +64,14 @@
       </ContextState>
       <ContextState
          contextName = "XE_CPU_C::cpu_loop():x86.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "entry-&gt;pAddr">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "gnu_hash_table::print_all_hash(elf64_sym*, char const*):load_so.cpp">
+         contextName = "load_lib(elf64_hdr*, unsigned long&amp;, bool):load_so.cpp">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
