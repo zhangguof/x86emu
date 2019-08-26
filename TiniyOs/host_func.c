@@ -4,12 +4,6 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-// extern void call_host_func(uint32_t func_id, );
-
-// #define DEF_HOST_FUNC(fun,idx,ret,args...) \
-// 	ret fun(s) { \
-// 		call_host_func(idx,args)
-// 	}
 
 #define DEF_FUNC(name,idx) \
 	const uint32_t H_##name##_id = idx;

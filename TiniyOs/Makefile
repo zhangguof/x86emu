@@ -11,9 +11,14 @@ ASFLAG= -f elf64
 LDFLAGS= -fPIC  -fno-builtin -nostdlib -ffreestanding -Llibs -Wl,-z,max-page-size=0x1000 
 EXLDFLAG= -T tiniy.lds
 
+OBJS = main.o host_func.o libs.o \
+	test.o
+
+SO_OBJS = ldso/libtest.so ldso/libtest2.so
+
 all: tiniyos.elf
 
-tiniyos.elf: main.o host_func.o libs.o ldso/libtest.so ldso/libtest2.so
+tiniyos.elf: $(OBJS) $(SO_OBJS)
 	$(LD) $(LDFLAGS)  \
 	-o $@ $^ -Wl,-rpath=. -ldiet \
 	$(EXLDFLAG) 
