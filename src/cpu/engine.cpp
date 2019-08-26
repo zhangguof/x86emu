@@ -41,6 +41,9 @@ void env_init()
     //    bx_init_hardware();
 }
 
+const Bit64u memSize = 32*1024*1024; //32M
+const Bit64u hostMemSize = 32*1023*1024;
+
 const Bit64u PAGE_BASE_ADDR = (0x100000);// page data.
 const Bit64u RUN_BASE_ADDR  = (0x400000); //4M start. load exe
 const Bit64u DLL_LAOD_BASE =  RUN_BASE_ADDR + 0x200000; //load dll,so
@@ -66,48 +69,16 @@ std::shared_ptr<Engine> g_engine = nullptr;
 
 void Engine::load_elf(const char* elf_file_name)
 {
-    // The RESET function will have been called first.
-    // Set CPU and memory features which are assumed at this point.
-    
-    //    bx_load_kernel_image(SIM->get_param_string(BXPN_LOAD32BITOS_PATH)->getptr(), 0x100000);
-//    Bit8u* p_elf_data = NULL;
     
     bx_phy_address base_addr = RUN_BASE_ADDR; //2M start.
     
-//    std::shared_ptr<Buffer> p_elf_data = nullptr;
     auto pdll = try_load_so(elf_file_name, &base_addr,false);
     
-//    Bit32u filesz = 0;
-//    load_elf_bin(elf_file_name,p_elf_data);
-//    filesz = p_elf_data->size;
     Elf64_Ehdr* p_elf_h = (Elf64_Ehdr*) pdll->host_code;
 //    print_elf_info(p_elf_h);
     
     bx_phy_address entry_addr = p_elf_h->e_entry;
-//    Elf64_Phdr* ph = (Elf64_Phdr*)(p_elf_data + p_elf_h->e_phoff);
-//    int phnum = p_elf_h->e_phnum;
-//    auto ret_dll = load_lib(p_elf_h,base_addr);
-    
-//    delete[]p_elf_data;
-//    p_elf_data = nullptr;
-    
-//    auto next_dll = ret_dll->need_list;
-//    while (next_dll!=nullptr) {
-//        const char* name = next_dll->name;
-//        printf("try to load need so:%s!\n",name);
-//        const char* so_path = (g_so_path + name).c_str();
-//        load_elf_bin(so_path, p_elf_data);
-//        if(p_elf_data)
-//        {
-//            auto new_dll = load_lib((Elf64_Ehdr*)p_elf_data->get_data(),g_dll_next_ptr,true);
-//        }
-//
-//        next_dll = next_dll->next;
-//    }
 
-    
-//    mem_ptr->load_RAM_from_data(p_elf_data,filesz,base_addr);
-//    mem_ptr->load_RAM(elf_file,base_addr);
     
     this->entry_addr = entry_addr;
 //    cpu_ptr->prev_rip = cpu_ptr->gen_reg[BX_64BIT_REG_RIP].rrx = entry_addr;
@@ -132,6 +103,9 @@ void Engine::load_elf(const char* elf_file_name)
 
 void Engine::setup_os_env()
 {
+    // The RESET function will have been called first.
+    // Set CPU and memory features which are assumed at this point.
+    
     // EIP deltas
     //    BX_CPU(0)->prev_rip = BX_CPU(0)->gen_reg[BX_32BIT_REG_EIP].dword.erx = 0x100000;
     
@@ -216,9 +190,8 @@ void Engine::init()
     }
     
     
-    Bit64u memSize = 32*1024*1024; //32M
-    Bit64u hostMemSize = 32*1023*1024;
-    const char* rom_path = "/Users/tony/workspace/github/x86emu/tool/BIOS-bochs-latest";
+
+//    const char* rom_path = "/Users/tony/workspace/github/x86emu/tool/BIOS-bochs-latest";
 //    const char* elf_file = "/Users/tony/workspace/github/x86emu/TiniyOs/tiniy";
 //    const char* elf_file = "/ldso";
 
@@ -228,7 +201,7 @@ void Engine::init()
     bx_pc_system.initialize(ips);
     
     mem_ptr->init_memory(memSize, hostMemSize);
-    mem_ptr->load_ROM(rom_path, 0, 0);
+//    mem_ptr->load_ROM(rom_path, 0, 0);
     
     cpu_ptr->initialize();
     cpu_ptr->sanity_checks();
@@ -253,18 +226,13 @@ void Engine::run()
 //   cpu_ptr->prev_rip = cpu_ptr->gen_reg[BX_64BIT_REG_RIP].rrx = entry_addr;
     call_host_ret_addr = global_sym_tbl["call_host_ret"];
     printf("call_host_func_addr:0x%0lx\n",call_host_ret_addr);
-//    cpu_ptr->PUSH_EdM(bxInstruction_c *)
     cpu_ptr->push_64(call_host_ret_addr); //ret address call_host_func
-//    RDI = (Bit64u)&call_guess_method;
     
     cpu_ptr->prev_rip = RIP = entry_addr;
 //    cpu_ptr->PUSH
     cpu_ptr->cpu_loop();
     
-//    call_guess_method = (export_funcs*)mem_ptr->getHostMemAddr(bx_cpu, last_ret, BX_RW);
-//    printf("start end:get call_guess method:0x%0lx,name:%s\n",call_guess_method->ptr,call_guess_method->name);
-    
-    //
+
     call_guest_method1("test_pow2",100);
     printf("100*100=%d\n",(int)last_ret);
 }
