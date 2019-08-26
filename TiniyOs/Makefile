@@ -1,18 +1,25 @@
 #Build in x86 ubuntu
 
 CC=gcc
+# CC=i386-elf-gcc
 AS=nasm
-LD=gcc
+LD=$(CC)
 
 #-fno-builtin
-CFLAGS= -c  -I. -fno-stack-protector 
+CFLAGS=  -c  -I. -fno-builtin -nostdlib -ffreestanding -fno-stack-protector -fPIC -DDEBUG
 ASFLAG= -f elf64
-LDFLAGS= -static -T tiniy.lds  -nostdlib -ffreestanding -L./libs 
+LDFLAGS= -fPIC  -fno-builtin -nostdlib -ffreestanding -Llibs -Wl,-z,max-page-size=0x1000 
+EXLDFLAG= -T tiniy.lds
 
-all: tiniy
+all: tiniyos.elf
 
-tiniy: main.o add.o asm.o host_func.o libs.o
-	$(LD) $(LDFLAGS) -o $@ $^ -lc
+tiniyos.elf: main.o host_func.o libs.o ldso/libtest.so ldso/libtest2.so
+	$(LD) $(LDFLAGS)  \
+	-o $@ $^ -Wl,-rpath=. -ldiet \
+	$(EXLDFLAG) 
+
+ldso/lib%.so: ldso/%.c
+	make -C ldso/
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ $^
@@ -21,3 +28,5 @@ tiniy: main.o add.o asm.o host_func.o libs.o
 
 clean:
 	rm -rf *.o
+	rm -rf ldso/*.so
+	rm -rf ldso/*.o

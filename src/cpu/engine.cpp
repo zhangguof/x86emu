@@ -34,9 +34,9 @@ Bit64u g_dll_next_ptr = DLL_LAOD_BASE;
 
 #define BX_CR3_PAGING_MASK    (BX_CONST64(0x000ffffffffff000))
 
-std::string work_home = "/Users/tony/workspace/github/x86emu/TiniyOs/ldso/";
+std::string work_home = "/Users/tony/workspace/github/x86emu/TiniyOs/";
 std::string g_so_path = work_home;
-std::string start_elf_file = "ldso";
+std::string start_elf_file = "tiniyos.elf";
 
 /*
  load Tiniy os exe file.

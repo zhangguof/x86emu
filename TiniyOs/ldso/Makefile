@@ -12,17 +12,17 @@ ASFLAG= -f elf64
 LDFLAGS= -fPIC  -fno-builtin -nostdlib -ffreestanding -L../libs -Wl,-z,max-page-size=0x1000 
 EXLDFLAG= -T ldso.lds
 
-all: libtest.so ldso
+all: libtest.so libtest2.so
 
-ldso: ldso.o libtest.so libtest2.so
-	$(LD) $(LDFLAGS)  \
-	-o $@ $^ -Wl,-rpath=. -ldiet \
-	$(EXLDFLAG) 
+# ldso: ldso.o libtest.so libtest2.so
+# 	$(LD) $(LDFLAGS)  \
+# 	-o $@ $^ -Wl,-rpath=. -ldiet \
+# 	$(EXLDFLAG) 
 
-libtest.so: testso.o asm.o
+libtest.so: test.o asm.o
 	$(LD) $(LDFLAGS)  -Wl,-Bstatic -ldiet -shared -o $@ $^ 
 
-libtest2.so: testso2.o
+libtest2.so: test2.o
 	$(LD) $(LDFLAGS)  -Wl,-Bstatic -ldiet -shared -o $@ $^ 
 
 %.o: %.c
