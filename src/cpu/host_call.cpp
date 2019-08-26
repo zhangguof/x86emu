@@ -16,6 +16,7 @@
 
 #include <string.h>
 #include <functional>
+#include "engine.hpp"
 
 
 //typedef int (*HFun_i_s)(const char*);
@@ -45,8 +46,21 @@ inline Bit8u* getMemAddr(Bit64u addr)
     return ret;
 }
 
+Bit64u do_ret(int64_t ret_code)
+{
+//    g_engine->last_ret = code;
+    printf("return from guset code!:%ld\n",ret_code);
+    g_engine->cpu_ptr->is_exit = true;
+    g_engine->last_ret = ret_code;
+    return 0;
+}
+
 HOST_FUN_C host_func_table[] = {
-    {nullptr,nullptr,nullptr},
+//    {nullptr,nullptr,nullptr},
+    DEF_HOST_FUNC(do_ret, [](Bit64u* args){
+        int64_t arg1 = (int64_t)args[0];
+        return do_ret(arg1);
+    }),
 //int puts(const char*)
     DEF_HOST_FUNC(puts,[](Bit64u* args){
         typedef const char* ARG1_T;

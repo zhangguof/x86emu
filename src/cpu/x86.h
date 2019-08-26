@@ -24,6 +24,7 @@ typedef Bit64u HOST_CALL_5ARGS[5];
 class BOCHSAPI XE_CPU_C: public BX_CPU_C
 {
 public:
+    bool is_exit;
     void cpu_loop(void);
     bx_bool is_host_call(Bit64u addr);
     Bit64u call_host_func(bxInstruction_c* i);

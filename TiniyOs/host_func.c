@@ -21,14 +21,14 @@
 // 		call_host_func(idx,args)
 // 	}
 #define DEF_FUNC(name,idx) \
-	const uint32_t Fun_##name##_id = idx;
+	const uint32_t H_##name##_id = idx;
 
 DEF_FUNC(puts,0x1)
 DEF_FUNC(printf,0x2)
 
 int puts(const char* s)
 {
-	call_host_func(Fun_puts_id,s);
+	call_host_func(H_puts_id,s);
 }
 
 // void printf(const char* fmt,...)

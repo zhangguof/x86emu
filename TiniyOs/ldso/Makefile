@@ -2,11 +2,12 @@
 
 # CC=../libs/dietlibc-0.34/bin-x86_64/diet -v gcc -v
 CC=gcc
+# CC=i386-elf-gcc
 AS=nasm
 LD=$(CC)
 
 #-fno-builtin
-CFLAGS= -c  -I. -fno-builtin -nostdlib -ffreestanding -fno-stack-protector -fPIC -DDEBUG -g
+CFLAGS=  -c  -I. -fno-builtin -nostdlib -ffreestanding -fno-stack-protector -fPIC -DDEBUG -g
 ASFLAG= -f elf64
 LDFLAGS= -fPIC  -fno-builtin -nostdlib -ffreestanding -L../libs -Wl,-z,max-page-size=0x1000 
 EXLDFLAG= -T ldso.lds
@@ -18,7 +19,7 @@ ldso: ldso.o libtest.so libtest2.so
 	-o $@ $^ -Wl,-rpath=. -ldiet \
 	$(EXLDFLAG) 
 
-libtest.so: testso.o
+libtest.so: testso.o asm.o
 	$(LD) $(LDFLAGS)  -Wl,-Bstatic -ldiet -shared -o $@ $^ 
 
 libtest2.so: testso2.o

@@ -90,6 +90,7 @@ Bit64u XE_CPU_C::call_host_func(bxInstruction_c* i)
 void XE_CPU_C::cpu_loop()
 {
     printf("!!!!!in my loop!\n");
+    this->is_exit = false;
     if (setjmp(BX_CPU_THIS_PTR jmp_buf_env)) {
         // can get here only from exception function or VMEXIT
         BX_CPU_THIS_PTR icount++;
@@ -125,6 +126,8 @@ void XE_CPU_C::cpu_loop()
             RIP += i->ilen();
             // when handlers chaining is enabled this single call will execute entire trace
             BX_CPU_CALL_METHOD(i->execute1, (i)); // might iterate repeat instruction
+            //check exist
+            if(is_exit) return;
             
             BX_SYNC_TIME_IF_SINGLE_PROCESSOR(0);
             

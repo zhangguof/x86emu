@@ -44,7 +44,7 @@ std::string start_elf_file = "ldso";
  
  
  */
-
+std::shared_ptr<Engine> g_engine = nullptr;
 
 void Engine::load_elf(const char* elf_file_name)
 {
@@ -91,7 +91,9 @@ void Engine::load_elf(const char* elf_file_name)
 //    mem_ptr->load_RAM_from_data(p_elf_data,filesz,base_addr);
 //    mem_ptr->load_RAM(elf_file,base_addr);
     
-    cpu_ptr->prev_rip = cpu_ptr->gen_reg[BX_64BIT_REG_RIP].rrx = entry_addr;
+    this->entry_addr = entry_addr;
+//    cpu_ptr->prev_rip = cpu_ptr->gen_reg[BX_64BIT_REG_RIP].rrx = entry_addr;
+    
     
     setup_os_env();
     
@@ -132,7 +134,16 @@ void Engine::setup_os_env()
     // CR0 deltas
     cpu_ptr->cr0.set_PE(1); // protected mode
     cpu_ptr->cr0.set_PG(1);
+    //Emulation    If set, no x87 floating-point unit present, if clear, x87 FPU present
+    cpu_ptr->cr0.set_EM(0);
+    //Monitor co-processor    Controls interaction of WAIT/FWAIT instructions with TS flag in CR0
+    cpu_ptr->cr0.set_MP(1);
+    //SSE support.
+    cpu_ptr->cr4.set_OSFXSR(1);
+    cpu_ptr->cr4.set_OSXMMEXCPT(1);
+    
     cpu_ptr->cr4.set_PAE(1);
+    
     
     //load page
     mem_ptr->alloca_pagebit64(PAGE_BASE_ADDR);
@@ -141,7 +152,9 @@ void Engine::setup_os_env()
     
     cpu_ptr->efer.set_LME(1);
     cpu_ptr->efer.set_LMA(1);
-    cpu_ptr->efer.set_SCE(1); //syscall enable; 
+    cpu_ptr->efer.set_SCE(1); //syscall enable;
+    
+    cpu_ptr->handleSseModeChange();
     
     cpu_ptr->handleCpuModeChange();
     cpu_ptr->SetCR3(cr3_val);
@@ -204,7 +217,46 @@ void Engine::init()
 
 void Engine::run()
 {
+//   cpu_ptr->prev_rip = cpu_ptr->gen_reg[BX_64BIT_REG_RIP].rrx = entry_addr;
+    call_host_ret_addr = global_sym_tbl["call_host_ret"];
+    printf("call_host_func_addr:0x%0lx\n",call_host_ret_addr);
+//    cpu_ptr->PUSH_EdM(bxInstruction_c *)
+    cpu_ptr->push_64(call_host_ret_addr); //ret address call_host_func
+//    RDI = (Bit64u)&call_guess_method;
+    
+    cpu_ptr->prev_rip = RIP = entry_addr;
+//    cpu_ptr->PUSH
     cpu_ptr->cpu_loop();
+    
+//    call_guess_method = (export_funcs*)mem_ptr->getHostMemAddr(bx_cpu, last_ret, BX_RW);
+//    printf("start end:get call_guess method:0x%0lx,name:%s\n",call_guess_method->ptr,call_guess_method->name);
+    
+    //
+    call_guest_method1("test_pow2",100);
+    printf("100*100=%d\n",(int)last_ret);
+}
+
+void Engine::call_guest_method1(const char* method,uint64_t arg1)
+{
+    auto it = global_sym_tbl.find(method);
+    if(it!=global_sym_tbl.end())
+    {
+        bx_phy_address fun_ptr = it->second;
+        RDI = arg1;
+        
+        cpu_ptr->push_64(call_host_ret_addr);
+        
+        RIP = fun_ptr;
+//        RDI = fun_ptr;
+//        RSI = arg1;
+//        RIP = (Bit64u)call_guess_method->ptr;
+        cpu_ptr->cpu_loop();
+        
+    }
+    else
+    {
+        printf("can't find symbol :%s in global sym tbl!\n",method);
+    }
 }
 
 

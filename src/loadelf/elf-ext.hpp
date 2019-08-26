@@ -11,6 +11,8 @@
 #include "buffer.hpp"
 #include <functional>
 #include "bochs/bochs.h"
+#include <algorithm>
+#include <unordered_map>
 
 typedef Elf64_Ehdr ehdr;
 
@@ -116,5 +118,6 @@ dll* load_lib(ehdr* eh,bx_phy_address *base_addr,bool is_so = false);
 void load_dyn(dll* p_dll);
 dll* try_load_so(const char* name,bx_phy_address* base_addr, bool is_so=false);
 
+extern std::unordered_map<std::string, bx_phy_address> global_sym_tbl;
 
 #endif /* elf_ext_h */

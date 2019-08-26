@@ -41,10 +41,12 @@ int main()
 
 //    Engine x86emu;
     auto p_x86emu = std::make_shared<Engine>();
+    g_engine = p_x86emu;
 
     env_init();
     
     p_x86emu->init();
+    
     p_x86emu->run();
     
     

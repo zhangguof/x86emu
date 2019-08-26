@@ -23,7 +23,7 @@ val1: dd 0x10000
 _add:
 	push rbp;
 	mov rbp, rsp
-	get_GOT
+	get_GOT  ;rbx = got?
 	mov eax, edi
 	add eax, esi
 	;add eax, [val1]
