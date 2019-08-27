@@ -9,7 +9,7 @@
 #include "mmu.hpp"
 #include "x86.h"
 #include "engine.hpp"
-
+#include "logger.hpp"
 #include <algorithm>
 #include <unordered_map>
 //memory manage unit
@@ -242,10 +242,10 @@ void* do_guest_mem_allocate(Bit64u size)
     {
         void* ret = (void*) heap_start_addr;
         heap_start_addr += size;
-        printf("===guest_mem allocate:0x%0lx,%lu\n",ret,size);
+        LOG_DEBUG("===guest_mem allocate:0x%0lx,%lu\n",ret,size);
         return ret;
     }
-    printf("!!!!Full memory!!!\n");
+    LOG_ERROR("!!!!Full memory!!!\n");
     return nullptr;
 }
 
@@ -270,7 +270,7 @@ void* host_malloc(Bit64u size)
             ptr = (void*)free_ptr->vaddr;
         }
         _used_mem[ptr] = size;
-        printf("[host_malloc]0x%0lx,%u\n",ptr,size);
+        LOG_DEBUG("[host_malloc]0x%0lx,%u\n",ptr,size);
         return ptr;
     }
     
@@ -311,7 +311,7 @@ void* host_malloc(Bit64u size)
         ptr = do_guest_mem_allocate(size);
     
     _used_mem[ptr] = size;
-    printf("[host_malloc]0x%0lx,%u\n",ptr,size);
+    LOG_DEBUG("[host_malloc]0x%0lx,%u\n",ptr,size);
     return ptr;
 }
 void host_free(void* ptr)
@@ -319,7 +319,7 @@ void host_free(void* ptr)
     auto p = _used_mem.find(ptr);
     if(p==_used_mem.end()||_used_mem[ptr]==0)
     {
-        printf("error not malloc mem!!!\n");
+        LOG_ERROR("error not malloc mem!!!\n");
         return;
     }
     auto size = _used_mem[ptr];
@@ -340,5 +340,5 @@ void host_free(void* ptr)
 //        print_any_free_list();
     }
     _used_mem[ptr] = 0;
-    printf("[host_free]0x%0lx,%u\n",ptr,size);
+    LOG_DEBUG("[host_free]0x%0lx,%u\n",ptr,size);
 }

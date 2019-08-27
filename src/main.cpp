@@ -9,13 +9,15 @@
 #include "elf.h"
 #include "elf-ext.hpp"
 #include "engine.hpp"
+#include "logger.hpp"
 
 
 int main()
 {
-	printf("x86 simualte start!\n");
-//    const char* test="=====test!!!!!!\n";
-//    write(1,test,4);
+    get_logger(Logger::LV_INFO);
+    
+    LOG_INFO("x86 simualte start!");
+    
 
 //    Engine x86emu;
     auto p_x86emu = std::make_shared<Engine>();

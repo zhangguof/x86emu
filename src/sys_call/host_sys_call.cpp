@@ -17,11 +17,14 @@
 #include <functional>
 
 #include "host_sys_call.hpp"
+
+#include "logger.hpp"
+
 typedef Bit64u (*sys_call_func)(Bit64u idx,SYS_CALL_ARGS args);
 
 Bit64u default_sys_call(Bit64u idx,SYS_CALL_ARGS args)
 {
-    printf("unsupport sys call(%0x)\n",idx);
+    LOG_ERROR("unsupport sys call(%0x)\n",idx);
     return -1;
 }
 
@@ -87,7 +90,7 @@ Bit64u do_host_sys_call(SYS_CALL_ARGS args)
     }
     if(sys_call_id > max_syscall_num)
     {
-        printf("try syscall(%0x) to larger!\n",sys_call_id);
+        LOG_ERROR("try syscall(%0x) to larger!\n",sys_call_id);
         return -1;
     }
     auto fn = sys_call_table[sys_call_id].ptr;

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA7CD722231524740038057E /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD720231524740038057E /* logger.cpp */; };
 		EAB726A52306AE56000019F0 /* x86.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB724072306AE55000019F0 /* x86.cpp */; };
 		EAB726A62306AE56000019F0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB724082306AE55000019F0 /* main.cpp */; };
 		EAB726A72306AE56000019F0 /* main.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7240A2306AE55000019F0 /* main.cc */; };
@@ -291,6 +292,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		EA7CD720231524740038057E /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
+		EA7CD721231524740038057E /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
 		EAB71E532306AD95000019F0 /* x86emu */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = x86emu; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAB724062306AE55000019F0 /* x86.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x86.h; sourceTree = "<group>"; };
 		EAB724072306AE55000019F0 /* x86.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = x86.cpp; sourceTree = "<group>"; };
@@ -856,6 +859,8 @@
 				EAB724092306AE55000019F0 /* bochs */,
 				EAEA8CB523119C8800F8BEBD /* buffer.cpp */,
 				EAEA8CB623119C8800F8BEBD /* buffer.hpp */,
+				EA7CD720231524740038057E /* logger.cpp */,
+				EA7CD721231524740038057E /* logger.hpp */,
 			);
 			name = src;
 			path = ../../src;
@@ -1880,6 +1885,7 @@
 				EAEA8CB723119C8900F8BEBD /* buffer.cpp in Sources */,
 				EAB7278D2306AE56000019F0 /* pci2isa.cc in Sources */,
 				EAB727652306AE56000019F0 /* dis_groups.cc in Sources */,
+				EA7CD722231524740038057E /* logger.cpp in Sources */,
 				EAB727112306AE56000019F0 /* avx512_mask32.cc in Sources */,
 				EAB727282306AE56000019F0 /* access.cc in Sources */,
 				EAB727822306AE56000019F0 /* speaker.cc in Sources */,

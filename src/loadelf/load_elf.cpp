@@ -14,6 +14,7 @@
 #include "elf.h"
 #include "elf-ext.hpp"
 #include "buffer.hpp"
+#include "logger.hpp"
 
 
 const int MAX_FILE_BUF = 2*1024*1024; //2M;
@@ -29,7 +30,7 @@ int load_file(const char* path, BufPtr &pdata)
 	if(ret)
 	{
 		close(fd);
-		printf("Error! open file!:%s\n",path);
+		LOG_ERROR("Error! open file!:%s\n",path);
 		return 0;
 	}
 	uint32_t size = stat_buf.st_size;
@@ -42,7 +43,7 @@ int load_file(const char* path, BufPtr &pdata)
 		ret = read(fd,ptr_buf,size);
 		if(ret<=0)
 		{
-			printf("Error:read file!\n");
+			LOG_ERROR("Error:read file!\n");
 			return 0;
 		}
 		size -= ret;
@@ -362,7 +363,7 @@ void load_elf_bin(const char* path,std::shared_ptr<Buffer>& p_data)
 					sizeof(elf_ident)/sizeof(uint8_t));
 	if(ret!=0)
 	{
-		printf("No elf file found!\n");
+		LOG_ERROR("No elf file found!\n");
 		return;
 	}
 	bool is_bit64 = p_bytes[4]==2?true:false;
@@ -372,7 +373,8 @@ void load_elf_bin(const char* path,std::shared_ptr<Buffer>& p_data)
     
 	if(is_bit64)
 	{
-		printf("loading elf64....\n");
+        LOG_INFO("loading elf64....");
+        
 		Elf64_Ehdr elf64;
 		load_elf64(buf,&elf64);
 	}

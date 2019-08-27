@@ -88,7 +88,6 @@ Bit64u XE_CPU_C::call_host_func(bxInstruction_c* i)
 
 void XE_CPU_C::cpu_loop()
 {
-    printf("!!!!!in my loop!\n");
     this->is_exit = false;
     if (setjmp(BX_CPU_THIS_PTR jmp_buf_env)) {
         // can get here only from exception function or VMEXIT

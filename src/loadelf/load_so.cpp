@@ -19,6 +19,7 @@
 #include "elf.h"
 #include "elf-ext.hpp" //gnu_hash_table
 #include "buffer.hpp"
+#include "logger.hpp"
 
 extern std::string g_so_path,work_home;
 
@@ -227,7 +228,7 @@ void load_dyn(dll* p_dll)
     uint8_t* buf = (uint8_t*)p_dll->host_code;
     auto vaddr_base = p_dll->vaddr_base;
     
-    printf("==loading dyn head:%d\n",dn);
+    LOG_INFO("==loading dyn head:%d\n",dn);
     Elf64_Sym* dy_sym = nullptr;
     char* dy_strtab = nullptr;
     uint8_t* gnu_hash_tab = nullptr;
@@ -308,7 +309,7 @@ void load_dyn(dll* p_dll)
             last->next = need_list;
             last = need_list;
         }
-        printf("NEEDED SO:%s\n",dy_strtab + needed_idxs[i]);
+        LOG_INFO("NEEDED SO:%s\n",dy_strtab + needed_idxs[i]);
     }
 //    printf("===rel sym num:%d,sizeof:%d\n",rnum,sizeof(Elf64_Rela));
 //    for(int i=0;i<rnum;++i)
@@ -353,7 +354,7 @@ void do_rela_sym(dll* pdll, Elf64_Rela* p_rela)
         //just relocate in module
         case R_X86_64_64:
             *host_addr = pdll->vaddr_base + sym.st_value;
-            printf("do R_X86_64_64  relocate:%s,%0lx->%0lx\n",name,vaddr,pdll->vaddr_base + sym.st_value);
+            LOG_INFO("do R_X86_64_64  relocate:%s,%0lx->%0lx\n",name,vaddr,pdll->vaddr_base + sym.st_value);
             break;
         case R_X86_64_GLOB_DAT: //got
         case R_X86_64_JUMP_SLOT: //plt
@@ -362,11 +363,11 @@ void do_rela_sym(dll* pdll, Elf64_Rela* p_rela)
             if(it!=global_sym_tbl.end())
             {
                 *host_addr = it->second;
-                printf("do R_X86_64_JUMP_SLOT|R_X86_64_GLOB_DAT  relocate:%s,%0lx->%0lx\n",name,vaddr,it->second);
+                LOG_DEBUG("do R_X86_64_JUMP_SLOT|R_X86_64_GLOB_DAT  relocate:%s,%0lx->%0lx\n",name,vaddr,it->second);
             }
             else{
                 *host_addr = 0;
-                printf("!!!!!can't find symbol:%s\n",name);
+                LOG_ERROR("!!!!!can't find symbol:%s\n",name);
             }
             break;
         default:
@@ -436,7 +437,7 @@ dll* load_lib(ehdr* eh,bx_phy_address *base_addr,bool is_so)
                 pdll->datalen = p->p_memsz;
                 pdll->host_data = host_mem;
             }
-            printf("ELF loading:%0x,size:%d\n",vaddr,p->p_filesz);
+            LOG_DEBUG("ELF loading:%0x,size:%d",vaddr,p->p_filesz);
                 
         }
         else if(p->p_type == PT_DYNAMIC)
@@ -484,7 +485,7 @@ dll* load_lib(ehdr* eh,bx_phy_address *base_addr,bool is_so)
             *base_addr = (*base_addr + align) & (~(align-1));
         }
         
-        printf("next dll ptr:0x%0lx\n",*base_addr);
+        LOG_DEBUG("next dll ptr:0x%0lx\n",*base_addr);
     }
     
     return pdll;
@@ -514,7 +515,7 @@ dll* try_load_so(const char* name,bx_phy_address* base_addr, bool is_so)
     auto next_dll = ret_dll->need_list;
     while (next_dll!=nullptr) {
         const char* name = next_dll->name;
-        printf("try to loading need so:%s!\n",name);
+        LOG_DEBUG("try to loading need so:%s!\n",name);
         try_load_so(name, &g_dll_next_ptr,true);
         next_dll = next_dll->next;
     }

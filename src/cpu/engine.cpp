@@ -20,6 +20,7 @@
 // #define ELFTEST
 #include "elf.h"
 #include "elf-ext.hpp"
+#include "logger.hpp"
 
 extern void bx_init_options();
 extern void bx_init_siminterface();
@@ -225,7 +226,7 @@ void Engine::run()
 {
 //   cpu_ptr->prev_rip = cpu_ptr->gen_reg[BX_64BIT_REG_RIP].rrx = entry_addr;
     call_host_ret_addr = global_sym_tbl["call_host_ret"];
-    printf("call_host_func_addr:0x%0lx\n",call_host_ret_addr);
+    LOG_DEBUG("call_host_func_addr:0x%0lx\n",call_host_ret_addr);
     cpu_ptr->push_64(call_host_ret_addr); //ret address call_host_func
     
     cpu_ptr->prev_rip = RIP = entry_addr;
@@ -256,7 +257,7 @@ void Engine::call_guest_method1(const char* method,uint64_t arg1)
     }
     else
     {
-        printf("can't find symbol :%s in global sym tbl!\n",method);
+        LOG_ERROR("can't find symbol :%s in global sym tbl!\n",method);
     }
 }
 
