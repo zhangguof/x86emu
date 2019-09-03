@@ -97,27 +97,10 @@ void __destructor clearexports(void)
     hdestroy_r(&crtexports);
 }
 
-int get_data_export(char *name, uint32_t base, void *result)
-{
-    uint32_t *hack = result;
 
-    get_export(name, result);
 
-    *hack += base - 0x3000;
 
-    ERROR("THIS WAS A TEMPORARY HACK DO NOT CALL WITHOUT FIXING");
-    return 0;
-}
-
-void * get_export_address(const char *name)
-{
-    void *address;
-    if (get_export(name, &address) != -1)
-        return address;
-    return NULL;
-}
-
-int get_export(const char *name, void *result)
+static int get_export(const char *name, void *result)
 {
         ENTRY key = { (char *)(name) }, *item;
         int i, j;
@@ -153,6 +136,27 @@ int get_export(const char *name, void *result)
                 }
 
         return -1;
+}
+
+int get_data_export(char *name, uint32_t base, void *result)
+{
+    uint32_t *hack = result;
+    
+    get_export(name, result);
+    
+    *hack += base - 0x3000;
+    
+    ERROR("THIS WAS A TEMPORARY HACK DO NOT CALL WITHOUT FIXING");
+    return 0;
+}
+
+
+static void * get_export_address(const char *name)
+{
+    void *address;
+    if (get_export(name, &address) != -1)
+        return address;
+    return NULL;
 }
 
 static void *get_dll_init(char *name)

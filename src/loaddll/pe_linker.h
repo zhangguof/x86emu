@@ -1022,9 +1022,9 @@ struct user_desc {
 #define LDT_WRITE 1
 
 bool pe_load_library(const char *filename, void **image, size_t *size);
-void * get_export_address(const char *name);
+//void * get_export_address(const char *name);
 int link_pe_images(struct pe_image *pe_image, unsigned short n);
-int get_export(const char *name, void *func);
+//int get_export(const char *name, void *func);
 int get_data_export(char *name, uint32_t base, void *result);
 bool setup_nt_threadinfo(PEXCEPTION_HANDLER handler);
 bool process_extra_exports(void *imagebase, size_t base, const char *filename);

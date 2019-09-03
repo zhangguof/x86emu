@@ -18,6 +18,8 @@
 #include "loaddll/util.h"
 
 int try_load_dll64(const char* dll_path,struct pe_image** pe);
+void * get_export_address(const char *name);
 
+int get_export(const char *name, void *result);
 
 #endif /* load_dll_hpp */
