@@ -17,6 +17,7 @@
 #include <string.h>
 #include <functional>
 #include "engine.hpp"
+#include "wrap_host_call.hpp"
 
 
 //typedef int (*HFun_i_s)(const char*);
@@ -27,55 +28,50 @@ typedef int (*HFun_is)(const char*);
 
 struct HOST_FUN_C
 {
-    void* ptr;
+//    void* ptr;
     const char* name;
-    std::function<Bit64u(Bit64u*)> pf;
+    std::function<uint64_t(uint64_t*)> pf;
     
 //LP64
 };
 
-#define DEF_HOST_FUNC(func,f) \
-{\
-(void*)func,#func,f \
-}
+//#define DEF_HOST_FUNC(func,f) \
+//{\
+//(void*)func,#func,f \
+//}
 
 
-inline Bit8u* getMemAddr(Bit64u addr)
-{
-    Bit8u* ret = BX_MEM(0)->getHostMemAddr(BX_CPU(0), addr, BX_RW);
-    return ret;
-}
 
-inline Bit64u do_ret(int64_t ret_code)
-{
-//    g_engine->last_ret = code;
-//    printf("return from guset code!:%ld\n",ret_code);
-    g_engine->cpu_ptr->is_exit = true;
-    g_engine->last_ret = ret_code;
-    return 0;
-}
+
 
 HOST_FUN_C host_func_table[] = {
+#define DEF_HOST_FUNC(func) \
+{\
+#func,wrap_##func \
+},
+    
+#include "host_call.hpp"
+    
+#undef DEF_HOST_FUNC
 //    {nullptr,nullptr,nullptr},
-    DEF_HOST_FUNC(do_ret, [](Bit64u* args){
-        int64_t arg1 = (int64_t)args[0];
-        return do_ret(arg1);
-    }),
-//int puts(const char*)
-    DEF_HOST_FUNC(puts,[](Bit64u* args){
-        typedef const char* ARG1_T;
-        ARG1_T arg1 = (ARG1_T)(getMemAddr(args[0]));
-        return puts(arg1);}
-                  ),
-    DEF_HOST_FUNC(host_malloc, [](Bit64u* args){
-        Bit64u size = args[0];
-        return  (Bit64u)host_malloc(size);
-    }),
-    DEF_HOST_FUNC(host_free, [](Bit64u* args){
-        void* ptr = (void*)args[0];
-        host_free(ptr);
-        return 0;
-    }),
+//    DEF_HOST_FUNC(do_ret, [](Bit64u* args){
+//        int64_t arg1 = (int64_t)args[0];
+//        return do_ret(arg1);
+//    }),
+//    DEF_HOST_FUNC(puts,[](Bit64u* args){
+//        typedef const char* ARG1_T;
+//        ARG1_T arg1 = (ARG1_T)(getMemAddr(args[0]));
+//        return puts(arg1);}
+//                  ),
+//    DEF_HOST_FUNC(host_malloc, [](Bit64u* args){
+//        Bit64u size = args[0];
+//        return  (Bit64u)host_malloc(size);
+//    }),
+//    DEF_HOST_FUNC(host_free, [](Bit64u* args){
+//        void* ptr = (void*)args[0];
+//        host_free(ptr);
+//        return 0;
+//    }),
     
 };
 

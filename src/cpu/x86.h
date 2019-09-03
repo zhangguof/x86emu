@@ -16,7 +16,7 @@
 //{
 //    Bit64u args[4];
 //};
-typedef Bit64u HOST_CALL_5ARGS[5];
+typedef uint64_t HOST_CALL_5ARGS[5];
 
 
 
