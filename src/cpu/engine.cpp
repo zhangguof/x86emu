@@ -21,6 +21,7 @@
 #include "elf.h"
 #include "elf-ext.hpp"
 #include "logger.hpp"
+#include "loaddll/load_dll.hpp"
 
 extern void bx_init_options();
 extern void bx_init_siminterface();
@@ -47,7 +48,7 @@ const Bit64u hostMemSize = 32*1023*1024;
 
 const Bit64u PAGE_BASE_ADDR = (0x100000);// page data.
 const Bit64u RUN_BASE_ADDR  = (0x400000); //4M start. load exe
-const Bit64u DLL_LAOD_BASE =  RUN_BASE_ADDR + 0x200000; //load dll,so
+const Bit64u DLL_LAOD_BASE =  RUN_BASE_ADDR + 0x400000; //load dll,so
 Bit64u g_dll_next_ptr = DLL_LAOD_BASE;
 
 const Bit64u BASE_HEAP_ADDR_END = g_dll_next_ptr;
@@ -96,6 +97,10 @@ void Engine::load_elf(const char* elf_file_name)
     heap_start = (heap_start+0xff) & (~0xff);
     init_mem_allocate(heap_start, BASE_HEAP_ADDR_END);
     
+    //load dll
+    const char* dll_path = "/Users/tony/workspace/github/x86emu/test/dll/test.dll";
+    struct pe_image* pe;
+    try_load_dll64(dll_path,&pe);
     
     setup_os_env();
     

@@ -7,9 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA0ABB13231E896600EBC68C /* hcreate_r.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD73E2317DDA30038057E /* hcreate_r.c */; };
+		EA0ABB14231E897100EBC68C /* siphash24.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD7422317F4700038057E /* siphash24.c */; };
+		EA0ABB15231E897100EBC68C /* hdestroy_r.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD73F2317DDA30038057E /* hdestroy_r.c */; };
+		EA0ABB16231E897100EBC68C /* load_dll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72623155B190038057E /* load_dll.cpp */; };
+		EA0ABB17231E897100EBC68C /* crt.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72F2317D1D40038057E /* crt.c */; };
+		EA0ABB18231E897100EBC68C /* pe_linker.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72B2317D1D40038057E /* pe_linker.c */; };
+		EA0ABB19231E897100EBC68C /* hsearch_r.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD73A2317DC7C0038057E /* hsearch_r.c */; };
+		EA0ABB1A231E897100EBC68C /* winstrings.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72C2317D1D40038057E /* winstrings.c */; };
+		EA0ABB1B231E8A2500EBC68C /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD720231524740038057E /* logger.cpp */; };
+		EA0ABB1D231E8CCA00EBC68C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB724082306AE55000019F0 /* main.cpp */; };
 		EA7CD722231524740038057E /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD720231524740038057E /* logger.cpp */; };
+		EA7CD72823155B190038057E /* load_dll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72623155B190038057E /* load_dll.cpp */; };
+		EA7CD7342317D1D50038057E /* pe_linker.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72B2317D1D40038057E /* pe_linker.c */; };
+		EA7CD7352317D1D50038057E /* winstrings.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72C2317D1D40038057E /* winstrings.c */; };
+		EA7CD7362317D1D50038057E /* crt.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72F2317D1D40038057E /* crt.c */; };
+		EA7CD7372317D1D50038057E /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD7302317D1D50038057E /* Makefile */; };
+		EA7CD73D2317DC7C0038057E /* hsearch_r.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD73A2317DC7C0038057E /* hsearch_r.c */; };
+		EA7CD7402317DDA30038057E /* hcreate_r.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD73E2317DDA30038057E /* hcreate_r.c */; };
+		EA7CD7412317DDA30038057E /* hdestroy_r.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD73F2317DDA30038057E /* hdestroy_r.c */; };
+		EA7CD7432317F4700038057E /* siphash24.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD7422317F4700038057E /* siphash24.c */; };
 		EAB726A52306AE56000019F0 /* x86.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB724072306AE55000019F0 /* x86.cpp */; };
-		EAB726A62306AE56000019F0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB724082306AE55000019F0 /* main.cpp */; };
 		EAB726A72306AE56000019F0 /* main.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7240A2306AE55000019F0 /* main.cc */; };
 		EAB726B42306AE56000019F0 /* osdep.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7241F2306AE55000019F0 /* osdep.cc */; };
 		EAB726B52306AE56000019F0 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = EAB724252306AE55000019F0 /* Makefile */; };
@@ -280,6 +298,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		EA0ABB0A231E895800EBC68C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		EAB71E512306AD95000019F0 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -292,8 +319,28 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		EA0ABB0C231E895800EBC68C /* loaddll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = loaddll; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7CD720231524740038057E /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
 		EA7CD721231524740038057E /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
+		EA7CD72623155B190038057E /* load_dll.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = load_dll.cpp; sourceTree = "<group>"; };
+		EA7CD72723155B190038057E /* load_dll.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = load_dll.hpp; sourceTree = "<group>"; };
+		EA7CD7292317D1D40038057E /* ntoskernel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ntoskernel.h; sourceTree = "<group>"; };
+		EA7CD72A2317D1D40038057E /* winnt_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = winnt_types.h; sourceTree = "<group>"; };
+		EA7CD72B2317D1D40038057E /* pe_linker.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pe_linker.c; sourceTree = "<group>"; };
+		EA7CD72C2317D1D40038057E /* winstrings.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = winstrings.c; sourceTree = "<group>"; };
+		EA7CD72D2317D1D40038057E /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
+		EA7CD72E2317D1D40038057E /* winstrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = winstrings.h; sourceTree = "<group>"; };
+		EA7CD72F2317D1D40038057E /* crt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crt.c; sourceTree = "<group>"; };
+		EA7CD7302317D1D50038057E /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		EA7CD7322317D1D50038057E /* pe_linker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pe_linker.h; sourceTree = "<group>"; };
+		EA7CD7332317D1D50038057E /* winexports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = winexports.h; sourceTree = "<group>"; };
+		EA7CD7392317D2330038057E /* codealloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = codealloc.h; sourceTree = "<group>"; };
+		EA7CD73A2317DC7C0038057E /* hsearch_r.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hsearch_r.c; sourceTree = "<group>"; };
+		EA7CD73B2317DC7C0038057E /* crt_exports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crt_exports.h; sourceTree = "<group>"; };
+		EA7CD73C2317DC7C0038057E /* search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = search.h; sourceTree = "<group>"; };
+		EA7CD73E2317DDA30038057E /* hcreate_r.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hcreate_r.c; sourceTree = "<group>"; };
+		EA7CD73F2317DDA30038057E /* hdestroy_r.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hdestroy_r.c; sourceTree = "<group>"; };
+		EA7CD7422317F4700038057E /* siphash24.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = siphash24.c; sourceTree = "<group>"; };
 		EAB71E532306AD95000019F0 /* x86emu */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = x86emu; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAB724062306AE55000019F0 /* x86.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x86.h; sourceTree = "<group>"; };
 		EAB724072306AE55000019F0 /* x86.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = x86.cpp; sourceTree = "<group>"; };
@@ -823,6 +870,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EA0ABB09231E895800EBC68C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EAB71E502306AD95000019F0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -833,6 +887,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA7CD72523155AF20038057E /* loaddll */ = {
+			isa = PBXGroup;
+			children = (
+				EA7CD73E2317DDA30038057E /* hcreate_r.c */,
+				EA7CD7422317F4700038057E /* siphash24.c */,
+				EA7CD73F2317DDA30038057E /* hdestroy_r.c */,
+				EA7CD7392317D2330038057E /* codealloc.h */,
+				EA7CD72623155B190038057E /* load_dll.cpp */,
+				EA7CD72F2317D1D40038057E /* crt.c */,
+				EA7CD7302317D1D50038057E /* Makefile */,
+				EA7CD7292317D1D40038057E /* ntoskernel.h */,
+				EA7CD72B2317D1D40038057E /* pe_linker.c */,
+				EA7CD7322317D1D50038057E /* pe_linker.h */,
+				EA7CD72D2317D1D40038057E /* util.h */,
+				EA7CD7332317D1D50038057E /* winexports.h */,
+				EA7CD73B2317DC7C0038057E /* crt_exports.h */,
+				EA7CD73A2317DC7C0038057E /* hsearch_r.c */,
+				EA7CD73C2317DC7C0038057E /* search.h */,
+				EA7CD72A2317D1D40038057E /* winnt_types.h */,
+				EA7CD72C2317D1D40038057E /* winstrings.c */,
+				EA7CD72E2317D1D40038057E /* winstrings.h */,
+				EA7CD72723155B190038057E /* load_dll.hpp */,
+			);
+			path = loaddll;
+			sourceTree = "<group>";
+		};
 		EAB71E4A2306AD95000019F0 = {
 			isa = PBXGroup;
 			children = (
@@ -845,6 +925,7 @@
 			isa = PBXGroup;
 			children = (
 				EAB71E532306AD95000019F0 /* x86emu */,
+				EA0ABB0C231E895800EBC68C /* loaddll */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -852,6 +933,7 @@
 		EAB724042306AE55000019F0 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				EA7CD72523155AF20038057E /* loaddll */,
 				EAB7281F230BEE7E000019F0 /* sys_call */,
 				EAB72805230944B2000019F0 /* loadelf */,
 				EAB724052306AE55000019F0 /* cpu */,
@@ -1595,6 +1677,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		EA0ABB0B231E895800EBC68C /* loaddll */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA0ABB12231E895800EBC68C /* Build configuration list for PBXNativeTarget "loaddll" */;
+			buildPhases = (
+				EA0ABB08231E895800EBC68C /* Sources */,
+				EA0ABB09231E895800EBC68C /* Frameworks */,
+				EA0ABB0A231E895800EBC68C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = loaddll;
+			productName = loaddll;
+			productReference = EA0ABB0C231E895800EBC68C /* loaddll */;
+			productType = "com.apple.product-type.tool";
+		};
 		EAB71E522306AD95000019F0 /* x86emu */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EAB71E5A2306AD95000019F0 /* Build configuration list for PBXNativeTarget "x86emu" */;
@@ -1621,6 +1720,9 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = tony;
 				TargetAttributes = {
+					EA0ABB0B231E895800EBC68C = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
 					EAB71E522306AD95000019F0 = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
@@ -1639,11 +1741,28 @@
 			projectRoot = "";
 			targets = (
 				EAB71E522306AD95000019F0 /* x86emu */,
+				EA0ABB0B231E895800EBC68C /* loaddll */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EA0ABB08231E895800EBC68C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA0ABB15231E897100EBC68C /* hdestroy_r.c in Sources */,
+				EA0ABB16231E897100EBC68C /* load_dll.cpp in Sources */,
+				EA0ABB1A231E897100EBC68C /* winstrings.c in Sources */,
+				EA0ABB19231E897100EBC68C /* hsearch_r.c in Sources */,
+				EA0ABB17231E897100EBC68C /* crt.c in Sources */,
+				EA0ABB14231E897100EBC68C /* siphash24.c in Sources */,
+				EA0ABB1B231E8A2500EBC68C /* logger.cpp in Sources */,
+				EA0ABB13231E896600EBC68C /* hcreate_r.c in Sources */,
+				EA0ABB18231E897100EBC68C /* pe_linker.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EAB71E4F2306AD95000019F0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1693,6 +1812,7 @@
 				EAB7276F2306AE56000019F0 /* plugin.cc in Sources */,
 				EAB726F12306AE56000019F0 /* arith16.cc in Sources */,
 				EAB727762306AE56000019F0 /* hdimage.cc in Sources */,
+				EA7CD72823155B190038057E /* load_dll.cpp in Sources */,
 				EAB7270B2306AE56000019F0 /* shift32.cc in Sources */,
 				EAB727782306AE56000019F0 /* vvfat.cc in Sources */,
 				EAB726FA2306AE56000019F0 /* shift64.cc in Sources */,
@@ -1701,6 +1821,7 @@
 				EAB727502306AE56000019F0 /* fpu_trans.cc in Sources */,
 				EAB7270C2306AE56000019F0 /* aes.cc in Sources */,
 				EAB727892306AE56000019F0 /* biosdev.cc in Sources */,
+				EA7CD7352317D1D50038057E /* winstrings.c in Sources */,
 				EAB727522306AE56000019F0 /* ferr.cc in Sources */,
 				EAB726FC2306AE56000019F0 /* icache.cc in Sources */,
 				EAB727402306AE56000019F0 /* fyl2x.cc in Sources */,
@@ -1715,7 +1836,6 @@
 				EAB727342306AE56000019F0 /* sse_rcp.cc in Sources */,
 				EAB7275A2306AE56000019F0 /* smm.cc in Sources */,
 				EAB7277A2306AE56000019F0 /* cdrom_misc.cc in Sources */,
-				EAB726A62306AE56000019F0 /* main.cpp in Sources */,
 				EAB7274D2306AE56000019F0 /* f2xm1.cc in Sources */,
 				EAB727ED2306AE56000019F0 /* vncsrv.cc in Sources */,
 				EAB727602306AE56000019F0 /* Makefile in Sources */,
@@ -1750,6 +1870,7 @@
 				EAB727792306AE56000019F0 /* Makefile in Sources */,
 				EAB726A52306AE56000019F0 /* x86.cpp in Sources */,
 				EAB727F12306AE56000019F0 /* carbon.cc in Sources */,
+				EA7CD7402317DDA30038057E /* hcreate_r.c in Sources */,
 				EAB726D42306AE56000019F0 /* atom_n270.cc in Sources */,
 				EAB726E92306AE56000019F0 /* paging.cc in Sources */,
 				EAB727F22306AE56000019F0 /* win32.cc in Sources */,
@@ -1760,6 +1881,7 @@
 				EAB727022306AE56000019F0 /* flag_ctrl_pro.cc in Sources */,
 				EAB727C92306AE56000019F0 /* Makefile in Sources */,
 				EAB7272B2306AE56000019F0 /* sse_string.cc in Sources */,
+				EA7CD7432317F4700038057E /* siphash24.c in Sources */,
 				EAB727062306AE56000019F0 /* shift16.cc in Sources */,
 				EAB727FD230730CE000019F0 /* instrument.cc in Sources */,
 				EAB727212306AE56000019F0 /* avx.cc in Sources */,
@@ -1815,6 +1937,7 @@
 				EAB727E22306AE56000019F0 /* textconfig.cc in Sources */,
 				EAB726F72306AE56000019F0 /* vmfunc.cc in Sources */,
 				EAB726B42306AE56000019F0 /* osdep.cc in Sources */,
+				EA7CD7362317D1D50038057E /* crt.c in Sources */,
 				EAB726D62306AE56000019F0 /* pentium_mmx.cc in Sources */,
 				EAB727F02306AE56000019F0 /* x.cc in Sources */,
 				EAB727EC2306AE56000019F0 /* term.cc in Sources */,
@@ -1835,6 +1958,7 @@
 				EAB727042306AE56000019F0 /* xsave.cc in Sources */,
 				EAB726F22306AE56000019F0 /* ctrl_xfer32.cc in Sources */,
 				EAB727F62306AE56000019F0 /* amigaos.cc in Sources */,
+				EA7CD7372317D1D50038057E /* Makefile in Sources */,
 				EAB727E02306AE56000019F0 /* sdl.cc in Sources */,
 				EAB727612306AE56000019F0 /* dis_decode.cc in Sources */,
 				EAB7270D2306AE56000019F0 /* logical8.cc in Sources */,
@@ -1870,12 +1994,15 @@
 				EAB726C42306AE56000019F0 /* svm.cc in Sources */,
 				EAB727882306AE56000019F0 /* acpi.cc in Sources */,
 				EAB727452306AE56000019F0 /* fprem.cc in Sources */,
+				EA0ABB1D231E8CCA00EBC68C /* main.cpp in Sources */,
 				EAB726C92306AE56000019F0 /* string.cc in Sources */,
+				EA7CD7412317DDA30038057E /* hdestroy_r.c in Sources */,
 				EAB726D22306AE56000019F0 /* broadwell_ult.cc in Sources */,
 				EAB727332306AE56000019F0 /* logical32.cc in Sources */,
 				EAB727E62306AE56000019F0 /* macintosh.cc in Sources */,
 				EAB7273E2306AE56000019F0 /* fpu_misc.cc in Sources */,
 				EAB726DC2306AE56000019F0 /* p4_willamette.cc in Sources */,
+				EA7CD7342317D1D50038057E /* pe_linker.c in Sources */,
 				EAB727622306AE56000019F0 /* syntax.cc in Sources */,
 				EAB727CB2306AE56000019F0 /* voodoo.cc in Sources */,
 				EAB726DF2306AE56000019F0 /* amd_k6_2_chomper.cc in Sources */,
@@ -1886,6 +2013,7 @@
 				EAB7278D2306AE56000019F0 /* pci2isa.cc in Sources */,
 				EAB727652306AE56000019F0 /* dis_groups.cc in Sources */,
 				EA7CD722231524740038057E /* logger.cpp in Sources */,
+				EA7CD73D2317DC7C0038057E /* hsearch_r.c in Sources */,
 				EAB727112306AE56000019F0 /* avx512_mask32.cc in Sources */,
 				EAB727282306AE56000019F0 /* access.cc in Sources */,
 				EAB727822306AE56000019F0 /* speaker.cc in Sources */,
@@ -1924,6 +2052,32 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		EA0ABB10231E895800EBC68C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QZCGQLBGFN;
+				OTHER_CFLAGS = (
+					"-DCONFIG_X86_64",
+					"-DTESTLOADER",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EA0ABB11231E895800EBC68C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QZCGQLBGFN;
+				OTHER_CFLAGS = (
+					"-DCONFIG_X86_64",
+					"-DTESTLOADER",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		EAB71E582306AD95000019F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2054,6 +2208,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QZCGQLBGFN;
+				OTHER_CFLAGS = "-DCONFIG_X86_64";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -2063,6 +2218,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QZCGQLBGFN;
+				OTHER_CFLAGS = "-DCONFIG_X86_64";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -2070,6 +2226,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EA0ABB12231E895800EBC68C /* Build configuration list for PBXNativeTarget "loaddll" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA0ABB10231E895800EBC68C /* Debug */,
+				EA0ABB11231E895800EBC68C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EAB71E4E2306AD95000019F0 /* Build configuration list for PBXProject "x86emu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

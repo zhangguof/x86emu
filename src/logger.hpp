@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 
-
+#ifdef __cplusplus
 
 class Logger
 {
@@ -48,5 +48,38 @@ Logger* get_logger(Logger::LEVEL lv= Logger::LV_DEBUG);
 #define LOG_DEBUG(fmt,...) get_logger()->debug(__FILE__,__LINE__,__FUNCTION__,fmt,## __VA_ARGS__);
 #define LOG_WARN(fmt,...) get_logger()->warn(__FILE__,__LINE__,__FUNCTION__,fmt,## __VA_ARGS__);
 #define LOG_ERROR(fmt,...) get_logger()->error(__FILE__,__LINE__,__FUNCTION__,fmt,## __VA_ARGS__);
+#define ERROR(fmt,...) get_logger()->error(__FILE__,__LINE__,__FUNCTION__,fmt,## __VA_ARGS__);
+
+
+#else
+
+#define LOG_INFO(fmt,...) log_info(__FILE__,__LINE__,__FUNCTION__,fmt,## __VA_ARGS__);
+#define LOG_DEBUG(fmt,...) log_debug(__FILE__,__LINE__,__FUNCTION__,fmt,## __VA_ARGS__);
+#define LOG_WARN(fmt,...) log_warn(__FILE__,__LINE__,__FUNCTION__,fmt,## __VA_ARGS__);
+#define LOG_ERROR(fmt,...) log_error(__FILE__,__LINE__,__FUNCTION__,fmt,## __VA_ARGS__);
+#define ERROR(fmt,...) log_error(__FILE__,__LINE__,__FUNCTION__,fmt,## __VA_ARGS__);
+
+
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+    
+    void log_info(const char* filename,int lineno, const char* func_name,
+                  const char* fmt,...);
+    void log_debug(const char* filename,int lineno, const char* func_name,
+                   const char* fmt,...);
+    void log_warn(const char* filename,int lineno, const char* func_name,
+                  const char* fmt,...);
+    void log_error(const char* filename,int lineno, const char* func_name,
+                   const char* fmt,...);
+#ifdef __cplusplus
+}
+#endif
+
+
+
+
 
 #endif /* logger_hpp */

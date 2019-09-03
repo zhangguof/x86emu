@@ -225,7 +225,6 @@ void load_dyn(dll* p_dll)
     int dn = get_dyn(p_dll, dn);
     Elf64_Dyn* pdyn = get_dyn(p_dll, p_dyn);
     
-    uint8_t* buf = (uint8_t*)p_dll->host_code;
     auto vaddr_base = p_dll->vaddr_base;
     
     LOG_INFO("==loading dyn head:%d\n",dn);

@@ -120,4 +120,16 @@ dll* try_load_so(const char* name,bx_phy_address* base_addr, bool is_so=false);
 
 extern std::unordered_map<std::string, bx_phy_address> global_sym_tbl;
 
+static bx_phy_address get_next_page(bx_phy_address addr)
+{
+    //4k page alignment 1<<12
+    const uint64_t align = 0x1000;
+    if((addr & (align-1)) != 0)
+    {
+        //next page
+        addr = (addr + align) & (~(align-1));
+    }
+    return addr;
+}
+
 #endif /* elf_ext_h */

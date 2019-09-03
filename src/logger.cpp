@@ -114,3 +114,62 @@ void Logger::error(const char* filename,int lineno, const char* func_name,
     stderr(buf);
 
 }
+
+//C api
+
+void log_info(const char* filename,int lineno, const char* func_name,
+              const char* fmt,...)
+{
+    auto log = get_logger();
+    if(log->level>Logger::LV_INFO) return;
+    char buf[max_buf_size];
+    
+    va_list args;
+    va_start(args, fmt);
+    log->vfmt(buf,"INFO",filename,lineno,func_name,fmt,args);
+    
+    va_end(args);
+    log->stdout(buf);
+}
+void log_debug(const char* filename,int lineno, const char* func_name,
+               const char* fmt,...)
+{
+    auto log = get_logger();
+    if(log->level>Logger::LV_DEBUG) return;
+    char buf[max_buf_size];
+    
+    va_list args;
+    va_start(args, fmt);
+    log->vfmt(buf,"INFO",filename,lineno,func_name,fmt,args);
+    
+    va_end(args);
+    log->stdout(buf);
+}
+void log_warn(const char* filename,int lineno, const char* func_name,
+              const char* fmt,...)
+{
+    auto log = get_logger();
+    if(log->level>Logger::LV_WARN) return;
+    char buf[max_buf_size];
+    
+    va_list args;
+    va_start(args, fmt);
+    log->vfmt(buf,"INFO",filename,lineno,func_name,fmt,args);
+    
+    va_end(args);
+    log->stdout(buf);
+}
+void log_error(const char* filename,int lineno, const char* func_name,
+               const char* fmt,...)
+{
+    auto log = get_logger();
+    if(log->level>Logger::LV_ERROR) return;
+    char buf[max_buf_size];
+    
+    va_list args;
+    va_start(args, fmt);
+    log->vfmt(buf,"INFO",filename,lineno,func_name,fmt,args);
+    
+    va_end(args);
+    log->stdout(buf);
+}
