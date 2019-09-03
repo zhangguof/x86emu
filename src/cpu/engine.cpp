@@ -241,6 +241,10 @@ void Engine::run()
 
     call_guest_method1("test_pow2",100);
     printf("100*100=%d\n",(int)last_ret);
+    call_win_guest_method1("Double", 1000);
+    printf("1000*2 = %d\n",(int)last_ret);
+    call_win_guest_method1("test_dll2", 0);
+                       
 }
 
 void Engine::call_guest_method1(const char* method,uint64_t arg1)
@@ -257,6 +261,28 @@ void Engine::call_guest_method1(const char* method,uint64_t arg1)
 //        RDI = fun_ptr;
 //        RSI = arg1;
 //        RIP = (Bit64u)call_guess_method->ptr;
+        cpu_ptr->cpu_loop();
+        
+    }
+    else
+    {
+        LOG_ERROR("can't find symbol :%s in global sym tbl!\n",method);
+    }
+}
+//in win fast call
+//arg1,arg2,arg3,arg4
+//rcx,rdx,r8,r9
+void Engine::call_win_guest_method1(const char* method,uint64_t arg1)
+{
+    auto it = global_sym_tbl.find(method);
+    if(it!=global_sym_tbl.end())
+    {
+        bx_phy_address fun_ptr = it->second;
+        RCX = arg1;
+        
+        cpu_ptr->push_64(call_host_ret_addr);
+        
+        RIP = fun_ptr;
         cpu_ptr->cpu_loop();
         
     }

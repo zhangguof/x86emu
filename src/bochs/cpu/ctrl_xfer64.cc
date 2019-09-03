@@ -403,7 +403,11 @@ BX_INSF_TYPE BX_CPP_AttrRegparmN(1) BX_CPU_C::JMP_EqR(bxInstruction_c *i)
   
   if(BX_CPU(0)->is_host_call(op1_64))
   {
-      auto ret = BX_CPU(0)->call_host_func(i);
+      uint64_t ret = 0;
+      if(op1_64 == 0x1FFFFFFF)
+          ret = BX_CPU(0)->call_host_func(i);
+      else
+          ret = BX_CPU(0)->call_win_host_func(i);
       op1_64 = RIP;
       RAX = ret;
   }

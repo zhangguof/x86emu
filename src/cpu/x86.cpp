@@ -61,7 +61,8 @@ void XE_MEM_C::load_RAM_from_data(Bit8u* data, Bit32u len, bx_phy_address ramadd
 
 inline bx_bool XE_CPU_C::is_host_call(Bit64u addr)
 {
-    return ((addr & 0xFFFFFFFF) == 0x1FFFFFFF);
+    addr &= 0xFFFFFFFF;
+    return (addr == 0x1FFFFFFF || addr==0x1FFFFFFE);
 }
 
 //guest fun build in gcc!! 
@@ -81,6 +82,18 @@ Bit64u XE_CPU_C::call_host_func(bxInstruction_c* i)
     HOST_CALL_5ARGS arg5 = {RSI,RDX,RCX,R8,R9};
 //    Bit8u* paddr = BX_MEM(0)->getHostMemAddr(this, data_addr, BX_RW);
 //    printf("idx:%0x,data:%0x,len:%u\n",idx,data_addr,len);
+    
+    return do_call_host_func(idx,arg5);
+}
+
+Bit64u XE_CPU_C::call_win_host_func(bxInstruction_c* i)
+{
+    Bit32u idx = ECX;
+    //    Bit64u data_addr = RSI;
+    //    Bit32u len = EDX;
+    HOST_CALL_5ARGS arg5 = {RDX,R8,R9,0,0};
+    //    Bit8u* paddr = BX_MEM(0)->getHostMemAddr(this, data_addr, BX_RW);
+    //    printf("idx:%0x,data:%0x,len:%u\n",idx,data_addr,len);
     
     return do_call_host_func(idx,arg5);
 }
