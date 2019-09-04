@@ -24,6 +24,11 @@ inline Bit8u* getMemAddr(Bit64u addr)
     return ret;
 }
 
+inline Bit8u* getGuestAddr(Bit64u  addr)
+{
+    return BX_MEM(0)->getGuestMemAddr(BX_CPU(0), addr);
+}
+
 
 
 
@@ -35,6 +40,9 @@ inline uint64_t do_ret(int64_t ret_code)
     g_engine->last_ret = ret_code;
     return 0;
 }
+
+#define GET_ARGS(id,type) \
+(type)args[id]
 
 #define DEF_HOST_FUNC(func) \
 uint64_t wrap_##func(uint64_t* args)
@@ -52,18 +60,64 @@ DEF_HOST_FUNC(puts)
     return puts(arg1);
 }
 
-DEF_HOST_FUNC(host_malloc)
+DEF_HOST_FUNC(malloc)
 {
     uint64_t size = args[0];
     return  (uint64_t)host_malloc(size);
 }
 
-DEF_HOST_FUNC(host_free)
+DEF_HOST_FUNC(free)
 {
     void* ptr = (void*)args[0];
     host_free(ptr);
     return 0;
 }
+
+DEF_HOST_FUNC(strlen)
+{
+    char* ptr = (char*)getMemAddr(args[0]);
+    return strlen(ptr);
+}
+DEF_HOST_FUNC(memcpy)
+{
+    void* arg1 = (void*)(getMemAddr(args[0]));
+    void* arg2 = (void*)(getMemAddr(args[1]));
+    size_t arg3 = (size_t)(args[2]);
+    memcpy(arg1, arg2, arg3);
+    return args[0];
+}
+DEF_HOST_FUNC(strcpy)
+{
+    char* arg1 = (char*)getMemAddr(args[0]);
+    char* arg2 = (char*)getMemAddr(args[1]);
+    strcpy(arg1, arg2);
+    return args[0];
+}
+
+DEF_HOST_FUNC(strstr)
+{
+//    char    *strstr(const char *__big, const char *__little);
+    typedef const char* arg1_t;
+    typedef arg1_t arg2_t;
+    typedef arg1_t ret_t;
+    auto arg1 = GET_ARGS(0, arg1_t);
+    auto arg2 = GET_ARGS(1, arg2_t);
+    arg1 = (arg1_t)getMemAddr((bx_phy_address)arg1);
+    arg2 = (arg2_t)getMemAddr((bx_phy_address)arg2);
+    
+    ret_t ret = strstr(arg1,arg2);
+    ret = (ret_t)getGuestAddr(bx_phy_address(ret));
+    
+    return (uint64_t)ret;
+
+}
+
+//DEF_HOST_FUNC(vprintf)
+//{
+//    char* arg1 = (char*)getMemAddr(args[0]);
+//    void* va = (void*)getMemAddr(args[1]);
+//    return vprintf(arg1, reinterpret_cast<va_list>(va));
+//}
 
 
 #undef DEF_HOST_FUNC

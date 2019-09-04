@@ -1,26 +1,14 @@
-//
-//  host_call.hpp
-//  x86emu
-//
-//  Created by tony on 2019/9/4.
-//  Copyright © 2019 tony. All rights reserved.
-//
-
-//#ifndef host_call_h
-//#define host_call_h
-
-//#define DEF_HOST_FUNC(func,f) \
-//{\
-//(void*)func,#func,wrap_##funct \
-//},
-
-DEF_HOST_FUNC(do_ret)
-DEF_HOST_FUNC(puts)
-DEF_HOST_FUNC(host_malloc)
-DEF_HOST_FUNC(host_free)
-
-//#undefine DEF_HOST_FUNC
 
 
+DEF_HOST_FUNC(do_ret,		0)
+DEF_HOST_FUNC(puts,			1)
 
-//#endif /* host_call_h */
+DEF_HOST_FUNC(malloc,	    2)
+DEF_HOST_FUNC(free,	        3)
+
+DEF_HOST_FUNC(strlen,       4)
+DEF_HOST_FUNC(memcpy,       5)
+DEF_HOST_FUNC(strcpy,       6)
+DEF_HOST_FUNC(strstr,       7)
+
+

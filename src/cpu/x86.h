@@ -37,6 +37,7 @@ class BOCHSAPI XE_MEM_C: public BX_MEM_C
 public:
     void load_RAM_from_data(Bit8u* data, Bit32u len, bx_phy_address ramaddress);
     void alloca_pagebit64(Bit64u start_addr);
+    Bit8u*  getGuestMemAddr(BX_CPU_C *cpu, bx_phy_address addr);
 };
 
 

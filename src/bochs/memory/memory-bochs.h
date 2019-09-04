@@ -90,6 +90,7 @@ private:
 
   Bit64u  len, allocated;  // could be > 4G
   Bit8u   *actual_vector;
+public:
   Bit8u   *vector;   // aligned correctly
   Bit8u  **blocks;
   Bit8u   *rom;      // 512k BIOS rom space + 128k expansion rom space
@@ -122,6 +123,7 @@ public:
   BX_MEM_SMF void    set_memory_type(memory_area_t area, bx_bool rw, bx_bool dram);
 
   BX_MEM_SMF Bit8u*  getHostMemAddr(BX_CPU_C *cpu, bx_phy_address addr, unsigned rw);
+    virtual Bit8u*  getGuestMemAddr(BX_CPU_C *cpu, bx_phy_address addr){return nullptr;}
 
   // Note: accesses should always be contained within a single page
   BX_MEM_SMF void    readPhysicalPage(BX_CPU_C *cpu, bx_phy_address addr,

@@ -59,11 +59,31 @@ void XE_MEM_C::load_RAM_from_data(Bit8u* data, Bit32u len, bx_phy_address ramadd
     BX_INFO(("rom at 0x%05x/%u ",ramaddress,len));
 }
 
+Bit8u*  XE_MEM_C::getGuestMemAddr(BX_CPU_C *cpu, bx_phy_address addr)
+{
+    size_t block_num = get_memory_len() / BX_MEM_BLOCK_LEN;
+    size_t i  = 0;
+    for(;i<block_num;++i)
+    {
+        if(!blocks[i])
+            continue;
+        bx_phy_address start_addr = (bx_phy_address)blocks[i];
+        if(start_addr<=addr && addr < start_addr + BX_MEM_BLOCK_LEN)
+            break;
+    }
+    if(i==block_num)
+        return nullptr;
+    bx_phy_address ret = i * BX_MEM_BLOCK_LEN + (addr - (bx_phy_address)blocks[i]);
+    return (Bit8u*)ret;
+}
+
 inline bx_bool XE_CPU_C::is_host_call(Bit64u addr)
 {
     addr &= 0xFFFFFFFF;
     return (addr == 0x1FFFFFFF || addr==0x1FFFFFFE);
 }
+
+
 
 //guest fun build in gcc!! 
 //f (a, b, c, d, e, f);
@@ -76,10 +96,10 @@ extern Bit64u do_call_host_func(Bit32u idx,HOST_CALL_5ARGS& args);
 
 Bit64u XE_CPU_C::call_host_func(bxInstruction_c* i)
 {
-    Bit32u idx = EDI;
+    Bit32u idx = EAX;
 //    Bit64u data_addr = RSI;
 //    Bit32u len = EDX;
-    HOST_CALL_5ARGS arg5 = {RSI,RDX,RCX,R8,R9};
+    HOST_CALL_5ARGS arg5 = {RDI,RSI,RDX,RCX,R8};//R9
 //    Bit8u* paddr = BX_MEM(0)->getHostMemAddr(this, data_addr, BX_RW);
 //    printf("idx:%0x,data:%0x,len:%u\n",idx,data_addr,len);
     
@@ -88,10 +108,10 @@ Bit64u XE_CPU_C::call_host_func(bxInstruction_c* i)
 
 Bit64u XE_CPU_C::call_win_host_func(bxInstruction_c* i)
 {
-    Bit32u idx = ECX;
+    Bit32u idx = EAX;
     //    Bit64u data_addr = RSI;
     //    Bit32u len = EDX;
-    HOST_CALL_5ARGS arg5 = {RDX,R8,R9,0,0};
+    HOST_CALL_5ARGS arg5 = {RCX,RDX,R8,R9,0};
     //    Bit8u* paddr = BX_MEM(0)->getHostMemAddr(this, data_addr, BX_RW);
     //    printf("idx:%0x,data:%0x,len:%u\n",idx,data_addr,len);
     

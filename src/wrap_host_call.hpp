@@ -11,7 +11,7 @@
 
 #include <stdint.h>
 
-#define DEF_HOST_FUNC(func) \
+#define DEF_HOST_FUNC(func,idx) \
 uint64_t wrap_##func(uint64_t* args);
 
 #include "host_call.hpp"
