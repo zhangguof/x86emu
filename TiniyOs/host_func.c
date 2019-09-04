@@ -5,29 +5,29 @@
 #include <stdio.h>
 
 
-#define DEF_FUNC(name,idx) \
-	const uint32_t H_##name##_id = idx;
+// #define DEF_FUNC(name,idx) \
+// 	const uint32_t H_##name##_id = idx;
 
 //0x0 for do_ret
-DEF_FUNC(puts,0x1)
-DEF_FUNC(malloc,0x2)
-DEF_FUNC(free,0x3)
+// DEF_FUNC(puts,0x1)
+// DEF_FUNC(malloc,0x2)
+// DEF_FUNC(free,0x3)
 
 
-int puts(const char* s)
-{
-	call_host_func(H_puts_id,s);
-}
+// int puts(const char* s)
+// {
+// 	call_host_func(H_puts_id,s);
+// }
 
-void* malloc(uint64_t size)
-{
-	return (void*)call_host_func(H_malloc_id,size);
-}
+// void* malloc(uint64_t size)
+// {
+// 	return (void*)call_host_func(H_malloc_id,size);
+// }
 
-void free(void* ptr)
-{
-	call_host_func(H_free_id,ptr);
-}
+// void free(void* ptr)
+// {
+// 	call_host_func(H_free_id,ptr);
+// }
 
 
 

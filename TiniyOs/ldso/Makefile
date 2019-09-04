@@ -8,7 +8,7 @@ LD=$(CC)
 
 #-fno-builtin
 CFLAGS=  -c  -I. -fno-builtin -nostdlib -ffreestanding -fno-stack-protector -fPIC -DDEBUG -g
-ASFLAG= -f elf64
+ASFLAG= -f elf64 -i ../../src/
 LDFLAGS= -fPIC  -fno-builtin -nostdlib -ffreestanding -L../libs -Wl,-z,max-page-size=0x1000 
 EXLDFLAG= -T ldso.lds
 

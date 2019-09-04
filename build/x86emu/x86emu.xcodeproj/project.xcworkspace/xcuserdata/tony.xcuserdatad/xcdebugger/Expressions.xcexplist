@@ -6,18 +6,68 @@
          contextName = "GLOBAL">
          <PersistentStrings>
             <PersistentString
-               value = "bx_cpu-&gt;sregs[1]">
+               value = "bx_cpu-&gt;gen_reg[16].rrx">
             </PersistentString>
             <PersistentString
-               value = "bx_cpu-&gt;gen_reg[16].rrx">
+               value = "bx_cpu-&gt;eipPageBias">
+            </PersistentString>
+            <PersistentString
+               value = "bx_cpu-&gt;sregs[1]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "XE_CPU_C::call_host_func(bxInstruction_c*):x86.cpp">
+         contextName = "gnu_hash_table::print_all_hash(elf64_sym*, char const*):load_so.cpp">
       </ContextState>
       <ContextState
-         contextName = "gnu_hash_table::print_all_hash(elf64_sym*, char const*):load_so.cpp">
+         contextName = "XE_MEM_C::alloca_pagebit64(unsigned long):mmu.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "bx_mem">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "read_exports:pe_linker.c">
+      </ContextState>
+      <ContextState
+         contextName = "XE_CPU_C::cpu_loop():x86.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "entry-&gt;pAddr">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BX_CPU_C::getICacheEntry():cpu.cc">
+         <PersistentStrings>
+            <PersistentString
+               value = "bx_cpu">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "load_lib(elf64_hdr*, unsigned long&amp;, bool):load_so.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "fix_pe_image:pe_linker.c">
+      </ContextState>
+      <ContextState
+         contextName = "gnu_hash_table::walk_all_hash(std::__1::function&lt;void (unsigned int, unsigned int)&gt;):load_so.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "do_rela_sym(dll*, elf64_rela*):load_so.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "global_sym_tbl">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "fix_pe_image(pe_image*, dll*, unsigned long):load_dll.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "XE_CPU_C::call_host_func(bxInstruction_c*):x86.cpp">
       </ContextState>
       <ContextState
          contextName = "BX_MEM_C::load_ROM(char const*, unsigned long, unsigned char):misc_mem.cc">
@@ -34,44 +84,6 @@
                value = "p_dll">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "BX_CPU_C::getICacheEntry():cpu.cc">
-         <PersistentStrings>
-            <PersistentString
-               value = "bx_cpu">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "gnu_hash_table::walk_all_hash(std::__1::function&lt;void (unsigned int, unsigned int)&gt;):load_so.cpp">
-      </ContextState>
-      <ContextState
-         contextName = "XE_MEM_C::alloca_pagebit64(unsigned long):mmu.cpp">
-         <PersistentStrings>
-            <PersistentString
-               value = "bx_mem">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "do_rela_sym(dll*, elf64_rela*):load_so.cpp">
-         <PersistentStrings>
-            <PersistentString
-               value = "global_sym_tbl">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "XE_CPU_C::cpu_loop():x86.cpp">
-         <PersistentStrings>
-            <PersistentString
-               value = "entry-&gt;pAddr">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "load_lib(elf64_hdr*, unsigned long&amp;, bool):load_so.cpp">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

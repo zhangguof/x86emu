@@ -17,6 +17,7 @@
 		EA0ABB1A231E897100EBC68C /* winstrings.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72C2317D1D40038057E /* winstrings.c */; };
 		EA0ABB1B231E8A2500EBC68C /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD720231524740038057E /* logger.cpp */; };
 		EA0ABB1D231E8CCA00EBC68C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB724082306AE55000019F0 /* main.cpp */; };
+		EA326674231EF4650026184F /* wrap_host_call.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA326672231EF4650026184F /* wrap_host_call.cpp */; };
 		EA7CD722231524740038057E /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD720231524740038057E /* logger.cpp */; };
 		EA7CD72823155B190038057E /* load_dll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72623155B190038057E /* load_dll.cpp */; };
 		EA7CD7342317D1D50038057E /* pe_linker.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72B2317D1D40038057E /* pe_linker.c */; };
@@ -320,6 +321,9 @@
 
 /* Begin PBXFileReference section */
 		EA0ABB0C231E895800EBC68C /* loaddll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = loaddll; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA326671231EF36B0026184F /* host_call.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = host_call.hpp; sourceTree = "<group>"; };
+		EA326672231EF4650026184F /* wrap_host_call.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wrap_host_call.cpp; sourceTree = "<group>"; };
+		EA326675231EF5800026184F /* wrap_host_call.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wrap_host_call.hpp; sourceTree = "<group>"; };
 		EA7CD720231524740038057E /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
 		EA7CD721231524740038057E /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
 		EA7CD72623155B190038057E /* load_dll.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = load_dll.cpp; sourceTree = "<group>"; };
@@ -933,6 +937,8 @@
 		EAB724042306AE55000019F0 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				EA326672231EF4650026184F /* wrap_host_call.cpp */,
+				EA326675231EF5800026184F /* wrap_host_call.hpp */,
 				EA7CD72523155AF20038057E /* loaddll */,
 				EAB7281F230BEE7E000019F0 /* sys_call */,
 				EAB72805230944B2000019F0 /* loadelf */,
@@ -958,6 +964,7 @@
 				EAB7281623098CA4000019F0 /* mmu.cpp */,
 				EAB7281723098CA4000019F0 /* mmu.hpp */,
 				EAB7281D230ADFDC000019F0 /* host_call.cpp */,
+				EA326671231EF36B0026184F /* host_call.hpp */,
 			);
 			path = cpu;
 			sourceTree = "<group>";
@@ -1828,6 +1835,7 @@
 				EAB7271E2306AE56000019F0 /* xop.cc in Sources */,
 				EAB727B42306AE56000019F0 /* pic.cc in Sources */,
 				EAB727672306AE56000019F0 /* linux.cc in Sources */,
+				EA326674231EF4650026184F /* wrap_host_call.cpp in Sources */,
 				EAB727492306AE56000019F0 /* softfloat16.cc in Sources */,
 				EAB727002306AE56000019F0 /* data_xfer8.cc in Sources */,
 				EAB727512306AE56000019F0 /* softfloat-specialize.cc in Sources */,
