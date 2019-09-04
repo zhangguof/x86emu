@@ -98,9 +98,10 @@ void Engine::load_elf(const char* elf_file_name)
     init_mem_allocate(heap_start, BASE_HEAP_ADDR_END);
     
     //load dll
-    const char* dll_path = "/Users/tony/workspace/github/x86emu/test/dll/test.dll";
+//    const char* dll_path = "/Users/tony/workspace/github/x86emu/Tin/dll/test.dll";
+    std::string dll_path = work_home+"crtdll/crt.dll";
     struct pe_image* pe;
-    try_load_dll64(dll_path,&pe);
+    try_load_dll64(dll_path.c_str(),&pe);
     
     setup_os_env();
     
