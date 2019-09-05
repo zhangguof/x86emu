@@ -18,6 +18,8 @@
 		EA0ABB1B231E8A2500EBC68C /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD720231524740038057E /* logger.cpp */; };
 		EA0ABB1D231E8CCA00EBC68C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB724082306AE55000019F0 /* main.cpp */; };
 		EA326674231EF4650026184F /* wrap_host_call.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA326672231EF4650026184F /* wrap_host_call.cpp */; };
+		EA326679231FF8E20026184F /* wrap_crt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA326677231FF8E20026184F /* wrap_crt.cpp */; };
+		EA326683232178A90026184F /* wrap_gen_code.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA32667D232171760026184F /* wrap_gen_code.cpp */; };
 		EA7CD722231524740038057E /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD720231524740038057E /* logger.cpp */; };
 		EA7CD72823155B190038057E /* load_dll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72623155B190038057E /* load_dll.cpp */; };
 		EA7CD7342317D1D50038057E /* pe_linker.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72B2317D1D40038057E /* pe_linker.c */; };
@@ -324,6 +326,10 @@
 		EA326671231EF36B0026184F /* host_call.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = host_call.hpp; sourceTree = "<group>"; };
 		EA326672231EF4650026184F /* wrap_host_call.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wrap_host_call.cpp; sourceTree = "<group>"; };
 		EA326675231EF5800026184F /* wrap_host_call.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wrap_host_call.hpp; sourceTree = "<group>"; };
+		EA326677231FF8E20026184F /* wrap_crt.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wrap_crt.cpp; sourceTree = "<group>"; };
+		EA326678231FF8E20026184F /* wrap_crt.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wrap_crt.hpp; sourceTree = "<group>"; };
+		EA32667D232171760026184F /* wrap_gen_code.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wrap_gen_code.cpp; sourceTree = "<group>"; };
+		EA32667E232171760026184F /* wrap_gen_code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wrap_gen_code.h; sourceTree = "<group>"; };
 		EA7CD720231524740038057E /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
 		EA7CD721231524740038057E /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
 		EA7CD72623155B190038057E /* load_dll.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = load_dll.cpp; sourceTree = "<group>"; };
@@ -891,6 +897,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA326676231FF8BE0026184F /* crt */ = {
+			isa = PBXGroup;
+			children = (
+				EA326677231FF8E20026184F /* wrap_crt.cpp */,
+				EA326678231FF8E20026184F /* wrap_crt.hpp */,
+			);
+			path = crt;
+			sourceTree = "<group>";
+		};
+		EA32667C232167890026184F /* gen_code */ = {
+			isa = PBXGroup;
+			children = (
+				EA32667D232171760026184F /* wrap_gen_code.cpp */,
+				EA32667E232171760026184F /* wrap_gen_code.h */,
+			);
+			path = gen_code;
+			sourceTree = "<group>";
+		};
 		EA7CD72523155AF20038057E /* loaddll */ = {
 			isa = PBXGroup;
 			children = (
@@ -937,6 +961,8 @@
 		EAB724042306AE55000019F0 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				EA32667C232167890026184F /* gen_code */,
+				EA326676231FF8BE0026184F /* crt */,
 				EA326672231EF4650026184F /* wrap_host_call.cpp */,
 				EA326675231EF5800026184F /* wrap_host_call.hpp */,
 				EA7CD72523155AF20038057E /* loaddll */,
@@ -1807,6 +1833,7 @@
 				EAB727802306AE56000019F0 /* cdrom.cc in Sources */,
 				EAB7274E2306AE56000019F0 /* fsincos.cc in Sources */,
 				EAB727842306AE56000019F0 /* floppy.cc in Sources */,
+				EA326683232178A90026184F /* wrap_gen_code.cpp in Sources */,
 				EAB726EB2306AE56000019F0 /* ctrl_xfer16.cc in Sources */,
 				EAB727772306AE56000019F0 /* cdrom_win32.cc in Sources */,
 				EAB727732306AE56000019F0 /* harddrv.cc in Sources */,
@@ -1861,6 +1888,7 @@
 				EAB727382306AE56000019F0 /* bit32.cc in Sources */,
 				EAB727F52306AE56000019F0 /* wxmain.cc in Sources */,
 				EAB727362306AE56000019F0 /* access2.cc in Sources */,
+				EA326679231FF8E20026184F /* wrap_crt.cpp in Sources */,
 				EAB726D02306AE56000019F0 /* core_duo_t2400_yonah.cc in Sources */,
 				EAB726F02306AE56000019F0 /* sha.cc in Sources */,
 				EAB727292306AE56000019F0 /* vapic.cc in Sources */,

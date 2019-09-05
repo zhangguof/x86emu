@@ -7,3 +7,7 @@ alias grun='java -Xmx500M -cp "Users/tony/workspace/github/x86emu/test/antlr4/an
 antlr4 -Dlanguage=Python2 -visitor C.g4
 
 grun C compilationUnit -gui 2.c
+
+java -jar TestRig.jar C compilationUnit -gui ../2.c
+
+gcc -E -P string_func.c

@@ -23,6 +23,7 @@ section .text
 ; DEF_HOST_FUNC puts,1
 ; DEF_HOST_FUNC(puts,1)
 %include "cpu/host_call.hpp"
+%include "gen_code/wrap_gen_code.h"
 
 
 

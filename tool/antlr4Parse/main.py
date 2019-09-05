@@ -4,11 +4,41 @@ from CLexer import CLexer
 from CParser import CParser
 from CListener import CListener
 from CVisitor import CVisitor
+from antlr4.tree.Tree import TerminalNodeImpl, ErrorNodeImpl, TerminalNode, INVALID_INTERVAL
 
+from io import StringIO
+
+
+import codecs
+import unittest
+from antlr4.InputStream import InputStream
 import pprint
 import antlr4.xpath.XPath as XPath
+import gen_code
+from antlr4.tree.Tree import TerminalNodeImpl, ErrorNodeImpl, TerminalNode, INVALID_INTERVAL
+
+
 
 #//ExternalDeclaration//
+
+class MyFileStream(InputStream):
+
+    def __init__(self, fileName, encoding='ascii', errors='strict'):
+        self.fileName = fileName
+        # read binary to avoid line ending conversion
+        with open(fileName, 'rb') as file:
+            lines = file.readlines()
+            new_lines = []
+            for line in lines:
+                line = line.strip()
+                if line.startswith("__attribute__"):
+                    print "skip:%s"%(line)
+                    continue
+                new_lines.append(line)
+            
+            bytes = "\n".join(new_lines)
+            data = codecs.decode(bytes, encoding, errors)
+            super(type(self), self).__init__(data)
 
     
 class MyVisitor(CVisitor):
@@ -22,6 +52,19 @@ class MyVisitor(CVisitor):
         fmt = "%s %s(%s)"%(func['ret_type']['name'],func['name'],pn)
         # print fmt
         return fmt
+    
+    def get_src_text(self,ctx):
+        if isinstance(ctx, TerminalNode):
+            return ctx.getText()+" "
+        
+        if ctx.getChildCount() == 0:
+            return u""
+
+        with StringIO() as builder:
+            for child in ctx.getChildren():
+                builder.write(self.get_src_text(child))
+            return builder.getvalue()
+        
     
     def search(self,ctx,path):
         ret = ctx
@@ -40,15 +83,24 @@ class MyVisitor(CVisitor):
         ret = []
         is_pointer = False
         for i in xrange(0, n):
-            ts = decls.getChild(i).typeSpecifier()
-            if ts is not None:
-                if ts.pointer() is not None:
-                    is_pointer = True
-            else:
-                ts = decls.getChild(i).typeQualifier()
-            if ts is None:
+            delc_spec = decls.getChild(i)
+            tq = delc_spec.typeQualifier()
+            if tq is not None:
+                ret.append(tq.getText())
                 continue
-            ret.append(ts.getText())
+            
+            ts = delc_spec.typeSpecifier()
+            if ts is None:
+                #like extern(storageClassSpecifier)
+                continue
+            p = ts.pointer()
+            if p is None:
+                ret.append(ts.getText())
+            else:
+                is_pointer = True
+                ret.append(ts.typeSpecifier().getText() + p.getChild(0).getText())
+   
+            # ret.append(ts.getText())
         return ret, is_pointer
     
     def parse_param_decl(self,ctx):
@@ -63,6 +115,8 @@ class MyVisitor(CVisitor):
         
     def parse_params(self,ctx):
         # print ctx, type(ctx)
+        if ctx is None:
+            return []
         assert(type(ctx) == CParser.ParameterTypeListContext)
         plist = ctx.parameterList()
         ps = []
@@ -82,11 +136,21 @@ class MyVisitor(CVisitor):
             args.append({"types":ts,
                          "name":" ".join(ts),
                          "is_pointer":is_p})
+        if ctx.getChildCount()>1:
+            var_arg = "..."
+
+            args.append({"types":[var_arg],
+                         "name":var_arg,
+                         "is_pointer":False
+                         }
+                        )
+        
         return args
             
     
     def visitExternalDeclaration(self, ctx):
         # print "visitExternalDeclaration:%s"%(ctx.getText())
+        # print self.get_src_text(ctx)
         xp = ["declaration","initDeclaratorList",
               "initDeclarator","declarator","directDeclarator"
               ]
@@ -99,6 +163,9 @@ class MyVisitor(CVisitor):
             return
         name = name.getText()
         tl = self.search(dd,["parameterTypeList"])
+        # print dd.getChild(1).getText()=="(",ctx.getText()
+        if tl is None and (dd.getChild(1).getText()!='('):
+            return
         args = self.parse_params(tl)
         dss = self.search(ctx,['declaration','declarationSpecifiers'])
         ret_types,is_p= self.parse_decl_specs(dss)
@@ -109,9 +176,10 @@ class MyVisitor(CVisitor):
                       "params":args,
                       }
         decla_func['fmt'] = self.fmt_func(decla_func)
+        decla_func['src'] = self.get_src_text(ctx)
         # print decla_func
         # self.print_func(decla_func)
-        # print self.fmt_func(decla_func)
+        print self.fmt_func(decla_func)
         self.funcs.append(decla_func)
         
         return
@@ -127,28 +195,38 @@ class MyVisitor(CVisitor):
 
  
 def main(argv):
-    input_stream = FileStream(argv[1])
+    if len(argv) > 1:
+        name = argv[1]
+    else:
+        name = "2.c"
+    
+    if len(argv) > 2:
+        out_file = argv[2]
+    else:
+        out_file = "2_out.c"
+    if len(argv) > 3:
+        start_idx = int(argv[3])
+    else:
+        start_idx = 100
+    
+    
+    # input_stream = FileStream(name)
+    input_stream = MyFileStream(name)
     lexer = CLexer(input_stream)
     stream = CommonTokenStream(lexer)
     parser = CParser(stream)
   
     tree = parser.compilationUnit()
-    # p = "//ExternalDeclaration"
-    # xp = XPath.XPath(parser,"2.c")
-    # print xp.findAll(tree,p,parser)
-    # print xp
+
     
     v = MyVisitor()
     v.init()
     v.visit(tree)
     funcs = v.get_funcs()
-    pprint.pprint(funcs)
+    # pprint.pprint(funcs)
     
-    # mylistener = MyGrammarListener()
-    # mylistener.init()
-    # xp = xpath
-    # walker = ParseTreeWalker()
-    # walker.walk(mylistener, tree)
+    gen_code.gen_c_file(funcs,out_file,start_idx)
+ 
  
 if __name__ == '__main__':
     main(sys.argv)

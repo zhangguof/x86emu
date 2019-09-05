@@ -306,6 +306,7 @@ typeQualifier
     |   'restrict'
     |   'volatile'
     |   '_Atomic'
+    |	'_Nullable'
     ;
 
 functionSpecifier
@@ -569,6 +570,7 @@ Int : 'int';
 Long : 'long';
 Register : 'register';
 Restrict : 'restrict';
+Nullable:'_Nullable';
 Return : 'return';
 Short : 'short';
 Signed : 'signed';
