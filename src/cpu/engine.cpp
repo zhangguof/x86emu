@@ -172,8 +172,11 @@ void Engine::setup_os_env()
     
 }
 
+extern void init_host_call_tbl();
 void Engine::init()
 {
+    init_host_call_tbl();
+    
     env_init();
     //    bx_cpu_ptr = &::bx_cpu; //global bx cpu!
     if(bx_cpu)

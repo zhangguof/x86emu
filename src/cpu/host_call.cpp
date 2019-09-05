@@ -27,7 +27,7 @@
 //do host call ,call from guess
 
 //typedef int (*HFun_is)(const char*);
-typedef  uint64_t host_fun_t(uint64_t*);
+typedef  uint64_t (*host_fun_t)(uint64_t*);
 
 struct HOST_FUN_C
 {

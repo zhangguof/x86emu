@@ -18,16 +18,7 @@
 
 #include "wrap_host_call.hpp"
 
-inline Bit8u* getMemAddr(Bit64u addr)
-{
-    Bit8u* ret = BX_MEM(0)->getHostMemAddr(BX_CPU(0), addr, BX_RW);
-    return ret;
-}
 
-inline Bit8u* getGuestAddr(Bit64u  addr)
-{
-    return BX_MEM(0)->getGuestMemAddr(BX_CPU(0), addr);
-}
 
 
 
@@ -109,7 +100,7 @@ DEF_HOST_FUNC(strstr)
     ret = (ret_t)getGuestAddr(bx_phy_address(ret));
     
     return (uint64_t)ret;
-
+    
 }
 
 //DEF_HOST_FUNC(vprintf)
