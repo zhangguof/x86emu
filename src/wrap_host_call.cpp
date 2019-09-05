@@ -63,45 +63,45 @@ DEF_HOST_FUNC(free)
     host_free(ptr);
     return 0;
 }
-
-DEF_HOST_FUNC(strlen)
-{
-    char* ptr = (char*)getMemAddr(args[0]);
-    return strlen(ptr);
-}
-DEF_HOST_FUNC(memcpy)
-{
-    void* arg1 = (void*)(getMemAddr(args[0]));
-    void* arg2 = (void*)(getMemAddr(args[1]));
-    size_t arg3 = (size_t)(args[2]);
-    memcpy(arg1, arg2, arg3);
-    return args[0];
-}
-DEF_HOST_FUNC(strcpy)
-{
-    char* arg1 = (char*)getMemAddr(args[0]);
-    char* arg2 = (char*)getMemAddr(args[1]);
-    strcpy(arg1, arg2);
-    return args[0];
-}
-
-DEF_HOST_FUNC(strstr)
-{
-//    char    *strstr(const char *__big, const char *__little);
-    typedef const char* arg1_t;
-    typedef arg1_t arg2_t;
-    typedef arg1_t ret_t;
-    auto arg1 = GET_ARGS(0, arg1_t);
-    auto arg2 = GET_ARGS(1, arg2_t);
-    arg1 = (arg1_t)getMemAddr((bx_phy_address)arg1);
-    arg2 = (arg2_t)getMemAddr((bx_phy_address)arg2);
-    
-    ret_t ret = strstr(arg1,arg2);
-    ret = (ret_t)getGuestAddr(bx_phy_address(ret));
-    
-    return (uint64_t)ret;
-    
-}
+//
+//DEF_HOST_FUNC(strlen)
+//{
+//    char* ptr = (char*)getMemAddr(args[0]);
+//    return strlen(ptr);
+//}
+//DEF_HOST_FUNC(memcpy)
+//{
+//    void* arg1 = (void*)(getMemAddr(args[0]));
+//    void* arg2 = (void*)(getMemAddr(args[1]));
+//    size_t arg3 = (size_t)(args[2]);
+//    memcpy(arg1, arg2, arg3);
+//    return args[0];
+//}
+//DEF_HOST_FUNC(strcpy)
+//{
+//    char* arg1 = (char*)getMemAddr(args[0]);
+//    char* arg2 = (char*)getMemAddr(args[1]);
+//    strcpy(arg1, arg2);
+//    return args[0];
+//}
+//
+//DEF_HOST_FUNC(strstr)
+//{
+////    char    *strstr(const char *__big, const char *__little);
+//    typedef const char* arg1_t;
+//    typedef arg1_t arg2_t;
+//    typedef arg1_t ret_t;
+//    auto arg1 = GET_ARGS(0, arg1_t);
+//    auto arg2 = GET_ARGS(1, arg2_t);
+//    arg1 = (arg1_t)getMemAddr((bx_phy_address)arg1);
+//    arg2 = (arg2_t)getMemAddr((bx_phy_address)arg2);
+//
+//    ret_t ret = strstr(arg1,arg2);
+//    ret = (ret_t)getGuestAddr(bx_phy_address(ret));
+//
+//    return (uint64_t)ret;
+//
+//}
 
 //DEF_HOST_FUNC(vprintf)
 //{

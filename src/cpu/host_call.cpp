@@ -56,6 +56,7 @@ HOST_FUN_C host_func_table[] = {
 },
     
 #include "host_call.hpp"
+#include "gen_code/wrap_gen_code.h"
     
 #undef DEF_HOST_FUNC
 //    {nullptr,nullptr,nullptr},
