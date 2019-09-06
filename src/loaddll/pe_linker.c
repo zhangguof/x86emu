@@ -173,11 +173,11 @@ static void *get_dll_init(char *name)
  * Find and validate the coff header
  *
  */
-int check_nt_hdr64(IMAGE_NT_HEADERS *nt_hdr)
+int check_nt_hdr64(IMAGE_NT_HEADERS64 *nt_hdr)
 {
     int i;
     WORD attr;
-    PIMAGE_OPTIONAL_HEADER opt_hdr;
+    PIMAGE_OPTIONAL_HEADER64 opt_hdr;
     
     /* Validate the "PE\0\0" signature */
     if (nt_hdr->Signature != IMAGE_NT_SIGNATURE) {
@@ -244,11 +244,11 @@ int check_nt_hdr64(IMAGE_NT_HEADERS *nt_hdr)
     return -EINVAL;
 }
 
-static int check_nt_hdr(IMAGE_NT_HEADERS *nt_hdr)
+static int check_nt_hdr32(IMAGE_NT_HEADERS32 *nt_hdr)
 {
         int i;
         WORD attr;
-        PIMAGE_OPTIONAL_HEADER opt_hdr;
+        PIMAGE_OPTIONAL_HEADER32 opt_hdr;
 
         /* Validate the "PE\0\0" signature */
         if (nt_hdr->Signature != IMAGE_NT_SIGNATURE) {
@@ -341,13 +341,13 @@ static int import(void *image, IMAGE_IMPORT_DESCRIPTOR *dirent, char *dll)
         address_tbl = RVA2VA(image, dirent->FirstThunk, ULONG_PTR *);
 
         for (i = 0; lookup_tbl[i]; i++) {
-                if (IMAGE_SNAP_BY_ORDINAL(lookup_tbl[i])) {
+                if (IMAGE_SNAP_BY_ORDINAL64(lookup_tbl[i])) {
                         ERROR("ordinal import not supported: %llu", (uint64_t)lookup_tbl[i]);
                         address_tbl[i] = (ULONG) ordinal_import_stub;
                         continue;
                 }
                 else {
-                        symname = RVA2VA(image, ((lookup_tbl[i] & ~IMAGE_ORDINAL_FLAG) + 2), char *);
+                        symname = RVA2VA(image, ((lookup_tbl[i] & ~IMAGE_ORDINAL_FLAG64) + 2), char *);
                 }
 
                 if (get_export(symname, &adr) < 0) {
@@ -370,7 +370,7 @@ static int read_exports(struct pe_image *pe)
         int i;
         uint32_t *name_table;
         uint16_t *ordinal_table;
-        PIMAGE_OPTIONAL_HEADER opt_hdr;
+        PIMAGE_OPTIONAL_HEADER64 opt_hdr;
         IMAGE_DATA_DIRECTORY *export_data_dir;
 
         opt_hdr = &pe->nt_hdr->OptionalHeader;
@@ -417,14 +417,14 @@ static int read_exports(struct pe_image *pe)
         return 0;
 }
 
-static int fixup_imports(void *image, IMAGE_NT_HEADERS *nt_hdr)
+static int fixup_imports(void *image, IMAGE_NT_HEADERS64 *nt_hdr)
 {
         int i;
         char *name;
         int ret = 0;
         IMAGE_IMPORT_DESCRIPTOR *dirent;
         IMAGE_DATA_DIRECTORY *import_data_dir;
-        PIMAGE_OPTIONAL_HEADER opt_hdr;
+        PIMAGE_OPTIONAL_HEADER64 opt_hdr;
 
         opt_hdr = &nt_hdr->OptionalHeader;
         import_data_dir =
@@ -441,13 +441,13 @@ static int fixup_imports(void *image, IMAGE_NT_HEADERS *nt_hdr)
         return ret;
 }
 
-static int fixup_reloc(void *image, IMAGE_NT_HEADERS *nt_hdr)
+static int fixup_reloc(void *image, IMAGE_NT_HEADERS64 *nt_hdr)
 {
         ULONG_PTR base;
         ULONG_PTR size;
         IMAGE_BASE_RELOCATION *fixup_block;
         IMAGE_DATA_DIRECTORY *base_reloc_data_dir;
-        PIMAGE_OPTIONAL_HEADER opt_hdr;
+        PIMAGE_OPTIONAL_HEADER64 opt_hdr;
 
         opt_hdr = &nt_hdr->OptionalHeader;
         base = opt_hdr->ImageBase;
@@ -579,7 +579,7 @@ static int fix_pe_image(struct pe_image *pe)
         pe->size = image_size;
 
         /* Update our internal pointers */
-        pe->nt_hdr = (IMAGE_NT_HEADERS *)
+        pe->nt_hdr = (IMAGE_NT_HEADERS64 *)
                 (pe->image + ((IMAGE_DOS_HEADER *)pe->image)->e_lfanew);
         pe->opt_hdr = &pe->nt_hdr->OptionalHeader;
 
@@ -605,7 +605,7 @@ int link_pe_images(struct pe_image *pe_image, unsigned short n)
                 }
 
                 pe->nt_hdr =
-                        (IMAGE_NT_HEADERS *)(pe->image + dos_hdr->e_lfanew);
+                        (IMAGE_NT_HEADERS64 *)(pe->image + dos_hdr->e_lfanew);
                 pe->opt_hdr = &pe->nt_hdr->OptionalHeader;
 
                 pe->type = check_nt_hdr(pe->nt_hdr);

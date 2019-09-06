@@ -46,8 +46,8 @@ struct pe_image {
         size_t size;
         int type;
 
-        IMAGE_NT_HEADERS *nt_hdr;
-        IMAGE_OPTIONAL_HEADER *opt_hdr;
+        IMAGE_NT_HEADERS64 *nt_hdr;
+        IMAGE_OPTIONAL_HEADER64 *opt_hdr;
 };
 
 struct ntos_work_item {

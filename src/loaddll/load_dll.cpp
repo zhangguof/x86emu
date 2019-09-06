@@ -131,7 +131,7 @@ static int fix_pe_image(struct pe_image *pe,dll* pdll,bx_phy_address base_addr)
     pe->size = image_size;
     
     /* Update our internal pointers */
-    pe->nt_hdr = (IMAGE_NT_HEADERS *)
+    pe->nt_hdr = (IMAGE_NT_HEADERS64 *)
     ((char*)host_image+ ((IMAGE_DOS_HEADER *)host_image)->e_lfanew);
     pe->opt_hdr = &pe->nt_hdr->OptionalHeader;
     
@@ -207,13 +207,13 @@ static int import(void *image, IMAGE_IMPORT_DESCRIPTOR *dirent, char *dll)
     address_tbl = RVA2VA(host_image, dirent->FirstThunk, bx_phy_address *);
     
     for (i = 0; lookup_tbl[i]; i++) {
-        if (IMAGE_SNAP_BY_ORDINAL(lookup_tbl[i])) {
+        if (IMAGE_SNAP_BY_ORDINAL64(lookup_tbl[i])) {
             ERROR("ordinal import not supported: %llu", (uint64_t)lookup_tbl[i]);
             address_tbl[i] = (bx_phy_address) ordinal_import_stub;
             continue;
         }
         else {
-            symname = RVA2VA(host_image, ((lookup_tbl[i] & ~IMAGE_ORDINAL_FLAG) + 2), char *);
+            symname = RVA2VA(host_image, ((lookup_tbl[i] & ~IMAGE_ORDINAL_FLAG64) + 2), char *);
         }
         
         if (get_export(symname, &adr) < 0) {
@@ -236,7 +236,7 @@ static int read_exports(struct pe_image *pe)
     int i;
     uint32_t *name_table;
     uint16_t *ordinal_table;
-    PIMAGE_OPTIONAL_HEADER opt_hdr;
+    PIMAGE_OPTIONAL_HEADER64 opt_hdr;
     IMAGE_DATA_DIRECTORY *export_data_dir;
     
     Bit8u* host_image = getMemAddr(Bit64u(pe->image));
@@ -290,14 +290,14 @@ static int read_exports(struct pe_image *pe)
     return 0;
 }
 
-static int fixup_imports(void *image, IMAGE_NT_HEADERS *nt_hdr)
+static int fixup_imports(void *image, IMAGE_NT_HEADERS64 *nt_hdr)
 {
     int i;
     char *name;
     int ret = 0;
     IMAGE_IMPORT_DESCRIPTOR *dirent;
     IMAGE_DATA_DIRECTORY *import_data_dir;
-    PIMAGE_OPTIONAL_HEADER opt_hdr;
+    PIMAGE_OPTIONAL_HEADER64 opt_hdr;
     void* host_image = getMemAddr((bx_phy_address)image);
     
     opt_hdr = &nt_hdr->OptionalHeader;
@@ -315,13 +315,13 @@ static int fixup_imports(void *image, IMAGE_NT_HEADERS *nt_hdr)
     return ret;
 }
 
-static int fixup_reloc(void *image, IMAGE_NT_HEADERS *nt_hdr)
+static int fixup_reloc(void *image, IMAGE_NT_HEADERS64 *nt_hdr)
 {
     ULONG_PTR base;
     ULONG_PTR size;
     IMAGE_BASE_RELOCATION *fixup_block;
     IMAGE_DATA_DIRECTORY *base_reloc_data_dir;
-    PIMAGE_OPTIONAL_HEADER opt_hdr;
+    PIMAGE_OPTIONAL_HEADER64 opt_hdr;
     
     opt_hdr = &nt_hdr->OptionalHeader;
     base = opt_hdr->ImageBase;
@@ -403,7 +403,7 @@ int link_pe_image_in_host(struct pe_image *pe_image, bx_phy_address* base_addr,d
     }
     
     pe->nt_hdr =
-    (IMAGE_NT_HEADERS *)((char*)pe->image + dos_hdr->e_lfanew);
+    (IMAGE_NT_HEADERS64 *)((char*)pe->image + dos_hdr->e_lfanew);
     pe->opt_hdr = &pe->nt_hdr->OptionalHeader;
     
     pe->type = check_nt_hdr64(pe->nt_hdr);
