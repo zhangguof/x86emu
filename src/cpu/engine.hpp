@@ -44,6 +44,10 @@ public:
     void run();
     void call_guest_method1(const char* method,uint64_t arg1);
     void call_win_guest_method1(const char* method,uint64_t arg1);
+    void call_win32_guest_method1(const char* method,uint64_t arg1);
+    
+    void sw_cpu_mode(uint32_t mode);
+
 };
 
 extern std::shared_ptr<Engine> g_engine;

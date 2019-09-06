@@ -9,10 +9,16 @@
                value = "bx_cpu-&gt;gen_reg[16].rrx">
             </PersistentString>
             <PersistentString
-               value = "bx_cpu-&gt;eipPageBias">
+               value = "bx_cpu-&gt;gen_reg[4].rrx">
             </PersistentString>
             <PersistentString
                value = "bx_cpu-&gt;sregs[1]">
+            </PersistentString>
+            <PersistentString
+               value = "bx_cpu-&gt;eipPageBias">
+            </PersistentString>
+            <PersistentString
+               value = "bx_cpu-&gt;gen_reg[5].rrx">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -29,6 +35,9 @@
       </ContextState>
       <ContextState
          contextName = "read_exports:pe_linker.c">
+      </ContextState>
+      <ContextState
+         contextName = "read_exports(pe_image32*):load_dll32.cpp">
       </ContextState>
       <ContextState
          contextName = "XE_CPU_C::cpu_loop():x86.cpp">
@@ -53,6 +62,9 @@
          contextName = "fix_pe_image:pe_linker.c">
       </ContextState>
       <ContextState
+         contextName = "fix_pe_image(pe_image*, dll*, unsigned long):load_dll.cpp">
+      </ContextState>
+      <ContextState
          contextName = "gnu_hash_table::walk_all_hash(std::__1::function&lt;void (unsigned int, unsigned int)&gt;):load_so.cpp">
       </ContextState>
       <ContextState
@@ -62,9 +74,6 @@
                value = "global_sym_tbl">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "fix_pe_image(pe_image*, dll*, unsigned long):load_dll.cpp">
       </ContextState>
       <ContextState
          contextName = "XE_CPU_C::call_host_func(bxInstruction_c*):x86.cpp">

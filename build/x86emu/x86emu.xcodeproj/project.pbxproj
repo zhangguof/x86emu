@@ -30,6 +30,7 @@
 		EA7CD7402317DDA30038057E /* hcreate_r.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD73E2317DDA30038057E /* hcreate_r.c */; };
 		EA7CD7412317DDA30038057E /* hdestroy_r.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD73F2317DDA30038057E /* hdestroy_r.c */; };
 		EA7CD7432317F4700038057E /* siphash24.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD7422317F4700038057E /* siphash24.c */; };
+		EA8C4E4623229C110041FB08 /* load_dll32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA8C4E4523229C110041FB08 /* load_dll32.cpp */; };
 		EAB726A52306AE56000019F0 /* x86.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB724072306AE55000019F0 /* x86.cpp */; };
 		EAB726A72306AE56000019F0 /* main.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7240A2306AE55000019F0 /* main.cc */; };
 		EAB726B42306AE56000019F0 /* osdep.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7241F2306AE55000019F0 /* osdep.cc */; };
@@ -351,6 +352,7 @@
 		EA7CD73E2317DDA30038057E /* hcreate_r.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hcreate_r.c; sourceTree = "<group>"; };
 		EA7CD73F2317DDA30038057E /* hdestroy_r.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hdestroy_r.c; sourceTree = "<group>"; };
 		EA7CD7422317F4700038057E /* siphash24.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = siphash24.c; sourceTree = "<group>"; };
+		EA8C4E4523229C110041FB08 /* load_dll32.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = load_dll32.cpp; sourceTree = "<group>"; };
 		EAB71E532306AD95000019F0 /* x86emu */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = x86emu; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAB724062306AE55000019F0 /* x86.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x86.h; sourceTree = "<group>"; };
 		EAB724072306AE55000019F0 /* x86.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = x86.cpp; sourceTree = "<group>"; };
@@ -923,6 +925,7 @@
 				EA7CD73F2317DDA30038057E /* hdestroy_r.c */,
 				EA7CD7392317D2330038057E /* codealloc.h */,
 				EA7CD72623155B190038057E /* load_dll.cpp */,
+				EA8C4E4523229C110041FB08 /* load_dll32.cpp */,
 				EA7CD72F2317D1D40038057E /* crt.c */,
 				EA7CD7302317D1D50038057E /* Makefile */,
 				EA7CD7292317D1D40038057E /* ntoskernel.h */,
@@ -1827,6 +1830,7 @@
 				EAB727582306AE56000019F0 /* segment_ctrl_pro.cc in Sources */,
 				EAB7278F2306AE56000019F0 /* serial_raw.cc in Sources */,
 				EAB726C82306AE56000019F0 /* mult32.cc in Sources */,
+				EA8C4E4623229C110041FB08 /* load_dll32.cpp in Sources */,
 				EAB726C02306AE56000019F0 /* load.cc in Sources */,
 				EAB7273A2306AE56000019F0 /* crregs.cc in Sources */,
 				EAB726F82306AE56000019F0 /* protect_ctrl.cc in Sources */,

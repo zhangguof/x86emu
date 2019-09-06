@@ -5220,8 +5220,8 @@ public: // for now...
     virtual bx_bool is_host_call(Bit64u addr){return 0;}
     virtual Bit64u call_host_func(bxInstruction_c* i){return 0;}
     virtual Bit64u call_win_host_func(bxInstruction_c* i) {return 0;}
+    virtual Bit64u call_win32_host_func(bxInstruction_c* i) {return 0;}
 
-    
 };
 
 #if BX_CPU_LEVEL >= 5

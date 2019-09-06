@@ -1,12 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
-#include "crt.h"
-
-extern "C"
-{
-extern uint64_t call_win_host_func(uint32_t,...);
-}
+#include "crt32.h"
 
 
 
@@ -16,9 +11,15 @@ int Double(int x)
         return 2 * x;
 }
 
+int64_t test_64b(int a,int b,int64_t c)
+{
+	int64_t r = c + 0x10000;
+	r <<= 10;
+	return r;
+}
+
 int test_dll2()
 {
-	// call_win_host_func(0x1,"hello test dll2!!!\n");
 	const char* name = "hello test dll 2111!\n";
 	puts(name);
 	// char* s = (char*)malloc(32);
@@ -26,7 +27,8 @@ int test_dll2()
 	puts(s);
 	int a = 0x123;
 	long b = 0x1234587;
-	printf("test:%d,0x%0lx,%s!!!\n",a,b,name);
+	return a+b;
+	// printf("test:%d,0x%0lx,%s!!!\n",a,b,name);
 
 	// int len = strlen(name);
 	// memcpy(s,name,len);
@@ -34,13 +36,13 @@ int test_dll2()
 
 	// free(s);
 
-	return 0;
+	// return 0;
 }
 
 int test_dll(const char* name,int a1,int a2,int a3,int a4,int a5,double f1)
 {
 	// printf(name);
-	call_win_host_func(0x1,name);
+	// call_win_host_func(0x1,name);
 	int b = a1+a2+a3+a4+a5;
 	double ff = f1+1.0;
 	return b;

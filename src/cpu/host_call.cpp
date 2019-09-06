@@ -95,7 +95,7 @@ void init_host_call_tbl()
 }
 
 
-Bit64u do_call_host_func(Bit32u idx,HOST_CALL_5ARGS& args)
+uint64_t do_call_host_func(Bit32u idx, uint64_t* args)
 {
     auto it = host_call_hash_tbl.find(idx);
     if(it == host_call_hash_tbl.end())

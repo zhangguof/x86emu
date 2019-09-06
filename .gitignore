@@ -17,3 +17,6 @@ bochsout.txt
 build/x86emu/x86emu.xcodeproj/xcuserdata/tony.xcuserdatad/xcdebugger
 UserInterfaceState.xcuserstate
 libs
+*.exe
+*.a
+2.s

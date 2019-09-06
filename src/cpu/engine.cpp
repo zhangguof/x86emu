@@ -244,11 +244,11 @@ void Engine::run()
     cpu_ptr->cpu_loop();
     
 
-    call_guest_method1("test_pow2",100);
-    printf("100*100=%d\n",(int)last_ret);
-    call_win_guest_method1("Double", 1000);
-    printf("1000*2 = %d\n",(int)last_ret);
-    call_win_guest_method1("test_dll2", 0);
+//    call_guest_method1("test_pow2",100);
+//    printf("100*100=%d\n",(int)last_ret);
+//    call_win_guest_method1("Double", 1000);
+//    printf("1000*2 = %d\n",(int)last_ret);
+    call_win32_guest_method1("test_dll2", 0);
                        
 }
 
@@ -279,6 +279,9 @@ void Engine::call_guest_method1(const char* method,uint64_t arg1)
 //rcx,rdx,r8,r9
 void Engine::call_win_guest_method1(const char* method,uint64_t arg1)
 {
+    auto pre_cpu_mode = cpu_ptr->cpu_mode;
+    sw_cpu_mode(BX_MODE_LONG_64);
+    
     auto it = global_sym_tbl.find(method);
     if(it!=global_sym_tbl.end())
     {
@@ -294,6 +297,45 @@ void Engine::call_win_guest_method1(const char* method,uint64_t arg1)
     else
     {
         LOG_ERROR("can't find symbol :%s in global sym tbl!\n",method);
+    }
+    sw_cpu_mode(pre_cpu_mode);
+}
+
+void Engine::call_win32_guest_method1(const char* method,uint64_t arg1)
+{
+    auto pre_cpu_mode = cpu_ptr->cpu_mode;
+    sw_cpu_mode(BX_MODE_LONG_COMPAT);
+    
+    auto it = global_sym_tbl_win32.find(method);
+    if(it!=global_sym_tbl_win32.end())
+    {
+        bx_phy_address fun_ptr = it->second;
+        RCX = arg1;
+        
+        cpu_ptr->push_64(call_host_ret_addr);
+        
+        RIP = fun_ptr;
+        cpu_ptr->cpu_loop();
+        
+    }
+    else
+    {
+        LOG_ERROR("can't find symbol :%s in global sym32bit tbl!\n",method);
+    }
+    sw_cpu_mode(pre_cpu_mode);
+}
+
+void Engine::sw_cpu_mode(uint32_t mode)
+{
+    if(cpu_ptr->cpu_mode == BX_MODE_LONG_64 && mode == BX_MODE_LONG_COMPAT)
+    {
+        cpu_ptr->sregs[BX_SEG_REG_CS].cache.u.segment.l = 0; // 64bit
+         cpu_ptr->handleCpuModeChange();
+    }
+    else if(cpu_ptr->cpu_mode == BX_MODE_LONG_COMPAT && mode==BX_MODE_LONG_64)
+    {
+        cpu_ptr->sregs[BX_SEG_REG_CS].cache.u.segment.l = 1; // 64bit
+        cpu_ptr->handleCpuModeChange();
     }
 }
 

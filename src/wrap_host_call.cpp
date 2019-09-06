@@ -47,7 +47,8 @@ DEF_HOST_FUNC(do_ret)
 DEF_HOST_FUNC(puts)
 {
     typedef const char* ARG1_T;
-    ARG1_T arg1 = (ARG1_T)(getMemAddr(args[0]));
+    uint32_t* pargs = (uint32_t*) args;
+    ARG1_T arg1 = (ARG1_T)(getMemAddr(pargs[0]));
     return puts(arg1);
 }
 
@@ -108,6 +109,15 @@ DEF_HOST_FUNC(free)
 //    char* arg1 = (char*)getMemAddr(args[0]);
 //    void* va = (void*)getMemAddr(args[1]);
 //    return vprintf(arg1, reinterpret_cast<va_list>(va));
+//}
+
+//int vprintf(const char * , va_list)
+//uint64_t wrap_vprintf(uint64_t* args)
+//{
+//    char* fmt = (char*)getMemAddr(args[0]);
+//    va_list va = (va_list)(args[1]);
+//
+//    return 0;
 //}
 
 

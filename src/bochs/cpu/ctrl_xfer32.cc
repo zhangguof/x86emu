@@ -520,6 +520,20 @@ BX_INSF_TYPE BX_CPP_AttrRegparmN(1) BX_CPU_C::JMP_Ap(bxInstruction_c *i)
 BX_INSF_TYPE BX_CPP_AttrRegparmN(1) BX_CPU_C::JMP_EdR(bxInstruction_c *i)
 {
   Bit32u new_EIP = BX_READ_32BIT_REG(i->dst());
+  if(BX_CPU(0)->is_host_call(new_EIP))
+  {
+      uint64_t ret = 0;
+      if(new_EIP == 0x1FFFFFFD)
+      {
+          ret = BX_CPU(0)->call_win32_host_func(i);
+      }
+      new_EIP = EIP;
+      EAX = (Bit32u)(ret&0xFFFFFFFF);
+      if((ret>>32) > 0)
+      {
+          EDX = (ret >> 32);
+      }
+  }
   branch_near32(new_EIP);
   BX_INSTR_UCNEAR_BRANCH(BX_CPU_ID, BX_INSTR_IS_JMP_INDIRECT, PREV_RIP, new_EIP);
 

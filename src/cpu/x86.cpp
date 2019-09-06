@@ -80,7 +80,7 @@ Bit8u*  XE_MEM_C::getGuestMemAddr(BX_CPU_C *cpu, bx_phy_address addr)
 inline bx_bool XE_CPU_C::is_host_call(Bit64u addr)
 {
     addr &= 0xFFFFFFFF;
-    return (addr == 0x1FFFFFFF || addr==0x1FFFFFFE);
+    return (addr == 0x1FFFFFFF || addr==0x1FFFFFFE || addr==0x1FFFFFFD);
 }
 
 
@@ -91,7 +91,7 @@ inline bx_bool XE_CPU_C::is_host_call(Bit64u addr)
 
 //HOST_CALL_4ARGS
 
-extern Bit64u do_call_host_func(Bit32u idx,HOST_CALL_5ARGS& args);
+extern Bit64u do_call_host_func(Bit32u idx,uint64_t* args);
 
 
 Bit64u XE_CPU_C::call_host_func(bxInstruction_c* i)
@@ -116,6 +116,22 @@ Bit64u XE_CPU_C::call_win_host_func(bxInstruction_c* i)
     //    printf("idx:%0x,data:%0x,len:%u\n",idx,data_addr,len);
     
     return do_call_host_func(idx,arg5);
+}
+
+
+Bit64u XE_CPU_C::call_win32_host_func(bxInstruction_c* i)
+{
+    Bit32u idx = EAX;
+    //    Bit64u data_addr = RSI;
+    //    Bit32u len = EDX;
+//    HOST_CALL_5ARGS arg5 = {RCX,RDX,R8,R9,0};
+    uint64_t* p_esp = (uint64_t*)ESP;
+    p_esp = (uint64_t*)getHostMemAddr((bx_phy_address)p_esp, BX_RW);
+    
+    //    Bit8u* paddr = BX_MEM(0)->getHostMemAddr(this, data_addr, BX_RW);
+    //    printf("idx:%0x,data:%0x,len:%u\n",idx,data_addr,len);
+    p_esp += 1;// point to first arg
+    return do_call_host_func(idx,p_esp);
 }
 
 
