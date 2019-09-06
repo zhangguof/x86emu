@@ -50,7 +50,7 @@ static struct pe_exports *pe_exports;
 static int num_pe_exports;
 
 #define DRIVER_NAME "pelinker"
-#define RVA2VA(image, rva, type) (type)(ULONG_PTR)((void *)image + rva)
+#define RVA2VA(image, rva, type) (type)(ULONG_PTR64)((void *)image + rva)
 
 #define DBGLINKER(fmt, ...) printf("%s (%s:%d): " fmt "\n",     \
                                   DRIVER_NAME, __func__,               \
@@ -244,7 +244,7 @@ int check_nt_hdr64(IMAGE_NT_HEADERS64 *nt_hdr)
     return -EINVAL;
 }
 
-static int check_nt_hdr32(IMAGE_NT_HEADERS32 *nt_hdr)
+int check_nt_hdr32(IMAGE_NT_HEADERS32 *nt_hdr)
 {
         int i;
         WORD attr;
@@ -259,15 +259,15 @@ static int check_nt_hdr32(IMAGE_NT_HEADERS32 *nt_hdr)
 
         opt_hdr = &nt_hdr->OptionalHeader;
 
-        if (opt_hdr->Magic != IMAGE_NT_OPTIONAL_HDR64_MAGIC) {
-                ERROR("kernel is 64-bit, but Windows driver is not 64bit;"
+        if (opt_hdr->Magic != IMAGE_NT_OPTIONAL_HDR32_MAGIC) {
+                ERROR("kernel is 32-bit, but Windows driver is not 32bit;"
                       "bad magic: %04X", opt_hdr->Magic);
                 return -EINVAL;
         }
 
         /* Validate the image for the current architecture. */
-        if (nt_hdr->FileHeader.Machine != IMAGE_FILE_MACHINE_AMD64) {
-                ERROR("kernel is 64-bit, but Windows driver is not 64-bit;"
+        if (nt_hdr->FileHeader.Machine != IMAGE_FILE_MACHINE_I386) {
+                ERROR("kernel is 32-bit, but Windows driver is not 32-bit;"
                       " (PE signature is %04X)", nt_hdr->FileHeader.Machine);
                 return -EINVAL;
         }
@@ -330,15 +330,15 @@ static void unknown_symbol_stub(void)
 
 static int import(void *image, IMAGE_IMPORT_DESCRIPTOR *dirent, char *dll)
 {
-        ULONG_PTR *lookup_tbl, *address_tbl;
+        ULONG_PTR64 *lookup_tbl, *address_tbl;
         char *symname = NULL;
         int i;
         int ret = 0;
         generic_func adr;
 
   
-        lookup_tbl = RVA2VA(image, dirent->u.OriginalFirstThunk, ULONG_PTR *);
-        address_tbl = RVA2VA(image, dirent->FirstThunk, ULONG_PTR *);
+        lookup_tbl = RVA2VA(image, dirent->u.OriginalFirstThunk, ULONG_PTR64 *);
+        address_tbl = RVA2VA(image, dirent->FirstThunk, ULONG_PTR64 *);
 
         for (i = 0; lookup_tbl[i]; i++) {
                 if (IMAGE_SNAP_BY_ORDINAL64(lookup_tbl[i])) {
@@ -357,7 +357,7 @@ static int import(void *image, IMAGE_IMPORT_DESCRIPTOR *dirent, char *dll)
                 } else {
                         DBGLINKER("found symbol: %s:%s: addr: %p, rva = %llu",
                                   dll, symname, adr, (uint64_t)address_tbl[i]);
-                        address_tbl[i] = (ULONG_PTR)adr;
+                        address_tbl[i] = (ULONG_PTR64)adr;
                 }
         }
 
@@ -443,8 +443,8 @@ static int fixup_imports(void *image, IMAGE_NT_HEADERS64 *nt_hdr)
 
 static int fixup_reloc(void *image, IMAGE_NT_HEADERS64 *nt_hdr)
 {
-        ULONG_PTR base;
-        ULONG_PTR size;
+        ULONG_PTR64 base;
+        ULONG_PTR64 size;
         IMAGE_BASE_RELOCATION *fixup_block;
         IMAGE_DATA_DIRECTORY *base_reloc_data_dir;
         PIMAGE_OPTIONAL_HEADER64 opt_hdr;
@@ -548,7 +548,7 @@ static int fix_pe_image(struct pe_image *pe)
         /* Copy all the headers, ie everything before the first section. */
 
         sections = pe->nt_hdr->FileHeader.NumberOfSections;
-        sect_hdr = IMAGE_FIRST_SECTION(pe->nt_hdr);
+        sect_hdr = IMAGE_FIRST_SECTION64(pe->nt_hdr);
 
         DBGLINKER("copying headers: %u bytes", sect_hdr->PointerToRawData);
 
@@ -608,7 +608,7 @@ int link_pe_images(struct pe_image *pe_image, unsigned short n)
                         (IMAGE_NT_HEADERS64 *)(pe->image + dos_hdr->e_lfanew);
                 pe->opt_hdr = &pe->nt_hdr->OptionalHeader;
 
-                pe->type = check_nt_hdr(pe->nt_hdr);
+                pe->type = check_nt_hdr64(pe->nt_hdr);
                 if (pe->type <= 0) {
                         TRACE1("type <= 0");
                         return -EINVAL;

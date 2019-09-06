@@ -418,9 +418,14 @@ typedef struct _IMAGE_SECTION_HEADER {
 
 #define IMAGE_SIZEOF_SECTION_HEADER 40
 
-#define IMAGE_FIRST_SECTION(ntheader) \
-((PIMAGE_SECTION_HEADER)((LPBYTE)&((PIMAGE_NT_HEADERS)(ntheader))->OptionalHeader + \
-((PIMAGE_NT_HEADERS)(ntheader))->FileHeader.SizeOfOptionalHeader))
+#define IMAGE_FIRST_SECTION64(ntheader) \
+((PIMAGE_SECTION_HEADER)((LPBYTE)&((PIMAGE_NT_HEADERS64)(ntheader))->OptionalHeader + \
+((PIMAGE_NT_HEADERS64)(ntheader))->FileHeader.SizeOfOptionalHeader))
+
+
+#define IMAGE_FIRST_SECTION32(ntheader) \
+((PIMAGE_SECTION_HEADER)((LPBYTE)&((PIMAGE_NT_HEADERS32)(ntheader))->OptionalHeader + \
+((PIMAGE_NT_HEADERS32)(ntheader))->FileHeader.SizeOfOptionalHeader))
 
 /* These defines are for the Characteristics bitfield. */
 /* #define IMAGE_SCN_TYPE_REG                   0x00000000 - Reserved */
@@ -1029,7 +1034,8 @@ int get_data_export(char *name, uint32_t base, void *result);
 bool setup_nt_threadinfo(PEXCEPTION_HANDLER handler);
 bool process_extra_exports(void *imagebase, size_t base, const char *filename);
 
-int check_nt_hdr64(IMAGE_NT_HEADERS *nt_hdr);
+int check_nt_hdr64(IMAGE_NT_HEADERS64 *nt_hdr);
+int check_nt_hdr32(IMAGE_NT_HEADERS32 *nt_hdr);
 
 static uint64_t get_next_page(uint64_t addr)
 {

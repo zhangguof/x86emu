@@ -179,13 +179,14 @@ typedef CHAR KPROCESSOR_MODE;
 
 /* ULONG_PTR is 32 bits on 32-bit platforms and 64 bits on 64-bit
  * platform, which is same as 'unsigned long' in Linux */
-typedef unsigned long ULONG_PTR;
+typedef uint32_t ULONG_PTR32;
+typedef uint64_t ULONG_PTR64;
 
 typedef size_t SIZE_T;
-typedef ULONG_PTR KAFFINITY;
+typedef ULONG_PTR64 KAFFINITY;
 typedef ULONG ACCESS_MASK;
 
-typedef ULONG_PTR PFN_NUMBER;
+typedef ULONG_PTR64 PFN_NUMBER;
 typedef ULONG SECURITY_INFORMATION;
 
 /* non-negative numbers indicate success */
@@ -227,7 +228,7 @@ struct nt_list {
         struct nt_list *prev;
 };
 
-typedef ULONG_PTR NT_SPIN_LOCK;
+typedef ULONG_PTR64 NT_SPIN_LOCK;
 
 enum kdpc_importance {LowImportance, MediumImportance, HighImportance};
 
@@ -316,8 +317,8 @@ struct mdl {
 #define MDL_POOL_ALLOCATED              0x0400
 #define MDL_CACHE_ALLOCATED             0x8000
 
-#define PAGE_START(ptr) ((void *)((ULONG_PTR)(ptr) & ~(PAGE_SIZE - 1)))
-#define BYTE_OFFSET(ptr) ((ULONG)((ULONG_PTR)(ptr) & (PAGE_SIZE - 1)))
+#define PAGE_START(ptr) ((void *)((ULONG_PTR64)(ptr) & ~(PAGE_SIZE - 1)))
+#define BYTE_OFFSET(ptr) ((ULONG)((ULONG_PTR64)(ptr) & (PAGE_SIZE - 1)))
 
 #define MmGetMdlByteCount(mdl) ((mdl)->bytecount)
 #define MmGetMdlVirtualAddress(mdl) ((mdl)->startva + (mdl)->byteoffset)
@@ -518,7 +519,7 @@ struct io_status_block {
                 NTSTATUS status;
                 void *pointer;
         };
-        ULONG_PTR info;
+        ULONG_PTR64 info;
 };
 
 
@@ -938,7 +939,7 @@ struct io_stack_location {
                         struct cm_resource_list *allocated_resources_translated;
                 } start_device;
                 struct {
-                        ULONG_PTR provider_id;
+                        ULONG_PTR64 provider_id;
                         void *data_path;
                         ULONG buf_len;
                         void *buf;
@@ -1387,7 +1388,7 @@ typedef struct _EXCEPTION_RECORD {
   struct _EXCEPTION_RECORD  *ExceptionRecord;
   PVOID                    ExceptionAddress;
   DWORD                    NumberParameters;
-  ULONG_PTR                ExceptionInformation[EXCEPTION_MAXIMUM_PARAMETERS];
+  ULONG_PTR64                ExceptionInformation[EXCEPTION_MAXIMUM_PARAMETERS];
 } EXCEPTION_RECORD, *PEXCEPTION_RECORD;
 
 typedef struct _FLOATING_SAVE_AREA {

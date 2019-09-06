@@ -119,6 +119,9 @@ void load_dyn(dll* p_dll);
 dll* try_load_so(const char* name,bx_phy_address* base_addr, bool is_so=false);
 
 extern std::unordered_map<std::string, bx_phy_address> global_sym_tbl;
+extern std::unordered_map<std::string, bx_phy_address> global_sym_tbl_win32;
+extern std::unordered_map<std::string, bx_phy_address> global_sym_tbl_win64;
+
 
 static bx_phy_address get_next_page(bx_phy_address addr)
 {

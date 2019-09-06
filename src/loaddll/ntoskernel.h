@@ -50,6 +50,17 @@ struct pe_image {
         IMAGE_OPTIONAL_HEADER64 *opt_hdr;
 };
 
+struct pe_image32 {
+    char name[128];
+    BOOL WINAPI (*entry)(PVOID hinstDLL, DWORD fdwReason, PVOID lpvReserved);
+    void *image;
+    size_t size;
+    int type;
+    
+    IMAGE_NT_HEADERS32 *nt_hdr;
+    IMAGE_OPTIONAL_HEADER32 *opt_hdr;
+};
+
 struct ntos_work_item {
         struct nt_list list;
         void *arg1;

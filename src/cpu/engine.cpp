@@ -99,9 +99,10 @@ void Engine::load_elf(const char* elf_file_name)
     
     //load dll
 //    const char* dll_path = "/Users/tony/workspace/github/x86emu/Tin/dll/test.dll";
-    std::string dll_path = work_home+"crtdll/crt.dll";
-    struct pe_image* pe;
-    try_load_dll64(dll_path.c_str(),&pe);
+    std::string dll_path = work_home+"crtdll/win32/crt32.dll";
+    struct pe_image32* pe;
+//    try_load_dll64(dll_path.c_str(),&pe);
+    try_load_dll32(dll_path.c_str(), &pe);
     
     setup_os_env();
     

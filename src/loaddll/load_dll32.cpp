@@ -1,14 +1,14 @@
 //
-//  load_dll.cpp
+//  load_dll32.cpp
 //  x86emu
 //
-//  Created by tony on 2019/8/27.
+//  Created by tony on 2019/9/6.
 //  Copyright © 2019 tony. All rights reserved.
 //
 
 extern "C"
 {
-
+    
 #include "util.h"
 #include "winnt_types.h"
 #include "pe_linker.h"
@@ -17,6 +17,7 @@ extern "C"
 #include <err.h>
     
 }
+
 
 #include "logger.hpp"
 #include "x86.h"
@@ -28,6 +29,7 @@ extern "C"
 
 
 #define RVA2VA(image, rva, type) (type)(ULONG_PTR64)((char *)image + rva)
+
 
 
 static void ordinal_import_stub(void)
@@ -45,7 +47,7 @@ static void unknown_symbol_stub(void)
 
 
 //copy to guest mem
-static int fix_pe_image(struct pe_image *pe,dll* pdll,bx_phy_address base_addr)
+static int fix_pe_image(struct pe_image32 *pe,dll* pdll,bx_phy_address base_addr)
 {
     void *image;
     IMAGE_SECTION_HEADER *sect_hdr;
@@ -65,9 +67,9 @@ static int fix_pe_image(struct pe_image *pe,dll* pdll,bx_phy_address base_addr)
     image = pdll->code;
     void *host_image = pdll->host_code;
     
-    LOG_INFO("try load dll:base(0x%0lx),size(0x%0lx)\n",pe->opt_hdr->ImageBase,image_size);
+    LOG_INFO("try load 32bit dll:base(0x%0lx),size(0x%0lx)\n",pe->opt_hdr->ImageBase,image_size);
     
-//    image      = code_malloc(image_size + getpagesize());
+    //    image      = code_malloc(image_size + getpagesize());
     
     // Round to page size?
     //image      = (PVOID)(ROUND_UP((ULONG)(image), getpagesize()));
@@ -76,7 +78,7 @@ static int fix_pe_image(struct pe_image *pe,dll* pdll,bx_phy_address base_addr)
         ERROR("failed to allocate enough space for new image: %d bytes, %m", image_size);
         return -1;
     }
-//    memset(host_image, 0, image_size);
+    //    memset(host_image, 0, image_size);
     
     /* Copy all the headers, ie everything before the first section. */
     
@@ -86,23 +88,23 @@ static int fix_pe_image(struct pe_image *pe,dll* pdll,bx_phy_address base_addr)
     LOG_DEBUG("copying headers: %u bytes", sect_hdr->PointerToRawData);
     
     host_memcpy((char*)image, (char*)pe->image, sect_hdr->PointerToRawData);
-//    load_ram((Bit8u*)pe->image, (Bit32u)sect_hdr->PointerToRawData, (bx_phy_address)image);
+    //    load_ram((Bit8u*)pe->image, (Bit32u)sect_hdr->PointerToRawData, (bx_phy_address)image);
     
     /* Copy all the sections */
     for (i = 0; i < sections; i++) {
         LOG_INFO("Copy section %s from %x to %x",
-                  sect_hdr->Name, sect_hdr->PointerToRawData,
-                  sect_hdr->VirtualAddress);
+                 sect_hdr->Name, sect_hdr->PointerToRawData,
+                 sect_hdr->VirtualAddress);
         if (sect_hdr->VirtualAddress+sect_hdr->SizeOfRawData >
             image_size) {
             ERROR("Invalid section %s in driver", sect_hdr->Name);
-//            code_free(image);
+            //            code_free(image);
             return -1;
         }
         
         host_memcpy((char*)image+sect_hdr->VirtualAddress,
-               (char*)pe->image + sect_hdr->PointerToRawData,
-               sect_hdr->SizeOfRawData);
+                    (char*)pe->image + sect_hdr->PointerToRawData,
+                    sect_hdr->SizeOfRawData);
         
         sect_hdr++;
     }
@@ -114,61 +116,29 @@ static int fix_pe_image(struct pe_image *pe,dll* pdll,bx_phy_address base_addr)
     pe->size = image_size;
     
     /* Update our internal pointers */
-    pe->nt_hdr = (IMAGE_NT_HEADERS64 *)
+    pe->nt_hdr = (IMAGE_NT_HEADERS32 *)
     ((char*)host_image+ ((IMAGE_DOS_HEADER *)host_image)->e_lfanew);
     pe->opt_hdr = &pe->nt_hdr->OptionalHeader;
     
     LOG_INFO("set nt headers: nt_hdr=%p, opt_hdr=%p, image=%p(%p)",
-              pe->nt_hdr, pe->opt_hdr, pe->image,host_image);
+             pe->nt_hdr, pe->opt_hdr, pe->image,host_image);
     return image_size;
 }
 
-void * get_export_address64(const char *name)
+void * get_export_address32(const char *name)
 {
     void *address;
-    if (get_export64(name, &address) != -1)
+    if (get_export32(name, &address) != -1)
         return address;
     return NULL;
 }
 
-int get_export64(const char *name, void *result)
+int get_export32(const char *name, void *result)
 {
-//    ENTRY key = { (char *)(name) }, *item;
-//    int i, j;
-//    void **func = result;
-//
-//    if (crtexports.size) {
-//        if (hsearch_r(key, FIND, &item, &crtexports)) {
-//            *func = item->data;
-//            return 0;
-//        }
-//    }
-//
-//    if (extraexports.size) {
-//        if (hsearch_r(key, FIND, &item, &extraexports)) {
-//            *func = item->data;
-//            return 0;
-//        }
-//    }
-//
-//    // Search the ndiswrapper crt
-//    for (i = 0; crt_exports[i].name != NULL; i++) {
-//        if (strcmp(crt_exports[i].name, name) == 0) {
-//            *func = crt_exports[i].func;
-//            return 0;
-//        }
-//    }
-//
-//    // Search PE exports
-//    for (i = 0; i < num_pe_exports; i++)
-//        if (strcmp(pe_exports[i].name, name) == 0) {
-//            *func = pe_exports[i].addr;
-//            return 0;
-//        }
     
     void **func = (void**)result;
-    auto it = global_sym_tbl.find(name);
-    if(it!=global_sym_tbl.end())
+    auto it = global_sym_tbl_win32.find(name);
+    if(it!=global_sym_tbl_win32.end())
     {
         *func = (void*) it->second;
         return 0;
@@ -179,27 +149,27 @@ int get_export64(const char *name, void *result)
 
 static int import(void *image, IMAGE_IMPORT_DESCRIPTOR *dirent, char *dll)
 {
-    ULONG_PTR64 *lookup_tbl, *address_tbl;
+    ULONG_PTR32 *lookup_tbl, *address_tbl;
     char *symname = NULL;
     int i;
     int ret = 0;
     generic_func adr;
     void* host_image = getMemAddr((bx_phy_address)image);
     
-    lookup_tbl = RVA2VA(host_image, dirent->u.OriginalFirstThunk, ULONG_PTR64 *);
-    address_tbl = RVA2VA(host_image, dirent->FirstThunk, uint64_t *);
+    lookup_tbl = RVA2VA(host_image, dirent->u.OriginalFirstThunk, ULONG_PTR32 *);
+    address_tbl = RVA2VA(host_image, dirent->FirstThunk, ULONG_PTR32 *);
     
     for (i = 0; lookup_tbl[i]; i++) {
-        if (IMAGE_SNAP_BY_ORDINAL64(lookup_tbl[i])) {
+        if (IMAGE_SNAP_BY_ORDINAL32(lookup_tbl[i])) {
             ERROR("ordinal import not supported: %llu", (uint64_t)lookup_tbl[i]);
             address_tbl[i] = (bx_phy_address) ordinal_import_stub;
             continue;
         }
         else {
-            symname = RVA2VA(host_image, ((lookup_tbl[i] & ~IMAGE_ORDINAL_FLAG64) + 2), char *);
+            symname = RVA2VA(host_image, ((lookup_tbl[i] & ~IMAGE_ORDINAL_FLAG32) + 2), char *);
         }
         
-        if (get_export64(symname, &adr) < 0) {
+        if (get_export32(symname, &adr) < 0) {
             ERROR("unknown symbol: %s:%s", dll, symname);
             address_tbl[i] = (bx_phy_address) unknown_symbol_stub;
             continue;
@@ -213,13 +183,13 @@ static int import(void *image, IMAGE_IMPORT_DESCRIPTOR *dirent, char *dll)
     return 0;
 }
 
-static int read_exports(struct pe_image *pe)
+static int read_exports(struct pe_image32 *pe)
 {
     IMAGE_EXPORT_DIRECTORY *export_dir_table;
     int i;
     uint32_t *name_table;
     uint16_t *ordinal_table;
-    PIMAGE_OPTIONAL_HEADER64 opt_hdr;
+    PIMAGE_OPTIONAL_HEADER32 opt_hdr;
     IMAGE_DATA_DIRECTORY *export_data_dir;
     
     Bit8u* host_image = getMemAddr(Bit64u(pe->image));
@@ -232,7 +202,7 @@ static int read_exports(struct pe_image *pe)
         LOG_DEBUG("no exports");
         return 0;
     }
-   
+    
     export_dir_table =
     RVA2VA(host_image, export_data_dir->VirtualAddress,
            IMAGE_EXPORT_DIRECTORY *);
@@ -244,7 +214,7 @@ static int read_exports(struct pe_image *pe)
     ordinal_table = (uint16_t *)(host_image +
                                  export_dir_table->AddressOfNameOrdinals);
     
-//    pe_exports = calloc(export_dir_table->NumberOfNames, sizeof(struct pe_exports));
+    //    pe_exports = calloc(export_dir_table->NumberOfNames, sizeof(struct pe_exports));
     
     for (i = 0; i < export_dir_table->NumberOfNames; i++) {
         //guest address
@@ -260,27 +230,25 @@ static int read_exports(struct pe_image *pe)
                   (char *)((char*)host_image + *name_table),
                   (char*)pe->image + address);
         
-//        pe_exports[num_pe_exports].dll = pe->name;
-//        pe_exports[num_pe_exports].name = pe->image + *name_table;
-//        pe_exports[num_pe_exports].addr = pe->image + address;
+
         std::string name = (char*)host_image + *name_table;
-        global_sym_tbl[name] = (bx_phy_address)pe->image + address;
+        global_sym_tbl_win32[name] = (bx_phy_address)pe->image + address;
         
-//        num_pe_exports++;
+        //        num_pe_exports++;
         name_table++;
         ordinal_table++;
     }
     return 0;
 }
 
-static int fixup_imports(void *image, IMAGE_NT_HEADERS64 *nt_hdr)
+static int fixup_imports(void *image, IMAGE_NT_HEADERS32 *nt_hdr)
 {
     int i;
     char *name;
     int ret = 0;
     IMAGE_IMPORT_DESCRIPTOR *dirent;
     IMAGE_DATA_DIRECTORY *import_data_dir;
-    PIMAGE_OPTIONAL_HEADER64 opt_hdr;
+    PIMAGE_OPTIONAL_HEADER32 opt_hdr;
     void* host_image = getMemAddr((bx_phy_address)image);
     
     opt_hdr = &nt_hdr->OptionalHeader;
@@ -298,13 +266,13 @@ static int fixup_imports(void *image, IMAGE_NT_HEADERS64 *nt_hdr)
     return ret;
 }
 
-static int fixup_reloc(void *image, IMAGE_NT_HEADERS64 *nt_hdr)
+static int fixup_reloc(void *image, IMAGE_NT_HEADERS32 *nt_hdr)
 {
-    ULONG_PTR64 base;
-    ULONG_PTR64 size;
+    ULONG_PTR32 base;
+    ULONG_PTR32 size;
     IMAGE_BASE_RELOCATION *fixup_block;
     IMAGE_DATA_DIRECTORY *base_reloc_data_dir;
-    PIMAGE_OPTIONAL_HEADER64 opt_hdr;
+    PIMAGE_OPTIONAL_HEADER32 opt_hdr;
     
     opt_hdr = &nt_hdr->OptionalHeader;
     base = opt_hdr->ImageBase;
@@ -373,9 +341,9 @@ static int fixup_reloc(void *image, IMAGE_NT_HEADERS64 *nt_hdr)
 }
 
 // fix_pe_image->read_export->fix_reloc->fix_import
-int link_pe_image_in_host(struct pe_image *pe_image, bx_phy_address* base_addr,dll* pdll)
+static int link_pe_image_in_host(struct pe_image32 *pe_image, bx_phy_address* base_addr,dll* pdll)
 {
-   struct pe_image* pe = nullptr;
+    struct pe_image32* pe = nullptr;
     
     IMAGE_DOS_HEADER *dos_hdr;
     pe = pe_image;
@@ -386,15 +354,15 @@ int link_pe_image_in_host(struct pe_image *pe_image, bx_phy_address* base_addr,d
     }
     
     pe->nt_hdr =
-    (IMAGE_NT_HEADERS64 *)((char*)pe->image + dos_hdr->e_lfanew);
+    (IMAGE_NT_HEADERS32 *)((char*)pe->image + dos_hdr->e_lfanew);
     pe->opt_hdr = &pe->nt_hdr->OptionalHeader;
     
-    pe->type = check_nt_hdr64(pe->nt_hdr);
+    pe->type = check_nt_hdr32(pe->nt_hdr);
     if (pe->type <= 0) {
         LOG_ERROR("type <= 0 (%0llu)",pe->type);
         return -1;
     }
-//    auto size = link_pe_image_in_host(pe, base_addr, pdll);
+    //    auto size = link_pe_image_in_host(pe, base_addr, pdll);
     int size = fix_pe_image(pe, pdll, *base_addr);
     if(size>0)
     {
@@ -417,18 +385,18 @@ int link_pe_image_in_host(struct pe_image *pe_image, bx_phy_address* base_addr,d
         LOG_ERROR("fixup imports failed");
         return -1;
     }
-
+    
     return 0;
 }
-    
+
 extern bx_phy_address g_dll_next_ptr;
 
-int try_load_dll64(const char* dll_path,struct pe_image** pe)
+int try_load_dll32(const char* dll_path,struct pe_image32** pe)
 {
-//    size_t size = 0;
-    *pe = new pe_image;
+    //    size_t size = 0;
+    *pe = new pe_image32;
     auto image = *pe;
-//    (*pe)->name = dll_path;
+    //    (*pe)->name = dll_path;
     strcpy(image->name, dll_path);
     
     // Load the mpengine module.
@@ -447,29 +415,29 @@ int try_load_dll64(const char* dll_path,struct pe_image** pe)
 #ifdef TESTLOADER
 int main()
 {
-	get_logger(Logger::LV_INFO);
-	LOG_INFO("test load dll!!");
-	// void* image = nullptr;
-	size_t size = 0;
-	const char* name = "/Users/tony/workspace/github/x86emu/test/dll/test.dll";
-	pe_image image = {
+    get_logger(Logger::LV_INFO);
+    LOG_INFO("test load dll!!");
+    // void* image = nullptr;
+    size_t size = 0;
+    const char* name = "/Users/tony/workspace/github/x86emu/test/dll/test.dll";
+    pe_image image = {
         .entry  = NULL,
         .name   = "test.dll",
     };
-
+    
     // Load the mpengine module.
     if (pe_load_library(name, &image.image, &image.size) == false) {
         LOG_INFO("load dll fail!");
         return 1;
     }
-
+    
     // Handle relocations, imports, etc.
     link_pe_images(&image, 1);
-
-
-
-	return 0;
-}
     
+    
+    
+    return 0;
+}
+
 #endif
 
