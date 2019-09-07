@@ -26,4 +26,17 @@ uint64_t wrap_##func(uint64_t* args);
 }
 #endif
 
+struct WIN32_ARGS{
+    void* ptr;
+    template<typename T>
+    T next()
+    {
+        T* p = (T*)ptr;
+        ptr = (char*)ptr + (sizeof(T)<4?4:sizeof(T));
+        return *p;
+    }
+};
+typedef uint32_t WIN32_PTR;
+
+
 #endif /* wrap_host_call_h */

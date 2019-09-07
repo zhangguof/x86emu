@@ -40,15 +40,25 @@ uint64_t wrap_##func(uint64_t* args)
 
 DEF_HOST_FUNC(do_ret)
 {
-    int64_t arg1 = (int64_t)args[0];
-    return do_ret(arg1);
+//    int64_t arg1 = (int64_t)args[0];
+    int64_t ret_code = ECX;
+    return do_ret(ret_code);
 }
 
 DEF_HOST_FUNC(puts)
 {
     typedef const char* ARG1_T;
-    uint32_t* pargs = (uint32_t*) args;
-    ARG1_T arg1 = (ARG1_T)(getMemAddr(pargs[0]));
+//    typedef uint32_t UPtr32;
+    ARG1_T arg1;
+    if(is_cpu_mode32())
+    {
+       uint32_t* var32_args = (uint32_t*) args;
+       arg1 = (ARG1_T)(getMemAddr(var32_args[0]));
+    }
+    else
+    {
+        arg1 = (ARG1_T)(getMemAddr(args[0]));
+    }
     return puts(arg1);
 }
 
@@ -119,6 +129,42 @@ DEF_HOST_FUNC(free)
 //
 //    return 0;
 //}
+//test_f1(int,unsigned int , const char*a)
+void test_f1(int a1,unsigned int a2, const char* s1,char c1,size_t st1,
+             uint16_t u1,uint64_t u2)
+{
+    printf("test fun1\n");
+    printf("a1:%d,a2:%u,s1:%s,c1:%c,st1:%u,u1:%u,u2:0x%0lx\n",
+           a1,a2,s1,c1,st1,u1,u2);
+    printf("size:%u,%u,%u,%u,%u\n",sizeof(a1),sizeof(a2),
+           sizeof(s1),sizeof(c1),sizeof(st1));
+}
+uint64_t wrap_test_f1(uint64_t* args)
+{
+    WIN32_ARGS w32_args = {(void*)args};
+    typedef uint32_t size_t;
+    typedef int T1;
+    typedef unsigned int T2;
+    typedef const char* T3;
+    typedef char T4;
+    typedef size_t T5;
+    typedef uint16_t T6;
+    typedef uint64_t T7;
+    auto arg1 = (T1)(w32_args.next<T1>());
+    auto arg2 = (T2)(w32_args.next<T2>());
+    
+    auto arg3 = (T3)(getMemAddr(w32_args.next<WIN32_PTR>()));
+    
+    auto arg4 = (T4)(w32_args.next<T4>());
+    auto arg5 = (T5)(w32_args.next<T5>());
+    auto arg6 = (T6)(w32_args.next<T6>());
+    auto arg7 = (T7)(w32_args.next<T7>());
+    test_f1(arg1, arg2, arg3,
+            arg4, arg5,arg6,
+            arg7);
+    
+    return 0;
+}
 
 
 #undef DEF_HOST_FUNC

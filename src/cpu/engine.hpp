@@ -28,6 +28,7 @@ public:
     XE_MEM_C* mem_ptr;
     bx_phy_address entry_addr;
     bx_phy_address call_host_ret_addr;
+    bx_phy_address call_host_win32_ret_addr;
     struct export_funcs* call_guess_method;
     uint64_t last_ret;
     Engine(){
@@ -72,6 +73,11 @@ inline static void load_ram(Bit8u* data,Bit32u len,bx_phy_address ram_addr)
 static inline void host_memcpy(char* guest_dst,char* src,Bit32u len)
 {
     load_ram((Bit8u*)src, len, bx_phy_address(guest_dst));
+}
+
+inline bool is_cpu_mode32()
+{
+    return BX_CPU(0)->cpu_mode == BX_MODE_LONG_COMPAT;
 }
 
 #endif /* engine_hpp */

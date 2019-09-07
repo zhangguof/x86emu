@@ -1,10 +1,14 @@
 global call_win_host_func;
+
+
+
 global HOST_CALL_PTR
 
 
 %macro  _DEF_HOST_FUNC 2
 GLOBAL %1;
 GLOBAL _%1
+export %1
 _%1:
 %1:
 	push ebp
@@ -20,7 +24,11 @@ _%1:
 
 
 
+
 section .text
+global _call_host_ret;
+global call_host_ret
+export call_host_ret;
 
 ; DEF_HOST_FUNC puts,1
 ; DEF_HOST_FUNC(puts,1)
@@ -46,10 +54,30 @@ call_win_host_func:
 	leave
 	ret
 
+;;;host-> guest_fun ->ret: call_host_ret
+
+;;return to host code:
+_call_host_ret:
+call_host_ret:
+	mov ebx, HOST_CALL_PTR;
+	; mov rdi, eax; //ret val
+	; push eax; //arg0 ,ret code
+	mov ecx, eax
+	mov eax, 0x0;
+	jmp [ebx];
+	; leave
+	; ret
+
+
+
 
 section .data
 HOST_CALL_PTR: dd 0x1FFFFFFD
 
+section .drectve
+; export_dll 'call_host_ret'
+; db '-export:"call_host_ret"',0x20
+; db 0x00
 
 
 

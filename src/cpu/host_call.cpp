@@ -40,10 +40,6 @@ struct HOST_FUN_C
 //LP64
 };
 
-//#define DEF_HOST_FUNC(func,f) \
-//{\
-//(void*)func,#func,f \
-//}
 
 
 
@@ -59,26 +55,7 @@ HOST_FUN_C host_func_table[] = {
 #include "gen_code/wrap_gen_code.h"
     
 #undef DEF_HOST_FUNC
-//    {nullptr,nullptr,nullptr},
-//    DEF_HOST_FUNC(do_ret, [](Bit64u* args){
-//        int64_t arg1 = (int64_t)args[0];
-//        return do_ret(arg1);
-//    }),
-//    DEF_HOST_FUNC(puts,[](Bit64u* args){
-//        typedef const char* ARG1_T;
-//        ARG1_T arg1 = (ARG1_T)(getMemAddr(args[0]));
-//        return puts(arg1);}
-//                  ),
-//    DEF_HOST_FUNC(host_malloc, [](Bit64u* args){
-//        Bit64u size = args[0];
-//        return  (Bit64u)host_malloc(size);
-//    }),
-//    DEF_HOST_FUNC(host_free, [](Bit64u* args){
-//        void* ptr = (void*)args[0];
-//        host_free(ptr);
-//        return 0;
-//    }),
-    
+
 };
 
 std::unordered_map<uint32_t,HOST_FUN_C*> host_call_hash_tbl;

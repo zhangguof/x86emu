@@ -394,21 +394,43 @@ uint64_t wrap_strspn(uint64_t* args)
 
 //src:char * strstr ( const char * __big , const char * __little ) ; 
 //fmt:char* strstr(const char*,const char*)
+
+
 uint64_t wrap_strstr(uint64_t* args)
 {
-    typedef const char* _T_0;
-    auto arg_0 = (_T_0)(args[0]);
-    arg_0 = (_T_0)getMemAddr((bx_phy_address)arg_0);
-    typedef const char* _T_1;
-    auto arg_1 = (_T_1)(args[1]);
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)arg_1);
-    typedef char* _T_ret;
-
-    auto ret = strstr( arg_0, arg_1 );
-    ret = (_T_ret)getGuestAddr(bx_phy_address(ret));
-    
-    return (uint64_t)ret;
-    
+    if(is_cpu_mode32())
+    {
+//        uint32_t* pargs = (uint32_t*) args;
+        struct WIN32_ARGS w32_args = {(void*)args};
+        typedef const char* _T_0;
+        auto arg_0 = (_T_0)(w32_args.next<uint32_t>());
+        arg_0 = (_T_0)getMemAddr((bx_phy_address)arg_0);
+        typedef const char* _T_1;
+        auto arg_1 = (_T_1)(w32_args.next<uint32_t>());
+        arg_1 = (_T_1)getMemAddr((bx_phy_address)arg_1);
+        typedef char* _T_ret;
+        
+        auto ret = strstr( arg_0, arg_1 );
+        ret = (_T_ret)getGuestAddr(bx_phy_address(ret));
+        
+        return (uint64_t)ret;
+        
+    }
+    else
+    {
+        typedef const char* _T_0;
+        auto arg_0 = (_T_0)(args[0]);
+        arg_0 = (_T_0)getMemAddr((bx_phy_address)arg_0);
+        typedef const char* _T_1;
+        auto arg_1 = (_T_1)(args[1]);
+        arg_1 = (_T_1)getMemAddr((bx_phy_address)arg_1);
+        typedef char* _T_ret;
+        
+        auto ret = strstr( arg_0, arg_1 );
+        ret = (_T_ret)getGuestAddr(bx_phy_address(ret));
+        
+        return (uint64_t)ret;
+    }
 }
 
 //src:char * strtok ( char * __str , const char * __sep ) ; 

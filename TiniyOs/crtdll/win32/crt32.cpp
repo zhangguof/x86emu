@@ -18,6 +18,15 @@ int64_t test_64b(int a,int b,int64_t c)
 	return r;
 }
 
+
+int test_dll3()
+{
+	test_f1(0x100,0x200,"hello in test1\n",
+			'Z',0xECECECEC,0x3E3F,0x1FFFFFFF2EEEEEEE);
+	return 0x1234;
+}
+
+
 int test_dll2()
 {
 	const char* name = "hello test dll 2111!\n";
@@ -38,6 +47,7 @@ int test_dll2()
 
 	// return 0;
 }
+
 
 int test_dll(const char* name,int a1,int a2,int a3,int a4,int a5,double f1)
 {
