@@ -148,9 +148,9 @@ void XE_MEM_C::alloca_pagebit64(Bit64u start_addr)
 static bx_phy_address heap_start_addr = 0;
 static bx_phy_address heap_end_addr = 0;
 
-//less than 2kb
-//min=1<<4 = 16 = 4b mask 0xf
-const uint32_t mini_mem[]={1<<4,1<<5,1<<6,1<<7,1<<8,1<<9,1<<10,1<<11};
+//less than 2kB
+//min=1<<5 = 32B mask 0xf
+const uint32_t mini_mem[]={1<<5,1<<6,1<<7,1<<8,1<<9,1<<10,1<<11};
 const uint32_t max_mem_idx = sizeof(mini_mem)/sizeof(uint32_t) - 1;
 const uint64_t max_free_mem_size = 1<<11;
 alloc_t* _free_mem[max_mem_idx+1];
@@ -158,13 +158,13 @@ alloc_t* _any_free_mem; //any size free mem
 //alloc_t* _used_mem[max_mem_idx+1];
 //guest mem addr -> guest mem addr size
 std::unordered_map<void*, Bit64u> _used_mem;
-const Bit64u min_alloc_size = 0x10; //16B
+const Bit64u min_alloc_size = 0x20; //32B
 
 inline Bit64u GETSIZE(Bit64u size)
 {
     if((size & (~(min_alloc_size-1))) == size)
         return size;
-    return (size+0xF)&(~(min_alloc_size-1));
+    return (size+(min_alloc_size-1))&(~(min_alloc_size-1));
 }
 
 alloc_t* find_next_insert(alloc_t* free,Bit64u size)
