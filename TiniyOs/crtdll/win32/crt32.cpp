@@ -19,10 +19,11 @@ int64_t test_64b(int a,int b,int64_t c)
 }
 
 
-int test_dll3()
+int test_dll3(int a,const char* name,uint64_t a64)
 {
-	test_f1(0x100,0x200,"hello in test1\n",
-			'Z',0xECECECEC,0x3E3F,0x1FFFFFFF2EEEEEEE);
+	puts(name);
+	test_f1(a,0x200,"hello in test1\n",
+			'Z',0xECECECEC,0x3E3F,a64);
 	return 0x1234;
 }
 
@@ -37,15 +38,6 @@ int test_dll2()
 	int a = 0x123;
 	long b = 0x1234587;
 	return a+b;
-	// printf("test:%d,0x%0lx,%s!!!\n",a,b,name);
-
-	// int len = strlen(name);
-	// memcpy(s,name,len);
-	// puts(s);
-
-	// free(s);
-
-	// return 0;
 }
 
 

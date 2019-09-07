@@ -22,6 +22,7 @@
 #include "elf-ext.hpp"
 #include "logger.hpp"
 #include "loaddll/load_dll.hpp"
+#include "wrap_host_call.hpp"
 
 extern void bx_init_options();
 extern void bx_init_siminterface();
@@ -231,6 +232,29 @@ void Engine::init()
     
     
 }
+inline WIN32_PTR get_win32_ptr(void* ptr)
+{
+    uint64_t p = (uint64_t)ptr;
+    return (WIN32_PTR)(p&0xFFFFFFFF);
+}
+//int test_dll3(int a,const char* name,uint64 a64)
+uint64_t wrap_guest_test_dll3(int arg1,const char* arg2,uint64_t arg3)
+{
+    typedef int T1;
+    typedef WIN32_PTR T2;
+    typedef uint64_t T3;
+    auto len2 = strlen(arg2);
+    T2 _arg2 = get_win32_ptr(host_malloc(len2+1));
+    memcpy(getMemAddr(_arg2), arg2, len2);
+    g_engine->cpu_ptr->push_64(arg3);
+    g_engine->cpu_ptr->push_32(_arg2);
+    g_engine->cpu_ptr->push_32(arg1);
+    
+    g_engine->call_win32_guest_method1("test_dll3", 0);
+    host_free((void*)_arg2);
+    
+    return 0;
+}
 
 void Engine::run()
 {
@@ -251,8 +275,9 @@ void Engine::run()
 //    printf("100*100=%d\n",(int)last_ret);
 //    call_win_guest_method1("Double", 1000);
 //    printf("1000*2 = %d\n",(int)last_ret);
-    call_win32_guest_method1("test_dll3", 0);
-    printf("ret code:0x%0lx\n",last_ret);;
+//    call_win32_guest_method1("test_dll3", 0);
+    wrap_guest_test_dll3(0x12345678, "hhhhhhhhtttttss", 0x2FEFEFEF98765432);
+    printf("ret code:0x%0llx\n",last_ret);;
                        
 }
 
