@@ -246,14 +246,31 @@ uint64_t wrap_guest_test_dll3(int arg1,const char* arg2,uint64_t arg3)
     auto len2 = strlen(arg2);
     T2 _arg2 = get_win32_ptr(host_malloc(len2+1));
     memcpy(getMemAddr(_arg2), arg2, len2);
+    auto pre_esp = ESP;
     g_engine->cpu_ptr->push_64(arg3);
     g_engine->cpu_ptr->push_32(_arg2);
     g_engine->cpu_ptr->push_32(arg1);
     
     g_engine->call_win32_guest_method1("test_dll3", 0);
     host_free((void*)_arg2);
+//    ESP = EBP;
+    ESP = pre_esp;
     
     return 0;
+}
+
+void test_dll_func()
+{
+    //    call_guest_method1("test_pow2",100);
+    //    printf("100*100=%d\n",(int)last_ret);
+    //    call_win_guest_method1("Double", 1000);
+    //    printf("1000*2 = %d\n",(int)last_ret);
+    //    call_win32_guest_method1("test_dll3", 0);
+    wrap_guest_test_dll3(0x12345678, "hhhhhhhhtttttss", 0x2FEFEFEF98765432);
+    printf("ret code:0x%0llx\n",g_engine->last_ret);;
+    g_engine->call_win32_guest_method1("test_dll2", 0);
+    printf("ret code:0x%0llx\n",g_engine->last_ret & 0xFFFFFFFF);
+    
 }
 
 void Engine::run()
@@ -269,15 +286,8 @@ void Engine::run()
     cpu_ptr->prev_rip = RIP = entry_addr;
 //    cpu_ptr->PUSH
     cpu_ptr->cpu_loop();
-    
+    test_dll_func();
 
-//    call_guest_method1("test_pow2",100);
-//    printf("100*100=%d\n",(int)last_ret);
-//    call_win_guest_method1("Double", 1000);
-//    printf("1000*2 = %d\n",(int)last_ret);
-//    call_win32_guest_method1("test_dll3", 0);
-    wrap_guest_test_dll3(0x12345678, "hhhhhhhhtttttss", 0x2FEFEFEF98765432);
-    printf("ret code:0x%0llx\n",last_ret);;
                        
 }
 
@@ -339,7 +349,7 @@ void Engine::call_win32_guest_method1(const char* method,uint64_t arg1)
     if(it!=global_sym_tbl_win32.end())
     {
         bx_phy_address fun_ptr = it->second;
-        RCX = arg1;
+//        RCX = arg1;
         
 //        cpu_ptr->push_64(call_host_ret_addr);
         cpu_ptr->push_32(call_host_win32_ret_addr);

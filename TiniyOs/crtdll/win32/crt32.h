@@ -20,7 +20,7 @@ DLLAPI int  test_dll(const char* name,int a1,int a2,
 DLLAPI int  test_dll2();
 
 DLLAPI int64_t test_64b(int a,int b,int64_t c);
-DLLAPI int test_dll3(int a,const char* name,uint64_t a64);
+DLLAPI uint64_t test_dll3(int a,const char* name,uint64_t a64);
 DLLAPI void call_host_ret();
 
 // #define malloc host_malloc

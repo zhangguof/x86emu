@@ -21,7 +21,7 @@
 
 
 
-
+//guest return to host
 
 inline uint64_t do_ret(int64_t ret_code)
 {
@@ -35,42 +35,87 @@ inline uint64_t do_ret(int64_t ret_code)
 #define GET_ARGS(id,type) \
 (type)args[id]
 
+#define GET_ARGS32(w32_args,type)\
+(type)w32_args.next<type>()
+
+#define GET_PTR_ARG(ptr,type) \
+(type)(getMemAddr((uint64_t)ptr))
+
+
 #define DEF_HOST_FUNC(func) \
 uint64_t wrap_##func(uint64_t* args)
 
+// __std_call int64_t do_ret(int64_t ret_code);
 DEF_HOST_FUNC(do_ret)
 {
-//    int64_t arg1 = (int64_t)args[0];
-    int64_t ret_code = ECX;
+    int64_t ret_code = 0;
+    if(is_cpu_mode32())
+    {
+        //fix esp ,no ret addr
+        args--;
+        WIN32_ARGS w32_args = {args};
+        ret_code = GET_ARGS32(w32_args, int64_t);
+        //for std_call
+        ESP += sizeof(int64_t);
+    }
+    else
+    {
+        ret_code = (int64_t)args[0];
+    }
+  
     return do_ret(ret_code);
 }
 
 DEF_HOST_FUNC(puts)
 {
-    typedef const char* ARG1_T;
+    typedef const char* T1;
 //    typedef uint32_t UPtr32;
-    ARG1_T arg1;
+    T1 arg1;
     if(is_cpu_mode32())
     {
-       uint32_t* var32_args = (uint32_t*) args;
-       arg1 = (ARG1_T)(getMemAddr(var32_args[0]));
+        WIN32_ARGS w32_args = {args};
+        arg1 = GET_PTR_ARG(GET_ARGS32(w32_args, WIN32_PTR), T1);
     }
     else
     {
-        arg1 = (ARG1_T)(getMemAddr(args[0]));
+        arg1 = GET_PTR_ARG(GET_ARGS(0, T1), T1);
     }
     return puts(arg1);
 }
 
 DEF_HOST_FUNC(malloc)
 {
-    uint64_t size = args[0];
-    return  (uint64_t)host_malloc(size);
+    uint64_t size = 0;
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32_args = {args};
+        typedef uint32_t size_t;
+        size = w32_args.next<size_t>();
+    }
+    else
+    {
+        size = args[0];
+       
+    }
+     return  (uint64_t)host_malloc(size);
+
 }
 
+//void free(void*);
 DEF_HOST_FUNC(free)
 {
-    void* ptr = (void*)args[0];
+    void* ptr = nullptr;
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32_args = {args};
+        typedef uint32_t size_t;
+        ptr = (void*)GET_ARGS32(w32_args, WIN32_PTR);
+    }
+    else
+    {
+        ptr = (void*)args[0];
+
+    }
     host_free(ptr);
     return 0;
 }
@@ -163,7 +208,7 @@ uint64_t wrap_test_f1(uint64_t* args)
             arg4, arg5,arg6,
             arg7);
     
-    return 0;
+    return 0x12345678FEDCBAFF;
 }
 
 

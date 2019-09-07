@@ -19,21 +19,21 @@ int64_t test_64b(int a,int b,int64_t c)
 }
 
 
-int test_dll3(int a,const char* name,uint64_t a64)
+uint64_t test_dll3(int a,const char* name,uint64_t a64)
 {
 	puts(name);
 	test_f1(a,0x200,"hello in test1\n",
 			'Z',0xECECECEC,0x3E3F,a64);
-	return 0x1234;
+	return 0x123456789ABCDEF;
 }
 
 
 int test_dll2()
 {
 	const char* name = "hello test dll 2111!\n";
-	puts(name);
-	// char* s = (char*)malloc(32);
-	char* s = strstr(name,"test");
+	// puts(name);
+	char* s = (char*)malloc(32);
+	s = strstr(name,"test");
 	puts(s);
 	int a = 0x123;
 	long b = 0x1234587;
@@ -43,8 +43,7 @@ int test_dll2()
 
 int test_dll(const char* name,int a1,int a2,int a3,int a4,int a5,double f1)
 {
-	// printf(name);
-	// call_win_host_func(0x1,name);
+
 	int b = a1+a2+a3+a4+a5;
 	double ff = f1+1.0;
 	return b;

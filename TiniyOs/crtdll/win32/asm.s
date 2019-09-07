@@ -62,7 +62,9 @@ call_host_ret:
 	mov ebx, HOST_CALL_PTR;
 	; mov rdi, eax; //ret val
 	; push eax; //arg0 ,ret code
-	mov ecx, eax
+	; mov ecx, eax
+	push edx ;;uint64_t hight bits
+	push eax
 	mov eax, 0x0;
 	jmp [ebx];
 	; leave
