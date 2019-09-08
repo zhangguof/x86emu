@@ -10,5 +10,7 @@
 #define wrap_crt_hpp
 
 #include <stdio.h>
+#include <string.h>
+
 
 #endif /* wrap_crt_hpp */
