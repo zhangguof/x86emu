@@ -1,6 +1,6 @@
 #include <string.h>
 
-int __lltostr(char *s, unsigned int size, unsigned long long i, unsigned int base, int UpCase);
+//int __lltostr(char *s, unsigned int size, unsigned long long i, unsigned int base, int UpCase);
 
 int __lltostr(char *s, unsigned int size, unsigned long long i, unsigned int base, int UpCase)
 {

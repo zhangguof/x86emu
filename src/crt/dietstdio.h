@@ -47,6 +47,10 @@ struct __stdio_file {
 
 #include <stdio.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* internal function to flush buffer.
  * However, if next is BUFINPUT and the buffer is an input buffer, it
  * will not be flushed. Vice versa for output */
@@ -59,15 +63,16 @@ struct arg_scanf {
   int (*getch)(void*);
   int (*putch)(int,void*);
 };
+struct va_args;
 
-int __v_scanf(struct arg_scanf* fn, const char *format, va_list arg_ptr);
+int __v_scanf(struct arg_scanf* fn, const char *format, struct va_args* arg_ptr);
 
 struct arg_printf {
   void *data;
   int (*put)(const void*,size_t,void*);
 };
 
-int __v_printf(struct arg_printf* fn, const char *format, va_list arg_ptr);
+int __v_printf(struct arg_printf* fn, const char *format,struct va_args* arg_ptr);
 
 extern FILE *__stdio_root;
 
@@ -92,3 +97,10 @@ ssize_t __libc_write(int fd,const void*buf,size_t len);
 
 int __stdout_is_tty(void);
 int __stdin_is_tty(void);
+
+int __lltostr(char *s, unsigned int size, unsigned long long i, unsigned int base, int UpCase);
+int __ltostr(char *s, unsigned int size, unsigned long i, unsigned int base, int UpCase);
+
+#ifdef __cplusplus
+}
+#endif

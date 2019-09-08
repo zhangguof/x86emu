@@ -21,7 +21,7 @@ uint64_t wrap_##func(uint64_t* args);
 #include "gen_code/wrap_gen_code.h"
 
 #undef DEF_HOST_FUNC
-    
+
 #ifdef __cplusplus
 }
 #endif

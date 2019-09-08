@@ -17,7 +17,8 @@
 #include "crt/wrap_crt.hpp"
 #include "wrap_host_call.hpp"
 
-#include <stdarg.h>
+//#include <stdarg.h>
+#include "utils.h"
 
 
 //#undef va_arg
@@ -75,9 +76,74 @@
 //        }
 //    }
 //};
-extern "C"
+
+//int win_vsnprintf(char* str, size_t size, const char *format,struct va_args* arg_ptr)
+//int snprintf(char* str,size_t size,const char* fmt,...);
+uint64_t wrap_snprintf(uint64_t* args)
 {
-    extern int vsprintf(char *dest,const char *format, va_list arg_ptr);
+    char* str;
+    size_t size;
+    const char* fmt;
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS win32_args = {args};
+        str = (char*)getMemAddr(win32_args.next<WIN32_PTR>());
+        size = (win32_args.next<uint32_t>());
+        fmt = (char*)getMemAddr(win32_args.next<WIN32_PTR>());
+        struct va_args va = {(uint8_t*)win32_args.ptr};
+        return win_vsnprintf(str, size, fmt, &va);
+    }
+    else
+    {
+        str = (char*)getMemAddr(args[0]);
+        size = args[1];
+        fmt = (char*)getMemAddr(args[2]);
+        struct va_args va = {(uint8_t*)(args[3])};
+        return win_vsnprintf(str, size, fmt, &va);
+    }
+}
+
+//int win_vsprintf(char *dest,const char *format, va_list arg_ptr)
+//int sprintf(char* str,const char* fmt,...);
+uint64_t wrap_sprintf(uint64_t* args)
+{
+    char* dest;
+    const char* fmt;
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS win32_args = {args};
+        dest = (char*)getMemAddr(win32_args.next<WIN32_PTR>());
+        fmt = (char*)getMemAddr(win32_args.next<WIN32_PTR>());
+        struct va_args va = {(uint8_t*)win32_args.ptr};
+        return win_vsprintf(dest,fmt,&va);
+    }
+    else
+    {
+        dest = (char*)getMemAddr(args[0]);
+        fmt = (char*)getMemAddr(args[1]);
+        struct va_args va = {(uint8_t*)(args[2])};
+        return win_vsprintf(dest,fmt, &va);
+    }
+}
+const int BUFF_SIZE = 2048;
+//int printf(const char* fmt,arg1,arg2,)
+uint64_t wrap_printf(uint64_t* args)
+{
+    const char* fmt;
+//    char buf[BUFF_SIZE];
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32_args = {args};
+        fmt = (char*)getMemAddr(w32_args.next<WIN32_PTR>());
+        va_args ap = {(uint8_t*)w32_args.ptr};
+        return win_vprintf(fmt, &ap);
+    }
+    else
+    {
+        fmt = (char*)getMemAddr(args[0]);
+        va_args ap = {(uint8_t*)(&args[1])};
+        return win_vprintf(fmt, &ap);
+    }
 }
 
  int print_test(const char* fmt,...)

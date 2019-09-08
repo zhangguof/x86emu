@@ -6,6 +6,11 @@
 #include <errno.h>
 #include <math.h>
 #include "crt/dietstdio.h"
+#include "crt/wrap_crt.hpp"
+#include "utils.h"
+#include "bochs.h"
+#include "engine.hpp"
+
 //#include "dietwarning.h"
 
 #define MAX_WIDTH 10*1024
@@ -24,7 +29,7 @@ static inline unsigned long skip_to(const char *format) {
 #define A_WRITE(fn,buf,sz)	((fn)->put((void*)(buf),(sz),(fn)->data))
 #define B_WRITE(fn,buf,sz)	{ if ((unsigned long)(sz) > (((unsigned long)(int)(-1))>>1) || len+(int)(sz)<len) return -1; A_WRITE(fn,buf,sz); } while (0)
 
-static const char pad_line[2][16]= { "                ", "0000000000000000", };
+static const char pad_line[2][16]= { "               ", "000000000000000", };
 static int write_pad(unsigned int* dlen,struct arg_printf* fn, unsigned int len, int padwith) {
   int nr=0;
   if ((int)len<=0) return 0;
@@ -38,8 +43,32 @@ static int write_pad(unsigned int* dlen,struct arg_printf* fn, unsigned int len,
   *dlen += nr;
   return 0;
 }
+//static inline Bit8u* getMemAddr(Bit64u addr)
+//{
+//    Bit8u* ret = BX_MEM(0)->getHostMemAddr(BX_CPU(0), addr, BX_RW);
+//    return ret;
+//}
+typedef uint32_t WIN32_PTR;
+#undef va_arg
+#undef va_end
+#undef va_start
 
-int __v_printf(struct arg_printf* fn, const char *format, va_list arg_ptr)
+#define va_start32(ap) (ap->ptr += sizeof(WIN32_PTR))
+#define va_arg(ap,type) ((ap->ptr += sizeof(type)),(*(type*)(ap->ptr - sizeof(type))))
+
+
+//win32 vprintf
+
+//int wrap_v_printf(struct arg_printf* fn,uint64_t* args)
+//{
+//    struct va_args _args = {(uint8_t*)args};
+//    struct va_args* p_args = &_args;
+//    const char* fmt = (char*)(getMemAddr(va_arg(p_args, WIN32_PTR)));
+//    return __v_printf(fn, fmt, p_args);
+//}
+
+
+int __v_printf(struct arg_printf* fn, const char *format, struct va_args *arg_ptr)
 {
   unsigned int len=0;
 #ifdef WANT_ERROR_PRINTF
@@ -188,7 +217,12 @@ inn_printf:
 #endif
       /* print a string */
       case 's':
-	s=va_arg(arg_ptr,char *);
+//    s=va_arg(arg_ptr,char *);
+      if(is_cpu_mode32())
+          s = (char*)(getMemAddr(va_arg(arg_ptr,WIN32_PTR)));
+//          s = (char*)(get_win32_ptr(arg_ptr));
+      else
+          s = va_arg(arg_ptr, char*);
 #ifdef WANT_NULL_PRINTF
 	if (!s) s="(null)";
 #endif
@@ -315,7 +349,8 @@ num_printf:
 	    llnumber=va_arg(arg_ptr,long long);
 	  else
 #endif
-	    number=va_arg(arg_ptr,long);
+//        number=va_arg(arg_ptr,long);
+          number=va_arg(arg_ptr, int);// in win32 win64, long as int;
 	}
 	else {
 	  number=va_arg(arg_ptr,int);

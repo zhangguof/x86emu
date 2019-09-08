@@ -31,9 +31,9 @@
 		EA7CD7412317DDA30038057E /* hdestroy_r.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD73F2317DDA30038057E /* hdestroy_r.c */; };
 		EA7CD7432317F4700038057E /* siphash24.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD7422317F4700038057E /* siphash24.c */; };
 		EA8C4E4623229C110041FB08 /* load_dll32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA8C4E4523229C110041FB08 /* load_dll32.cpp */; };
-		EAAEBDB92324F21D0084BFFD /* __v_printf.c in Sources */ = {isa = PBXBuildFile; fileRef = EAAEBDB52324F21D0084BFFD /* __v_printf.c */; };
-		EAAEBDBA2324F21D0084BFFD /* vsnprintf.c in Sources */ = {isa = PBXBuildFile; fileRef = EAAEBDB62324F21D0084BFFD /* vsnprintf.c */; };
-		EAAEBDBB2324F21D0084BFFD /* vsprintf.c in Sources */ = {isa = PBXBuildFile; fileRef = EAAEBDB72324F21D0084BFFD /* vsprintf.c */; };
+		EAAEBDB92324F21D0084BFFD /* __v_printf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAAEBDB52324F21D0084BFFD /* __v_printf.cpp */; };
+		EAAEBDBA2324F21D0084BFFD /* vsnprintf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAAEBDB62324F21D0084BFFD /* vsnprintf.cpp */; };
+		EAAEBDBB2324F21D0084BFFD /* vsprintf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAAEBDB72324F21D0084BFFD /* vsprintf.cpp */; };
 		EAAEBDBE2324F7430084BFFD /* __ltostr.c in Sources */ = {isa = PBXBuildFile; fileRef = EAAEBDBC2324F7430084BFFD /* __ltostr.c */; };
 		EAAEBDBF2324F7430084BFFD /* __lltostr.c in Sources */ = {isa = PBXBuildFile; fileRef = EAAEBDBD2324F7430084BFFD /* __lltostr.c */; };
 		EAB726A52306AE56000019F0 /* x86.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB724072306AE55000019F0 /* x86.cpp */; };
@@ -358,12 +358,13 @@
 		EA7CD73F2317DDA30038057E /* hdestroy_r.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hdestroy_r.c; sourceTree = "<group>"; };
 		EA7CD7422317F4700038057E /* siphash24.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = siphash24.c; sourceTree = "<group>"; };
 		EA8C4E4523229C110041FB08 /* load_dll32.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = load_dll32.cpp; sourceTree = "<group>"; };
-		EAAEBDB52324F21D0084BFFD /* __v_printf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = __v_printf.c; sourceTree = "<group>"; };
-		EAAEBDB62324F21D0084BFFD /* vsnprintf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vsnprintf.c; sourceTree = "<group>"; };
-		EAAEBDB72324F21D0084BFFD /* vsprintf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vsprintf.c; sourceTree = "<group>"; };
+		EAAEBDB52324F21D0084BFFD /* __v_printf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = __v_printf.cpp; sourceTree = "<group>"; };
+		EAAEBDB62324F21D0084BFFD /* vsnprintf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vsnprintf.cpp; sourceTree = "<group>"; };
+		EAAEBDB72324F21D0084BFFD /* vsprintf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vsprintf.cpp; sourceTree = "<group>"; };
 		EAAEBDB82324F21D0084BFFD /* dietstdio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dietstdio.h; sourceTree = "<group>"; };
 		EAAEBDBC2324F7430084BFFD /* __ltostr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = __ltostr.c; sourceTree = "<group>"; };
 		EAAEBDBD2324F7430084BFFD /* __lltostr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = __lltostr.c; sourceTree = "<group>"; };
+		EAAEBDC0232545DE0084BFFD /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		EAB71E532306AD95000019F0 /* x86emu */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = x86emu; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAB724062306AE55000019F0 /* x86.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x86.h; sourceTree = "<group>"; };
 		EAB724072306AE55000019F0 /* x86.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = x86.cpp; sourceTree = "<group>"; };
@@ -913,12 +914,12 @@
 		EA326676231FF8BE0026184F /* crt */ = {
 			isa = PBXGroup;
 			children = (
-				EAAEBDB52324F21D0084BFFD /* __v_printf.c */,
+				EAAEBDB52324F21D0084BFFD /* __v_printf.cpp */,
 				EAAEBDB82324F21D0084BFFD /* dietstdio.h */,
 				EAAEBDBD2324F7430084BFFD /* __lltostr.c */,
 				EAAEBDBC2324F7430084BFFD /* __ltostr.c */,
-				EAAEBDB62324F21D0084BFFD /* vsnprintf.c */,
-				EAAEBDB72324F21D0084BFFD /* vsprintf.c */,
+				EAAEBDB62324F21D0084BFFD /* vsnprintf.cpp */,
+				EAAEBDB72324F21D0084BFFD /* vsprintf.cpp */,
 				EA326677231FF8E20026184F /* wrap_crt.cpp */,
 				EA326678231FF8E20026184F /* wrap_crt.hpp */,
 			);
@@ -984,6 +985,7 @@
 				EA32667C232167890026184F /* gen_code */,
 				EA326676231FF8BE0026184F /* crt */,
 				EA326672231EF4650026184F /* wrap_host_call.cpp */,
+				EAAEBDC0232545DE0084BFFD /* utils.h */,
 				EA326675231EF5800026184F /* wrap_host_call.hpp */,
 				EA7CD72523155AF20038057E /* loaddll */,
 				EAB7281F230BEE7E000019F0 /* sys_call */,
@@ -1895,7 +1897,7 @@
 				EAB7274D2306AE56000019F0 /* f2xm1.cc in Sources */,
 				EAB727ED2306AE56000019F0 /* vncsrv.cc in Sources */,
 				EAB727602306AE56000019F0 /* Makefile in Sources */,
-				EAAEBDB92324F21D0084BFFD /* __v_printf.c in Sources */,
+				EAAEBDB92324F21D0084BFFD /* __v_printf.cpp in Sources */,
 				EAB727352306AE56000019F0 /* bit16.cc in Sources */,
 				EAB7274B2306AE56000019F0 /* softfloat-round-pack.cc in Sources */,
 				EAB7276A2306AE56000019F0 /* lexer.l in Sources */,
@@ -1966,7 +1968,7 @@
 				EAB727252306AE56000019F0 /* cpuid.cc in Sources */,
 				EAB727752306AE56000019F0 /* vmware4.cc in Sources */,
 				EAB727CA2306AE56000019F0 /* svga_cirrus.cc in Sources */,
-				EAAEBDBA2324F21D0084BFFD /* vsnprintf.c in Sources */,
+				EAAEBDBA2324F21D0084BFFD /* vsnprintf.cpp in Sources */,
 				EAB727422306AE56000019F0 /* softfloat-muladd.cc in Sources */,
 				EAB7273F2306AE56000019F0 /* fpu.cc in Sources */,
 				EAB727DC2306AE56000019F0 /* pci.cc in Sources */,
@@ -2034,7 +2036,7 @@
 				EAB727E72306AE56000019F0 /* gtk_enh_dbg_osdep.cc in Sources */,
 				EAB727DB2306AE56000019F0 /* scancodes.cc in Sources */,
 				EAB727E42306AE56000019F0 /* gui.cc in Sources */,
-				EAAEBDBB2324F21D0084BFFD /* vsprintf.c in Sources */,
+				EAAEBDBB2324F21D0084BFFD /* vsprintf.cpp in Sources */,
 				EAB7278C2306AE56000019F0 /* unmapped.cc in Sources */,
 				EAB727B62306AE56000019F0 /* extfpuirq.cc in Sources */,
 				EAB727302306AE56000019F0 /* stack16.cc in Sources */,

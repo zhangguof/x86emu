@@ -21,9 +21,14 @@ int64_t test_64b(int a,int b,int64_t c)
 
 uint64_t test_dll3(int a,const char* name,uint64_t a64)
 {
-	puts(name);
-	test_f1(a,0x200,"hello in test1\n",
-			'Z',0xECECECEC,0x3E3F,a64);
+	// puts(name);
+	// test_f1(a,0x200,"hello in test1\n",
+	// 		'Z',0xECECECEC,0x3E3F,a64);
+	const char* s = "hhhhhttththth\n";
+	// char buf[1024];
+	// snprintf(buf,1024,"%s,0x%0x\n","int:",0x1234567);
+	// puts(buf);
+	printf("int dll:test_dll3:%d,%s,0x%0llx\n",a,name,a64);
 	return 0x123456789ABCDEF;
 }
 

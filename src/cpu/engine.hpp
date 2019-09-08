@@ -11,6 +11,10 @@
 
 #include <stdio.h>
 #include "buffer.hpp"
+#include "cpu/x86.h"
+
+
+
 
 struct export_funcs
 {

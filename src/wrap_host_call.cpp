@@ -17,6 +17,7 @@
 #include "engine.hpp"
 
 #include "wrap_host_call.hpp"
+#include "utils.h"
 
 
 
@@ -210,6 +211,8 @@ uint64_t wrap_test_f1(uint64_t* args)
     
     return 0x12345678FEDCBAFF;
 }
+
+
 
 
 #undef DEF_HOST_FUNC

@@ -12,6 +12,9 @@
 #include "logger.hpp"
 
 
+
+void test_vars();
+
 int main()
 {
     get_logger(Logger::LV_INFO);
@@ -25,6 +28,7 @@ int main()
 
     
     p_x86emu->init();
+//    test_vars();
     
     p_x86emu->run();
     

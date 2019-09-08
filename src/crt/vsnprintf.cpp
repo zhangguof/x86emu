@@ -4,6 +4,7 @@
 //#include <stdlib.h>
 #include <string.h>
 #include "crt/dietstdio.h"
+#include "wrap_crt.hpp"
 
 #undef vsnprintf
 
@@ -14,7 +15,7 @@ struct str_data {
 };
 
 static int swrite(const void*ptr, size_t nmemb, void* cookie) {
-  struct str_data* sd=cookie;
+  struct str_data* sd=(struct str_data*)cookie;
   size_t tmp=sd->size-sd->len;
   if (tmp>0) {
     size_t len=nmemb;
@@ -28,7 +29,7 @@ static int swrite(const void*ptr, size_t nmemb, void* cookie) {
   return nmemb;
 }
 
-int vsnprintf(char* str, size_t size, const char *format, va_list arg_ptr) {
+int win_vsnprintf(char* str, size_t size, const char *format,struct va_args* arg_ptr) {
   int n;
   struct str_data sd = { str, 0, size?size-1:0 };
   struct arg_printf ap = { &sd, swrite };
@@ -38,4 +39,15 @@ int vsnprintf(char* str, size_t size, const char *format, va_list arg_ptr) {
     else str[n]=0;
   }
   return n;
+}
+int __stdio_outs(const void *s,size_t len,void* cookie) {
+    (void)cookie;
+    return (write(1,s,len)==(ssize_t)len)?1:0;
+}
+int win_vprintf( const char *format,struct va_args* arg_ptr) {
+    int n;
+//    struct str_data sd = { str, 0, size?size-1:0 };
+    struct arg_printf ap = { 0, __stdio_outs };
+    n=__v_printf(&ap,format,arg_ptr);
+    return n;
 }
