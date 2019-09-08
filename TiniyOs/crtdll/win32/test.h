@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#ifdef BUILD_DLL_CRT
+#ifdef BUILD_DLL_TEST
 #define DLLAPI __declspec(dllexport)
 #else
 // #define IMPORT __declspec(dllimport)
@@ -15,7 +15,15 @@ extern "C" {
 #define EXPORT __declspec(dllexport)
 #define IMPORT __declspec(dllimport)
 
-DLLAPI int DLLMain();
+
+DLLAPI int  Double(int x);
+DLLAPI int  test_dll2();
+DLLAPI int64_t test_64b(int a,int b,int64_t c);
+DLLAPI uint64_t test_dll3(int a,const char* name,uint64_t a64);
+
+
+
+
 
 
 #ifdef __cplusplus

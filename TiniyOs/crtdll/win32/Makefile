@@ -3,19 +3,21 @@ AS=nasm
 ASFLAG=-f win32 -i../../../src/
 
 
-all: test.exe crt32.dll
+all: test.dll crt32.dll
 
-test.exe: test.o crt32.dll
-	$(CC) -o $@ $^ -lcrt32 -L.
+test.dll: test.o 
+	$(CC) -shared -o $@ $^ -lcrt32 -L.
 
-%.o: %.cpp
-	$(CC) -c $^ -o $@ -I.
+test.o: test.cpp 
+	$(CC) -c $^ -o $@ -I. -DBUILD_DLL_TEST
 
 crt32.dll: crt32.o asm.o
 	${CC} -shared -o $@ $^ -Wl,--out-implib,libcrt32.a
 
-%.o: %.cpp
-	${CC} -c -DBUILDING_EXAMPLE_DLL $^ -o $@ -I.
+crt32.o: crt32.cpp 
+	$(CC) -c $^ -o $@ -I. -DBUILD_DLL_CRT
+
+
 
 %.o: %.s
 	$(AS) $(ASFLAG) -o $@ $^ 
@@ -23,4 +25,3 @@ crt32.dll: crt32.o asm.o
 clean:
 	rm -rf *.o
 	rm *.dll
-	rm *.exe

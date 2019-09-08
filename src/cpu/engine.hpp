@@ -40,6 +40,7 @@ public:
         mem_ptr = nullptr;
     }
     void load_elf(const char* path);
+    void load_dll32(const char* path);
     void setup_os_env();
     void init();
     Bit8u* getHostMemAddr(bx_phy_address addr){

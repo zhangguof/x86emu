@@ -61,6 +61,8 @@ const Bit64u BASE_HEAP_ADDR_END = g_dll_next_ptr;
 std::string work_home = "/Users/tony/workspace/github/x86emu/TiniyOs/";
 std::string g_so_path = work_home;
 std::string start_elf_file = "tiniyos.elf";
+std::string g_dll32_path = work_home + "crtdll/win32/";
+std::string crt32_dll_file = "crt32.dll";
 
 /*
  load Tiniy os exe file.
@@ -97,16 +99,17 @@ void Engine::load_elf(const char* elf_file_name)
     }
     heap_start = (heap_start+0xff) & (~0xff);
     init_mem_allocate(heap_start, BASE_HEAP_ADDR_END);
-    
-    //load dll
-//    const char* dll_path = "/Users/tony/workspace/github/x86emu/Tin/dll/test.dll";
-    std::string dll_path = work_home+"crtdll/win32/crt32.dll";
-    struct pe_image32* pe;
-//    try_load_dll64(dll_path.c_str(),&pe);
-    try_load_dll32(dll_path.c_str(), &pe);
-    
     setup_os_env();
-    
+}
+
+void Engine::load_dll32(const char* dll_file_name)
+{
+    //load dll
+    //    const char* dll_path = "/Users/tony/workspace/github/x86emu/Tin/dll/test.dll";
+    std::string dll_path = g_dll32_path+dll_file_name;
+    struct pe_image32* pe;
+    //    try_load_dll64(dll_path.c_str(),&pe);
+    try_load_dll32(dll_path.c_str(), &pe);
 }
 
 
@@ -223,11 +226,11 @@ void Engine::init()
     bx_pc_system.register_state();
     // will enable A20 line and reset CPU and devices
     bx_pc_system.Reset(BX_RESET_HARDWARE);
-    load_elf(start_elf_file.c_str());
     
-    // First load the system BIOS (VGABIOS loading moved to the vga code)
-    //    SIM->get_param_string(BXPN_ROM_PATH)->set(rom_path);
-    //    bx_init_hardware();
+    load_elf(start_elf_file.c_str());
+    load_dll32(crt32_dll_file.c_str());
+    
+    
     
     
     
@@ -267,10 +270,16 @@ void test_dll_func()
     //    printf("1000*2 = %d\n",(int)last_ret);
     //    call_win32_guest_method1("test_dll3", 0);
     printf("======test dll func =======\n");
+    g_engine->call_win32_guest_method1("DLLMain", 0);
+    printf("ret code:%d\n",(int)g_engine->last_ret);
+    
+    //load test.dll
+    g_engine->load_dll32("test.dll");
+    
     wrap_guest_test_dll3(0x12345678, "hhhhhhhhtttttss", 0x2FEFEFEF98765432);
-    printf("ret code:0x%0llx\n",g_engine->last_ret);;
-    g_engine->call_win32_guest_method1("test_dll2", 0);
-    printf("ret code:0x%0llx\n",g_engine->last_ret & 0xFFFFFFFF);
+//    printf("ret code:0x%0llx\n",g_engine->last_ret);;
+//    g_engine->call_win32_guest_method1("test_dll2", 0);
+//    printf("ret code:0x%0llx\n",g_engine->last_ret & 0xFFFFFFFF);
     
 }
 
