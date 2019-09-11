@@ -342,3 +342,28 @@ void host_free(void* ptr)
     _used_mem[ptr] = 0;
     LOG_DEBUG("[host_free]0x%0lx,%u\n",ptr,size);
 }
+
+void* host_realloc(void* ptr, Bit64u new_size)
+{
+    if(ptr == nullptr)
+    {
+        return host_malloc(new_size);
+    }
+    auto p = _used_mem.find(ptr);
+    if(p==_used_mem.end()||_used_mem[ptr]==0)
+    {
+        LOG_ERROR("error not malloc mem!!!\n");
+        return nullptr;
+    }
+    Bit64u old_size = p->second;
+    if(old_size <= new_size) return ptr;
+    
+    void* new_ptr = host_malloc(new_size);
+    void* ptr_dst = getMemAddr((bx_phy_address)new_ptr);
+    void* ptr_src = getMemAddr((bx_phy_address)ptr);
+    memcpy(ptr_dst, ptr_src, old_size);
+    host_free(ptr);
+    
+    return new_ptr;
+    
+}

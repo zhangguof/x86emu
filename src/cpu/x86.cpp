@@ -32,7 +32,7 @@ void XE_MEM_C::load_RAM_from_data(Bit8u* data, Bit32u len, bx_phy_address ramadd
     }
     else
     {
-        assert(remain_size >= BX_MEM_BLOCK_LEN);
+//        assert(remain_size >= BX_MEM_BLOCK_LEN);
         bx_phy_address next_addr = ((start/BX_MEM_BLOCK_LEN)+1)*BX_MEM_BLOCK_LEN;
         load_size = (next_addr - start);
         memcpy(pdst, data, load_size);
@@ -170,11 +170,13 @@ void XE_CPU_C::cpu_loop()
         for(;;) {
             // want to allow changing of the instruction inside instrumentation callback
             BX_INSTR_BEFORE_EXECUTION(BX_CPU_ID, i);
-//            if(RIP == 0x400aee)
-//            {
-//                ;
-//            }
+            if(RIP + i->ilen() == 0x2efc2)
+            {
+                ;
+            }
+            
             RIP += i->ilen();
+
             // when handlers chaining is enabled this single call will execute entire trace
             BX_CPU_CALL_METHOD(i->execute1, (i)); // might iterate repeat instruction
             //check exist

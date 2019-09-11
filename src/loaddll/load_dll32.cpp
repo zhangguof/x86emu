@@ -147,6 +147,7 @@ int get_export32(const char *name, void *result)
     return -1;
 }
 
+
 static int import(void *image, IMAGE_IMPORT_DESCRIPTOR *dirent, char *dll)
 {
     ULONG_PTR32 *lookup_tbl, *address_tbl;
@@ -158,6 +159,7 @@ static int import(void *image, IMAGE_IMPORT_DESCRIPTOR *dirent, char *dll)
     
     lookup_tbl = RVA2VA(host_image, dirent->u.OriginalFirstThunk, ULONG_PTR32 *);
     address_tbl = RVA2VA(host_image, dirent->FirstThunk, ULONG_PTR32 *);
+    auto unknow_sym_addr = g_engine->call_win32_unknow_sym_addr;
     
     for (i = 0; lookup_tbl[i]; i++) {
         if (IMAGE_SNAP_BY_ORDINAL32(lookup_tbl[i])) {
@@ -172,6 +174,10 @@ static int import(void *image, IMAGE_IMPORT_DESCRIPTOR *dirent, char *dll)
         if (get_export32(symname, &adr) < 0) {
             ERROR("unknown symbol: %s:%s", dll, symname);
             address_tbl[i] = (bx_phy_address) unknown_symbol_stub;
+            if(unknow_sym_addr)
+            {
+                global_sym_tbl_win32[symname] = unknow_sym_addr;
+            }
             continue;
         } else {
             LOG_DEBUG("found symbol: %s:%s: addr: %p, rva = %llu",

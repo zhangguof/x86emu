@@ -121,6 +121,82 @@ DEF_HOST_FUNC(free)
     return 0;
 }
 
+//void *realloc(void *mem_address, unsigned int newsize);
+DEF_HOST_FUNC(realloc)
+{
+    void* ptr = nullptr;
+    uint64_t size = 0;
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32_args = {args};
+        typedef uint32_t size_t;
+        ptr = (void*)(w32_args.next<WIN32_PTR>());
+        size = w32_args.next<size_t>();
+    }
+    else
+    {
+        ptr = (void*)args[0];
+        size = args[1];
+        
+    }
+    return  (uint64_t)host_realloc(ptr,size);
+}
+//time_t time(time_t *);
+DEF_HOST_FUNC(time)
+{
+//    void* time_ptr =
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32_args = {args};
+        typedef uint32_t size_t;
+        uint32_t* ptr = (uint32_t*)w32_args.next<WIN32_PTR>();
+        if(ptr == 0) return (uint64_t)time(nullptr);
+        
+        ptr = (uint32_t*)(getMemAddr((bx_phy_address)ptr));
+        uint64_t ret = time(nullptr);
+        *ptr = (uint32_t)ret;
+        return ret;
+    }
+    else
+    {
+        time_t* ptr = (time_t*)args[0];
+        if(ptr == 0)
+        {
+            return (uint64_t)time(nullptr);
+        }
+        else
+        {
+            ptr = (time_t*)(getMemAddr((bx_phy_address)ptr));
+            return (uint64_t)time(ptr);
+        }
+    }
+}
+
+DEF_HOST_FUNC(time64)
+{
+    return wrap_time(args);
+}
+
+DEF_HOST_FUNC(time32)
+{
+//    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32_args = {args};
+        typedef uint32_t size_t;
+        uint32_t* ptr = (uint32_t*)w32_args.next<WIN32_PTR>();
+        if(ptr == 0) return (uint64_t)time(nullptr);
+        
+        ptr = (uint32_t*)(getMemAddr((bx_phy_address)ptr));
+        uint64_t ret = time(nullptr);
+        *ptr = (uint32_t)ret;
+        return ret;
+    }
+//    return 0;
+}
+
+
+
+
 //test_f1(int,unsigned int , const char*a)
 void test_f1(int a1,unsigned int a2, const char* s1,char c1,size_t st1,
              uint16_t u1,uint64_t u2)
@@ -157,6 +233,24 @@ uint64_t wrap_test_f1(uint64_t* args)
     
     return 0x12345678FEDCBAFF;
 }
+//void testtest();
+//void testtest()
+//{
+//
+//    printf("test!!!\n");
+//}
+
+//static void alias_testtest()__attribute__((weakref("testtest")));
+
+
+uint64_t wrap_unknow_sym(uint64_t* args)
+{
+    g_engine->cpu_ptr->debug_disasm_instruction(g_engine->cpu_ptr->prev_rip);
+//    testtest();
+
+    exit(0);
+}
+
 
 
 

@@ -33,11 +33,13 @@ public:
     bx_phy_address entry_addr;
     bx_phy_address call_host_ret_addr;
     bx_phy_address call_host_win32_ret_addr;
+    bx_phy_address call_win32_unknow_sym_addr;
     struct export_funcs* call_guess_method;
     uint64_t last_ret;
     Engine(){
         cpu_ptr = nullptr;
         mem_ptr = nullptr;
+        call_win32_unknow_sym_addr = 0;
     }
     void load_elf(const char* path);
     void load_dll32(const char* path);

@@ -35,6 +35,12 @@
 //    load_ram((Bit8u*)src, len, bx_phy_address(guest_dst));
 //}
 
+struct unkonw_sym_table
+{
+    uint32_t idx;
+    
+};
+
 
 int try_load_dll64(const char* dll_path,struct pe_image** pe);
 int try_load_dll32(const char* dll_path,struct pe_image32** pe);

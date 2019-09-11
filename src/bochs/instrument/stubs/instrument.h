@@ -24,7 +24,7 @@
 class bxInstruction_c;
 
 // define if you want to store instruction opcode bytes in bxInstruction_c
-//#define BX_INSTR_STORE_OPCODE_BYTES
+#define BX_INSTR_STORE_OPCODE_BYTES
 
 void bx_instr_init_env(void);
 void bx_instr_exit_env(void);

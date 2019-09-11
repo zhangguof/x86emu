@@ -228,8 +228,11 @@ void Engine::init()
     bx_pc_system.Reset(BX_RESET_HARDWARE);
     
     load_elf(start_elf_file.c_str());
+    
     load_dll32(crt32_dll_file.c_str());
     
+    call_win32_unknow_sym_addr = global_sym_tbl_win32["unknow_sym"];
+    assert(call_win32_unknow_sym_addr!=0);
     
     
     
@@ -280,6 +283,10 @@ void test_dll_func()
 //    printf("ret code:0x%0llx\n",g_engine->last_ret);;
 //    g_engine->call_win32_guest_method1("test_dll2", 0);
 //    printf("ret code:0x%0llx\n",g_engine->last_ret & 0xFFFFFFFF);
+    g_engine->load_dll32("libs/lua53.dll");
+    g_engine->load_dll32("testlua.dll");
+    g_engine->call_win32_guest_method1("testlua", 0);
+    printf("lua ret code:%d\n",int(g_engine->last_ret));
     
 }
 
