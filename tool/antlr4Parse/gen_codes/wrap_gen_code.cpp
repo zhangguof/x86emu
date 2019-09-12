@@ -22,14 +22,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const void* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef int _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     
+    arg_1 = (_T_1)(w32_args.next<_T_1>());
     typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
+    _T_2 arg_2;
     
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef void* _T_ret;
 
     auto ret = memchr( arg_0,  arg_1, arg_2 );
@@ -67,14 +70,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const void* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef const void* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef const void* _T_1;
+    _T_1 arg_1;
+    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
+    typedef size_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef int _T_ret;
 
     auto ret = memcmp( arg_0,  arg_1, arg_2 );
@@ -112,14 +118,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef void* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef const void* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef const void* _T_1;
+    _T_1 arg_1;
+    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
+    typedef size_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef void* _T_ret;
 
     auto ret = memcpy( arg_0,  arg_1, arg_2 );
@@ -157,14 +166,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef void* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef const void* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef const void* _T_1;
+    _T_1 arg_1;
+    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
+    typedef size_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef void* _T_ret;
 
     auto ret = memmove( arg_0,  arg_1, arg_2 );
@@ -202,14 +214,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef void* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef int _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     
+    arg_1 = (_T_1)(w32_args.next<_T_1>());
     typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
+    _T_2 arg_2;
     
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef void* _T_ret;
 
     auto ret = memset( arg_0,  arg_1, arg_2 );
@@ -247,11 +262,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef char* _T_ret;
 
     auto ret = strcat( arg_0, arg_1 );
@@ -286,11 +303,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef int _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
     
+    typedef int _T_1;
+    _T_1 arg_1;
+    
+    arg_1 = (_T_1)(w32_args.next<_T_1>());
     typedef char* _T_ret;
 
     auto ret = strchr( arg_0, arg_1 );
@@ -325,11 +344,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef int _T_ret;
 
     auto ret = strcmp( arg_0, arg_1 );
@@ -364,11 +385,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef int _T_ret;
 
     auto ret = strcoll( arg_0, arg_1 );
@@ -403,11 +426,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef char* _T_ret;
 
     auto ret = strcpy( arg_0, arg_1 );
@@ -442,11 +467,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef size_t _T_ret;
 
     auto ret = strcspn( arg_0, arg_1 );
@@ -481,8 +508,9 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef int _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     
+    arg_0 = (_T_0)(w32_args.next<_T_0>());
     typedef char* _T_ret;
 
     auto ret = strerror(arg_0 );
@@ -514,8 +542,9 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef size_t _T_ret;
 
     auto ret = strlen(arg_0 );
@@ -547,14 +576,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef const char* _T_1;
+    _T_1 arg_1;
+    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
+    typedef size_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef char* _T_ret;
 
     auto ret = strncat( arg_0,  arg_1, arg_2 );
@@ -592,14 +624,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef const char* _T_1;
+    _T_1 arg_1;
+    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
+    typedef size_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef int _T_ret;
 
     auto ret = strncmp( arg_0,  arg_1, arg_2 );
@@ -637,14 +672,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef const char* _T_1;
+    _T_1 arg_1;
+    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
+    typedef size_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef char* _T_ret;
 
     auto ret = strncpy( arg_0,  arg_1, arg_2 );
@@ -682,11 +720,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef char* _T_ret;
 
     auto ret = strpbrk( arg_0, arg_1 );
@@ -721,11 +761,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef int _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
     
+    typedef int _T_1;
+    _T_1 arg_1;
+    
+    arg_1 = (_T_1)(w32_args.next<_T_1>());
     typedef char* _T_ret;
 
     auto ret = strrchr( arg_0, arg_1 );
@@ -760,11 +802,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef size_t _T_ret;
 
     auto ret = strspn( arg_0, arg_1 );
@@ -799,11 +843,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef char* _T_ret;
 
     auto ret = strstr( arg_0, arg_1 );
@@ -838,11 +884,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef char* _T_ret;
 
     auto ret = strtok( arg_0, arg_1 );
@@ -877,14 +925,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef const char* _T_1;
+    _T_1 arg_1;
+    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
+    typedef size_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef size_t _T_ret;
 
     auto ret = strxfrm( arg_0,  arg_1, arg_2 );
@@ -922,14 +973,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef char** _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
+    _T_2 arg_2;
     arg_2 = (_T_2)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef char* _T_ret;
 
     auto ret = strtok_r( arg_0,  arg_1, arg_2 );
@@ -967,14 +1021,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef int _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     
+    arg_0 = (_T_0)(w32_args.next<_T_0>());
     typedef char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef size_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef int _T_ret;
 
     auto ret = strerror_r( arg_0,  arg_1, arg_2 );
@@ -1012,8 +1069,9 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef char* _T_ret;
 
     auto ret = strdup(arg_0 );
@@ -1045,17 +1103,21 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef void* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef const void* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef int _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
+    _T_2 arg_2;
     
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef size_t _T_3;
-    auto arg_3 = (_T_3)(w32_args.next<_T_3>());
+    _T_3 arg_3;
     
+    arg_3 = (_T_3)(w32_args.next<_T_3>());
     typedef void* _T_ret;
 
     auto ret = memccpy( arg_0,  arg_1,  arg_2, arg_3 );
@@ -1096,11 +1158,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef char* _T_ret;
 
     auto ret = stpcpy( arg_0, arg_1 );
@@ -1135,14 +1199,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef const char* _T_1;
+    _T_1 arg_1;
+    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
+    typedef size_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef char* _T_ret;
 
     auto ret = stpncpy( arg_0,  arg_1, arg_2 );
@@ -1180,11 +1247,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
     
+    typedef size_t _T_1;
+    _T_1 arg_1;
+    
+    arg_1 = (_T_1)(w32_args.next<_T_1>());
     typedef char* _T_ret;
 
     auto ret = strndup( arg_0, arg_1 );
@@ -1219,11 +1288,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
     
+    typedef size_t _T_1;
+    _T_1 arg_1;
+    
+    arg_1 = (_T_1)(w32_args.next<_T_1>());
     typedef size_t _T_ret;
 
     auto ret = strnlen( arg_0, arg_1 );
@@ -1258,8 +1329,9 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef int _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     
+    arg_0 = (_T_0)(w32_args.next<_T_0>());
     typedef char* _T_ret;
 
     auto ret = strsignal(arg_0 );
@@ -1291,17 +1363,21 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef void* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef rsize_t _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     
+    arg_1 = (_T_1)(w32_args.next<_T_1>());
     typedef int _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
+    _T_2 arg_2;
     
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef rsize_t _T_3;
-    auto arg_3 = (_T_3)(w32_args.next<_T_3>());
+    _T_3 arg_3;
     
+    arg_3 = (_T_3)(w32_args.next<_T_3>());
     typedef errno_t _T_ret;
 
     auto ret = memset_s( arg_0,  arg_1,  arg_2, arg_3 );
@@ -1342,17 +1418,21 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const void* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef size_t _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     
+    arg_1 = (_T_1)(w32_args.next<_T_1>());
     typedef const void* _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
+    _T_2 arg_2;
     arg_2 = (_T_2)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_3;
-    auto arg_3 = (_T_3)(w32_args.next<_T_3>());
     
+    typedef size_t _T_3;
+    _T_3 arg_3;
+    
+    arg_3 = (_T_3)(w32_args.next<_T_3>());
     typedef void* _T_ret;
 
     auto ret = memmem( arg_0,  arg_1,  arg_2, arg_3 );
@@ -1393,14 +1473,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef void* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef const void* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef const void* _T_1;
+    _T_1 arg_1;
+    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
+    typedef size_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef void _T_ret;
 
     
@@ -1440,14 +1523,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef void* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef const void* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef const void* _T_1;
+    _T_1 arg_1;
+    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
+    typedef size_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef void _T_ret;
 
     
@@ -1487,14 +1573,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef void* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef const void* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef const void* _T_1;
+    _T_1 arg_1;
+    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
+    typedef size_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef void _T_ret;
 
     
@@ -1534,11 +1623,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef char* _T_ret;
 
     auto ret = strcasestr( arg_0, arg_1 );
@@ -1573,14 +1664,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef const char* _T_1;
+    _T_1 arg_1;
+    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
+    typedef size_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef char* _T_ret;
 
     auto ret = strnstr( arg_0,  arg_1, arg_2 );
@@ -1618,14 +1712,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef const char* _T_1;
+    _T_1 arg_1;
+    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
+    typedef size_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef size_t _T_ret;
 
     auto ret = strlcat( arg_0,  arg_1, arg_2 );
@@ -1663,14 +1760,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef const char* _T_1;
+    _T_1 arg_1;
+    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
+    typedef size_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef size_t _T_ret;
 
     auto ret = strlcpy( arg_0,  arg_1, arg_2 );
@@ -1708,11 +1808,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef int _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     
+    arg_0 = (_T_0)(w32_args.next<_T_0>());
     typedef char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef void _T_ret;
 
     
@@ -1749,11 +1851,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef char** _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef char* _T_ret;
 
     auto ret = strsep( arg_0, arg_1 );
@@ -1788,14 +1892,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const void* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef void* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef ssize_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef void* _T_1;
+    _T_1 arg_1;
+    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
+    typedef ssize_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef void _T_ret;
 
     
@@ -1835,14 +1942,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const void* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef const void* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef const void* _T_1;
+    _T_1 arg_1;
+    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
+    typedef size_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef int _T_ret;
 
     auto ret = timingsafe_bcmp( arg_0,  arg_1, arg_2 );
@@ -1880,14 +1990,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const void* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef const void* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef const void* _T_1;
+    _T_1 arg_1;
+    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
+    typedef size_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef int _T_ret;
 
     auto ret = bcmp( arg_0,  arg_1, arg_2 );
@@ -1925,14 +2038,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const void* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef void* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef void* _T_1;
+    _T_1 arg_1;
+    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
+    typedef size_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef void _T_ret;
 
     
@@ -1972,11 +2088,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef void* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
     
+    typedef size_t _T_1;
+    _T_1 arg_1;
+    
+    arg_1 = (_T_1)(w32_args.next<_T_1>());
     typedef void _T_ret;
 
     
@@ -2013,11 +2131,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef int _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
     
+    typedef int _T_1;
+    _T_1 arg_1;
+    
+    arg_1 = (_T_1)(w32_args.next<_T_1>());
     typedef char* _T_ret;
 
     auto ret = index( arg_0, arg_1 );
@@ -2052,11 +2172,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef int _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
     
+    typedef int _T_1;
+    _T_1 arg_1;
+    
+    arg_1 = (_T_1)(w32_args.next<_T_1>());
     typedef char* _T_ret;
 
     auto ret = rindex( arg_0, arg_1 );
@@ -2091,8 +2213,9 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef int _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     
+    arg_0 = (_T_0)(w32_args.next<_T_0>());
     typedef int _T_ret;
 
     auto ret = ffs(arg_0 );
@@ -2124,11 +2247,13 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
+    _T_1 arg_1;
     arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
     typedef int _T_ret;
 
     auto ret = strcasecmp( arg_0, arg_1 );
@@ -2163,14 +2288,17 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef const char* _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     arg_0 = (_T_0)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef const char* _T_1;
-    auto arg_1 = (_T_1)(w32_args.next<_T_1>());
-    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
-    typedef size_t _T_2;
-    auto arg_2 = (_T_2)(w32_args.next<_T_2>());
     
+    typedef const char* _T_1;
+    _T_1 arg_1;
+    arg_1 = (_T_1)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    
+    typedef size_t _T_2;
+    _T_2 arg_2;
+    
+    arg_2 = (_T_2)(w32_args.next<_T_2>());
     typedef int _T_ret;
 
     auto ret = strncasecmp( arg_0,  arg_1, arg_2 );
@@ -2208,8 +2336,9 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef long _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     
+    arg_0 = (_T_0)(w32_args.next<_T_0>());
     typedef int _T_ret;
 
     auto ret = ffsl(arg_0 );
@@ -2241,8 +2370,9 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef long long _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     
+    arg_0 = (_T_0)(w32_args.next<_T_0>());
     typedef int _T_ret;
 
     auto ret = ffsll(arg_0 );
@@ -2274,8 +2404,9 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef int _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     
+    arg_0 = (_T_0)(w32_args.next<_T_0>());
     typedef int _T_ret;
 
     auto ret = fls(arg_0 );
@@ -2307,8 +2438,9 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef long _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     
+    arg_0 = (_T_0)(w32_args.next<_T_0>());
     typedef int _T_ret;
 
     auto ret = flsl(arg_0 );
@@ -2340,8 +2472,9 @@ if(is_cpu_mode32())
     WIN32_ARGS w32_args = {(void*)args};
     typedef uint32_t size_t; //redef size_t;
     typedef long long _T_0;
-    auto arg_0 = (_T_0)(w32_args.next<_T_0>());
+    _T_0 arg_0;
     
+    arg_0 = (_T_0)(w32_args.next<_T_0>());
     typedef int _T_ret;
 
     auto ret = flsll(arg_0 );

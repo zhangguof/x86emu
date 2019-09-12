@@ -42,9 +42,11 @@ if(is_cpu_mode32())
     {% for param in params %}
     {% set idx = loop.index0 -%}
     typedef {{param.name}} _T_{{idx}};
-    auto arg_{{idx}} = (_T_{{idx}})(w32_args.next<_T_{{idx}}>());
+    _T_{{idx}} arg_{{idx}};
     {% if param.is_pointer -%}
     arg_{{idx}} = (_T_{{idx}})getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+    {% else %}
+    arg_{{idx}} = (_T_{{idx}})(w32_args.next<_T_{{idx}}>());
     {%- endif -%}
     {% endfor %}
     typedef {{ret_type.name}} _T_ret;
