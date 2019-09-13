@@ -92,9 +92,9 @@ static int fix_pe_image(struct pe_image32 *pe,dll* pdll,bx_phy_address base_addr
     
     /* Copy all the sections */
     for (i = 0; i < sections; i++) {
-        LOG_INFO("Copy section %s from %x to %x",
+        LOG_INFO("Copy section %s from %x to %x (%d)",
                  sect_hdr->Name, sect_hdr->PointerToRawData,
-                 sect_hdr->VirtualAddress);
+                 sect_hdr->VirtualAddress,sect_hdr->SizeOfRawData);
         if (sect_hdr->VirtualAddress+sect_hdr->SizeOfRawData >
             image_size) {
             ERROR("Invalid section %s in driver", sect_hdr->Name);
@@ -238,7 +238,18 @@ static int read_exports(struct pe_image32 *pe)
         
 
         std::string name = (char*)host_image + *name_table;
-        global_sym_tbl_win32[name] = (bx_phy_address)pe->image + address;
+        bx_phy_address addr = (bx_phy_address)pe->image + address;
+//        global_sym_tbl_win32[name] =
+        auto it = global_sym_tbl_win32.find(name);
+        if(it == global_sym_tbl_win32.end()||it->second ==
+           g_engine->call_win32_unknow_sym_addr)
+        {
+            global_sym_tbl_win32[name] = addr;
+        }
+        else
+        {
+            LOG_WARN("has imported symbol:%s in :0x%0llx\n",name.c_str(),it->second);
+        }
         
         //        num_pe_exports++;
         name_table++;
