@@ -166,33 +166,59 @@ void XE_CPU_C::cpu_loop()
         bxICacheEntry_c *entry = getICacheEntry();
         bxInstruction_c *i = entry->i;
         
+         bxInstruction_c *last = i + (entry->tlen);
 //#if BX_SUPPORT_HANDLERS_CHAINING_SPEEDUPS
         for(;;) {
             // want to allow changing of the instruction inside instrumentation callback
             BX_INSTR_BEFORE_EXECUTION(BX_CPU_ID, i);
-            if(RIP + i->ilen() == 0x2efc2)
+            RIP += i->ilen();
+            if(RIP == 0x853d16)
             {
                 ;
             }
-            
-            RIP += i->ilen();
-
-            // when handlers chaining is enabled this single call will execute entire trace
             BX_CPU_CALL_METHOD(i->execute1, (i)); // might iterate repeat instruction
             //check exist
             if(is_exit) return;
+            BX_CPU_THIS_PTR prev_rip = RIP; // commit new RIP
+            BX_INSTR_AFTER_EXECUTION(BX_CPU_ID, i);
+            BX_CPU_THIS_PTR icount++;
             
             BX_SYNC_TIME_IF_SINGLE_PROCESSOR(0);
             
+            
             if (BX_CPU_THIS_PTR async_event) break;
-            entry = getICacheEntry();
-            i = entry->i;
-//            i = getICacheEntry()->i;
+            
+            if (++i == last) {
+                entry = getICacheEntry();
+                i = entry->i;
+                last = i + (entry->tlen);
+            }
         }
+        
+        // clear stop trace magic indication that probably was set by repeat or branch32/64
+//        BX_CPU_THIS_PTR async_event &= ~BX_ASYNC_EVENT_STOP_TRACE;
+//            // want to allow changing of the instruction inside instrumentation callback
+//            BX_INSTR_BEFORE_EXECUTION(BX_CPU_ID, i);
+//
+//            RIP += i->ilen();
+//
+//            // when handlers chaining is enabled this single call will execute entire trace
+//            BX_CPU_CALL_METHOD(i->execute1, (i)); // might iterate repeat instruction
+//            //check exist
+//            if(is_exit) return;
+//
+//            BX_SYNC_TIME_IF_SINGLE_PROCESSOR(0);
+//
+//            if (BX_CPU_THIS_PTR async_event) break;
+//            entry = getICacheEntry();
+//            i = entry->i;
+////            i = getICacheEntry()->i;
+//        }
         
         // clear stop trace magic indication that probably was set by repeat or branch32/64
         BX_CPU_THIS_PTR async_event &= ~BX_ASYNC_EVENT_STOP_TRACE;
         
     }  // while (1)
 }
+
 
