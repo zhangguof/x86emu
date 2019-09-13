@@ -367,3 +367,15 @@ void* host_realloc(void* ptr, Bit64u new_size)
     return new_ptr;
     
 }
+
+//void* calloc( size_t num, size_t size );
+void* host_calloc(Bit64u num, Bit64u size)
+{
+    Bit64u mem_size = num * size;
+    void *ptr = host_malloc(mem_size);
+
+    void* ptr_dst = getMemAddr((bx_phy_address)ptr);
+//    memcpy(ptr_dst, ptr_src, old_size);
+    memset(ptr_dst,0,mem_size);
+    return ptr;
+}

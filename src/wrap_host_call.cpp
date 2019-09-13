@@ -141,6 +141,26 @@ DEF_HOST_FUNC(realloc)
     }
     return  (uint64_t)host_realloc(ptr,size);
 }
+//void* calloc（unsigned int num，unsigned int size）；
+DEF_HOST_FUNC(calloc)
+{
+    uint64_t num = 0;
+    uint64_t size = 0;
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32_args = {args};
+        typedef uint32_t size_t;
+        num = w32_args.next<size_t>();
+        size = w32_args.next<size_t>();
+    }
+    else
+    {
+        num = args[0];
+        size = args[1];
+    }
+    return  (uint64_t)host_calloc(num,size);
+}
+
 //time_t time(time_t *);
 DEF_HOST_FUNC(time)
 {
@@ -251,6 +271,7 @@ uint64_t wrap_unknow_sym(uint64_t* args)
     exit(0);
 }
 
+//set_thread_area(struct user_desc* pebdescriptor)
 
 
 

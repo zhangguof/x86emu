@@ -111,6 +111,7 @@ struct alloc_t
 void* host_malloc(Bit64u size);
 void host_free(void* ptr);
 void* host_realloc(void* ptr, Bit64u new_size);
+void* host_calloc(Bit64u num,Bit64u size);
 
 void init_mem_allocate(bx_phy_address start, bx_phy_address end);
 
