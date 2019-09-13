@@ -117,7 +117,7 @@ void BX_MEM_C::init_memory(Bit64u guest, Bit64u host)
   BX_INFO(("%.2fMB", (float)(BX_MEM_THIS len / (1024.0*1024.0))));
   BX_INFO(("mem block size = 0x%08x, blocks=%u", BX_MEM_BLOCK_LEN, num_blocks));
   BX_MEM_THIS blocks = new Bit8u* [num_blocks];
-  if (0) {
+  if (1) {
     // all guest memory is allocated, just map it
     for (idx = 0; idx < num_blocks; idx++) {
       BX_MEM_THIS blocks[idx] = BX_MEM_THIS vector + (idx * BX_MEM_BLOCK_LEN);
