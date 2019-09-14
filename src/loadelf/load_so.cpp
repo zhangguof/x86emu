@@ -26,6 +26,8 @@ extern std::string g_so_path,work_home;
 
 std::unordered_map<std::string, bx_phy_address> global_sym_tbl;
 std::unordered_map<std::string, bx_phy_address> global_sym_tbl_win32;
+std::unordered_map<bx_phy_address,std::shared_ptr<sym_info> >  global_addr2sym_win32;
+
 std::unordered_map<std::string, bx_phy_address> global_sym_tbl_win64;
 
 

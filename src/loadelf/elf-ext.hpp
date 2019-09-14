@@ -14,6 +14,7 @@
 #include <algorithm>
 #include <unordered_map>
 
+#include "elf.h"
 typedef Elf64_Ehdr ehdr;
 
 
@@ -118,8 +119,32 @@ dll* load_lib(ehdr* eh,bx_phy_address *base_addr,bool is_so = false);
 void load_dyn(dll* p_dll);
 dll* try_load_so(const char* name,bx_phy_address* base_addr, bool is_so=false);
 
+#include <string>
+struct sym_info
+{
+    std::string dll_name;
+    std::string fname;
+    uint64_t dll_base;
+    uint64_t load_addr;
+    sym_info(std::string& d, std::string& f, uint64_t base,uint64_t l):dll_name(d),fname(f),
+            dll_base(base),load_addr(l){}
+    sym_info(const char* d, const char* f, uint64_t base,uint64_t l):dll_name(d),fname(f),
+            dll_base(base),load_addr(l){}
+    sym_info(sym_info& info){
+        dll_name = info.dll_name;
+        fname = info.fname;
+        dll_base = info.dll_base;
+        load_addr = info.load_addr;
+    }
+    sym_info(){}
+};
+
 extern std::unordered_map<std::string, bx_phy_address> global_sym_tbl;
 extern std::unordered_map<std::string, bx_phy_address> global_sym_tbl_win32;
+
+extern std::unordered_map<bx_phy_address,std::shared_ptr<sym_info> >  global_addr2sym_win32;
+
+
 extern std::unordered_map<std::string, bx_phy_address> global_sym_tbl_win64;
 
 

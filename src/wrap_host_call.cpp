@@ -262,6 +262,22 @@ uint64_t wrap_test_f1(uint64_t* args)
 
 //static void alias_testtest()__attribute__((weakref("testtest")));
 
+DEF_HOST_FUNC(exit)
+{
+    uint64_t ret_code = 0;
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32_args = {args};
+        ret_code = w32_args.next<uint32_t>();
+        
+    }
+    else
+    {
+        ret_code = args[0];
+    }
+    exit(ret_code);
+}
+
 
 uint64_t wrap_unknow_sym(uint64_t* args)
 {

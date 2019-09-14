@@ -177,6 +177,9 @@ static int import(void *image, IMAGE_IMPORT_DESCRIPTOR *dirent, char *dll)
             if(unknow_sym_addr)
             {
                 global_sym_tbl_win32[symname] = unknow_sym_addr;
+//                global_addr2sym_win32[unknow_sym_addr] = symname;
+                global_addr2sym_win32[unknow_sym_addr] = std::make_shared<sym_info>(dll,symname,0,0);
+                
             }
             continue;
         } else {
@@ -245,6 +248,9 @@ static int read_exports(struct pe_image32 *pe)
            g_engine->call_win32_unknow_sym_addr)
         {
             global_sym_tbl_win32[name] = addr;
+//            global_addr2sym_win32[addr] = name;
+            global_addr2sym_win32[addr] = std::make_shared<sym_info>(pe->name,name.c_str(),
+                                                   pe->opt_hdr->ImageBase,(uint64_t)pe->image);
         }
         else
         {

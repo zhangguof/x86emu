@@ -1,4 +1,7 @@
-CC= i686-w64-mingw32-c++
+CXX= i686-w64-mingw32-c++
+CC=i686-w64-mingw32-c++
+CFLAGS=-I../../../src/
+
 AS=nasm
 ASFLAG=-f win32 -i../../../src/
 
@@ -6,19 +9,22 @@ ASFLAG=-f win32 -i../../../src/
 all: test.dll crt32.dll testlua.dll
 
 test.dll: test.o 
-	$(CC) -shared -o $@ $^ -lcrt32 -L.
+	$(CC) -shared -o $@ $^ -lcrt32 -L. 
 
 test.o: test.cpp 
-	$(CC) -c $^ -o $@ -I. -DBUILD_DLL_TEST
+	$(CXX) -c $^ -o $@ -I. -DBUILD_DLL_TEST $(CFLAGS)
 
-crt32.dll: crt32.o asm.o
+crt32.dll: crt32.o asm.o gdt.o
 	${CC} -shared -o $@ $^ -Wl,--out-implib,libcrt32.a
 
 crt32.o: crt32.cpp 
-	$(CC) -c $^ -o $@ -I. -DBUILD_DLL_CRT
+	$(CXX) -c $^ -o $@ -I. -DBUILD_DLL_CRT $(CFLAGS)
+
+gdt.o:	gdt.cpp
+	$(CXX) -c $^ -o $@ -I. $(CFLAGS)
 
 testlua.dll: testlua.cpp
-	$(CC) -shared -o $@ $^ -lcrt32 -llua53 -L. -Iinclude
+	$(CXX) -shared -o $@ $^ -lcrt32 -llua53 -L. -Iinclude $(CFLAGS)
 
 
 

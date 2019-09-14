@@ -29,6 +29,11 @@
 
 #include "disasm/disasm.h"
 
+#include <string>
+#include <unordered_map>
+//extern std::unordered_map<bx_phy_address,std::string>  global_addr2sym_win32;
+#include "loadelf/elf-ext.hpp"
+
 void BX_CPU_C::debug_disasm_instruction(bx_address offset)
 {
 #if BX_DEBUGGER
@@ -61,7 +66,14 @@ void BX_CPU_C::debug_disasm_instruction(bx_address offset)
         char_buf[i++] = letters[(instr_buf[j] >> 0) & 0xf];
       }
       char_buf[i] = 0;
-      BX_INFO(("0x" FMT_ADDRX ">> %s", offset, char_buf));
+        auto it = global_addr2sym_win32.find(offset);
+        if(it==global_addr2sym_win32.end())
+            BX_INFO(("0x" FMT_ADDRX ">> %s", offset, char_buf));
+        else
+            BX_INFO(("0x" FMT_ADDRX ">> %s ;(%s:%s:0x%0llx)", offset, char_buf,
+                     it->second->dll_name.c_str(),
+                     it->second->fname.c_str(),
+                     (offset - it->second->load_addr + it->second->dll_base)));
     }
     else {
       BX_INFO(("0x" FMT_ADDRX ": (instruction unavailable) page split instruction", offset));
