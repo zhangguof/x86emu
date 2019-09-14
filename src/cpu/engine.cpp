@@ -230,10 +230,10 @@ void Engine::init()
     load_elf(start_elf_file.c_str());
     
     load_dll32(crt32_dll_file.c_str());
+    load_dll32("libs/vcruntime140.dll");
     
     call_win32_unknow_sym_addr = global_sym_tbl_win32["unknow_sym"];
     assert(call_win32_unknow_sym_addr!=0);
-    
     
     
     
@@ -273,17 +273,17 @@ void test_dll_func()
     //    printf("1000*2 = %d\n",(int)last_ret);
     //    call_win32_guest_method1("test_dll3", 0);
     printf("======test dll func =======\n");
-    g_engine->call_win32_guest_method1("DLLMain", 0);
-    printf("ret code:%d\n",(int)g_engine->last_ret);
     
-    //load test.dll
-    g_engine->load_dll32("test.dll");
     
-    wrap_guest_test_dll3(0x12345678, "hhhhhhhhtttttss", 0x2FEFEFEF98765432);
+//    load test.dll
+//    g_engine->load_dll32("test.dll");
+//
+//    wrap_guest_test_dll3(0x12345678, "hhhhhhhhtttttss", 0x2FEFEFEF98765432);
 //    printf("ret code:0x%0llx\n",g_engine->last_ret);;
 //    g_engine->call_win32_guest_method1("test_dll2", 0);
 //    printf("ret code:0x%0llx\n",g_engine->last_ret & 0xFFFFFFFF);
-    g_engine->load_dll32("libs/lua53.dll");
+    
+    g_engine->load_dll32("libs/lua53_1.dll");
     g_engine->load_dll32("testlua.dll");
     g_engine->call_win32_guest_method1("testlua", 0);
     printf("lua ret code:%d\n",int(g_engine->last_ret));
@@ -303,6 +303,8 @@ void Engine::run()
     cpu_ptr->prev_rip = RIP = entry_addr;
 //    cpu_ptr->PUSH
     cpu_ptr->cpu_loop();
+    
+    call_win32_guest_method1("DLLMain", 0);
     test_dll_func();
 
                        

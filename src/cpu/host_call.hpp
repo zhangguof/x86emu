@@ -19,6 +19,8 @@ DEF_HOST_FUNC(snprintf,20)
 DEF_HOST_FUNC(sprintf,21)
 DEF_HOST_FUNC(printf,22)
 
+DEF_HOST_FUNC(exit,97)
+
 
 DEF_HOST_FUNC(test_f1, 98)
 DEF_HOST_FUNC(unknow_sym,99)

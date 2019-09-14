@@ -70,7 +70,13 @@ call_host_ret:
 	; leave
 	; ret
 
-
+extern _gdt_ptr
+global _load_gdt
+global load_gdt
+_load_gdt:
+load_gdt:
+	lgdt[_gdt_ptr]
+	ret
 
 
 section .data
