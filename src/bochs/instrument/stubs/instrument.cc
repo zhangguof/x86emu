@@ -54,7 +54,7 @@ void bx_instr_cache_cntrl(unsigned cpu, unsigned what) {}
 void bx_instr_prefetch_hint(unsigned cpu, unsigned what, unsigned seg, bx_address offset) {}
 
 void bx_instr_before_execution(unsigned cpu, bxInstruction_c *i) {
-    return;
+//    return;
     BX_CPU(0)->debug_disasm_instruction(RIP);
 }
 void bx_instr_after_execution(unsigned cpu, bxInstruction_c *i) {}
