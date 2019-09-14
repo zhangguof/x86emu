@@ -232,7 +232,7 @@ void init_mem_allocate(bx_phy_address start, bx_phy_address end)
 uint32_t get_mem_idx(Bit64u size)
 {
     auto idx = std::lower_bound(mini_mem, mini_mem+max_mem_idx+1, size);
-    assert(size <= mini_mem[*idx]);
+    assert(size <= *idx);
     return idx - mini_mem;
 }
 
