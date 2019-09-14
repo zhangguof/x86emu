@@ -26,6 +26,7 @@ extern "C"
 #include <string>
 #include "load_dll.hpp"
 #include "engine.hpp"
+#include "wrap_host_call.hpp"
 
 
 #define RVA2VA(image, rva, type) (type)(ULONG_PTR64)((char *)image + rva)
@@ -67,7 +68,9 @@ static int fix_pe_image(struct pe_image32 *pe,dll* pdll,bx_phy_address base_addr
     image = pdll->code;
     void *host_image = pdll->host_code;
     
-    LOG_INFO("try load 32bit dll:base(0x%0lx),size(0x%0lx)\n",pe->opt_hdr->ImageBase,image_size);
+    LOG_INFO("try load 32bit dll:name :%s,base(0x%0lx),size(0x%0lx)\n",
+             pe->name,
+             pe->opt_hdr->ImageBase,image_size);
     
     //    image      = code_malloc(image_size + getpagesize());
     
@@ -147,6 +150,17 @@ int get_export32(const char *name, void *result)
     return -1;
 }
 
+extern void* host_malloc(Bit64u size);
+static void* gen_unknow_info(const char* dll_name, const char* fname, bx_phy_address fun_addr)
+{
+    void* ptr = host_malloc(32);
+    uint8_t* host_ptr = getMemAddr((bx_phy_address)ptr);
+    uint32_t idx = unknow_sym_tbl.size();
+    unknow_sym_tbl.push_back(unknow_sym_info(dll_name,fname));
+    gen_unkown_code(host_ptr, idx, fun_addr, true);
+    
+    return ptr;
+}
 
 static int import(void *image, IMAGE_IMPORT_DESCRIPTOR *dirent, char *dll)
 {
@@ -173,12 +187,14 @@ static int import(void *image, IMAGE_IMPORT_DESCRIPTOR *dirent, char *dll)
         
         if (get_export32(symname, &adr) < 0) {
             ERROR("unknown symbol: %s:%s", dll, symname);
-            address_tbl[i] = (bx_phy_address) unknown_symbol_stub;
+            address_tbl[i] = (bx_phy_address) 0;
             if(unknow_sym_addr)
             {
-                global_sym_tbl_win32[symname] = unknow_sym_addr;
+                uint64_t new_addr = (uint64_t)gen_unknow_info(dll, symname,unknow_sym_addr);
+                global_sym_tbl_win32[symname] = new_addr;
 //                global_addr2sym_win32[unknow_sym_addr] = symname;
-                global_addr2sym_win32[unknow_sym_addr] = std::make_shared<sym_info>(dll,symname,0,0);
+                global_addr2sym_win32[new_addr] = std::make_shared<sym_info>(dll,symname,0,0);
+                address_tbl[i] = (bx_phy_address)new_addr;
                 
             }
             continue;

@@ -18,6 +18,7 @@
 
 #include "wrap_host_call.hpp"
 #include "utils.h"
+#include "logger.hpp"
 
 
 
@@ -277,14 +278,64 @@ DEF_HOST_FUNC(exit)
     }
     exit(ret_code);
 }
+/*
+ push idx
+ mov eax, addr
+ jmp [eax]
+ 
+ 00000000 <.text>:
+ 0:    68 78 56 34 12           push   0x12345678
+ 5:    b8 55 66 80 00           mov    eax,0x806655
+ a:    ff d0                    call   eax
+ */
+void gen_unkown_code(uint8_t* code_buf, uint32_t idx,bx_phy_address unknow_sym_func_addr,bool is_32)
+{
+    if(is_32)
+    {
+        *(code_buf++) = 0x68;
+        uint32_t val = idx;
+        *((uint32_t*)code_buf) = idx;
+        code_buf += sizeof(uint32_t);
+        *(code_buf++) = 0xb8;
+        *((uint32_t*)code_buf) = (uint32_t)(unknow_sym_func_addr & 0xFFFFFFFF);
+        code_buf += sizeof(uint32_t);
+        *(code_buf++) = 0xff;
+        *(code_buf++) = 0xd0;
+        
+    }
+    else
+    {
+        // TODO
+    }
+}
 
+#include <vector>
+std::vector<unknow_sym_info> unknow_sym_tbl;
 
 uint64_t wrap_unknow_sym(uint64_t* args)
 {
-    g_engine->cpu_ptr->debug_disasm_instruction(g_engine->cpu_ptr->prev_rip);
-//    testtest();
+//    g_engine->cpu_ptr->debug_disasm_instruction(g_engine->cpu_ptr->prev_rip);
+    uint64_t idx = 0;
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32_args = {args};
+        idx = w32_args.next<uint32_t>();
+
+    }
+    else
+    {
+        idx = args[0];
+    }
+    size_t len = unknow_sym_tbl.size();
+    if(idx < len)
+    {
+        auto info = unknow_sym_tbl[idx];
+        LOG_ERROR("unknow symbol %s:%s\n",info.dll.c_str(),
+               info.name.c_str());
+    }
 
     exit(0);
+    return 0;
 }
 
 //set_thread_area(struct user_desc* pebdescriptor)

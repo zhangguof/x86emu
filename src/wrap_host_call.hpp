@@ -36,7 +36,21 @@ struct WIN32_ARGS{
         return *p;
     }
 };
+
+#include <string>
+struct unknow_sym_info
+{
+    std::string dll;
+    std::string name;
+    unknow_sym_info(const char* d,const char* n):dll(d),name(n){}
+    unknow_sym_info(std::string &d,std::string &n):dll(d),name(n){}
+};
+
+#include <vector>
+extern std::vector<unknow_sym_info> unknow_sym_tbl;
+
 typedef uint32_t WIN32_PTR;
+extern void gen_unkown_code(uint8_t* code_buf, uint32_t idx,bx_phy_address unknow_sym_func_addr,bool is_32);
 
 
 #endif /* wrap_host_call_h */
