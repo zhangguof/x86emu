@@ -23,6 +23,8 @@
 #include "logger.hpp"
 #include "loaddll/load_dll.hpp"
 #include "wrap_host_call.hpp"
+#include "debug.hpp"
+
 
 extern void bx_init_options();
 extern void bx_init_siminterface();
@@ -395,6 +397,39 @@ void Engine::sw_cpu_mode(uint32_t mode)
     {
         cpu_ptr->sregs[BX_SEG_REG_CS].cache.u.segment.l = 1; // 64bit
         cpu_ptr->handleCpuModeChange();
+    }
+}
+void Engine::push_call(uint64_t addr)
+{
+
+    this->p_call_trace_win32->push_back(addr);
+}
+void Engine::pop_call()
+{
+    //        assert(addr == call_trace_win32.back());
+    this->p_call_trace_win32->pop_back();
+}
+
+void Engine::print_call_trace_win32()
+{
+    for(auto addr:*p_call_trace_win32)
+    {
+        const char* name = nullptr;
+        auto it = global_debug_info.find(addr);
+        if(it!=global_debug_info.end())
+        {
+            name = it->second->name.c_str();
+        }
+       
+        if(name==nullptr)
+        {
+            auto it2 = global_addr2sym_win32.find(addr);
+            if(it2!=global_addr2sym_win32.end())
+            {
+                name = it2->second->fname.c_str();
+            }
+        }
+        printf("==addr:0x%0lx:%s\n",addr,name);
     }
 }
 

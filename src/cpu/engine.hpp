@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include "buffer.hpp"
 #include "cpu/x86.h"
+#include <vector>
+#include <stdint.h>
 
 
 
@@ -21,6 +23,11 @@ struct export_funcs
     void* ptr;
     char name[64];
 };
+
+//struct call_trace
+//{
+//    bx_phy_address addr;
+//};
 
 
 
@@ -36,10 +43,19 @@ public:
     bx_phy_address call_win32_unknow_sym_addr;
     struct export_funcs* call_guess_method;
     uint64_t last_ret;
+    
+    std::shared_ptr<std::vector<uint64_t>> p_call_trace_win32;
+    void push_call(uint64_t addr);
+    void pop_call();
+    void print_call_trace_win32();
+    
     Engine(){
         cpu_ptr = nullptr;
         mem_ptr = nullptr;
         call_win32_unknow_sym_addr = 0;
+//        call_trace_win32
+        p_call_trace_win32 = std::make_shared<std::vector<uint64_t>>(1);
+        p_call_trace_win32->reserve(16);
     }
     void load_elf(const char* path);
     void load_dll32(const char* path);

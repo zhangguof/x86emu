@@ -24,6 +24,8 @@
 #include "cpu.h"
 #define LOG_THIS BX_CPU_THIS_PTR
 
+#include "engine.hpp"
+
 #if BX_CPU_LEVEL >= 3
 
 BX_CPP_INLINE void BX_CPP_AttrRegparmN(1) BX_CPU_C::branch_near32(Bit32u new_EIP)
@@ -125,6 +127,7 @@ BX_INSF_TYPE BX_CPP_AttrRegparmN(1) BX_CPU_C::RETnear32_Iw(bxInstruction_c *i)
     exception(BX_GP_EXCEPTION, 0);
   }
   EIP = return_EIP;
+    g_engine->pop_call();
 
   if (BX_CPU_THIS_PTR sregs[BX_SEG_REG_SS].cache.u.segment.d_b)
     ESP += imm16;
@@ -155,6 +158,7 @@ BX_INSF_TYPE BX_CPP_AttrRegparmN(1) BX_CPU_C::RETnear32(bxInstruction_c *i)
     exception(BX_GP_EXCEPTION, 0);
   }
   EIP = return_EIP;
+    g_engine->pop_call();
 
   RSP_COMMIT;
 
@@ -224,6 +228,8 @@ BX_INSF_TYPE BX_CPP_AttrRegparmN(1) BX_CPU_C::CALL_Jd(bxInstruction_c *i)
 
   /* push 32 bit EA of next instruction */
   push_32(EIP);
+    
+    g_engine->push_call(new_EIP);
 
   branch_near32(new_EIP);
 
@@ -258,6 +264,7 @@ BX_INSF_TYPE BX_CPP_AttrRegparmN(1) BX_CPU_C::CALL_EdR(bxInstruction_c *i)
 
   /* push 32 bit EA of next instruction */
   push_32(EIP);
+    g_engine->push_call(new_EIP);
 
   branch_near32(new_EIP);
 
