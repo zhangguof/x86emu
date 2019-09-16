@@ -12,7 +12,11 @@
 #include "string.h"
 
 #include <unordered_map>
-std::unordered_map<uint64_t, std::shared_ptr<DEBUG_INFO>> global_debug_info;
+//std::unordered_map<uint64_t, std::shared_ptr<DEBUG_INFO>> global_debug_info;
+Debug_info_tbl_t global_debug_info;
+static uint64_t cur_dll_base = 0;
+static uint64_t cur_load_addr = 0;
+
 
 #define printf(val,...)
 
@@ -41,11 +45,7 @@ static int checkoptionon = 0;
 static int dumpallnames = 0;
 FILE *dumpallnamesfile = 0;
 static const  char * dumpallnamespath = 0;
-#if 0
-DW_UT_compile                   0x01  /* DWARF5 */
-DW_UT_type                      0x02  /* DWARF5 */
-DW_UT_partial                   0x03  /* DWARF5 */
-#endif
+
 
 static int stdrun = TRUE;
 
@@ -224,12 +224,30 @@ simple_error_handler(Dwarf_Error error, Dwarf_Ptr errarg)
     return;
 }
 
-int test_debug()
+void load_debug_info(const char* dll_path,uint64_t dll_base,uint64_t load_addr)
+{
+    cur_dll_base = dll_base;
+    cur_load_addr = load_addr;
+    
+    auto ret = load_debug(dll_path);
+    
+    cur_dll_base = cur_load_addr = 0;
+    if(ret < 0) return;
+    
+    LOG_INFO("=====debug info %s:%d\n",dll_path,global_debug_info.size());
+    for(auto it = global_debug_info.begin();it!=global_debug_info.end();++it)
+    {
+        LOG_INFO("======%s:0x%0lx\n",it->second->name.c_str(),it->second->low_pc);
+    }
+    
+}
+
+int load_debug(const char *filepath )
 {
     namesoptionon = 1;
     checkoptionon = 0;
     Dwarf_Debug dbg = 0;
-    const char *filepath = "/Users/tony/workspace/github/x86emu/TiniyOs/crtdll/win32/libs/lua53_1.dll";
+//    const char *filepath = "/Users/tony/workspace/github/x86emu/TiniyOs/crtdll/win32/libs/lua53_1.dll";
 //    int use_init_fd = FALSE;
 //    int my_init_fd = 0;
     bool stdrun = true;
@@ -252,7 +270,8 @@ int test_debug()
     if(res != DW_DLV_OK) {
         LOG_ERROR("Giving up, cannot do DWARF processing\n");
 //        cleanupstr();
-        exit(1);
+//        exit(1);
+        return -1;
     }
     if (stdrun) {
         read_cu_list(dbg);
@@ -635,7 +654,16 @@ print_subprog(Dwarf_Debug dbg,Dwarf_Die die,
     }
     if(lowpc)
     {
+        if(cur_load_addr!=0)
+        {
+            lowpc = lowpc - cur_dll_base + cur_load_addr;
+            if(highpc!=0)
+            {
+                highpc = highpc - cur_dll_base + cur_load_addr;
+            }
+        }
         global_debug_info[lowpc] = std::make_shared<DEBUG_INFO>(name,lowpc,highpc);
+        
     }
     dwarf_dealloc(dbg,attrbuf,DW_DLA_LIST);
     

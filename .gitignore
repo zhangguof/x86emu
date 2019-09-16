@@ -24,3 +24,4 @@ TiniyOs/crtdll/win32/3.s
 TiniyOs/crtdll/win32/4.s
 dumpbin.sh
 test.s
+debug.txt

@@ -14,15 +14,12 @@
 
 
 void test_vars();
-extern int test_debug();
 
 int main()
 {
     get_logger(Logger::LV_INFO);
     
     LOG_INFO("x86 simualte start!");
-    test_debug();
-    return 0;
     
 
 //    Engine x86emu;

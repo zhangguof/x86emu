@@ -28,6 +28,8 @@ extern "C"
 #include "engine.hpp"
 #include "wrap_host_call.hpp"
 
+#include "debug.hpp"
+
 
 #define RVA2VA(image, rva, type) (type)(ULONG_PTR64)((char *)image + rva)
 
@@ -68,9 +70,10 @@ static int fix_pe_image(struct pe_image32 *pe,dll* pdll,bx_phy_address base_addr
     image = pdll->code;
     void *host_image = pdll->host_code;
     
-    LOG_INFO("try load 32bit dll:name :%s,base(0x%0lx),size(0x%0lx)\n",
+    LOG_INFO("try load 32bit dll:%s,base(0x%0x),size(0x%0x),load in(0x%0x)\n",
              pe->name,
-             pe->opt_hdr->ImageBase,image_size);
+             pe->opt_hdr->ImageBase,
+             image_size,(uint64_t)pdll->code);
     
     //    image      = code_malloc(image_size + getpagesize());
     
@@ -446,6 +449,8 @@ int try_load_dll32(const char* dll_path,struct pe_image32** pe)
     dll* pdll = new dll;
     pdll->next = nullptr;
     link_pe_image_in_host(image, &g_dll_next_ptr, pdll);
+    
+    load_debug_info(dll_path, image->opt_hdr->ImageBase, (uint64_t)pdll->code);
     
     return 0;
 }

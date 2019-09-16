@@ -15,7 +15,9 @@
 #include <stdint.h>
 #include <string>
 
-extern int test_debug();
+extern int load_debug(const char *filepath );
+extern void load_debug_info(const char* dll_path,uint64_t dll_base,uint64_t load_addr);
+
 struct DEBUG_INFO
 {
 //    const char* name;
@@ -27,7 +29,8 @@ struct DEBUG_INFO
 };
 
 #include <unordered_map>
-extern std::unordered_map<uint64_t, std::shared_ptr<DEBUG_INFO>> global_debug_info;
+typedef std::unordered_map<uint64_t, std::shared_ptr<DEBUG_INFO>> Debug_info_tbl_t;
+extern Debug_info_tbl_t global_debug_info;
 
 
 
