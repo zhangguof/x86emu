@@ -20,6 +20,9 @@
 		EA326674231EF4650026184F /* wrap_host_call.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA326672231EF4650026184F /* wrap_host_call.cpp */; };
 		EA326679231FF8E20026184F /* wrap_crt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA326677231FF8E20026184F /* wrap_crt.cpp */; };
 		EA326683232178A90026184F /* wrap_gen_code.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA32667D232171760026184F /* wrap_gen_code.cpp */; };
+		EA4E8485232F12A900F89DFA /* debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E8483232F12A900F89DFA /* debug.cpp */; };
+		EA4E8488232F141600F89DFA /* libdwarf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4E8487232F141600F89DFA /* libdwarf.a */; };
+		EA4E848C232F207900F89DFA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4E848B232F207900F89DFA /* libz.tbd */; };
 		EA7CD722231524740038057E /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD720231524740038057E /* logger.cpp */; };
 		EA7CD72823155B190038057E /* load_dll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72623155B190038057E /* load_dll.cpp */; };
 		EA7CD7342317D1D50038057E /* pe_linker.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72B2317D1D40038057E /* pe_linker.c */; };
@@ -336,6 +339,12 @@
 		EA326678231FF8E20026184F /* wrap_crt.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wrap_crt.hpp; sourceTree = "<group>"; };
 		EA32667D232171760026184F /* wrap_gen_code.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wrap_gen_code.cpp; sourceTree = "<group>"; };
 		EA32667E232171760026184F /* wrap_gen_code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wrap_gen_code.h; sourceTree = "<group>"; };
+		EA4E8483232F12A900F89DFA /* debug.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = debug.cpp; sourceTree = "<group>"; };
+		EA4E8484232F12A900F89DFA /* debug.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = debug.hpp; sourceTree = "<group>"; };
+		EA4E8487232F141600F89DFA /* libdwarf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdwarf.a; path = ../../libs/libdwarf.a; sourceTree = "<group>"; };
+		EA4E8489232F143100F89DFA /* libdwarf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libdwarf.h; sourceTree = "<group>"; };
+		EA4E848A232F1E7E00F89DFA /* dwarf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dwarf.h; sourceTree = "<group>"; };
+		EA4E848B232F207900F89DFA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		EA7CD720231524740038057E /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
 		EA7CD721231524740038057E /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
 		EA7CD72623155B190038057E /* load_dll.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = load_dll.cpp; sourceTree = "<group>"; };
@@ -905,6 +914,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA4E848C232F207900F89DFA /* libz.tbd in Frameworks */,
+				EA4E8488232F141600F89DFA /* libdwarf.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -933,6 +944,26 @@
 				EA32667E232171760026184F /* wrap_gen_code.h */,
 			);
 			path = gen_code;
+			sourceTree = "<group>";
+		};
+		EA4E8482232F126900F89DFA /* debug */ = {
+			isa = PBXGroup;
+			children = (
+				EA4E8483232F12A900F89DFA /* debug.cpp */,
+				EA4E8484232F12A900F89DFA /* debug.hpp */,
+				EA4E8489232F143100F89DFA /* libdwarf.h */,
+				EA4E848A232F1E7E00F89DFA /* dwarf.h */,
+			);
+			path = debug;
+			sourceTree = "<group>";
+		};
+		EA4E8486232F141500F89DFA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA4E848B232F207900F89DFA /* libz.tbd */,
+				EA4E8487232F141600F89DFA /* libdwarf.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		EA7CD72523155AF20038057E /* loaddll */ = {
@@ -967,6 +998,7 @@
 			children = (
 				EAB724042306AE55000019F0 /* src */,
 				EAB71E542306AD95000019F0 /* Products */,
+				EA4E8486232F141500F89DFA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -982,6 +1014,7 @@
 		EAB724042306AE55000019F0 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				EA4E8482232F126900F89DFA /* debug */,
 				EA32667C232167890026184F /* gen_code */,
 				EA326676231FF8BE0026184F /* crt */,
 				EA326672231EF4650026184F /* wrap_host_call.cpp */,
@@ -2047,6 +2080,7 @@
 				EAB726E22306AE56000019F0 /* athlon64_clawhammer.cc in Sources */,
 				EAB7275E2306AE56000019F0 /* opcodes.inc in Sources */,
 				EAB726DA2306AE56000019F0 /* p2_klamath.cc in Sources */,
+				EA4E8485232F12A900F89DFA /* debug.cpp in Sources */,
 				EAB727E52306AE56000019F0 /* Makefile in Sources */,
 				EAB7274F2306AE56000019F0 /* fpu_arith.cc in Sources */,
 				EAB726E02306AE56000019F0 /* trinity_apu.cc in Sources */,
@@ -2204,6 +2238,7 @@
 					"$(PROJECT_DIR)/../../src/bochs",
 					"$(PROJECT_DIR)/../../src/loadelf",
 					"$(PROJECT_DIR)/../../src/sys_call",
+					"$(PROJECT_DIR)/../../src/debug",
 				);
 			};
 			name = Debug;
@@ -2263,6 +2298,7 @@
 					"$(PROJECT_DIR)/../../src/bochs",
 					"$(PROJECT_DIR)/../../src/loadelf",
 					"$(PROJECT_DIR)/../../src/sys_call",
+					"$(PROJECT_DIR)/../../src/debug",
 				);
 			};
 			name = Release;
@@ -2272,6 +2308,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QZCGQLBGFN;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../../libs";
 				OTHER_CFLAGS = "-DCONFIG_X86_64";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2282,6 +2319,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QZCGQLBGFN;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../../libs";
 				OTHER_CFLAGS = "-DCONFIG_X86_64";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
