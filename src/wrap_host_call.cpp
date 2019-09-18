@@ -276,6 +276,8 @@ DEF_HOST_FUNC(exit)
     {
         ret_code = args[0];
     }
+    LOG_WARN("exiting....");
+    g_engine->print_call_trace_win32();
     exit(ret_code);
 }
 /*
@@ -333,7 +335,7 @@ uint64_t wrap_unknow_sym(uint64_t* args)
         LOG_ERROR("unknow symbol %s:%s\n",info.dll.c_str(),
                info.name.c_str());
     }
-
+    g_engine->print_call_trace_win32();
     exit(0);
     return 0;
 }

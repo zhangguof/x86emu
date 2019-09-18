@@ -472,13 +472,13 @@ static void debug_loop(void)
         }
 
         stub_trace_flag = 0;
-        bx_cpu.cpu_loop();
+        bx_cpu->cpu_loop();
 
         SIM->refresh_vga();
 
         if (buffer[1] != 0)
         {
-          bx_cpu.invalidate_prefetch_q();
+          bx_cpu->invalidate_prefetch_q();
           BX_CPU_THIS_PTR gen_reg[BX_32BIT_REG_EIP].dword.erx = saved_eip;
         }
 
@@ -506,7 +506,7 @@ static void debug_loop(void)
 
         BX_INFO(("stepping"));
         stub_trace_flag = 1;
-        bx_cpu.cpu_loop();
+        bx_cpu->cpu_loop();
         SIM->refresh_vga();
         stub_trace_flag = 0;
         BX_INFO(("stopped with %x", last_stop_reason));
@@ -903,7 +903,8 @@ void bx_gdbstub_init(void)
   gdbstublog->setonoff(LOGLEV_PANIC, ACT_FATAL);
 
   gdbstub_list = (bx_list_c*) SIM->get_param(BXPN_GDBSTUB);
-  int portn = SIM->get_param_num("port", gdbstub_list)->get();
+//  int portn = SIM->get_param_num("port", gdbstub_list)->get();
+    int portn = 9999;
 
 #if defined(__MINGW32__) || defined(_MSC_VER)
   WSADATA wsaData;
@@ -918,7 +919,7 @@ void bx_gdbstub_init(void)
   debug_loop();
 
   /* CPU loop */
-  bx_cpu.cpu_loop();
+  bx_cpu->cpu_loop();
 
 #ifdef WIN32
   WSACleanup();

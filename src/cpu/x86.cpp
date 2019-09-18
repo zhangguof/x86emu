@@ -142,6 +142,12 @@ void XE_CPU_C::cpu_loop()
         // can get here only from exception function or VMEXIT
         BX_CPU_THIS_PTR icount++;
         BX_SYNC_TIME_IF_SINGLE_PROCESSOR(0);
+#if BX_DEBUGGER || BX_GDBSTUB
+        if (dbg_instruction_epilog()) return;
+#endif
+#if BX_GDBSTUB
+        if (bx_dbg.gdbstub_enabled) return;
+#endif
     }
     
     
@@ -185,6 +191,10 @@ void XE_CPU_C::cpu_loop()
             
             BX_SYNC_TIME_IF_SINGLE_PROCESSOR(0);
             
+            // note instructions generating exceptions never reach this point
+#if BX_DEBUGGER || BX_GDBSTUB
+            if (dbg_instruction_epilog()) return;
+#endif
             
             if (BX_CPU_THIS_PTR async_event) break;
             
