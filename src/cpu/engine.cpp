@@ -228,6 +228,7 @@ void Engine::init()
     bx_pc_system.register_state();
     // will enable A20 line and reset CPU and devices
     bx_pc_system.Reset(BX_RESET_HARDWARE);
+    cpu_ptr->xrstor_init_x87_state();
     
     load_elf(start_elf_file.c_str());
     
@@ -287,6 +288,8 @@ void test_dll_func()
     
     g_engine->load_dll32("libs/lua53_1.dll");
     g_engine->load_dll32("testlua.dll");
+    
+    
     g_engine->call_win32_guest_method1("testlua", 0);
     printf("lua ret code:%d\n",int(g_engine->last_ret));
     
@@ -300,13 +303,21 @@ void Engine::run()
     
     LOG_DEBUG("call_host_func_addr:0x%0lx,win32:0x%0lx\n",
               call_host_ret_addr,call_host_win32_ret_addr);
+    
     cpu_ptr->push_64(call_host_ret_addr); //ret address call_host_func
     
     cpu_ptr->prev_rip = RIP = entry_addr;
+#if BX_GDBSTUB
+    // If using gdbstub, it will take control and call
+    // bx_init_hardware() and cpu_loop()
+    bx_dbg.gdbstub_enabled = 1;
+    if (bx_dbg.gdbstub_enabled) bx_gdbstub_init();
+#endif
 //    cpu_ptr->PUSH
     cpu_ptr->cpu_loop();
     
     call_win32_guest_method1("DLLMain", 0);
+    
     test_dll_func();
 
                        
@@ -376,6 +387,7 @@ void Engine::call_win32_guest_method1(const char* method,uint64_t arg1)
         cpu_ptr->push_32(call_host_win32_ret_addr);
         
         RIP = fun_ptr;
+
         cpu_ptr->cpu_loop();
         
     }
