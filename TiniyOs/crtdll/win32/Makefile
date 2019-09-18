@@ -1,5 +1,5 @@
-CXX= i686-w64-mingw32-c++
-CC=i686-w64-mingw32-c++
+CXX= i686-w64-mingw32-c++ -gdwarf-3
+CC=i686-w64-mingw32-c++ -gdwarf-3
 CFLAGS=-I../../../src/
 
 AS=nasm
@@ -9,7 +9,7 @@ ASFLAG=-f win32 -i../../../src/
 all: test.dll crt32.dll testlua.dll
 
 test.dll: test.o 
-	$(CC) -shared -o $@ $^ -lcrt32 -L. 
+	$(CC) -shared -o $@ $^  -L. 
 
 test.o: test.cpp 
 	$(CXX) -c $^ -o $@ -I. -DBUILD_DLL_TEST $(CFLAGS)

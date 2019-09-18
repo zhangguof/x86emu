@@ -1,10 +1,19 @@
+
+
+extern "C" {
+
+// #define _GNU_SOURCE
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "test.h"
 #include <setjmp.h>
+
+}
+
+#include "test.h"
+
 
 
 int Double(int x)
