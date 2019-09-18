@@ -339,6 +339,34 @@ uint64_t wrap_unknow_sym(uint64_t* args)
     exit(0);
     return 0;
 }
+//char* getenv (const char* name);
+DEF_HOST_FUNC(getenv)
+{
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32_args = {args};
+        char* name = (char*) getMemAddr((bx_address)w32_args.next<WIN32_PTR>());
+        char* ret = getenv(name);
+        if(ret)
+        {
+            auto len = strlen(ret);
+            char* new_str = (char*)host_malloc(len+1);
+            host_memcpy(new_str, ret, len+1);
+            return (uint64_t)new_str;
+        }
+        else
+        {
+            return 0;
+        }
+        
+        
+    }
+    else
+    {
+        //TODO
+        return 0;
+    }
+}
 
 //set_thread_area(struct user_desc* pebdescriptor)
 

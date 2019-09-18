@@ -11,7 +11,7 @@ DEF_HOST_FUNC(calloc,       5)
 DEF_HOST_FUNC(time32,       6)
 DEF_HOST_FUNC(time64,       7)
 DEF_HOST_FUNC(time,         8)
-
+DEF_HOST_FUNC(getenv,       9)
 
 
 

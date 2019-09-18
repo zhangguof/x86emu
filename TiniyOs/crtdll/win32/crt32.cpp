@@ -91,6 +91,8 @@ int DLLMain()
 
     setup_nt_threadinfo(ExceptionHandler);
 	// setup_nt_threadinfo(nullptr);
+	char* path = getenv("PATH");
+	printf("env path:%s\n",path);
 
 	return 1;
 }
