@@ -286,9 +286,10 @@ void* host_malloc(Bit64u size)
             {
                 _any_free_mem = f->next;
                 ptr = (void*)f->vaddr;
-                break;
-//                _used_mem[ptr] = size;
-//                return ptr;
+//                break;
+                _used_mem[ptr] = f->size;
+                LOG_DEBUG("[host_malloc]0x%0lx,%u\n",ptr,f->size);
+                return ptr;
             }
             else
             {
@@ -300,9 +301,10 @@ void* host_malloc(Bit64u size)
                 auto tmp = f->next;
                 f->next = tmp->next;
                 ptr = (void*)tmp->vaddr;
-                break;
-//                _used_mem[ptr] = size;
-//                return ptr;
+//                break;
+                _used_mem[ptr] = tmp->size;
+                LOG_DEBUG("[host_malloc]0x%0lx,%u\n",ptr,f->size);
+                return ptr;
             }
         }
     }while(0);
@@ -329,6 +331,7 @@ void host_free(void* ptr)
     host_ptr->vaddr = (bx_phy_address) ptr;
     if(size<=max_free_mem_size)
     {
+        assert(size == GETSIZE(size));
         auto idx = get_mem_idx(size);
         alloc_t* f = _free_mem[idx];
         host_ptr->next = f;
@@ -356,7 +359,7 @@ void* host_realloc(void* ptr, Bit64u new_size)
         return nullptr;
     }
     Bit64u old_size = p->second;
-    if(old_size <= new_size) return ptr;
+    if(old_size >= new_size) return ptr;
     
     void* new_ptr = host_malloc(new_size);
     void* ptr_dst = getMemAddr((bx_phy_address)new_ptr);
