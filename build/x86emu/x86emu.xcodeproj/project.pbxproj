@@ -23,6 +23,7 @@
 		EA4E8485232F12A900F89DFA /* debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E8483232F12A900F89DFA /* debug.cpp */; };
 		EA4E8488232F141600F89DFA /* libdwarf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4E8487232F141600F89DFA /* libdwarf.a */; };
 		EA4E848C232F207900F89DFA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4E848B232F207900F89DFA /* libz.tbd */; };
+		EA4E84912332119500F89DFA /* winapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E848F2332119500F89DFA /* winapi.cpp */; };
 		EA7CD722231524740038057E /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD720231524740038057E /* logger.cpp */; };
 		EA7CD72823155B190038057E /* load_dll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72623155B190038057E /* load_dll.cpp */; };
 		EA7CD7342317D1D50038057E /* pe_linker.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72B2317D1D40038057E /* pe_linker.c */; };
@@ -345,6 +346,9 @@
 		EA4E8489232F143100F89DFA /* libdwarf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libdwarf.h; sourceTree = "<group>"; };
 		EA4E848A232F1E7E00F89DFA /* dwarf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dwarf.h; sourceTree = "<group>"; };
 		EA4E848B232F207900F89DFA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		EA4E848F2332119500F89DFA /* winapi.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = winapi.cpp; sourceTree = "<group>"; };
+		EA4E84902332119500F89DFA /* winapi.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = winapi.hpp; sourceTree = "<group>"; };
+		EA4E849223327AF300F89DFA /* wrap_winapi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wrap_winapi.h; sourceTree = "<group>"; };
 		EA7CD720231524740038057E /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
 		EA7CD721231524740038057E /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
 		EA7CD72623155B190038057E /* load_dll.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = load_dll.cpp; sourceTree = "<group>"; };
@@ -966,6 +970,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EA4E848E2332117F00F89DFA /* winapi */ = {
+			isa = PBXGroup;
+			children = (
+				EA4E848F2332119500F89DFA /* winapi.cpp */,
+				EA4E84902332119500F89DFA /* winapi.hpp */,
+				EA4E849223327AF300F89DFA /* wrap_winapi.h */,
+			);
+			path = winapi;
+			sourceTree = "<group>";
+		};
 		EA7CD72523155AF20038057E /* loaddll */ = {
 			isa = PBXGroup;
 			children = (
@@ -1014,6 +1028,7 @@
 		EAB724042306AE55000019F0 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				EA4E848E2332117F00F89DFA /* winapi */,
 				EA4E8482232F126900F89DFA /* debug */,
 				EA32667C232167890026184F /* gen_code */,
 				EA326676231FF8BE0026184F /* crt */,
@@ -1982,6 +1997,7 @@
 				EAB726F92306AE56000019F0 /* bit.cc in Sources */,
 				EAB7278B2306AE56000019F0 /* iodebug.cc in Sources */,
 				EAB7273B2306AE56000019F0 /* arith8.cc in Sources */,
+				EA4E84912332119500F89DFA /* winapi.cpp in Sources */,
 				EAB727562306AE56000019F0 /* vmcs.cc in Sources */,
 				EAB727EA2306AE56000019F0 /* rfb.cc in Sources */,
 				EAB727472306AE56000019F0 /* fpu_compare.cc in Sources */,

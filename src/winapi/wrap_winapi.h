@@ -1,0 +1,5 @@
+
+
+
+DEF_HOST_STD_FUNC(GetModuleFileNameA,0x10000,12)
+

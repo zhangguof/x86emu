@@ -25,6 +25,8 @@
 #define FALSE                           0
 
 #define HANDLE                          PVOID
+#define PVOID                           HMODULE
+
 #define INVALID_HANDLE_VALUE            ((HANDLE)(-1))
 
 #define PASSIVE_LEVEL                   0
@@ -144,6 +146,7 @@ typedef void       *PVOID;
 typedef uint8_t     BYTE;
 typedef uint8_t    *PBYTE;
 typedef uint8_t    *LPBYTE;
+typedef char        *LPSTR;
 typedef int8_t      CHAR;
 typedef char       *PCHAR;
 typedef uint8_t     UCHAR;

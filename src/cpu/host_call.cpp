@@ -18,6 +18,7 @@
 #include <functional>
 #include "engine.hpp"
 #include "wrap_host_call.hpp"
+#include "winapi/winapi.hpp"
 #include "logger.hpp"
 #include <unordered_map>
 
@@ -51,10 +52,14 @@ HOST_FUN_C host_func_table[] = {
 #func,wrap_##func,idx \
 },
     
+#define DEF_HOST_STD_FUNC(func,idx,size) DEF_HOST_FUNC(func,idx)
+    
 #include "host_call.hpp"
 #include "gen_code/wrap_gen_code.h"
+#include "winapi/wrap_winapi.h"
     
 #undef DEF_HOST_FUNC
+#undef DEF_HOST_STD_FUNC
 
 };
 

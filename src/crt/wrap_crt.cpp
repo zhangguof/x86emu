@@ -20,6 +20,9 @@
 //#include <stdarg.h>
 #include "utils.h"
 
+#define DEF_HOST_FUNC(func) \
+uint64_t wrap_##func(uint64_t* args)
+
 
 //#undef va_arg
 //#undef va_start
@@ -145,6 +148,236 @@ uint64_t wrap_printf(uint64_t* args)
         return win_vprintf(fmt, &ap);
     }
 }
+
+//FILE* win_stdin;
+//FILE* win_stdout;
+//FILE* win_stderr;
+
+#include <unordered_map>
+std::unordered_map<uint32_t,FILE*> fstreams;
+
+
+
+uint64_t wrap_init_stdio(uint64_t* args)
+{
+    
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32_args = {args};
+        WIN32_PTR *s = ( WIN32_PTR *)getMemAddr(w32_args.next<WIN32_PTR>());
+        fstreams[s[0]] = stdin;
+        fstreams[s[1]] = stdout;
+        fstreams[s[2]] = stderr;
+    }
+    else
+    {
+        bx_phy_address *s;
+        s = (bx_phy_address*)getMemAddr(args[0]);
+        fstreams[s[0]] = stdin;
+        fstreams[s[1]] = stdout;
+        fstreams[s[2]] = stderr;
+    }
+    return 0;
+}
+//std::FILE* fopen( const char* filename, const char* mode );
+uint32_t win_fopen(const char* path,const char* mode)
+{
+    static uint32_t file_handle_used = 3;
+    FILE* s = fopen(path, mode);
+    if(s!=nullptr)
+    {
+        fstreams[file_handle_used] = s;
+        return file_handle_used++;
+    }
+    return -1;
+}
+
+DEF_HOST_FUNC(fopen)
+{
+    const char* path;
+    const char* mode;
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32_args = {args};
+        path = (const char*) getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+        mode = (const char*) getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+
+    }
+    else
+    {
+        path  = (const char*) getMemAddr((bx_phy_address)args[0]);
+        mode  = (const char*) getMemAddr((bx_phy_address)args[1]);
+
+    }
+    return  win_fopen(path, mode);
+}
+
+//int fclose( std::FILE* stream );
+uint32_t win_fclose(uint32_t handle)
+{
+    auto it = fstreams.find(handle);
+    if(it==fstreams.end()) return -1;
+    FILE* s = it->second;
+    auto ret = fclose(s);
+    fstreams.erase(it);
+    return ret;
+}
+
+DEF_HOST_FUNC(fclose)
+{
+    uint32_t handle;
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32_args = {args};
+        handle = w32_args.next<uint32_t>();
+    }
+    else
+    {
+        handle = args[0];
+    }
+    return win_fclose(handle);
+}
+
+int win_vfprintf(uint32_t handle,const char* format,va_args* ap)
+{
+    char buf[BUFF_SIZE];
+    auto it = fstreams.find(handle);
+    if(it == fstreams.end()) return  0;
+    FILE* s = it->second;
+    int size  = win_vsprintf(buf, format, ap);
+    int ret = fwrite(buf, sizeof(char), size, s);
+    return ret;
+}
+
+//int fprintf( std::FILE* stream, const char* format, ... );
+DEF_HOST_FUNC(fprintf)
+{
+    const char* fmt = nullptr;
+//    FILE* s = nullptr;
+    uint32_t handle = -1;
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32_args = {args};
+//        handle = (uint32_t) getMemAddr(w32_args.next<WIN32_PTR>());
+        handle = w32_args.next<uint32_t>();
+        fmt = (char*)getMemAddr(w32_args.next<WIN32_PTR>());
+        va_args ap = {(uint8_t*)w32_args.ptr};
+        return win_vfprintf(handle,fmt, &ap);
+        
+    }
+    else
+    {
+//        s = (FILE*)getMemAddr(args[0]);
+        handle = (uint32_t) args[0];
+        fmt = (const char*)getMemAddr(args[1]);
+        va_args ap = {(uint8_t*)(&args[2])};
+        return win_vfprintf(handle, fmt, &ap);
+    }
+}
+
+int win_fflush(uint32_t handle)
+{
+    auto it = fstreams.find(handle);
+    if(it==fstreams.end()) return -1;
+    FILE* s = it->second;
+    
+    return fflush(s);
+}
+
+//int fflush( FILE *stream );
+DEF_HOST_FUNC(fflush)
+{
+    uint32_t handle;
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32_args = {args};
+        handle = w32_args.next<uint32_t>();
+    }
+    else
+    {
+        handle = args[0];
+    }
+    return win_fflush(handle);
+}
+//void abort(void);
+DEF_HOST_FUNC(abort)
+{
+    abort();
+    return 0;
+}
+
+//size_t fwrite( const void *buffer, size_t size, size_t count,
+//FILE *stream );
+size_t win_fwrite( const void *buffer, size_t size, size_t count,
+              uint32_t handle )
+{
+    auto it = fstreams.find(handle);
+    if(it == fstreams.end()) return  0;
+    FILE* s = it->second;
+    return fwrite(buffer, size, count, s);
+}
+//
+//size_t fread( void          *buffer, size_t size, size_t count,
+//             FILE          *stream );
+
+size_t win_fread( void *buffer, size_t size, size_t count, uint32_t handle)
+{
+    auto it = fstreams.find(handle);
+    if(it == fstreams.end()) return  0;
+    FILE* s = it->second;
+    return fread(buffer, size, count, s);
+}
+
+
+DEF_HOST_FUNC(fwrite)
+{
+    void *buffer;
+    size_t size;
+    size_t count;
+    uint32_t handle = -1;
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32_args = {args};
+        buffer = (void*)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+        size = w32_args.next<uint32_t>();
+        count = w32_args.next<uint32_t>();
+        handle = w32_args.next<uint32_t>();
+    }
+    else
+    {
+        buffer = (void*)getMemAddr((bx_phy_address)args[0]);
+        size = args[1];
+        count = args[2];
+        handle = args[3];
+    }
+    return win_fwrite(buffer, size, count, handle);
+}
+
+DEF_HOST_FUNC(fread)
+{
+    void *buffer;
+    size_t size;
+    size_t count;
+    uint32_t handle = -1;
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32_args = {args};
+        buffer = (void*)getMemAddr((bx_phy_address)w32_args.next<WIN32_PTR>());
+        size = w32_args.next<uint32_t>();
+        count = w32_args.next<uint32_t>();
+        handle = w32_args.next<uint32_t>();
+    }
+    else
+    {
+        buffer = (void*)getMemAddr((bx_phy_address)args[0]);
+        size = args[1];
+        count = args[2];
+        handle = args[3];
+    }
+    return win_fread(buffer, size, count, handle);
+}
+
+
 
  int print_test(const char* fmt,...)
 {

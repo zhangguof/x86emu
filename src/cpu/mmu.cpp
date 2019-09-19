@@ -251,6 +251,7 @@ void* do_guest_mem_allocate(Bit64u size)
 
 void* host_malloc(Bit64u size)
 {
+    if(size == 0) return nullptr;
     size = GETSIZE(size);
     
     if(size <= max_free_mem_size)
@@ -318,6 +319,7 @@ void* host_malloc(Bit64u size)
 }
 void host_free(void* ptr)
 {
+    if(ptr == nullptr) return;
     auto p = _used_mem.find(ptr);
     if(p==_used_mem.end()||_used_mem[ptr]==0)
     {

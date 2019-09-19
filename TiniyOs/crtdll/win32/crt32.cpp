@@ -23,6 +23,9 @@
 extern "C"
 {
 	#include "loaddll/load_dll.hpp"
+
+	FILE* _stdios[3];
+	extern void init_stdio(FILE* s[3]);
 }
 #include "gdt.h"
 
@@ -80,6 +83,12 @@ EXCEPTION_DISPOSITION ExceptionHandler(struct _EXCEPTION_RECORD *ExceptionRecord
         exit(0);
     }
 
+void set_stdio()
+{
+	_stdios[0] = stdin;
+	_stdios[1] = stdout;
+	_stdios[2] = stderr;
+}
 
 int DLLMain()
 {
@@ -92,8 +101,12 @@ int DLLMain()
     setup_nt_threadinfo(ExceptionHandler);
 	// setup_nt_threadinfo(nullptr);
 	char* path = getenv("PATH");
-	printf("env path:%s\n",path);
-
+	// printf("env path:%s\n",path);
+	set_stdio();
+	init_stdio(_stdios);
+	fprintf(stdout, "stdout test:%p\n",stdout);
+	printf("stdio::%p,%p,%p\n",_stdios[0],_stdios[1],_stdios[2]);
+	fprintf(_stdios[2], "stderr::::%s", "testtest!\n");
 	return 1;
 }
 //uint64_t test_dll3(int a,const char* name,uint64_t a64);

@@ -21,6 +21,22 @@ _%1:
 
 %define DEF_HOST_FUNC(func,idx) _DEF_HOST_FUNC func,idx
 
+%macro  _DEF_HOST_STD_FUNC 3
+GLOBAL %1;
+GLOBAL _%1
+export %1
+_%1:
+%1:
+	push ebp
+	mov ebp, esp
+	mov eax,%2
+	jmp [HOST_CALL_PTR]
+	leave
+	ret %3
+%endmacro
+
+%define DEF_HOST_STD_FUNC(func,idx,args) _DEF_HOST_STD_FUNC func,idx,args
+
 
 
 
@@ -34,6 +50,7 @@ export call_host_ret;
 ; DEF_HOST_FUNC(puts,1)
 %include "cpu/host_call.hpp"
 %include "gen_code/wrap_gen_code.h"
+%include "winapi/wrap_winapi.h"
 
 
 
