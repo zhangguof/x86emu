@@ -32,6 +32,6 @@ int main()
     
     p_x86emu->run();
     
-    
+    exit(0);
 	return 0;
 }

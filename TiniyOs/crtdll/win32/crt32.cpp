@@ -6,28 +6,15 @@
 #include <stdlib.h>
 
 
-// #include "test.h"
-
-// struct user_desc {
-//     unsigned int  entry_number;
-//     unsigned long base_addr;
-//     unsigned int  limit;
-//     unsigned int  seg_32bit : 1;
-//     unsigned int  contents : 2;
-//     unsigned int  read_exec_only : 1;
-//     unsigned int  limit_in_pages : 1;
-//     unsigned int  seg_not_present : 1;
-//     unsigned int  useable : 1;
-// };
-
 extern "C"
 {
 	#include "loaddll/load_dll.hpp"
+	#include "gdt.h"
 
 	FILE* _stdios[3];
 	extern void init_stdio(FILE* s[3]);
 }
-#include "gdt.h"
+
 
 bool setup_nt_threadinfo(PEXCEPTION_HANDLER ExceptionHandler)
 {
@@ -95,22 +82,11 @@ int DLLMain()
 	printf("DLLMain start!\n");
 
 	init_gdt();
-	printf("try setup_nt_threadinfo!\n");
-
-
     setup_nt_threadinfo(ExceptionHandler);
-	// setup_nt_threadinfo(nullptr);
-	char* path = getenv("PATH");
-	// printf("env path:%s\n",path);
+
 	set_stdio();
 	init_stdio(_stdios);
-	fprintf(stdout, "stdout test:%p\n",stdout);
-	printf("stdio::%p,%p,%p\n",_stdios[0],_stdios[1],_stdios[2]);
-	fprintf(_stdios[2], "stderr::::%s", "testtest!\n");
-	return 1;
+	
+	return 0;
 }
-//uint64_t test_dll3(int a,const char* name,uint64_t a64);
-// void test_dll()
-// {
-// 	test_dll3(1234,"crt call test.dll!",0x12345678FEDCBA9);
-// }
+

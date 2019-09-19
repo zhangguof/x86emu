@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "mmu.hpp"
 
+
 #define LOG_THIS this->
 
 
@@ -92,7 +93,7 @@ inline bx_bool XE_CPU_C::is_host_call(Bit64u addr)
 //HOST_CALL_4ARGS
 
 extern Bit64u do_call_host_func(Bit32u idx,uint64_t* args);
-
+extern uint64_t do_host_fun_ptr(uint32_t ptr,uint64_t* args);
 
 Bit64u XE_CPU_C::call_host_func(bxInstruction_c* i)
 {
@@ -131,7 +132,16 @@ Bit64u XE_CPU_C::call_win32_host_func(bxInstruction_c* i)
     //    Bit8u* paddr = BX_MEM(0)->getHostMemAddr(this, data_addr, BX_RW);
     //    printf("idx:%0x,data:%0x,len:%u\n",idx,data_addr,len);
     p_esp += 1;// point to first arg
-    return do_call_host_func(idx,p_esp);
+    uint64_t ret;
+    if(idx < 0x2000)
+    {
+        ret = do_call_host_func(idx,p_esp);
+    }
+    else
+    {
+        ret  = do_host_fun_ptr(idx,p_esp);
+    }
+    return ret;
 }
 
 
@@ -178,10 +188,10 @@ void XE_CPU_C::cpu_loop()
             // want to allow changing of the instruction inside instrumentation callback
             BX_INSTR_BEFORE_EXECUTION(BX_CPU_ID, i);
             RIP += i->ilen();
-            if(RIP == 0x853d16)
-            {
-                ;
-            }
+//            if(RIP == 0x879887)
+//            {
+//                ;
+//            }
             BX_CPU_CALL_METHOD(i->execute1, (i)); // might iterate repeat instruction
             //check exist
             if(is_exit) return;
@@ -205,25 +215,6 @@ void XE_CPU_C::cpu_loop()
             }
         }
         
-        // clear stop trace magic indication that probably was set by repeat or branch32/64
-//        BX_CPU_THIS_PTR async_event &= ~BX_ASYNC_EVENT_STOP_TRACE;
-//            // want to allow changing of the instruction inside instrumentation callback
-//            BX_INSTR_BEFORE_EXECUTION(BX_CPU_ID, i);
-//
-//            RIP += i->ilen();
-//
-//            // when handlers chaining is enabled this single call will execute entire trace
-//            BX_CPU_CALL_METHOD(i->execute1, (i)); // might iterate repeat instruction
-//            //check exist
-//            if(is_exit) return;
-//
-//            BX_SYNC_TIME_IF_SINGLE_PROCESSOR(0);
-//
-//            if (BX_CPU_THIS_PTR async_event) break;
-//            entry = getICacheEntry();
-//            i = entry->i;
-////            i = getICacheEntry()->i;
-//        }
         
         // clear stop trace magic indication that probably was set by repeat or branch32/64
         BX_CPU_THIS_PTR async_event &= ~BX_ASYNC_EVENT_STOP_TRACE;

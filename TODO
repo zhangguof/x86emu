@@ -1,4 +1,10 @@
 TODO
-gdt
-fs reg
+
+-gdt-
+-fs reg-
+
 win32 api
+
+cruntime
+
+COM?

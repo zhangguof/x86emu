@@ -93,10 +93,6 @@ int test_dll2()
 	return a+b;
 }
 
-void test_stdio()
-{
-
-}
 
 
 void test_file()
@@ -106,9 +102,30 @@ void test_file()
 	const char* buf  = "test\ntest2\nddddddd\n";
 	auto len = strlen(buf);
 	//size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream) __THROW;
-	auto ret = fwrite(buf,1,len,fs);
-	fclose(fs);
-	printf("has write!:%d\n",ret);
+	// auto ret = fwrite(buf,1,len,fs);
+	// fclose(fs);
+	// printf("has write!:%d\n",ret);
+}
+
+
+// #include <unordered_map>
+// #include <string>
+// std::unordered_map<std::string,call_funcs*> call_func_tbl;
+
+void init_call_funcs(call_funcs* tbl)
+{
+	// call_funcs* p = tbl;
+	// for(;p!=nullptr;p++)
+	// {
+	// 	printf("check call func:%s,%p\n", p->name,p->pf);
+	// 	call_func_tbl[p->name] = p->pf
+	// }
+}
+
+void test_call_ptr(int (*ptr)(int,int))
+{
+	int ret = ptr(123,321);
+	printf("after test_call_ptr:%d\n",ret);
 }
 
 

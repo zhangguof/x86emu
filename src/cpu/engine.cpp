@@ -268,6 +268,14 @@ uint64_t wrap_guest_test_dll3(int arg1,const char* arg2,uint64_t arg3)
     return 0;
 }
 
+struct call_func
+{
+    WIN32_PTR name;
+    WIN32_PTR pf;
+};
+
+extern uint64_t wrap_test_func(uint64_t* args);
+
 void test_dll_func()
 {
 
@@ -281,6 +289,14 @@ void test_dll_func()
 //    printf("ret code:0x%0llx\n",g_engine->last_ret);;
     g_engine->call_win32_guest_method1("test_dll2", 0);
     printf("ret code:0x%0llx\n",g_engine->last_ret & 0xFFFFFFFF);
+    
+    
+    auto f_ptr = new_wrap_func(wrap_test_func);
+    auto pre_esp = ESP;
+    g_engine->cpu_ptr->push_32(f_ptr);
+    g_engine->call_win32_guest_method1("test_call_ptr", 0);
+    ESP = pre_esp;
+//    g_engine->call_win32_guest_method1("init_call_funcs", 0)
     
 //    g_engine->load_dll32("libs/lua53_1.dll");
 //    g_engine->load_dll32("testlua.dll");
@@ -316,7 +332,7 @@ void Engine::run()
     
     test_dll_func();
 
-                       
+    printf("end run!\n");
 }
 
 void Engine::call_guest_method1(const char* method,uint64_t arg1)

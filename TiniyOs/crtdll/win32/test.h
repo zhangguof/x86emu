@@ -22,6 +22,16 @@ DLLAPI int64_t test_64b(int a,int b,int64_t c);
 DLLAPI uint64_t test_dll3(int a,const char* name,uint64_t a64);
 
 
+typedef int (*p_func_t)(int);
+
+struct call_funcs
+{
+	const char* name;
+	p_func_t pf;
+};
+
+DLLAPI void init_call_funcs(call_funcs* tbl);
+DLLAPI void test_call_ptr(int (*ptr)(int,int));
 
 
 
