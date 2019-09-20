@@ -233,10 +233,14 @@ void Engine::init()
     load_elf(start_elf_file.c_str());
     
     load_dll32(crt32_dll_file.c_str());
-    load_dll32("libs/vcruntime140.dll");
-    
     call_win32_unknow_sym_addr = global_sym_tbl_win32["unknow_sym"];
     assert(call_win32_unknow_sym_addr!=0);
+    
+    load_dll32("libs/vcruntime140.dll");
+    load_dll32("libs/msvcrt.dll");
+    
+//    call_win32_unknow_sym_addr = global_sym_tbl_win32["unknow_sym"];
+    
     
     
     
@@ -287,8 +291,8 @@ void test_dll_func()
 //
 //    wrap_guest_test_dll3(0x12345678, "hhhhhhhhtttttss", 0x2FEFEFEF98765432);
 //    printf("ret code:0x%0llx\n",g_engine->last_ret);;
-    g_engine->call_win32_guest_method1("test_dll2", 0);
-    printf("ret code:0x%0llx\n",g_engine->last_ret & 0xFFFFFFFF);
+//    g_engine->call_win32_guest_method1("test_dll2", 0);
+//    printf("ret code:0x%0llx\n",g_engine->last_ret & 0xFFFFFFFF);
     
     
     auto f_ptr = new_wrap_func(wrap_test_func);
