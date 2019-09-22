@@ -109,3 +109,79 @@ DEF_HOST_STD_FUNC(OutputDebugStringA)
     OutputDebugStringA(s);
     return 0;
 }
+
+static DWORD GetCurrentProcessId()
+{
+    return 0x1234;
+}
+static DWORD GetCurrentThreadId()
+{
+    return 0x4312;
+}
+//void __cdecl _lock(int locknum);
+static void _lock(int locknum)
+{
+    LOG_DEBUG("_lock:%d\n",locknum);
+}
+
+static void _unlock(int locknum)
+{
+    LOG_DEBUG("_unlock:%d\n",locknum);
+}
+
+#define DEF_HOST_FUNC(func)\
+uint64_t wrap_##func(uint64_t* args)
+
+
+//use host caller cls
+class WinApi:public HostCallerBase
+{
+    virtual void init_funcs();
+    static DEF_HOST_FUNC(GetCurrentProcessId)
+    {
+        return GetCurrentProcessId();
+    }
+    static DEF_HOST_FUNC(GetCurrentThreadId)
+    {
+        return GetCurrentThreadId();
+    }
+    static DEF_HOST_FUNC(_lock)
+    {
+        if(is_cpu_mode32())
+        {
+            WIN32_ARGS w32 = {args};
+            int n = w32.next<int>();
+            _lock(n);
+        }
+        else
+        {
+            
+        }
+        return 0;
+    }
+    static DEF_HOST_FUNC(_unlock)
+    {
+        if(is_cpu_mode32())
+        {
+            WIN32_ARGS w32 = {args};
+            int n = w32.next<int>();
+            _unlock(n);
+        }
+        else
+        {
+            
+        }
+        return 0;
+    }
+    
+};
+//DWORD GetCurrentProcessId();
+void WinApi::init_funcs()
+{
+    DEF_STD_USER_HOST_CALL(WinApi, GetCurrentProcessId,0);
+    DEF_STD_USER_HOST_CALL(WinApi, GetCurrentThreadId, 0);
+    DEF_STD_USER_HOST_CALL(WinApi, _lock, 0);//__cdecl
+    DEF_STD_USER_HOST_CALL(WinApi, _unlock, 0); //__cdecl
+}
+
+static WinApi win_api;

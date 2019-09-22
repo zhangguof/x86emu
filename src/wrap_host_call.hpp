@@ -92,7 +92,7 @@ add_host_std_func(#func,cls::wrap_##func,retn);
 class HostCallerBase
 {
 public:
-    static std::vector<HostCallerBase*> call_tbl;
+    static std::vector<HostCallerBase*> *call_tbl;
     static void add_caller(HostCallerBase* base);
     static void add_host_func(const char* name,wrap_func_ptr_t f);
     static void add_host_std_func(const char* name,wrap_func_ptr_t f,uint16_t retn);

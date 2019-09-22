@@ -374,13 +374,17 @@ DEF_HOST_FUNC(getenv)
 /*
  0:    55                       push   ebp
  1:    89 e5                    mov    ebp,esp
- 3:    b8 33 00 02 00           mov    eax,0x2033
- 8:    bb fd ff ff 1f           mov    ebx,0x1ffffffd
- d:    ff e3                    jmp    ebx
- f:    c9                       leave
- 10:    c3                      ret
+ 3:    b8 33 20 00 00           mov    eax,0x2033
+ 8:    ff 25 fd ff ff 1f        jmp    DWORD PTR ds:0x1ffffffd
+ e:    c9                       leave
+ f:    c3                       ret
  
- 21:    c2 03 00                ret    $0x3
+ 10:    55                       push   ebp
+ 11:    89 e5                    mov    ebp,esp
+ 13:    b8 44 20 00 00           mov    eax,0x2044
+ 18:    ff 25 80 00 80 00        jmp    DWORD PTR ds:0x800080
+ 1e:    c9                       leave
+ 1f:    c2 03 00                 ret    0x3
  */
 struct CodeBuf
 {
@@ -401,32 +405,18 @@ void gen_wrap_func_code(CodeBuf* code_buf,uint32_t idx,bool is_32,uint16_t ret_n
 {
     if(is_32)
     {
-//        *(code_buf++) = 0x55;//push ebp
-//        code_buf->write<uint8_t>(0x55);
-        
-//        *(code_buf++) = 0x89;
-//        *(code_buf++) = 0xe5;
-        
-//        *(code_buf++) = 0xb8;//mov eax, idx
+        uint32_t host_ptr_addr = g_engine->HOST_CALL_PTR32_addr;
+        assert(host_ptr_addr);
+
         code_buf->write_bytes("\x55\x89\xe5\xb8", 4);
 
-//        *((uint32_t*)code_buf) = idx;
-//        code_buf += sizeof(uint32_t);
-        code_buf->write(idx);
+
+        code_buf->write(idx); //mov    eax,idx
         
-//        *(code_buf++) = 0xbb;
-        code_buf->write((uint8_t)0xbb);
+        code_buf->write_bytes("\xff\x25", 2);  // jmp [host_prt_addr]
+        code_buf->write((uint32_t)host_ptr_addr);
         
-//        *((uint32_t*)code_buf) = (uint32_t)(0x1ffffffd);
-//        code_buf += sizeof(uint32_t);
-        code_buf->write((uint32_t)0x1ffffffd);
-        
-//        *(code_buf++) = 0xff; //jmp ebx
-//        *(code_buf++) = 0xe3;
-//
-//        *(code_buf++) = 0xc9;
-//        *(code_buf++) = 0xc3;
-        code_buf->write_bytes("\xff\xe3\xc9", 3);
+        code_buf->write((uint8_t)0xc9); //leave
         if(ret_n == 0)
         {
             code_buf->write((uint8_t)0xc3);
@@ -496,11 +486,13 @@ WIN32_PTR new_wrap_func(wrap_func_ptr_t pf,const char* name,uint16_t ret_n)
 //    new_wrap_func(pf, name);
 //}
 
-std::vector<HostCallerBase*> HostCallerBase::call_tbl;
+std::vector<HostCallerBase*> *HostCallerBase::call_tbl = nullptr;
 
 void HostCallerBase::add_caller(HostCallerBase* base)
 {
-    call_tbl.push_back(base);
+    if(call_tbl==nullptr)
+        call_tbl = new std::vector<HostCallerBase*>;
+    call_tbl->push_back(base);
 }
 
 void HostCallerBase::add_host_func(const char* name,wrap_func_ptr_t f)
@@ -516,7 +508,7 @@ void HostCallerBase::add_host_std_func(const char *name, wrap_func_ptr_t f, uint
 
 void HostCallerBase::init()
 {
-    for(auto it:call_tbl)
+    for(auto it:*call_tbl)
     {
         it->init_funcs();
     }
