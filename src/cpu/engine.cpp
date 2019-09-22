@@ -104,14 +104,19 @@ void Engine::load_elf(const char* elf_file_name)
     setup_os_env();
 }
 
-void Engine::load_dll32(const char* dll_file_name)
+void Engine::load_dll32(const char* dll_file_name,struct pe_image32** pe32)
 {
     //load dll
     //    const char* dll_path = "/Users/tony/workspace/github/x86emu/Tin/dll/test.dll";
     std::string dll_path = g_dll32_path+dll_file_name;
     struct pe_image32* pe;
+//    if(pe32 == nullptr)
     //    try_load_dll64(dll_path.c_str(),&pe);
-    try_load_dll32(dll_path.c_str(), &pe);
+    if(pe32 == nullptr)
+    {
+        pe32 = &pe;
+    }
+    try_load_dll32(dll_path.c_str(), pe32);
 }
 
 
@@ -238,19 +243,19 @@ void Engine::init()
     call_win32_unknow_sym_addr = global_sym_tbl_win32["unknow_sym"];
     assert(call_win32_unknow_sym_addr!=0);
     
+    call_host_ret_addr = global_sym_tbl["call_host_ret"];
+    call_host_win32_ret_addr = global_sym_tbl_win32["call_host_ret"];
+    HOST_CALL_PTR32_addr = global_sym_tbl_win32["HOST_CALL_PTR32"];
+    
+    
+    LOG_DEBUG("call_host_func_addr:0x%0lx,win32:0x%0lx,host_call_ptr32:0x%0x\n",
+              call_host_ret_addr,call_host_win32_ret_addr,
+              HOST_CALL_PTR32_addr);
+    
     //os init success!
     
     //init cls host call
     HostCallerBase::init();
-    
-    //load others dll
-//    load_dll32("libs/vcruntime140.dll");
-//    load_dll32("libs/msvcrt.dll");
-    
-//    call_win32_unknow_sym_addr = global_sym_tbl_win32["unknow_sym"];
-    
-    
-    
     
 }
 inline WIN32_PTR get_win32_ptr(void* ptr)
@@ -295,19 +300,21 @@ void test_dll_func()
     
     
 //    load test.dll
-    g_engine->load_dll32("test.dll");
+//    g_engine->load_dll32("test.dll");
 //
-//    wrap_guest_test_dll3(0x12345678, "hhhhhhhhtttttss", 0x2FEFEFEF98765432);
-//    printf("ret code:0x%0llx\n",g_engine->last_ret);;
-//    g_engine->call_win32_guest_method1("test_dll2", 0);
-//    printf("ret code:0x%0llx\n",g_engine->last_ret & 0xFFFFFFFF);
+//
+//    auto f_ptr = new_wrap_func(wrap_test_func,"wrap_fun_ptr");
+//    auto pre_esp = ESP;
+//    g_engine->cpu_ptr->push_32(f_ptr);
+//    g_engine->call_win32_guest_method1("test_call_ptr", 0);
+//    ESP = pre_esp;
+    struct pe_image32* pe;
+    g_engine->load_dll32("test2.dll",&pe);
+    LOG_DEBUG("try call dll entry:%s,%p\n",pe->name,pe->entry);
+    g_engine->call_win32_dll_entry((bx_phy_address)pe->entry);
+    g_engine->call_win32_guest_method1("test_cpp", 0);
     
     
-    auto f_ptr = new_wrap_func(wrap_test_func,"wrap_fun_ptr");
-    auto pre_esp = ESP;
-    g_engine->cpu_ptr->push_32(f_ptr);
-    g_engine->call_win32_guest_method1("test_call_ptr", 0);
-    ESP = pre_esp;
 //    g_engine->call_win32_guest_method1("init_call_funcs", 0)
     
 //    g_engine->load_dll32("libs/lua53_1.dll");
@@ -321,12 +328,6 @@ void test_dll_func()
 
 void Engine::run()
 {
-//   cpu_ptr->prev_rip = cpu_ptr->gen_reg[BX_64BIT_REG_RIP].rrx = entry_addr;
-    call_host_ret_addr = global_sym_tbl["call_host_ret"];
-    call_host_win32_ret_addr = global_sym_tbl_win32["call_host_ret"];
-    
-    LOG_DEBUG("call_host_func_addr:0x%0lx,win32:0x%0lx\n",
-              call_host_ret_addr,call_host_win32_ret_addr);
     
     cpu_ptr->push_64(call_host_ret_addr); //ret address call_host_func
     
@@ -341,6 +342,15 @@ void Engine::run()
     cpu_ptr->cpu_loop();
     
     call_win32_guest_method1("DLLMain", 0);
+    
+    
+    //load others dll
+    //    load_dll32("libs/vcruntime140.dll");
+    //    load_dll32("libs/msvcrt.dll");
+    struct pe_image32* pe;
+    load_dll32("libs/libstdc++-6.dll",&pe);
+//    LOG_DEBUG("try call dll entry:%s,%p\n",pe->name,pe->entry);
+//    call_win32_dll_entry((bx_phy_address)pe->entry);
     
     test_dll_func();
 
@@ -419,6 +429,25 @@ void Engine::call_win32_guest_method1(const char* method,uint64_t arg1)
     {
         LOG_ERROR("can't find symbol :%s in global sym32bit tbl!\n",method);
     }
+    sw_cpu_mode(pre_cpu_mode);
+}
+//BOOL WINAPI (*entry)(PVOID hinstDLL, DWORD fdwReason, PVOID lpvReserved);
+void Engine::call_win32_dll_entry(bx_phy_address addr)
+{
+    auto pre_cpu_mode = cpu_ptr->cpu_mode;
+    sw_cpu_mode(BX_MODE_LONG_COMPAT);
+    
+    bx_phy_address fun_ptr = addr;
+    auto pre_esp = ESP;
+    cpu_ptr->push_32(0);
+    cpu_ptr->push_32(DLL_PROCESS_ATTACH);
+    cpu_ptr->push_32(0);
+    cpu_ptr->push_32(call_host_win32_ret_addr);
+    
+    RIP = fun_ptr;
+    
+    cpu_ptr->cpu_loop();
+    ESP = pre_esp;
     sw_cpu_mode(pre_cpu_mode);
 }
 

@@ -41,6 +41,8 @@ public:
     bx_phy_address call_host_ret_addr;
     bx_phy_address call_host_win32_ret_addr;
     bx_phy_address call_win32_unknow_sym_addr;
+    uint32_t HOST_CALL_PTR32_addr;
+    
     struct export_funcs* call_guess_method;
     uint64_t last_ret;
     
@@ -56,9 +58,10 @@ public:
 //        call_trace_win32
         p_call_trace_win32 = std::make_shared<std::vector<uint64_t>>(1);
         p_call_trace_win32->reserve(16);
+        HOST_CALL_PTR32_addr = 0;
     }
     void load_elf(const char* path);
-    void load_dll32(const char* path);
+    void load_dll32(const char* path,struct pe_image32** pe32 = nullptr);
     void setup_os_env();
     void init();
     Bit8u* getHostMemAddr(bx_phy_address addr){
@@ -69,6 +72,7 @@ public:
     void call_guest_method1(const char* method,uint64_t arg1);
     void call_win_guest_method1(const char* method,uint64_t arg1);
     void call_win32_guest_method1(const char* method,uint64_t arg1);
+    void call_win32_dll_entry(bx_phy_address addr);
     
     void sw_cpu_mode(uint32_t mode);
 

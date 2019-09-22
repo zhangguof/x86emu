@@ -41,7 +41,8 @@ struct wrap_export {
 
 struct pe_image {
         char name[128];
-        BOOL WINAPI (*entry)(PVOID hinstDLL, DWORD fdwReason, PVOID lpvReserved);
+//        BOOL WINAPI (*entry)(PVOID hinstDLL, DWORD fdwReason, PVOID lpvReserved);
+        void* entry;
         void *image;
         size_t size;
         int type;
@@ -52,7 +53,8 @@ struct pe_image {
 
 struct pe_image32 {
     char name[128];
-    BOOL WINAPI (*entry)(PVOID hinstDLL, DWORD fdwReason, PVOID lpvReserved);
+//    BOOL WINAPI (*entry)(PVOID hinstDLL, DWORD fdwReason, PVOID lpvReserved);
+    void* entry;
     void *image;
     size_t size;
     int type;

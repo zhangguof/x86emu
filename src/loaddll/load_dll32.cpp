@@ -121,10 +121,14 @@ static int fix_pe_image(struct pe_image32 *pe,dll* pdll,bx_phy_address base_addr
     pe->image = image; //guest addr
     pe->size = image_size;
     
+    
+    
     /* Update our internal pointers */
     pe->nt_hdr = (IMAGE_NT_HEADERS32 *)
     ((char*)host_image+ ((IMAGE_DOS_HEADER *)host_image)->e_lfanew);
     pe->opt_hdr = &pe->nt_hdr->OptionalHeader;
+    
+    pe->entry = (void*)((bx_phy_address)image + pe->opt_hdr->AddressOfEntryPoint);
     
     LOG_INFO("set nt headers: nt_hdr=%p, opt_hdr=%p, image=%p(%p)",
              pe->nt_hdr, pe->opt_hdr, pe->image,host_image);
@@ -437,6 +441,7 @@ static int link_pe_image_in_host(struct pe_image32 *pe_image, bx_phy_address* ba
         LOG_ERROR("type <= 0 (%0llu)",pe->type);
         return -1;
     }
+    
     //    auto size = link_pe_image_in_host(pe, base_addr, pdll);
     int size = fix_pe_image(pe, pdll, *base_addr);
     if(size>0)
