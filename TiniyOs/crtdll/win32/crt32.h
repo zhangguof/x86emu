@@ -16,6 +16,12 @@ extern "C" {
 #define IMPORT __declspec(dllimport)
 
 DLLAPI int DLLMain();
+typedef void (__cdecl *_PVFV)(void);
+DLLAPI int _initterm(_PVFV* a,_PVFV* b);
+extern DLLAPI void exit(unsigned int);
+
+extern EXPORT void *_iob[3];
+extern DLLAPI int printf(const char*,...);
 
 
 #ifdef __cplusplus

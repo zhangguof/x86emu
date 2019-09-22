@@ -1,12 +1,23 @@
-CXX= i686-w64-mingw32-c++ -gdwarf-3
-CC=i686-w64-mingw32-c++ -gdwarf-3
+CXX= i686-w64-mingw32-c++ -gdwarf-3 
+CC=i686-w64-mingw32-c++ -gdwarf-3 
 CFLAGS=-I../../../src/
+CRTFLAG=-nostdlib -fno-builtin -ffreestanding -fno-stack-protector
 
 AS=nasm
 ASFLAG=-f win32 -i../../../src/
 
 
-all: test.dll crt32.dll testlua.dll
+all: test.dll crt32.dll testlua.dll test2.dll
+
+crt32.dll: crt32.o asm.o gdt.o
+	${CC} -shared -o $@ $^ -Wl,--out-implib,libcrt32.a  $(CRTFLAG)
+
+crt32.o: crt32.cpp 
+	$(CXX) -c $^ -o $@ -I. -DBUILD_DLL_CRT $(CFLAGS) $(CRTFLAG)
+
+gdt.o:	gdt.cpp
+	$(CXX) -c $^ -o $@ -I. $(CFLAGS)
+
 
 test.dll: test.o 
 	$(CC) -shared -o $@ $^  -L. 
@@ -14,17 +25,16 @@ test.dll: test.o
 test.o: test.cpp 
 	$(CXX) -c $^ -o $@ -I. -DBUILD_DLL_TEST $(CFLAGS)
 
-crt32.dll: crt32.o asm.o gdt.o
-	${CC} -shared -o $@ $^ -Wl,--out-implib,libcrt32.a
+test2.dll: test2.o 
+	$(CC) -shared -o $@ $^  -L. 
 
-crt32.o: crt32.cpp 
-	$(CXX) -c $^ -o $@ -I. -DBUILD_DLL_CRT $(CFLAGS)
+test2.o: test2.cpp 
+	$(CXX) -c $^ -o $@ -I. -DBUILD_DLL_TEST $(CFLAGS)
 
-gdt.o:	gdt.cpp
-	$(CXX) -c $^ -o $@ -I. $(CFLAGS)
+
 
 testlua.dll: testlua.cpp
-	$(CXX) -shared -o $@ $^ -lcrt32 -llua53 -L. -Iinclude $(CFLAGS)
+	$(CXX) -shared -o $@ $^  -llua53 -L. -Iinclude $(CFLAGS)
 
 
 

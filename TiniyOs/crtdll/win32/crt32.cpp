@@ -1,9 +1,9 @@
-#include <stdio.h>
+// #include <stdio.h>
 #include <stdint.h>
-#include <string.h>
+// #include <string.h>
 #include "crt32.h"
-#include <time.h>
-#include <stdlib.h>
+// #include <time.h>
+// #include <stdlib.h>
 
 
 extern "C"
@@ -11,8 +11,10 @@ extern "C"
 	#include "loaddll/load_dll.hpp"
 	#include "gdt.h"
 
-	FILE* _stdios[3];
-	extern void init_stdio(FILE* s[3]);
+	void* _stdios[3];
+	extern void init_stdio(void* s[3]);
+	// __attribute__((weak)) FILE* __acrt_iob_func(unsigned int);
+
 }
 
 
@@ -70,11 +72,33 @@ EXCEPTION_DISPOSITION ExceptionHandler(struct _EXCEPTION_RECORD *ExceptionRecord
         exit(0);
     }
 
+
+void * _iob[3] = {(void*)0,(void*)1,(void*)2};
 void set_stdio()
 {
-	_stdios[0] = stdin;
-	_stdios[1] = stdout;
-	_stdios[2] = stderr;
+	_stdios[0] = _iob[0];
+	_stdios[1] = _iob[1];
+	_stdios[2] = _iob[2];
+}
+
+int _initterm(_PVFV* pfbegin, _PVFV* pfend)
+{
+        /* 
+         * walk the table of function pointers from the bottom up, until 
+         * the end is encountered.  Do not skip the first entry.  The initial 
+         * value of pfbegin points to the first valid entry.  Do not try to 
+         * execute what pfend points to.  Only entries before pfend are valid. 
+         */  
+        while ( pfbegin < pfend )  
+        {  
+            /* 
+             * if current table entry is non-NULL, call thru it. 
+             */  
+            if ( *pfbegin != NULL )  
+                (**pfbegin)();  
+            ++pfbegin;  
+        }
+        return 0; 
 }
 
 int DLLMain()
@@ -87,6 +111,6 @@ int DLLMain()
 	set_stdio();
 	init_stdio(_stdios);
 	
-	return 0;
+	return 1;
 }
 
