@@ -16,8 +16,14 @@
 #define MAX_WIDTH 10*1024
 
 #define WANT_LONGLONG_PRINTF 1
+#define WANT_FLOATING_POINT_IN_PRINTF 1
 #define WANT_ERROR_PRINTF
 #define __WORDSIZE 32
+
+extern "C"{
+extern int __dtostr(double d,char *buf,unsigned int maxlen,unsigned int prec,unsigned int prec2,int flags);
+}
+
 
 
 static inline unsigned long skip_to(const char *format) {
