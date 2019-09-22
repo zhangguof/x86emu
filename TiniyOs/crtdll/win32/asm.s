@@ -1,8 +1,6 @@
 global call_win_host_func;
 
-
-
-global HOST_CALL_PTR
+global HOST_CALL_PTR32
 
 
 %macro  _DEF_HOST_FUNC 2
@@ -14,7 +12,7 @@ _%1:
 	push ebp
 	mov ebp, esp
 	mov eax,%2
-	jmp [HOST_CALL_PTR]
+	jmp [HOST_CALL_PTR32]
 	leave
 	ret
 %endmacro
@@ -30,7 +28,7 @@ _%1:
 	push ebp
 	mov ebp, esp
 	mov eax,%2
-	jmp [HOST_CALL_PTR]
+	jmp [HOST_CALL_PTR32]
 	leave
 	ret %3
 %endmacro
@@ -64,7 +62,7 @@ call_win_host_func:
 	push ebp
 	mov ebp, esp
 	; get_GOT ;rbx = rip?
-	mov ebx, HOST_CALL_PTR
+	mov ebx, HOST_CALL_PTR32
 	; mov rax, [rbx+rdi]
 	; push [rbx]
 	jmp [ebx];
@@ -76,14 +74,15 @@ call_win_host_func:
 ;;return to host code:
 _call_host_ret:
 call_host_ret:
-	mov ebx, HOST_CALL_PTR;
+	;mov ebx, HOST_CALL_PTR32;
 	; mov rdi, eax; //ret val
 	; push eax; //arg0 ,ret code
 	; mov ecx, eax
 	push edx ;;uint64_t hight bits
 	push eax
 	mov eax, 0x0;
-	jmp [ebx];
+	;jmp [ebx];
+	jmp [HOST_CALL_PTR32]
 	; leave
 	; ret
 
@@ -97,7 +96,11 @@ load_gdt:
 
 
 section .data
-HOST_CALL_PTR: dd 0x1FFFFFFD
+_HOST_CALL_PTR32:
+HOST_CALL_PTR32: dd 0x1FFFFFFD
+
+global _HOST_CALL_PTR32
+export HOST_CALL_PTR32
 
 section .drectve
 ; export_dll 'call_host_ret'
