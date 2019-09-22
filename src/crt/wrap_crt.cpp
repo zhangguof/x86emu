@@ -502,11 +502,5 @@ void WrapCRT::init_funcs()
     DEF_USER_HOST_CALL(WrapCRT,cls_test_func);
 }
 
-class WrapCRT2:public HostCallerBase
-{
-    
-};
-
 WrapCRT wrap_crt;
-//WrapCRT2 wrap_crt2;
 

@@ -78,12 +78,15 @@ extern std::unordered_map<uint32_t,HOST_FUN_C*> host_call_hash_tbl;
 typedef uint64_t (*wrap_func_ptr_t)(uint64_t*);
 extern uint64_t do_host_fun_ptr(WIN32_PTR ptr,uint64_t* args);
 
-extern uint32_t new_wrap_func(wrap_func_ptr_t pf,const char* name);
+extern uint32_t new_wrap_func(wrap_func_ptr_t pf,const char* name,uint16_t  ret_n = 0);
 
 extern void add_export32(const char* name,uint32_t addr);
 
 #define DEF_USER_HOST_CALL(cls,func) \
 add_host_func(#func,cls::wrap_##func);
+
+#define DEF_STD_USER_HOST_CALL(cls,func,retn) \
+add_host_std_func(#func,cls::wrap_##func,retn);
 
 #include <vector>
 class HostCallerBase
@@ -92,6 +95,7 @@ public:
     static std::vector<HostCallerBase*> call_tbl;
     static void add_caller(HostCallerBase* base);
     static void add_host_func(const char* name,wrap_func_ptr_t f);
+    static void add_host_std_func(const char* name,wrap_func_ptr_t f,uint16_t retn);
     static void init();
 //    static void add_export32(const char* name,)
     

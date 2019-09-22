@@ -379,6 +379,8 @@ DEF_HOST_FUNC(getenv)
  d:    ff e3                    jmp    ebx
  f:    c9                       leave
  10:    c3                      ret
+ 
+ 21:    c2 03 00                ret    $0x3
  */
 struct CodeBuf
 {
@@ -395,7 +397,7 @@ struct CodeBuf
     }
 };
 //void gen_wrap_func_code(uint8_t* code_buf, uint32_t idx,bool is_32)
-void gen_wrap_func_code(CodeBuf* code_buf,uint32_t idx,bool is_32)
+void gen_wrap_func_code(CodeBuf* code_buf,uint32_t idx,bool is_32,uint16_t ret_n=0)
 {
     if(is_32)
     {
@@ -424,7 +426,16 @@ void gen_wrap_func_code(CodeBuf* code_buf,uint32_t idx,bool is_32)
 //
 //        *(code_buf++) = 0xc9;
 //        *(code_buf++) = 0xc3;
-        code_buf->write_bytes("\xff\xe3\xc9\xc3", 4);
+        code_buf->write_bytes("\xff\xe3\xc9", 3);
+        if(ret_n == 0)
+        {
+            code_buf->write((uint8_t)0xc3);
+        }
+        else
+        {
+            code_buf->write((uint8_t)0xc2);
+            code_buf->write((uint16_t)ret_n);
+        }
         
     }
     else
@@ -455,14 +466,14 @@ uint64_t do_host_fun_ptr(WIN32_PTR ptr,uint64_t* args)
     return f(args);
 }
 
-WIN32_PTR new_wrap_func(wrap_func_ptr_t pf,const char* name)
+WIN32_PTR new_wrap_func(wrap_func_ptr_t pf,const char* name,uint16_t ret_n)
 {
     bx_phy_address buf_addr = (bx_phy_address)host_malloc(32);
     uint32_t buf_addr32 = (uint32_t)buf_addr;
     uint8_t* buf = getMemAddr(buf_addr);
     CodeBuf code_buf = {buf};
      uint32_t idx = host_call_used_idx++;
-    gen_wrap_func_code(&code_buf, idx, true);
+    gen_wrap_func_code(&code_buf, idx, true,ret_n);
 //    user_wrap_func_tbl[buf_addr32] = pf;
     if(p_user_host_call_tbl == nullptr)
     {
@@ -495,6 +506,11 @@ void HostCallerBase::add_caller(HostCallerBase* base)
 void HostCallerBase::add_host_func(const char* name,wrap_func_ptr_t f)
 {
     uint32_t addr = new_wrap_func(f, name);
+    add_export32(name, addr);
+}
+void HostCallerBase::add_host_std_func(const char *name, wrap_func_ptr_t f, uint16_t retn)
+{
+    uint32_t addr = new_wrap_func(f, name,retn);
     add_export32(name, addr);
 }
 

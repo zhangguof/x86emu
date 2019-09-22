@@ -149,7 +149,7 @@ int get_export32(const char *name, void *result)
         *func = (void*) it->second;
         return 0;
     }
-    
+    *func = nullptr;
     return -1;
 }
 
