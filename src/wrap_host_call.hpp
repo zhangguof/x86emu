@@ -53,13 +53,54 @@ typedef uint32_t WIN32_PTR;
 extern void gen_unkown_code(uint8_t* code_buf, uint32_t idx,bx_phy_address unknow_sym_func_addr,bool is_32);
 
 const uint32_t WINAPI_START = 0x1000;
-const uint32_t USER_START = 0x2000;
+const uint32_t USERAPI_START = 0x20000;
 extern uint32_t host_call_used_idx;
+#include <unordered_map>
+//typedef int (*HFun_is)(const char*);
+typedef  uint64_t (*host_fun_t)(uint64_t*);
+
+struct HOST_FUN_C
+{
+    //    void* ptr;
+    const char* name;
+    //    std::function<uint64_t(uint64_t*)> pf;
+    host_fun_t pf;
+    uint32_t idx;
+    HOST_FUN_C(const char* n,host_fun_t f,uint32_t i):name(n),pf(f),idx(i){}
+    
+    //LP64
+};
+typedef std::unordered_map<uint32_t, std::shared_ptr<HOST_FUN_C>> HostCallTbl_t;
+extern HostCallTbl_t* p_user_host_call_tbl;
+
+extern std::unordered_map<uint32_t,HOST_FUN_C*> host_call_hash_tbl;
 
 typedef uint64_t (*wrap_func_ptr_t)(uint64_t*);
 extern uint64_t do_host_fun_ptr(WIN32_PTR ptr,uint64_t* args);
 
-extern uint32_t new_wrap_func(wrap_func_ptr_t pf);
+extern uint32_t new_wrap_func(wrap_func_ptr_t pf,const char* name);
+
+extern void add_export32(const char* name,uint32_t addr);
+
+#define DEF_USER_HOST_CALL(cls,func) \
+add_host_func(#func,cls::wrap_##func);
+
+#include <vector>
+class HostCallerBase
+{
+public:
+    static std::vector<HostCallerBase*> call_tbl;
+    static void add_caller(HostCallerBase* base);
+    static void add_host_func(const char* name,wrap_func_ptr_t f);
+    static void init();
+//    static void add_export32(const char* name,)
+    
+    HostCallerBase(){
+        add_caller(this);
+    }
+    static uint64_t wrap_base_test_func(uint64_t* args);
+    virtual void init_funcs();
+};
 
 
 #endif /* wrap_host_call_h */

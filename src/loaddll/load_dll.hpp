@@ -9,7 +9,7 @@
 #ifndef load_dll_hpp
 #define load_dll_hpp
 
-#include <stdio.h>
+// #include <stdio.h>
 
 #include "loaddll/winnt_types.h"
 #include "loaddll/pe_linker.h"

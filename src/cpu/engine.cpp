@@ -183,6 +183,7 @@ extern void init_host_call_tbl();
 void Engine::init()
 {
     init_host_call_tbl();
+
     
     env_init();
     //    bx_cpu_ptr = &::bx_cpu; //global bx cpu!
@@ -230,14 +231,21 @@ void Engine::init()
     bx_pc_system.Reset(BX_RESET_HARDWARE);
     cpu_ptr->xrstor_init_x87_state();
     
+    
     load_elf(start_elf_file.c_str());
     
     load_dll32(crt32_dll_file.c_str());
     call_win32_unknow_sym_addr = global_sym_tbl_win32["unknow_sym"];
     assert(call_win32_unknow_sym_addr!=0);
     
-    load_dll32("libs/vcruntime140.dll");
-    load_dll32("libs/msvcrt.dll");
+    //os init success!
+    
+    //init cls host call
+    HostCallerBase::init();
+    
+    //load others dll
+//    load_dll32("libs/vcruntime140.dll");
+//    load_dll32("libs/msvcrt.dll");
     
 //    call_win32_unknow_sym_addr = global_sym_tbl_win32["unknow_sym"];
     
@@ -295,7 +303,7 @@ void test_dll_func()
 //    printf("ret code:0x%0llx\n",g_engine->last_ret & 0xFFFFFFFF);
     
     
-    auto f_ptr = new_wrap_func(wrap_test_func);
+    auto f_ptr = new_wrap_func(wrap_test_func,"wrap_fun_ptr");
     auto pre_esp = ESP;
     g_engine->cpu_ptr->push_32(f_ptr);
     g_engine->call_win32_guest_method1("test_call_ptr", 0);

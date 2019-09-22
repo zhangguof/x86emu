@@ -27,19 +27,7 @@
 //typedef int (*HFun_i_s)(const char*);
 //do host call ,call from guess
 
-//typedef int (*HFun_is)(const char*);
-typedef  uint64_t (*host_fun_t)(uint64_t*);
 
-struct HOST_FUN_C
-{
-//    void* ptr;
-    const char* name;
-//    std::function<uint64_t(uint64_t*)> pf;
-    host_fun_t pf;
-    uint32_t idx;
-    
-//LP64
-};
 
 
 
@@ -64,6 +52,8 @@ HOST_FUN_C host_func_table[] = {
 };
 
 std::unordered_map<uint32_t,HOST_FUN_C*> host_call_hash_tbl;
+//typedef std::unordered_map<uint32_t, HOST_FUN_C*> HostCallTbl_t;
+//HostCallTbl_t* p_user_host_call_tbl = nullptr;
 
 void init_host_call_tbl()
 {

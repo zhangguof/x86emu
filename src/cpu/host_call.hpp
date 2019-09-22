@@ -24,6 +24,8 @@ DEF_HOST_FUNC(fopen,25)
 DEF_HOST_FUNC(fclose,26)
 DEF_HOST_FUNC(fwrite,27)
 DEF_HOST_FUNC(fread,28)
+DEF_HOST_FUNC(fileno,29)
+
 
 
 

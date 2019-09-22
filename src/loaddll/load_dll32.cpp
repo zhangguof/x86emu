@@ -153,6 +153,30 @@ int get_export32(const char *name, void *result)
     return -1;
 }
 
+int add_dll_export32(const char* name,uint32_t addr,
+                      const char* dll_name,uint64_t dll_base,
+                      uint64_t load_base)
+{
+    auto it = global_sym_tbl_win32.find(name);
+    if(it==global_sym_tbl_win32.end())
+    {
+        global_sym_tbl_win32[name] = addr;
+        global_addr2sym_win32[addr] = std::make_shared<sym_info>(dll_name,name,dll_base,load_base);
+        return 1;
+    }
+    LOG_DEBUG("has add export symbol32 (%s) 0x%0x\n",name,addr);
+    return 0;
+}
+
+void add_export32(const char* name,uint32_t addr)
+{
+    auto ret  = add_dll_export32(name, addr, "Host32.dll", 0, 0);
+    if(ret)
+    {
+        LOG_DEBUG("HostDLL export32:%s,0x%0x\n",name,addr);
+    }
+}
+
 extern void* host_malloc(Bit64u size);
 static void* gen_unknow_info(const char* dll_name, const char* fname, bx_phy_address fun_addr)
 {
@@ -190,14 +214,20 @@ static int import(void *image, IMAGE_IMPORT_DESCRIPTOR *dirent, char *dll)
         
         if (get_export32(symname, &adr) < 0) {
             ERROR("unknown symbol: %s:%s", dll, symname);
+            if(strcmp("_iob", symname)==0)
+            {
+                ;
+            }
             address_tbl[i] = (bx_phy_address) 0;
             if(unknow_sym_addr)
             {
                 uint64_t new_addr = (uint64_t)gen_unknow_info(dll, symname,unknow_sym_addr);
-                global_sym_tbl_win32[symname] = new_addr;
-//                global_addr2sym_win32[unknow_sym_addr] = symname;
-                global_addr2sym_win32[new_addr] = std::make_shared<sym_info>(dll,symname,0,0);
-                address_tbl[i] = (bx_phy_address)new_addr;
+//                global_sym_tbl_win32[symname] = new_addr;
+//                global_addr2sym_win32[new_addr] = std::make_shared<sym_info>(dll,symname,0,0);
+                add_dll_export32(symname, new_addr, dll, 0, 0);
+//
+                address_tbl[i] = (uint32_t)new_addr;
+
                 
             }
             continue;
@@ -266,10 +296,13 @@ static int read_exports(struct pe_image32 *pe)
         if(it == global_sym_tbl_win32.end()||it->second ==
            g_engine->call_win32_unknow_sym_addr)
         {
-            global_sym_tbl_win32[name] = addr;
-//            global_addr2sym_win32[addr] = name;
-            global_addr2sym_win32[addr] = std::make_shared<sym_info>(pe->name,name.c_str(),
-                                                   pe->opt_hdr->ImageBase,(uint64_t)pe->image);
+//            global_sym_tbl_win32[name] = addr;
+//            global_addr2sym_win32[addr] = std::make_shared<sym_info>(pe->name,name.c_str(),
+//                                                                     pe->opt_hdr->ImageBase,(uint64_t)pe->image);
+            add_dll_export32(name.c_str(), addr, pe->name,
+                             pe->opt_hdr->ImageBase, (uint64_t)pe->image);
+            
+            LOG_INFO("read symbol:%s:%s\n",pe->name,name.c_str());
         }
         else
         {

@@ -23,6 +23,8 @@
 #define DEF_HOST_FUNC(func) \
 uint64_t wrap_##func(uint64_t* args)
 
+//#define DEF_HOST_CLS_FUNC(cls,func) \
+//static uint64_t cls::wrap_##func(uint64_t* args)
 
 //#undef va_arg
 //#undef va_start
@@ -377,6 +379,71 @@ DEF_HOST_FUNC(fread)
     return win_fread(buffer, size, count, handle);
 }
 
+//int     fileno(FILE *);
+static int win_fileno(uint32_t handle)
+{
+    auto it = fstreams.find(handle);
+    if(it == fstreams.end()) return  0;
+    FILE* s = it->second;
+    return fileno(s);
+}
+
+DEF_HOST_FUNC(fileno)
+{
+    uint32_t handle;
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32 = {args};
+        handle = w32.next<uint32_t>();
+    }
+    else
+    {
+        handle = (uint32_t)args[0];
+    }
+    return win_fileno(handle);
+}
+//__attribute__ ((__dllimport__)) FILE *__attribute__((__cdecl__)) __acrt_iob_func(unsigned index);
+
+uint64_t win___acrt_iob_func(uint32_t idx)
+{
+    printf("win___acrt_iob_func:%d\n",idx);
+    return idx;
+}
+
+DEF_HOST_FUNC(__acrt_iob_func)
+{
+    uint32_t idx;
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32 = {args};
+        idx  = w32.next<uint32_t>();
+        
+    }
+    else
+    {
+        idx = (uint32_t)args[0];
+    }
+    return win___acrt_iob_func(idx);
+}
+
+DEF_HOST_FUNC(cos)
+{
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32 = {args};
+        double arg1 = w32.next<double>();
+        return cos(arg1);
+    }
+    else
+    {
+        
+    }
+    return 0;
+}
+
+
+
+
 
 
  int print_test(const char* fmt,...)
@@ -420,5 +487,26 @@ void test_vars()
     print_test("%0x,0x%0llx,%s",0x1234,0x123456789ABCDEF,name2);
 }
 
+class WrapCRT:public HostCallerBase
+{
+    virtual void init_funcs();
+    static DEF_HOST_FUNC(cls_test_func)
+    {
+        printf("WrapCRT cls_test_func!\n");
+        return 0;
+    }
+};
 
+void WrapCRT::init_funcs()
+{
+    DEF_USER_HOST_CALL(WrapCRT,cls_test_func);
+}
+
+class WrapCRT2:public HostCallerBase
+{
+    
+};
+
+WrapCRT wrap_crt;
+//WrapCRT2 wrap_crt2;
 

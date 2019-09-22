@@ -4,6 +4,7 @@
 #include "elf.h"
 #include <stdio.h>
 #include "mmu.hpp"
+#include "wrap_host_call.hpp"
 
 
 #define LOG_THIS this->
@@ -133,7 +134,7 @@ Bit64u XE_CPU_C::call_win32_host_func(bxInstruction_c* i)
     //    printf("idx:%0x,data:%0x,len:%u\n",idx,data_addr,len);
     p_esp += 1;// point to first arg
     uint64_t ret;
-    if(idx < 0x2000)
+    if(idx < USERAPI_START)
     {
         ret = do_call_host_func(idx,p_esp);
     }
@@ -187,11 +188,13 @@ void XE_CPU_C::cpu_loop()
         for(;;) {
             // want to allow changing of the instruction inside instrumentation callback
             BX_INSTR_BEFORE_EXECUTION(BX_CPU_ID, i);
+            if((RIP&0xFFFFFFFF) == 0x807c20)
+            {
+                ;
+            }
+            
             RIP += i->ilen();
-//            if(RIP == 0x879887)
-//            {
-//                ;
-//            }
+
             BX_CPU_CALL_METHOD(i->execute1, (i)); // might iterate repeat instruction
             //check exist
             if(is_exit) return;
