@@ -1,5 +1,27 @@
 
 
 
-DEF_HOST_STD_FUNC(GetModuleFileNameA,0x10000,12)
+DEF_HOST_STD_FUNC(GetModuleFileNameA,0x1000,12)
 
+DEF_HOST_STD_FUNC(DeleteCriticalSection,0x1001,4)
+DEF_HOST_STD_FUNC(LeaveCriticalSection,0x1002,4)
+DEF_HOST_STD_FUNC(EnterCriticalSection,0x1003,4)
+DEF_HOST_STD_FUNC(InitializeCriticalSectionAndSpinCount,0x1004,8)
+DEF_HOST_STD_FUNC(InitializeCriticalSectionEx,0x1005,12)
+DEF_HOST_STD_FUNC(InitializeCriticalSection,0x1006,4)
+
+DEF_HOST_STD_FUNC(GetLastError,0x1007,0)
+DEF_HOST_STD_FUNC(SetLastError,0x1008,4)
+
+DEF_HOST_STD_FUNC(TlsFree,0x1009,4)
+DEF_HOST_STD_FUNC(TlsAlloc,0x100A,0)
+DEF_HOST_STD_FUNC(TlsSetValue,0x100B,8)
+DEF_HOST_STD_FUNC(TlsGetValue,0x100C,4)
+
+DEF_HOST_STD_FUNC(FlsFree,0x100D,4)
+DEF_HOST_STD_FUNC(FlsAlloc,0x100E,0)
+DEF_HOST_STD_FUNC(FlsSetValue,0x100F,8)
+DEF_HOST_STD_FUNC(FlsGetValue,0x1010,4)
+
+DEF_HOST_STD_FUNC(RtlGetNtVersionNumbers,0x1011,12)
+DEF_HOST_STD_FUNC(OutputDebugStringA,0x1012,4)
