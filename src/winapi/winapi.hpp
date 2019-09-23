@@ -25,6 +25,8 @@ uint64_t wrap_##func(uint64_t* args);
 #undef DEF_HOST_STD_FUNC
     
 #define DECLARE_CRT_EXPORT(name,_func) uint64_t wrap_##_func(uint64_t* args)
+
+extern char * CreateAnsiFromWide(void *wcharbuf);
     
 #ifdef __cplusplus
 }

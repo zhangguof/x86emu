@@ -33,7 +33,7 @@ extern "C"
 
 #define RVA2VA(image, rva, type) (type)(ULONG_PTR64)((char *)image + rva)
 
-
+#define EXPORT_DLL_SYMBOL 0
 
 static void ordinal_import_stub(void)
 {
@@ -245,8 +245,41 @@ static int import(void *image, IMAGE_IMPORT_DESCRIPTOR *dirent, char *dll)
     return 0;
 }
 
+static void get_path(struct pe_image32 *pe)
+{
+    const char* path = pe->name;
+    const char* p = strrchr(path, '/');
+//    const char* name = p+1;
+    std::string dll_name = p+1;
+    std::string dll_path = std::string(path,p - path);
+    strcpy(pe->name, dll_name.c_str());
+    strcpy(pe->dll_path, dll_path.c_str());
+    
+//    printf("%s,%s\n",dll_path.c_str(),dll_name.c_str());
+//    return dll_path.c_str();
+    
+    
+    
+}
+static void write_file(FILE* s, char* ptr, size_t size)
+{
+    fwrite(ptr, 1, size, s);
+}
+
 static int read_exports(struct pe_image32 *pe)
 {
+    get_path(pe);
+#if EXPORT_DLL_SYMBOL
+    const char* ext = strrchr(pe->name, '.');
+    std::string name = std::string(pe->name,ext - pe->name);
+    name = name + ".txt";
+    std::string path = pe->dll_path + name;
+    printf("try to open %s\n",path.c_str());
+    auto f = fopen(path.c_str(), "w");
+    
+#endif
+    
+    
     IMAGE_EXPORT_DIRECTORY *export_dir_table;
     int i;
     uint32_t *name_table;
@@ -292,17 +325,21 @@ static int read_exports(struct pe_image32 *pe)
                   (char *)((char*)host_image + *name_table),
                   (char*)pe->image + address);
         
+#if EXPORT_DLL_SYMBOL
+//        char buf[1024];
+        std::string pname = (char *)((char*)host_image + *name_table);
+        pname.push_back('\n');
+        write_file(f,(char*) pname.c_str(), pname.size());
+#endif
+        
 
         std::string name = (char*)host_image + *name_table;
         bx_phy_address addr = (bx_phy_address)pe->image + address;
-//        global_sym_tbl_win32[name] =
         auto it = global_sym_tbl_win32.find(name);
         if(it == global_sym_tbl_win32.end()||it->second ==
            g_engine->call_win32_unknow_sym_addr)
         {
-//            global_sym_tbl_win32[name] = addr;
-//            global_addr2sym_win32[addr] = std::make_shared<sym_info>(pe->name,name.c_str(),
-//                                                                     pe->opt_hdr->ImageBase,(uint64_t)pe->image);
+
             add_dll_export32(name.c_str(), addr, pe->name,
                              pe->opt_hdr->ImageBase, (uint64_t)pe->image);
             
@@ -317,6 +354,10 @@ static int read_exports(struct pe_image32 *pe)
         name_table++;
         ordinal_table++;
     }
+#if EXPORT_DLL_SYMBOL
+    if(f)
+        fclose(f);
+#endif
     return 0;
 }
 

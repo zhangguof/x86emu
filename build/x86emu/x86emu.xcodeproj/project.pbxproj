@@ -24,6 +24,15 @@
 		EA4E8488232F141600F89DFA /* libdwarf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4E8487232F141600F89DFA /* libdwarf.a */; };
 		EA4E848C232F207900F89DFA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4E848B232F207900F89DFA /* libz.tbd */; };
 		EA4E84912332119500F89DFA /* winapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E848F2332119500F89DFA /* winapi.cpp */; };
+		EA4E84942334FFFA00F89DFA /* CriticalSection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84932334FFF900F89DFA /* CriticalSection.cpp */; };
+		EA4E84962335025500F89DFA /* GetLastError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84952335025400F89DFA /* GetLastError.cpp */; };
+		EA4E8498233504A300F89DFA /* TlsAlloc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E8497233504A300F89DFA /* TlsAlloc.cpp */; };
+		EA4E849A2337246300F89DFA /* __dtostr.c in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84992337246300F89DFA /* __dtostr.c */; };
+		EA4E849C23373A3700F89DFA /* LoadLibrary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E849B23373A3700F89DFA /* LoadLibrary.cpp */; };
+		EA4E849E2337AA7900F89DFA /* SystemTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E849D2337AA7900F89DFA /* SystemTime.cpp */; };
+		EA4E84A223385BFD00F89DFA /* Heap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E849F23385BFC00F89DFA /* Heap.cpp */; };
+		EA4E84A62338812A00F89DFA /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84A52338812900F89DFA /* Event.cpp */; };
+		EA4E84A82338865200F89DFA /* ProcessThreads.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84A72338865200F89DFA /* ProcessThreads.cpp */; };
 		EA7CD722231524740038057E /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD720231524740038057E /* logger.cpp */; };
 		EA7CD72823155B190038057E /* load_dll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72623155B190038057E /* load_dll.cpp */; };
 		EA7CD7342317D1D50038057E /* pe_linker.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72B2317D1D40038057E /* pe_linker.c */; };
@@ -349,6 +358,17 @@
 		EA4E848F2332119500F89DFA /* winapi.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = winapi.cpp; sourceTree = "<group>"; };
 		EA4E84902332119500F89DFA /* winapi.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = winapi.hpp; sourceTree = "<group>"; };
 		EA4E849223327AF300F89DFA /* wrap_winapi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wrap_winapi.h; sourceTree = "<group>"; };
+		EA4E84932334FFF900F89DFA /* CriticalSection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CriticalSection.cpp; sourceTree = "<group>"; };
+		EA4E84952335025400F89DFA /* GetLastError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GetLastError.cpp; sourceTree = "<group>"; };
+		EA4E8497233504A300F89DFA /* TlsAlloc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TlsAlloc.cpp; sourceTree = "<group>"; };
+		EA4E84992337246300F89DFA /* __dtostr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = __dtostr.c; sourceTree = "<group>"; };
+		EA4E849B23373A3700F89DFA /* LoadLibrary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadLibrary.cpp; sourceTree = "<group>"; };
+		EA4E849D2337AA7900F89DFA /* SystemTime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemTime.cpp; sourceTree = "<group>"; };
+		EA4E849F23385BFC00F89DFA /* Heap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Heap.cpp; sourceTree = "<group>"; };
+		EA4E84A023385BFC00F89DFA /* Memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Memory.cpp; sourceTree = "<group>"; };
+		EA4E84A123385BFD00F89DFA /* Strings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Strings.cpp; sourceTree = "<group>"; };
+		EA4E84A52338812900F89DFA /* Event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Event.cpp; sourceTree = "<group>"; };
+		EA4E84A72338865200F89DFA /* ProcessThreads.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProcessThreads.cpp; sourceTree = "<group>"; };
 		EA7CD720231524740038057E /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
 		EA7CD721231524740038057E /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
 		EA7CD72623155B190038057E /* load_dll.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = load_dll.cpp; sourceTree = "<group>"; };
@@ -933,6 +953,7 @@
 				EAAEBDB82324F21D0084BFFD /* dietstdio.h */,
 				EAAEBDBD2324F7430084BFFD /* __lltostr.c */,
 				EAAEBDBC2324F7430084BFFD /* __ltostr.c */,
+				EA4E84992337246300F89DFA /* __dtostr.c */,
 				EAAEBDB62324F21D0084BFFD /* vsnprintf.cpp */,
 				EAAEBDB72324F21D0084BFFD /* vsprintf.cpp */,
 				EA326677231FF8E20026184F /* wrap_crt.cpp */,
@@ -973,6 +994,16 @@
 		EA4E848E2332117F00F89DFA /* winapi */ = {
 			isa = PBXGroup;
 			children = (
+				EA4E84932334FFF900F89DFA /* CriticalSection.cpp */,
+				EA4E849D2337AA7900F89DFA /* SystemTime.cpp */,
+				EA4E84A52338812900F89DFA /* Event.cpp */,
+				EA4E849F23385BFC00F89DFA /* Heap.cpp */,
+				EA4E84A023385BFC00F89DFA /* Memory.cpp */,
+				EA4E84A123385BFD00F89DFA /* Strings.cpp */,
+				EA4E84952335025400F89DFA /* GetLastError.cpp */,
+				EA4E84A72338865200F89DFA /* ProcessThreads.cpp */,
+				EA4E849B23373A3700F89DFA /* LoadLibrary.cpp */,
+				EA4E8497233504A300F89DFA /* TlsAlloc.cpp */,
 				EA4E848F2332119500F89DFA /* winapi.cpp */,
 				EA4E84902332119500F89DFA /* winapi.hpp */,
 				EA4E849223327AF300F89DFA /* wrap_winapi.h */,
@@ -1912,7 +1943,9 @@
 				EAB727412306AE56000019F0 /* Makefile in Sources */,
 				EAB727832306AE56000019F0 /* virt_timer.cc in Sources */,
 				EAB727542306AE56000019F0 /* mult64.cc in Sources */,
+				EA4E84A82338865200F89DFA /* ProcessThreads.cpp in Sources */,
 				EAB727442306AE56000019F0 /* fpu_load_store.cc in Sources */,
+				EA4E849E2337AA7900F89DFA /* SystemTime.cpp in Sources */,
 				EAEA8CB3230F199400F8BEBD /* load_so.cpp in Sources */,
 				EAB7276F2306AE56000019F0 /* plugin.cc in Sources */,
 				EAB726F12306AE56000019F0 /* arith16.cc in Sources */,
@@ -1941,6 +1974,7 @@
 				EAB727EB2306AE56000019F0 /* sdl2.cc in Sources */,
 				EAB727342306AE56000019F0 /* sse_rcp.cc in Sources */,
 				EAB7275A2306AE56000019F0 /* smm.cc in Sources */,
+				EA4E84A62338812A00F89DFA /* Event.cpp in Sources */,
 				EAB7277A2306AE56000019F0 /* cdrom_misc.cc in Sources */,
 				EAB7274D2306AE56000019F0 /* f2xm1.cc in Sources */,
 				EAB727ED2306AE56000019F0 /* vncsrv.cc in Sources */,
@@ -1949,6 +1983,7 @@
 				EAB727352306AE56000019F0 /* bit16.cc in Sources */,
 				EAB7274B2306AE56000019F0 /* softfloat-round-pack.cc in Sources */,
 				EAB7276A2306AE56000019F0 /* lexer.l in Sources */,
+				EA4E84962335025500F89DFA /* GetLastError.cpp in Sources */,
 				EAB726C22306AE56000019F0 /* soft_int.cc in Sources */,
 				EAB726FD2306AE56000019F0 /* segment_ctrl.cc in Sources */,
 				EAB7272C2306AE56000019F0 /* 3dnow.cc in Sources */,
@@ -1962,6 +1997,7 @@
 				EAB727362306AE56000019F0 /* access2.cc in Sources */,
 				EA326679231FF8E20026184F /* wrap_crt.cpp in Sources */,
 				EAB726D02306AE56000019F0 /* core_duo_t2400_yonah.cc in Sources */,
+				EA4E849A2337246300F89DFA /* __dtostr.c in Sources */,
 				EAB726F02306AE56000019F0 /* sha.cc in Sources */,
 				EAB727292306AE56000019F0 /* vapic.cc in Sources */,
 				EAB727F82306AE56000019F0 /* win32_enh_dbg_osdep.cc in Sources */,
@@ -1979,6 +2015,7 @@
 				EAB726A52306AE56000019F0 /* x86.cpp in Sources */,
 				EAB727F12306AE56000019F0 /* carbon.cc in Sources */,
 				EA7CD7402317DDA30038057E /* hcreate_r.c in Sources */,
+				EA4E849C23373A3700F89DFA /* LoadLibrary.cpp in Sources */,
 				EAB726D42306AE56000019F0 /* atom_n270.cc in Sources */,
 				EAB726E92306AE56000019F0 /* paging.cc in Sources */,
 				EAB727F22306AE56000019F0 /* win32.cc in Sources */,
@@ -1986,6 +2023,7 @@
 				EAB727702306AE56000019F0 /* pc_system.cc in Sources */,
 				EAB7272F2306AE56000019F0 /* stack32.cc in Sources */,
 				EAB727742306AE56000019F0 /* pit.cc in Sources */,
+				EA4E84942334FFFA00F89DFA /* CriticalSection.cpp in Sources */,
 				EAB727022306AE56000019F0 /* flag_ctrl_pro.cc in Sources */,
 				EAB727C92306AE56000019F0 /* Makefile in Sources */,
 				EAB7272B2306AE56000019F0 /* sse_string.cc in Sources */,
@@ -2046,6 +2084,7 @@
 				EAB727FA2306AE56000019F0 /* crc.cc in Sources */,
 				EAB727E22306AE56000019F0 /* textconfig.cc in Sources */,
 				EAB726F72306AE56000019F0 /* vmfunc.cc in Sources */,
+				EA4E8498233504A300F89DFA /* TlsAlloc.cpp in Sources */,
 				EAB726B42306AE56000019F0 /* osdep.cc in Sources */,
 				EA7CD7362317D1D50038057E /* crt.c in Sources */,
 				EAB726D62306AE56000019F0 /* pentium_mmx.cc in Sources */,
@@ -2134,6 +2173,7 @@
 				EAB7277C2306AE56000019F0 /* cdrom_osx.cc in Sources */,
 				EAB726F42306AE56000019F0 /* fetchdecode32.cc in Sources */,
 				EAB7274C2306AE56000019F0 /* fpu_const.cc in Sources */,
+				EA4E84A223385BFD00F89DFA /* Heap.cpp in Sources */,
 				EAB727C62306AE56000019F0 /* dma.cc in Sources */,
 				EAB7281B230ADD36000019F0 /* engine.cpp in Sources */,
 				EAB727C52306AE56000019F0 /* pcidev.cc in Sources */,

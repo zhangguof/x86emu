@@ -53,6 +53,7 @@ struct pe_image {
 
 struct pe_image32 {
     char name[128];
+    char dll_path[128];
 //    BOOL WINAPI (*entry)(PVOID hinstDLL, DWORD fdwReason, PVOID lpvReserved);
     void* entry;
     void *image;
