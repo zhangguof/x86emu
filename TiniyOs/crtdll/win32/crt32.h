@@ -15,7 +15,10 @@ extern "C" {
 #define EXPORT __declspec(dllexport)
 #define IMPORT __declspec(dllimport)
 
-DLLAPI int DLLMain();
+#define WINAPI __attribute__((__stdcall__))
+
+
+DLLAPI int DllMain();
 typedef void (__cdecl *_PVFV)(void);
 DLLAPI int _initterm(_PVFV* a,_PVFV* b);
 extern DLLAPI void exit(unsigned int);

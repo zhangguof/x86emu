@@ -101,9 +101,9 @@ int _initterm(_PVFV* pfbegin, _PVFV* pfend)
         return 0; 
 }
 
-int DLLMain()
+int DllMain()
 {
-	printf("DLLMain start!\n");
+	printf("DllMain start!\n");
 
 	init_gdt();
     setup_nt_threadinfo(ExceptionHandler);
