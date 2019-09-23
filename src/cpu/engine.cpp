@@ -104,7 +104,7 @@ void Engine::load_elf(const char* elf_file_name)
     setup_os_env();
 }
 
-void Engine::load_dll32(const char* dll_file_name,struct pe_image32** pe32)
+void Engine::load_dll32(const char* dll_file_name,struct pe_image32** pe32,bool call_entry)
 {
     //load dll
     //    const char* dll_path = "/Users/tony/workspace/github/x86emu/Tin/dll/test.dll";
@@ -117,6 +117,13 @@ void Engine::load_dll32(const char* dll_file_name,struct pe_image32** pe32)
         pe32 = &pe;
     }
     try_load_dll32(dll_path.c_str(), pe32);
+    if(call_entry)
+    {
+        char *name = (*pe32)->name;
+        void* addr = (*pe32)->entry;
+        LOG_DEBUG("try call dll entry:%s,%p\n",name,addr);
+        call_win32_dll_entry((bx_phy_address)addr);
+    }
 }
 
 
@@ -217,10 +224,6 @@ void Engine::init()
     
     
 
-//    const char* rom_path = "/Users/tony/workspace/github/x86emu/tool/BIOS-bochs-latest";
-//    const char* elf_file = "/Users/tony/workspace/github/x86emu/TiniyOs/tiniy";
-//    const char* elf_file = "/ldso";
-
     Bit32u ips = 4000000;
     
 //    bx_pc_system.setonoff(LOGLEV_DEBUG, ACT_REPORT);
@@ -311,10 +314,9 @@ void test_dll_func()
 //    g_engine->cpu_ptr->push_32(f_ptr);
 //    g_engine->call_win32_guest_method1("test_call_ptr", 0);
 //    ESP = pre_esp;
-    struct pe_image32* pe;
-    g_engine->load_dll32("test2.dll",&pe);
-    LOG_DEBUG("try call dll entry:%s,%p\n",pe->name,pe->entry);
-    g_engine->call_win32_dll_entry((bx_phy_address)pe->entry);
+
+    g_engine->load_dll32("test2.dll",nullptr,true);
+
     g_engine->call_win32_guest_method1("test_cpp", 0);
     
     
@@ -348,25 +350,17 @@ void Engine::run()
     
     
     //load others dll
-    struct pe_image32* pe;
+//    struct pe_image32* pe;
     //    load_dll32("libs/vcruntime140.dll");
-    load_dll32("libs/msvcrt.dll",&pe);
-    LOG_DEBUG("try call dll entry:%s,%p\n",pe->name,pe->entry);
-    call_win32_dll_entry((bx_phy_address)pe->entry);
+    load_dll32("libs/msvcrt.dll",nullptr,true);
     
+    //mingw support dll.
     //libwinpthread-1.dll
-    
-    load_dll32("libs/mingw/libwinpthread-1.dll",&pe);
-    LOG_DEBUG("try call dll entry:%s,%p\n",pe->name,pe->entry);
-    call_win32_dll_entry((bx_phy_address)pe->entry);
-    
-    load_dll32("libs/mingw/libgcc_s_sjlj-1.dll",&pe);
-    LOG_DEBUG("try call dll entry:%s,%p\n",pe->name,pe->entry);
-    call_win32_dll_entry((bx_phy_address)pe->entry);
-    
-    load_dll32("libs/mingw/libstdc++-6.dll",&pe);
-    LOG_DEBUG("try call dll entry:%s,%p\n",pe->name,pe->entry);
-    call_win32_dll_entry((bx_phy_address)pe->entry);
+    load_dll32("libs/mingw/libwinpthread-1.dll",nullptr,true);
+
+    load_dll32("libs/mingw/libgcc_s_sjlj-1.dll",nullptr,true);
+    //mingw c++
+    load_dll32("libs/mingw/libstdc++-6.dll",nullptr,true);
     
     test_dll_func();
 

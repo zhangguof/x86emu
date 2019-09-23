@@ -61,7 +61,8 @@ public:
         HOST_CALL_PTR32_addr = 0;
     }
     void load_elf(const char* path);
-    void load_dll32(const char* path,struct pe_image32** pe32 = nullptr);
+    void load_dll32(const char* path,struct pe_image32** pe32 = nullptr,bool call_entry = false);
+    
     void setup_os_env();
     void init();
     Bit8u* getHostMemAddr(bx_phy_address addr){
