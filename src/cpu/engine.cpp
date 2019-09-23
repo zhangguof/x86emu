@@ -24,6 +24,9 @@
 #include "loaddll/load_dll.hpp"
 #include "wrap_host_call.hpp"
 #include "debug.hpp"
+extern "C"{
+    extern const bool DEBUG_DASM = false;
+}
 
 
 extern void bx_init_options();
@@ -358,7 +361,7 @@ void Engine::run()
     //load others dll
 //    struct pe_image32* pe;
     //    load_dll32("libs/vcruntime140.dll");
-    load_dll32("libs/msvcrt.dll",nullptr,true);
+//    load_dll32("libs/msvcrt.dll",nullptr,true);
     
     //mingw support dll.
     //libwinpthread-1.dll
@@ -370,7 +373,7 @@ void Engine::run()
     
     test_dll_func();
 
-    printf("end run!\n");
+//    printf("end run!\n");
 }
 
 void Engine::call_guest_method1(const char* method,uint64_t arg1)

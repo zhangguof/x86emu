@@ -225,7 +225,7 @@ int check_nt_hdr64(IMAGE_NT_HEADERS64 *nt_hdr)
         return -EINVAL;
     }
     
-#if 1
+#if 0
     DBGLINKER("number of datadictionary entries %d",
               opt_hdr->NumberOfRvaAndSizes);
     for (i = 0; i < opt_hdr->NumberOfRvaAndSizes; i++) {
@@ -296,7 +296,7 @@ int check_nt_hdr32(IMAGE_NT_HEADERS32 *nt_hdr)
                 return -EINVAL;
         }
 
-#if 1
+#if 0
         DBGLINKER("number of datadictionary entries %d",
                   opt_hdr->NumberOfRvaAndSizes);
         for (i = 0; i < opt_hdr->NumberOfRvaAndSizes; i++) {

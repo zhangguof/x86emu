@@ -17,7 +17,7 @@ void test_vars();
 
 int main()
 {
-    get_logger(Logger::LV_INFO);
+    get_logger(Logger::LV_ERROR);
     
     LOG_INFO("x86 simualte start!");
     
@@ -32,6 +32,6 @@ int main()
     
     p_x86emu->run();
     
-    exit(0);
+//    exit(0);
 	return 0;
 }

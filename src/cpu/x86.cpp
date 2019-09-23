@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "mmu.hpp"
 #include "wrap_host_call.hpp"
+#include "logger.hpp"
 
 
 #define LOG_THIS this->
@@ -58,7 +59,7 @@ void XE_MEM_C::load_RAM_from_data(Bit8u* data, Bit32u len, bx_phy_address ramadd
     
 //    BX_INFO(("ram at 0x%05x/%u ('%s')",(unsigned) ramaddress,(unsigned) len));
     
-    BX_INFO(("rom at 0x%05x/%u ",ramaddress,len));
+    LOG_INFO("rom at 0x%05x/%u ",ramaddress,len);
 }
 
 Bit8u*  XE_MEM_C::getGuestMemAddr(BX_CPU_C *cpu, bx_phy_address addr)
