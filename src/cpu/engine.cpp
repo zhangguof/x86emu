@@ -157,6 +157,12 @@ void Engine::setup_os_env()
     cpu_ptr->sregs[BX_SEG_REG_SS].cache.u.segment.g   = 1; // page granularity
     cpu_ptr->sregs[BX_SEG_REG_SS].cache.u.segment.d_b = 1; // 32bit
     
+    //ES deltas
+    cpu_ptr->sregs[BX_SEG_REG_ES].cache.u.segment.base = 0x00000000;
+    cpu_ptr->sregs[BX_SEG_REG_ES].cache.u.segment.limit_scaled = 0xFFFFFFFF;
+    cpu_ptr->sregs[BX_SEG_REG_ES].cache.u.segment.g   = 1; // page granularity
+    cpu_ptr->sregs[BX_SEG_REG_ES].cache.u.segment.d_b = 1; // 32bit
+    
     RSP = Last_1M;
     
     
@@ -497,19 +503,21 @@ void Engine::print_call_trace_win32()
     for(auto addr:call_trace_win32)
     {
         const char* name = nullptr;
-        auto it = global_debug_info.find(addr);
-        if(it!=global_debug_info.end())
+        auto it2 = global_addr2sym_win32.find(addr);
+        if(it2!=global_addr2sym_win32.end())
         {
-            name = it->second->name.c_str();
+            name = it2->second->fname.c_str();
         }
-       
+        
+
         if(name==nullptr)
         {
-            auto it2 = global_addr2sym_win32.find(addr);
-            if(it2!=global_addr2sym_win32.end())
+            auto it = global_debug_info.find(addr);
+            if(it!=global_debug_info.end())
             {
-                name = it2->second->fname.c_str();
+                name = it->second->name.c_str();
             }
+            
         }
         printf("==addr:0x%0lx:%s\n",addr,name);
     }
