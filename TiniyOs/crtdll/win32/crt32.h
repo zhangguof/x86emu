@@ -23,7 +23,19 @@ typedef void (__cdecl *_PVFV)(void);
 DLLAPI int _initterm(_PVFV* a,_PVFV* b);
 extern DLLAPI void exit(unsigned int);
 
-extern EXPORT void *_iob[3];
+struct _iobuf {
+    char *_ptr;
+    int _cnt;
+    char *_base;
+    int _flag;
+    int _file;
+    int _charbuf;
+    int _bufsiz;
+    char *_tmpfname;
+  };
+typedef struct _iobuf FILE;
+
+extern EXPORT FILE _iob[3];
 extern DLLAPI int printf(const char*,...);
 
 

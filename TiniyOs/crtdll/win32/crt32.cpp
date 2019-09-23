@@ -73,12 +73,13 @@ EXCEPTION_DISPOSITION ExceptionHandler(struct _EXCEPTION_RECORD *ExceptionRecord
     }
 
 
-void * _iob[3] = {(void*)0,(void*)1,(void*)2};
+
+FILE _iob[3];
 void set_stdio()
 {
-	_stdios[0] = _iob[0];
-	_stdios[1] = _iob[1];
-	_stdios[2] = _iob[2];
+	_stdios[0] = &_iob[0];
+	_stdios[1] = &_iob[1];
+	_stdios[2] = &_iob[2];
 }
 
 int _initterm(_PVFV* pfbegin, _PVFV* pfend)
