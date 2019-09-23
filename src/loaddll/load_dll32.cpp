@@ -218,10 +218,7 @@ static int import(void *image, IMAGE_IMPORT_DESCRIPTOR *dirent, char *dll)
         
         if (get_export32(symname, &adr) < 0) {
             ERROR("unknown symbol: %s:%s", dll, symname);
-            if(strcmp("_iob", symname)==0)
-            {
-                ;
-            }
+     
             address_tbl[i] = (bx_phy_address) 0;
             if(unknow_sym_addr)
             {

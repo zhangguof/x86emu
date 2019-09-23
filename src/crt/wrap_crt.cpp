@@ -487,6 +487,14 @@ void test_vars()
     print_test("%0x,0x%0llx,%s",0x1234,0x123456789ABCDEF,name2);
 }
 
+static int win_fputc( int ch, uint32_t handle )
+{
+    auto it = fstreams.find(handle);
+    if(it == fstreams.end()) return  EOF;
+    FILE* s = it->second;
+    return fputc(ch, s);
+}
+
 class WrapCRT:public HostCallerBase
 {
     virtual void init_funcs();
@@ -495,11 +503,27 @@ class WrapCRT:public HostCallerBase
         printf("WrapCRT cls_test_func!\n");
         return 0;
     }
+    static DEF_HOST_FUNC(fputc)
+    {
+        if(is_cpu_mode32())
+        {
+            WIN32_ARGS w32 = {args};
+            int arg1 = w32.next<int>();
+            uint32_t arg2 = w32.next<uint32_t>();
+            return win_fputc(arg1, arg2);
+        }
+        else
+        {
+            
+        }
+        return 0;
+    }
 };
 
 void WrapCRT::init_funcs()
 {
     DEF_USER_HOST_CALL(WrapCRT,cls_test_func);
+    DEF_USER_HOST_CALL(WrapCRT, fputc);
 }
 
 WrapCRT wrap_crt;

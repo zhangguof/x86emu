@@ -33,6 +33,7 @@
 		EA4E84A223385BFD00F89DFA /* Heap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E849F23385BFC00F89DFA /* Heap.cpp */; };
 		EA4E84A62338812A00F89DFA /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84A52338812900F89DFA /* Event.cpp */; };
 		EA4E84A82338865200F89DFA /* ProcessThreads.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84A72338865200F89DFA /* ProcessThreads.cpp */; };
+		EA4E84AA2338921000F89DFA /* Handle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84A92338920F00F89DFA /* Handle.cpp */; };
 		EA7CD722231524740038057E /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD720231524740038057E /* logger.cpp */; };
 		EA7CD72823155B190038057E /* load_dll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72623155B190038057E /* load_dll.cpp */; };
 		EA7CD7342317D1D50038057E /* pe_linker.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72B2317D1D40038057E /* pe_linker.c */; };
@@ -369,6 +370,7 @@
 		EA4E84A123385BFD00F89DFA /* Strings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Strings.cpp; sourceTree = "<group>"; };
 		EA4E84A52338812900F89DFA /* Event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Event.cpp; sourceTree = "<group>"; };
 		EA4E84A72338865200F89DFA /* ProcessThreads.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProcessThreads.cpp; sourceTree = "<group>"; };
+		EA4E84A92338920F00F89DFA /* Handle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Handle.cpp; sourceTree = "<group>"; };
 		EA7CD720231524740038057E /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
 		EA7CD721231524740038057E /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
 		EA7CD72623155B190038057E /* load_dll.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = load_dll.cpp; sourceTree = "<group>"; };
@@ -996,6 +998,7 @@
 			children = (
 				EA4E84932334FFF900F89DFA /* CriticalSection.cpp */,
 				EA4E849D2337AA7900F89DFA /* SystemTime.cpp */,
+				EA4E84A92338920F00F89DFA /* Handle.cpp */,
 				EA4E84A52338812900F89DFA /* Event.cpp */,
 				EA4E849F23385BFC00F89DFA /* Heap.cpp */,
 				EA4E84A023385BFC00F89DFA /* Memory.cpp */,
@@ -2112,6 +2115,7 @@
 				EAB727612306AE56000019F0 /* dis_decode.cc in Sources */,
 				EAB7270D2306AE56000019F0 /* logical8.cc in Sources */,
 				EAB7274A2306AE56000019F0 /* poly.cc in Sources */,
+				EA4E84AA2338921000F89DFA /* Handle.cpp in Sources */,
 				EAB726CC2306AE56000019F0 /* rdrand.cc in Sources */,
 				EAB726F32306AE56000019F0 /* bmi32.cc in Sources */,
 				EAB726E32306AE56000019F0 /* ryzen.cc in Sources */,
