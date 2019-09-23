@@ -43,7 +43,7 @@ static HANDLE CreateEventA(
                     BOOL                  bInitialState,
                     LPSTR                lpName)
 {
-    LOG_DEBUG("CreateEventA:%p, %u, %u, %p [%s]", lpEventAttributes, bManualReset, bInitialState, lpName);
+    LOG_DEBUG("CreateEventA:%p, %u, %u, %p [%s]", lpEventAttributes, bManualReset, bInitialState, lpName,lpName);
      return (HANDLE) 'EVNT';
 }
 

@@ -49,6 +49,9 @@ static uint64_t wrap_##func(uint64_t* args);
     DECLARE_CRT_EXPORT("CreateMutexW",CreateMutexW);
     DECLARE_CRT_EXPORT("CreateMutexA",CreateMutexA);
     
+    DECLARE_CRT_EXPORT("GetThreadPriority",GetThreadPriority);
+    DECLARE_CRT_EXPORT("SetThreadPriority",SetThreadPriority);
+    
 #undef DECLARE_CRT_EXPORT
     virtual void init_funcs();
     
@@ -587,6 +590,49 @@ DEF_HOST_FUNC(winProcessThreads,ProcessIdToSessionId)
     return 0;
 }
 
+static int GetThreadPriority(HANDLE hThread)
+{
+    LOG_DEBUG("GetThreadPriority:%p",hThread);
+    return  1;
+}
+
+DEF_HOST_FUNC(winProcessThreads, GetThreadPriority)
+{
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32 = {args};
+        uint64_t arg1 = (uint64_t) w32.next<WIN32_PTR>();
+        return (uint64_t)GetThreadPriority((void*)arg1);
+    }
+    else
+    {
+        
+    }
+    return 0;
+}
+
+BOOL SetThreadPriority(HANDLE hThread,int nPriority)
+{
+    LOG_DEBUG("SetThreadPriority:%p,%d\n",hThread,nPriority);
+    return TRUE;
+}
+
+DEF_HOST_FUNC(winProcessThreads, SetThreadPriority)
+{
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32 = {args};
+        void* arg1 = (void*)w32.next<WIN32_PTR>();
+        int arg2 = w32.next<int>();
+        return (uint64_t)SetThreadPriority(arg1,arg2);
+    }
+    else
+    {
+        
+    }
+    return 0;
+}
+
 void winProcessThreads::init_funcs()
 {
     DEF_STD_USER_HOST_CALL(winProcessThreads, RtlNtStatusToDosError,4);
@@ -615,6 +661,9 @@ void winProcessThreads::init_funcs()
 	DEF_STD_USER_HOST_CALL(winProcessThreads, ProcessIdToSessionId,8);
     DEF_STD_USER_HOST_CALL(winProcessThreads, CreateMutexW, 12);
     DEF_STD_USER_HOST_CALL(winProcessThreads, CreateMutexA, 12);
+    DEF_STD_USER_HOST_CALL(winProcessThreads, GetThreadPriority, 4);
+    DEF_STD_USER_HOST_CALL(winProcessThreads, SetThreadPriority, 8);
+
 
 }
 
