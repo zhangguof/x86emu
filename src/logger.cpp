@@ -140,7 +140,7 @@ void log_debug(const char* filename,int lineno, const char* func_name,
     
     va_list args;
     va_start(args, fmt);
-    log->vfmt(buf,"INFO",filename,lineno,func_name,fmt,args);
+    log->vfmt(buf,"DEBUG",filename,lineno,func_name,fmt,args);
     
     va_end(args);
     log->stdout(buf);
@@ -154,7 +154,7 @@ void log_warn(const char* filename,int lineno, const char* func_name,
     
     va_list args;
     va_start(args, fmt);
-    log->vfmt(buf,"INFO",filename,lineno,func_name,fmt,args);
+    log->vfmt(buf,"WARN",filename,lineno,func_name,fmt,args);
     
     va_end(args);
     log->stdout(buf);
@@ -168,7 +168,7 @@ void log_error(const char* filename,int lineno, const char* func_name,
     
     va_list args;
     va_start(args, fmt);
-    log->vfmt(buf,"INFO",filename,lineno,func_name,fmt,args);
+    log->vfmt(buf,"ERROR",filename,lineno,func_name,fmt,args);
     
     va_end(args);
     log->stdout(buf);

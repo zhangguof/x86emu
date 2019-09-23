@@ -274,9 +274,9 @@ int check_nt_hdr32(IMAGE_NT_HEADERS32 *nt_hdr)
 
         /* Must have attributes */
         attr = IMAGE_FILE_EXECUTABLE_IMAGE ;
-        LOG_DEBUG("attr:%0x,%0x,%0x\n",attr,
-        nt_hdr->FileHeader.Characteristics & attr,
-        nt_hdr->FileHeader.Characteristics );
+//        LOG_DEBUG("attr:%0x,%0x,%0x\n",attr,
+//        nt_hdr->FileHeader.Characteristics & attr,
+//        nt_hdr->FileHeader.Characteristics );
 
         if ((nt_hdr->FileHeader.Characteristics & attr) != attr)
                 return -EINVAL;
@@ -683,7 +683,7 @@ bool pe_load_library(const char *filename, void **image, size_t *size)
     }
 
     // If that succeeded, we can proceed.
-    LOG_DEBUG("successfully mapped %s@%p", filename, *image);
+    LOG_INFO("successfully mapped %s@%p", filename, *image);
 
     // File descriptor no longer required.
     close(fd);

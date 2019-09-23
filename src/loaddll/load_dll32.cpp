@@ -91,7 +91,7 @@ static int fix_pe_image(struct pe_image32 *pe,dll* pdll,bx_phy_address base_addr
     sections = pe->nt_hdr->FileHeader.NumberOfSections;
     sect_hdr = IMAGE_FIRST_SECTION64(pe->nt_hdr);
     
-    LOG_DEBUG("copying headers: %u bytes", sect_hdr->PointerToRawData);
+    LOG_INFO("copying headers: %u bytes", sect_hdr->PointerToRawData);
     
     host_memcpy((char*)image, (char*)pe->image, sect_hdr->PointerToRawData);
     //    load_ram((Bit8u*)pe->image, (Bit32u)sect_hdr->PointerToRawData, (bx_phy_address)image);
@@ -401,8 +401,8 @@ static int fixup_reloc(void *image, IMAGE_NT_HEADERS32 *nt_hdr)
     
     fixup_block = RVA2VA(host_iamge, base_reloc_data_dir->VirtualAddress,
                          IMAGE_BASE_RELOCATION *);
-    LOG_DEBUG("fixup_block=%p, image=%p", fixup_block, image);
-    LOG_DEBUG("fixup_block info: %x %d",
+    LOG_INFO("fixup_block=%p, image=%p", fixup_block, image);
+    LOG_INFO("fixup_block info: %x %d",
               fixup_block->VirtualAddress, fixup_block->SizeOfBlock);
     
     while (fixup_block->SizeOfBlock) {
