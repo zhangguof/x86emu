@@ -188,10 +188,10 @@ void XE_CPU_C::cpu_loop()
         for(;;) {
             // want to allow changing of the instruction inside instrumentation callback
             BX_INSTR_BEFORE_EXECUTION(BX_CPU_ID, i);
-            if((RIP&0xFFFFFFFF) == 0x807c20)
-            {
-                ;
-            }
+//            if((RIP&0xFFFFFFFF) == 0x008f33c0)
+//            {
+//                ;
+//            }
             
             RIP += i->ilen();
 

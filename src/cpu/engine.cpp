@@ -185,10 +185,13 @@ void Engine::setup_os_env()
 }
 
 extern void init_host_call_tbl();
+std::vector<uint64_t> call_trace_win32;
+
 void Engine::init()
 {
     init_host_call_tbl();
-
+    call_trace_win32.clear();
+    call_trace_win32.reserve(128);
     
     env_init();
     //    bx_cpu_ptr = &::bx_cpu; //global bx cpu!
@@ -365,7 +368,7 @@ void Engine::run()
     LOG_DEBUG("try call dll entry:%s,%p\n",pe->name,pe->entry);
     call_win32_dll_entry((bx_phy_address)pe->entry);
     
-//    test_dll_func();
+    test_dll_func();
 
     printf("end run!\n");
 }
@@ -434,6 +437,7 @@ void Engine::call_win32_guest_method1(const char* method,uint64_t arg1)
         cpu_ptr->push_32(call_host_win32_ret_addr);
         
         RIP = fun_ptr;
+        push_call(fun_ptr);
 
         cpu_ptr->cpu_loop();
         
@@ -458,6 +462,7 @@ void Engine::call_win32_dll_entry(bx_phy_address addr)
     cpu_ptr->push_32(call_host_win32_ret_addr);
     
     RIP = fun_ptr;
+    push_call(fun_ptr);
     
     cpu_ptr->cpu_loop();
     ESP = pre_esp;
@@ -477,20 +482,25 @@ void Engine::sw_cpu_mode(uint32_t mode)
         cpu_ptr->handleCpuModeChange();
     }
 }
+
+
 void Engine::push_call(uint64_t addr)
 {
 
-//    this->p_call_trace_win32->push_back(addr);
+    call_trace_win32.push_back(addr);
+
 }
 void Engine::pop_call()
 {
-    //        assert(addr == call_trace_win32.back());
-//    this->p_call_trace_win32->pop_back();
+
+    if(call_trace_win32.size()> 0)
+        call_trace_win32.pop_back();
 }
 
 void Engine::print_call_trace_win32()
 {
-    for(auto addr:*p_call_trace_win32)
+    printf("call trace:%d\n",call_trace_win32.size());
+    for(auto addr:call_trace_win32)
     {
         const char* name = nullptr;
         auto it = global_debug_info.find(addr);
