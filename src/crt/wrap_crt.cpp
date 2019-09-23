@@ -19,68 +19,11 @@
 
 //#include <stdarg.h>
 #include "utils.h"
+#include <locale.h>
 
 #define DEF_HOST_FUNC(func) \
 uint64_t wrap_##func(uint64_t* args)
 
-//#define DEF_HOST_CLS_FUNC(cls,func) \
-//static uint64_t cls::wrap_##func(uint64_t* args)
-
-//#undef va_arg
-//#undef va_start
-//#undef va_end
-//
-//struct VA_LIST
-//{
-//    char* ap;
-//};
-
-//typedef char* va_list_t;
-//inline void va_start(VA_LIST*  va,void* argn)
-//{
-//    if(is_cpu_mode32())
-//        va->ap = (char*)argn + 4;
-//    else
-//        va->ap = (char*)argn + 8;
-//}
-//inline vs_start(VS_LIST ap,)
-//#define va_start64(ap,argn) ap=((char*)&argn)+8
-//#define va_start32(ap,argn) ap=((char*)&argn)+4
-//#define va_arg(ap,type) (ap+=sizeof(type), *(type*)((void*)ap-sizeof(type)))
-
-//
-//#define va_end(ap) ((void)0)
-//
-//template<typename T>
-//class va_arg
-//{
-//public:
-//    static T get(VA_LIST* va)
-//    {
-//        va->ap += sizeof(T);
-//        return *(T*)(va->ap - sizeof(T));
-//    }
-//};
-
-//template<typename T>
-//class va_arg<T*>
-//{
-//public:
-//    static T* get(VA_LIST* va)
-//    {
-////        if(is_cpu_mode32())
-//        if(0)
-//        {
-//            va->ap += sizeof(WIN32_PTR);
-//            return (T*)*(WIN32_PTR*)(va->ap - sizeof(WIN32_PTR));
-//        }
-//        else
-//        {
-//            va->ap += sizeof(uint64_t);
-//            return (T*)*(uint64_t*)(va->ap - sizeof(uint64_t));
-//        }
-//    }
-//};
 
 //int win_vsnprintf(char* str, size_t size, const char *format,struct va_args* arg_ptr)
 //int snprintf(char* str,size_t size,const char* fmt,...);
@@ -426,22 +369,6 @@ DEF_HOST_FUNC(__acrt_iob_func)
     return win___acrt_iob_func(idx);
 }
 
-DEF_HOST_FUNC(cos)
-{
-    if(is_cpu_mode32())
-    {
-        WIN32_ARGS w32 = {args};
-        double arg1 = w32.next<double>();
-        return cos(arg1);
-    }
-    else
-    {
-        
-    }
-    return 0;
-}
-
-
 
 
 
@@ -487,6 +414,49 @@ void test_vars()
     print_test("%0x,0x%0llx,%s",0x1234,0x123456789ABCDEF,name2);
 }
 
+// using cls host call func!!
+#undef DEF_HOST_FUNC
+
+#define DEF_HOST_FUNC(cls,func) \
+uint64_t cls::wrap_##func(uint64_t* args)
+
+#define DEC_HOST_FUNC(func) \
+uint64_t wrap_##func(uint64_t* args);
+
+
+
+class WrapCRT:public HostCallerBase
+{
+    virtual void init_funcs();
+    static DEC_HOST_FUNC(cls_test_func);
+    static DEC_HOST_FUNC(fputc);
+    static DEC_HOST_FUNC(_invalid_parameter);
+    static DEC_HOST_FUNC(setlocale);
+    static DEC_HOST_FUNC(putc);
+
+};
+
+void WrapCRT::init_funcs()
+{
+    DEF_USER_HOST_CALL(WrapCRT,cls_test_func);
+    DEF_USER_HOST_CALL(WrapCRT, fputc);
+    DEF_USER_HOST_CALL(WrapCRT, _invalid_parameter);
+    DEF_USER_HOST_CALL(WrapCRT, setlocale);
+    DEF_USER_HOST_CALL(WrapCRT, putc);
+}
+
+DEF_HOST_FUNC(WrapCRT, putc)
+{
+    return wrap_fputc(args);
+}
+
+
+DEF_HOST_FUNC(WrapCRT,cls_test_func)
+{
+    printf("WrapCRT cls_test_func!\n");
+    return 0;
+}
+
 static int win_fputc( int ch, uint32_t handle )
 {
     auto it = fstreams.find(handle);
@@ -495,36 +465,82 @@ static int win_fputc( int ch, uint32_t handle )
     return fputc(ch, s);
 }
 
-class WrapCRT:public HostCallerBase
+DEF_HOST_FUNC(WrapCRT,fputc)
 {
-    virtual void init_funcs();
-    static DEF_HOST_FUNC(cls_test_func)
+    if(is_cpu_mode32())
     {
-        printf("WrapCRT cls_test_func!\n");
-        return 0;
+        WIN32_ARGS w32 = {args};
+        int arg1 = w32.next<int>();
+        uint32_t arg2 = w32.next<uint32_t>();
+        return win_fputc(arg1, arg2);
     }
-    static DEF_HOST_FUNC(fputc)
+    else
     {
-        if(is_cpu_mode32())
-        {
-            WIN32_ARGS w32 = {args};
-            int arg1 = w32.next<int>();
-            uint32_t arg2 = w32.next<uint32_t>();
-            return win_fputc(arg1, arg2);
-        }
-        else
-        {
-            
-        }
-        return 0;
+        
     }
-};
-
-void WrapCRT::init_funcs()
-{
-    DEF_USER_HOST_CALL(WrapCRT,cls_test_func);
-    DEF_USER_HOST_CALL(WrapCRT, fputc);
+    return 0;
 }
+
+void win__invalid_parameter(
+                            uint16_t const* const expression,
+                            uint16_t const* const function_name,
+                            uint16_t const* const file_name,
+                            unsigned int   const line_number,
+                            uintptr_t      const reserved)
+{
+    ;
+}
+
+DEF_HOST_FUNC(WrapCRT,_invalid_parameter)
+{
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32 = {args};
+        typedef uint16_t* T1;
+        typedef uint16_t* T2;
+        typedef uint16_t* T3;
+        typedef uint32_t T4;
+        typedef uint32_t T5;
+        auto arg1 = (T1)getMemAddr(w32.next<WIN32_PTR>());
+        auto arg2 = (T2)getMemAddr(w32.next<WIN32_PTR>());
+        auto arg3 = (T3)getMemAddr(w32.next<WIN32_PTR>());
+        auto arg4 = (T4)w32.next<T4>();
+        auto arg5 = (T5)w32.next<T5>();
+        win__invalid_parameter(arg1, arg2, arg3, arg4, arg5);
+        
+    }
+    return 0;
+}
+
+static char* win_setlocale (int category, const char* locale)
+{
+//    return 0;
+    auto ret = setlocale(category,locale);
+    size_t len = strlen(ret);
+    auto g_ret = (char*)host_malloc(len);
+    host_memcpy(g_ret, ret, len);
+    return (char*)g_ret;
+//    return ret;
+}
+
+DEF_HOST_FUNC(WrapCRT,setlocale)
+{
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32 = {args};
+        typedef int T1;
+        typedef char* T2;
+
+        auto arg1 = w32.next<T1>();
+        auto arg2 = (T2)getMemAddr(w32.next<WIN32_PTR>());
+        
+        return (uint64_t)win_setlocale(arg1, arg2);
+    }
+    return 0;
+}
+
+
+
 
 WrapCRT wrap_crt;
 

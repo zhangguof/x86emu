@@ -36,6 +36,7 @@
 		EA4E84AA2338921000F89DFA /* Handle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84A92338920F00F89DFA /* Handle.cpp */; };
 		EA4E84AB2338E95500F89DFA /* Memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84A023385BFC00F89DFA /* Memory.cpp */; };
 		EA4E84AC2338F18D00F89DFA /* Strings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84A123385BFD00F89DFA /* Strings.cpp */; };
+		EA4E84CD2339003A00F89DFA /* EncodePointer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84BB2339003900F89DFA /* EncodePointer.cpp */; };
 		EA7CD722231524740038057E /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD720231524740038057E /* logger.cpp */; };
 		EA7CD72823155B190038057E /* load_dll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72623155B190038057E /* load_dll.cpp */; };
 		EA7CD7342317D1D50038057E /* pe_linker.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72B2317D1D40038057E /* pe_linker.c */; };
@@ -373,6 +374,24 @@
 		EA4E84A52338812900F89DFA /* Event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Event.cpp; sourceTree = "<group>"; };
 		EA4E84A72338865200F89DFA /* ProcessThreads.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProcessThreads.cpp; sourceTree = "<group>"; };
 		EA4E84A92338920F00F89DFA /* Handle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Handle.cpp; sourceTree = "<group>"; };
+		EA4E84AD2339003800F89DFA /* Security.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Security.cpp; sourceTree = "<group>"; };
+		EA4E84AE2339003800F89DFA /* Environment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Environment.cpp; sourceTree = "<group>"; };
+		EA4E84AF2339003800F89DFA /* Files.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Files.cpp; sourceTree = "<group>"; };
+		EA4E84B02339003800F89DFA /* Locale.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Locale.cpp; sourceTree = "<group>"; };
+		EA4E84B12339003800F89DFA /* GetSystemDirectory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GetSystemDirectory.cpp; sourceTree = "<group>"; };
+		EA4E84B22339003800F89DFA /* GetStartupInfoW.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GetStartupInfoW.cpp; sourceTree = "<group>"; };
+		EA4E84B32339003800F89DFA /* GetStdHandle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GetStdHandle.cpp; sourceTree = "<group>"; };
+		EA4E84B42339003800F89DFA /* Crypt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Crypt.cpp; sourceTree = "<group>"; };
+		EA4E84B52339003800F89DFA /* EventTracing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventTracing.cpp; sourceTree = "<group>"; };
+		EA4E84B62339003900F89DFA /* Version.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Version.cpp; sourceTree = "<group>"; };
+		EA4E84B72339003900F89DFA /* IsProcessorFeaturePresent.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = IsProcessorFeaturePresent.c; sourceTree = "<group>"; };
+		EA4E84B82339003900F89DFA /* WinTrust.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WinTrust.cpp; sourceTree = "<group>"; };
+		EA4E84B92339003900F89DFA /* Paths.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Paths.cpp; sourceTree = "<group>"; };
+		EA4E84BA2339003900F89DFA /* Exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Exception.cpp; sourceTree = "<group>"; };
+		EA4E84BB2339003900F89DFA /* EncodePointer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EncodePointer.cpp; sourceTree = "<group>"; };
+		EA4E84BC2339003900F89DFA /* Ole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ole.cpp; sourceTree = "<group>"; };
+		EA4E84BD2339003900F89DFA /* InitializeSListHead.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = InitializeSListHead.c; sourceTree = "<group>"; };
+		EA4E84BE2339003A00F89DFA /* Registry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Registry.cpp; sourceTree = "<group>"; };
 		EA7CD720231524740038057E /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
 		EA7CD721231524740038057E /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
 		EA7CD72623155B190038057E /* load_dll.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = load_dll.cpp; sourceTree = "<group>"; };
@@ -1000,6 +1019,24 @@
 			children = (
 				EA4E84932334FFF900F89DFA /* CriticalSection.cpp */,
 				EA4E849D2337AA7900F89DFA /* SystemTime.cpp */,
+				EA4E84B42339003800F89DFA /* Crypt.cpp */,
+				EA4E84BB2339003900F89DFA /* EncodePointer.cpp */,
+				EA4E84AE2339003800F89DFA /* Environment.cpp */,
+				EA4E84B52339003800F89DFA /* EventTracing.cpp */,
+				EA4E84BA2339003900F89DFA /* Exception.cpp */,
+				EA4E84AF2339003800F89DFA /* Files.cpp */,
+				EA4E84B22339003800F89DFA /* GetStartupInfoW.cpp */,
+				EA4E84B32339003800F89DFA /* GetStdHandle.cpp */,
+				EA4E84B12339003800F89DFA /* GetSystemDirectory.cpp */,
+				EA4E84BD2339003900F89DFA /* InitializeSListHead.c */,
+				EA4E84B72339003900F89DFA /* IsProcessorFeaturePresent.c */,
+				EA4E84B02339003800F89DFA /* Locale.cpp */,
+				EA4E84BC2339003900F89DFA /* Ole.cpp */,
+				EA4E84B92339003900F89DFA /* Paths.cpp */,
+				EA4E84BE2339003A00F89DFA /* Registry.cpp */,
+				EA4E84AD2339003800F89DFA /* Security.cpp */,
+				EA4E84B62339003900F89DFA /* Version.cpp */,
+				EA4E84B82339003900F89DFA /* WinTrust.cpp */,
 				EA4E84A92338920F00F89DFA /* Handle.cpp */,
 				EA4E84A52338812900F89DFA /* Event.cpp */,
 				EA4E849F23385BFC00F89DFA /* Heap.cpp */,
@@ -2137,6 +2174,7 @@
 				EAB727B62306AE56000019F0 /* extfpuirq.cc in Sources */,
 				EAB727302306AE56000019F0 /* stack16.cc in Sources */,
 				EAB726FB2306AE56000019F0 /* stack.cc in Sources */,
+				EA4E84CD2339003A00F89DFA /* EncodePointer.cpp in Sources */,
 				EAB726B92306AE56000019F0 /* load32bitOShack.cc in Sources */,
 				EAB727202306AE56000019F0 /* gather.cc in Sources */,
 				EAB726E42306AE56000019F0 /* athlon64_venice.cc in Sources */,
