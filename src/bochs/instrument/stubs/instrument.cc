@@ -24,6 +24,9 @@
 #include "cpu/cpu.h"
 
 #if BX_INSTRUMENTATION
+extern "C" {
+    extern const bool DEBUG_DASM;
+}
 
 void bx_instr_init_env(void) {}
 void bx_instr_exit_env(void) {}
@@ -54,8 +57,9 @@ void bx_instr_cache_cntrl(unsigned cpu, unsigned what) {}
 void bx_instr_prefetch_hint(unsigned cpu, unsigned what, unsigned seg, bx_address offset) {}
 
 void bx_instr_before_execution(unsigned cpu, bxInstruction_c *i) {
-    return;
-    BX_CPU(0)->debug_disasm_instruction(RIP);
+//    return;
+    if(DEBUG_DASM)
+        BX_CPU(0)->debug_disasm_instruction(RIP);
 }
 void bx_instr_after_execution(unsigned cpu, bxInstruction_c *i) {}
 void bx_instr_repeat_iteration(unsigned cpu, bxInstruction_c *i) {}
