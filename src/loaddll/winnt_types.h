@@ -209,7 +209,7 @@ struct ansi_string {
 typedef struct unicode_string {
         USHORT Length;
         USHORT MaximumLength;
-        wchar_t *Buffer;
+        PWCHAR Buffer;
 } UNICODE_STRING, *PUNICODE_STRING;
 
 struct nt_slist {

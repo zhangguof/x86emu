@@ -34,6 +34,8 @@
 		EA4E84A62338812A00F89DFA /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84A52338812900F89DFA /* Event.cpp */; };
 		EA4E84A82338865200F89DFA /* ProcessThreads.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84A72338865200F89DFA /* ProcessThreads.cpp */; };
 		EA4E84AA2338921000F89DFA /* Handle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84A92338920F00F89DFA /* Handle.cpp */; };
+		EA4E84AB2338E95500F89DFA /* Memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84A023385BFC00F89DFA /* Memory.cpp */; };
+		EA4E84AC2338F18D00F89DFA /* Strings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84A123385BFD00F89DFA /* Strings.cpp */; };
 		EA7CD722231524740038057E /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD720231524740038057E /* logger.cpp */; };
 		EA7CD72823155B190038057E /* load_dll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72623155B190038057E /* load_dll.cpp */; };
 		EA7CD7342317D1D50038057E /* pe_linker.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72B2317D1D40038057E /* pe_linker.c */; };
@@ -1927,12 +1929,14 @@
 				EAB726EA2306AE56000019F0 /* arith32.cc in Sources */,
 				EAB726A72306AE56000019F0 /* main.cc in Sources */,
 				EAB727312306AE56000019F0 /* exception.cc in Sources */,
+				EA4E84AB2338E95500F89DFA /* Memory.cpp in Sources */,
 				EAB7276C2306AE56000019F0 /* dbg_main.cc in Sources */,
 				EAB727582306AE56000019F0 /* segment_ctrl_pro.cc in Sources */,
 				EAB7278F2306AE56000019F0 /* serial_raw.cc in Sources */,
 				EAB726C82306AE56000019F0 /* mult32.cc in Sources */,
 				EA8C4E4623229C110041FB08 /* load_dll32.cpp in Sources */,
 				EAB726C02306AE56000019F0 /* load.cc in Sources */,
+				EA4E84AC2338F18D00F89DFA /* Strings.cpp in Sources */,
 				EAB7273A2306AE56000019F0 /* crregs.cc in Sources */,
 				EAB726F82306AE56000019F0 /* protect_ctrl.cc in Sources */,
 				EAB727802306AE56000019F0 /* cdrom.cc in Sources */,

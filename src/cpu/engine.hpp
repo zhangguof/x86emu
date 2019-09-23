@@ -30,7 +30,8 @@ struct export_funcs
 //};
 
 
-
+extern const Bit64u PAGE_BASE_ADDR;
+extern const Bit64u memSize;
 
 class Engine
 {
