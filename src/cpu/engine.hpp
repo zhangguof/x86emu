@@ -112,4 +112,7 @@ inline bool is_cpu_mode32()
     return BX_CPU(0)->cpu_mode == BX_MODE_LONG_COMPAT;
 }
 
+//for test
+extern void test_dll_func();
+
 #endif /* engine_hpp */

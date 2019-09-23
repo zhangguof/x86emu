@@ -24,6 +24,7 @@
 #include "loaddll/load_dll.hpp"
 #include "wrap_host_call.hpp"
 #include "debug.hpp"
+
 extern "C"{
     extern const bool DEBUG_DASM = false;
 }
@@ -315,36 +316,6 @@ struct call_func
 
 extern uint64_t wrap_test_func(uint64_t* args);
 
-void test_dll_func()
-{
-
-    printf("======test dll func =======\n");
-    
-    
-//    load test.dll
-//    g_engine->load_dll32("test.dll",nullptr,true);
-//    g_engine->call_win32_guest_method1("test_dll2", 0);
-//
-//
-//    auto f_ptr = new_wr]ap_func(wrap_test_func,"wrap_fun_ptr");
-//    auto pre_esp = ESP;
-//    g_engine->cpu_ptr->push_32(f_ptr);
-//    g_engine->call_win32_guest_method1("test_call_ptr", 0);
-//    ESP = pre_esp;
-
-    g_engine->load_dll32("test2.dll",nullptr,true);
-
-    g_engine->call_win32_guest_method1("test_cpp", 0);
-    
-    
-//    g_engine->load_dll32("libs/lua53_1.dll");
-//    g_engine->load_dll32("testlua.dll");
-    
-    
-//    g_engine->call_win32_guest_method1("testlua", 0);
-//    printf("lua ret code:%d\n",int(g_engine->last_ret));
-    
-}
 
 void Engine::run()
 {
@@ -359,16 +330,14 @@ void Engine::run()
     if (bx_dbg.gdbstub_enabled) bx_gdbstub_init();
 #endif
     cpu_ptr->cpu_loop();//run in TiniyOs
+    
     //call crt32 dll.
-    
-    call_win32_guest_method1("_crt32_pre_init", 0);
+    call_win32_guest_method1("_crt32_pre_init", 0);//init gdt, fs reg!
     call_win32_dll_entry(crt32_entry_addr); //call crt32.dll DllMain()
-    
     
     load_base_dlls();
     
-
-    
+    //test it.
     test_dll_func();
 }
 
