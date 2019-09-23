@@ -341,18 +341,31 @@ void Engine::run()
 //    cpu_ptr->PUSH
     cpu_ptr->cpu_loop();
     
-    call_win32_guest_method1("DLLMain", 0);
+    call_win32_guest_method1("DllMain", 0);
     
     
     //load others dll
-    //    load_dll32("libs/vcruntime140.dll");
-    //    load_dll32("libs/msvcrt.dll");
     struct pe_image32* pe;
-    load_dll32("libs/libstdc++-6.dll",&pe);
-//    LOG_DEBUG("try call dll entry:%s,%p\n",pe->name,pe->entry);
-//    call_win32_dll_entry((bx_phy_address)pe->entry);
+    //    load_dll32("libs/vcruntime140.dll");
+    load_dll32("libs/msvcrt.dll",&pe);
+    LOG_DEBUG("try call dll entry:%s,%p\n",pe->name,pe->entry);
+    call_win32_dll_entry((bx_phy_address)pe->entry);
     
-    test_dll_func();
+    //libwinpthread-1.dll
+    
+    load_dll32("libs/mingw/libwinpthread-1.dll",&pe);
+    LOG_DEBUG("try call dll entry:%s,%p\n",pe->name,pe->entry);
+    call_win32_dll_entry((bx_phy_address)pe->entry);
+    
+    load_dll32("libs/mingw/libgcc_s_sjlj-1.dll",&pe);
+    LOG_DEBUG("try call dll entry:%s,%p\n",pe->name,pe->entry);
+    call_win32_dll_entry((bx_phy_address)pe->entry);
+    
+    load_dll32("libs/mingw/libstdc++-6.dll",&pe);
+    LOG_DEBUG("try call dll entry:%s,%p\n",pe->name,pe->entry);
+    call_win32_dll_entry((bx_phy_address)pe->entry);
+    
+//    test_dll_func();
 
     printf("end run!\n");
 }
@@ -467,12 +480,12 @@ void Engine::sw_cpu_mode(uint32_t mode)
 void Engine::push_call(uint64_t addr)
 {
 
-    this->p_call_trace_win32->push_back(addr);
+//    this->p_call_trace_win32->push_back(addr);
 }
 void Engine::pop_call()
 {
     //        assert(addr == call_trace_win32.back());
-    this->p_call_trace_win32->pop_back();
+//    this->p_call_trace_win32->pop_back();
 }
 
 void Engine::print_call_trace_win32()
