@@ -42,12 +42,13 @@ public:
     bx_phy_address call_host_ret_addr;
     bx_phy_address call_host_win32_ret_addr;
     bx_phy_address call_win32_unknow_sym_addr;
+    bx_phy_address crt32_entry_addr;
     uint32_t HOST_CALL_PTR32_addr;
     
     struct export_funcs* call_guess_method;
     uint64_t last_ret;
     
-    std::shared_ptr<std::vector<uint64_t>> p_call_trace_win32;
+//    std::shared_ptr<std::vector<uint64_t>> p_call_trace_win32;
     void push_call(uint64_t addr);
     void pop_call();
     void print_call_trace_win32();
@@ -57,12 +58,14 @@ public:
         mem_ptr = nullptr;
         call_win32_unknow_sym_addr = 0;
 //        call_trace_win32
-        p_call_trace_win32 = std::make_shared<std::vector<uint64_t>>(1);
-        p_call_trace_win32->reserve(16);
+//        p_call_trace_win32 = std::make_shared<std::vector<uint64_t>>(1);
+//        p_call_trace_win32->reserve(16);
         HOST_CALL_PTR32_addr = 0;
+        crt32_entry_addr = 0;
     }
     void load_elf(const char* path);
     void load_dll32(const char* path,struct pe_image32** pe32 = nullptr,bool call_entry = false);
+    void load_base_dlls();
     
     void setup_os_env();
     void init();

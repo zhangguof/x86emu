@@ -254,7 +254,12 @@ void Engine::init()
     
     load_elf(start_elf_file.c_str());
     
-    load_dll32(crt32_dll_file.c_str());
+    struct pe_image32* pe;
+    load_dll32(crt32_dll_file.c_str(),&pe);
+    
+    crt32_entry_addr = (bx_phy_address)pe->entry;
+    assert(crt32_entry_addr!=0);
+    
     call_win32_unknow_sym_addr = global_sym_tbl_win32["unknow_sym"];
     assert(call_win32_unknow_sym_addr!=0);
     
@@ -263,7 +268,7 @@ void Engine::init()
     HOST_CALL_PTR32_addr = global_sym_tbl_win32["HOST_CALL_PTR32"];
     
     
-    LOG_DEBUG("call_host_func_addr:0x%0lx,win32:0x%0lx,host_call_ptr32:0x%0x\n",
+    LOG_INFO("call_host_func_addr:0x%0lx,win32:0x%0lx,host_call_ptr32:0x%0x\n",
               call_host_ret_addr,call_host_win32_ret_addr,
               HOST_CALL_PTR32_addr);
     
@@ -271,6 +276,8 @@ void Engine::init()
     
     //init cls host call
     HostCallerBase::init();
+    
+    //here can load other dlls.
     
 }
 inline WIN32_PTR get_win32_ptr(void* ptr)
@@ -315,10 +322,11 @@ void test_dll_func()
     
     
 //    load test.dll
-//    g_engine->load_dll32("test.dll");
+//    g_engine->load_dll32("test.dll",nullptr,true);
+//    g_engine->call_win32_guest_method1("test_dll2", 0);
 //
 //
-//    auto f_ptr = new_wrap_func(wrap_test_func,"wrap_fun_ptr");
+//    auto f_ptr = new_wr]ap_func(wrap_test_func,"wrap_fun_ptr");
 //    auto pre_esp = ESP;
 //    g_engine->cpu_ptr->push_32(f_ptr);
 //    g_engine->call_win32_guest_method1("test_call_ptr", 0);
@@ -328,8 +336,6 @@ void test_dll_func()
 
     g_engine->call_win32_guest_method1("test_cpp", 0);
     
-    
-//    g_engine->call_win32_guest_method1("init_call_funcs", 0)
     
 //    g_engine->load_dll32("libs/lua53_1.dll");
 //    g_engine->load_dll32("testlua.dll");
@@ -352,28 +358,35 @@ void Engine::run()
     bx_dbg.gdbstub_enabled = 1;
     if (bx_dbg.gdbstub_enabled) bx_gdbstub_init();
 #endif
-//    cpu_ptr->PUSH
-    cpu_ptr->cpu_loop();
+    cpu_ptr->cpu_loop();//run in TiniyOs
+    //call crt32 dll.
     
-    call_win32_guest_method1("DllMain", 0);
+    call_win32_guest_method1("_crt32_pre_init", 0);
+    call_win32_dll_entry(crt32_entry_addr); //call crt32.dll DllMain()
     
     
-    //load others dll
-//    struct pe_image32* pe;
-    //    load_dll32("libs/vcruntime140.dll");
-//    load_dll32("libs/msvcrt.dll",nullptr,true);
+    load_base_dlls();
     
-    //mingw support dll.
-    //libwinpthread-1.dll
-    load_dll32("libs/mingw/libwinpthread-1.dll",nullptr,true);
 
-    load_dll32("libs/mingw/libgcc_s_sjlj-1.dll",nullptr,true);
-    //mingw c++
-    load_dll32("libs/mingw/libstdc++-6.dll",nullptr,true);
     
     test_dll_func();
+}
 
-//    printf("end run!\n");
+void Engine::load_base_dlls()
+{
+    const char* base_dlls[] = {
+        //win32 crt.
+        "libs/msvcrt.dll",
+        //mingw support dll.
+        "libs/mingw/libwinpthread-1.dll",
+        "libs/mingw/libgcc_s_sjlj-1.dll",
+        //mingw c++ lib
+        "libs/mingw/libstdc++-6.dll",
+    };
+    for(auto p:base_dlls)
+    {
+        load_dll32(p,nullptr,true);
+    }
 }
 
 void Engine::call_guest_method1(const char* method,uint64_t arg1)

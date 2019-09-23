@@ -102,12 +102,15 @@ int _initterm(_PVFV* pfbegin, _PVFV* pfend)
         return 0; 
 }
 
+void _crt32_pre_init()
+{
+	init_gdt();
+	setup_nt_threadinfo(ExceptionHandler);
+}
+
 int DllMain()
 {
 	printf("DllMain start!\n");
-
-	init_gdt();
-    setup_nt_threadinfo(ExceptionHandler);
 
 	set_stdio();
 	init_stdio(_stdios);

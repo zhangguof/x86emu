@@ -7,7 +7,7 @@ AS=nasm
 ASFLAG=-f win32 -i../../../src/
 
 
-all: test.dll crt32.dll testlua.dll test2.dll
+all: test.dll crt32.dll test2.dll
 
 crt32.dll: crt32.o asm.o gdt.o
 	${CC} -shared -o $@ $^ -Wl,--out-implib,libcrt32.a  $(CRTFLAG)

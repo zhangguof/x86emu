@@ -19,6 +19,7 @@ extern "C" {
 
 
 DLLAPI int DllMain();
+DLLAPI void _crt32_pre_init();
 typedef void (__cdecl *_PVFV)(void);
 DLLAPI int _initterm(_PVFV* a,_PVFV* b);
 extern DLLAPI void exit(unsigned int);
