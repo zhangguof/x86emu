@@ -17,7 +17,7 @@ STATIC DWORD LastError;
 
 STATIC DWORD  GetLastError(void)
 {
-    LOG_DEBUG("GetLastError() => %#x", LastError);
+    LOG_INFO("GetLastError() => %#x", LastError);
 
     return LastError;
 }

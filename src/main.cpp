@@ -11,13 +11,15 @@
 #include "engine.hpp"
 #include "logger.hpp"
 
+const Logger::LEVEL log_lv = Logger::LV_DEBUG;
+//const Logger::LEVEL log_lv = Logger::LV_ERROR;
 
 
 void test_vars();
 
 int main()
 {
-    get_logger(Logger::LV_ERROR);
+    get_logger(log_lv);
     
     LOG_INFO("x86 simualte start!");
     

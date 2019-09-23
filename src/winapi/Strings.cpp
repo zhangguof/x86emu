@@ -57,14 +57,14 @@ STATIC int WINAPI MultiByteToWideChar(UINT CodePage, DWORD  dwFlags, PCHAR lpMul
 {
     size_t i;
 
-    LOG_DEBUG("%u, %#x, %p, %u, %p, %u", CodePage, dwFlags, lpMultiByteStr, cbMultiByte, lpWideCharStr, cchWideChar);
+    LOG_INFO("%u, %#x, %p, %u, %p, %u", CodePage, dwFlags, lpMultiByteStr, cbMultiByte, lpWideCharStr, cchWideChar);
 
     if ((dwFlags & ~(MB_ERR_INVALID_CHARS | MB_PRECOMPOSED)) != 0) {
-        LOG_DEBUG("Unsupported Conversion Flags %#x", dwFlags);
+        LOG_WARN("Unsupported Conversion Flags %#x", dwFlags);
     }
 
     if (CodePage != 0 && CodePage != 65001) {
-        LOG_DEBUG("Unsupported CodePage %u", CodePage);
+        LOG_WARN("Unsupported CodePage %u", CodePage);
     }
 
     if (cbMultiByte == 0)
@@ -144,7 +144,7 @@ STATIC int WINAPI WideCharToMultiByte(UINT CodePage, DWORD dwFlags, PVOID lpWide
         return 0;
     }
 
-    LOG_DEBUG("cchWideChar == %d, Ansi: [%s]", cchWideChar, ansi);
+    LOG_INFO("cchWideChar == %d, Ansi: [%s]", cchWideChar, ansi);
 
     if (lpMultiByteStr && strlen(ansi) < cbMultiByte) {
         strcpy((char*)lpMultiByteStr, ansi);

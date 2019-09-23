@@ -242,7 +242,7 @@ void* do_guest_mem_allocate(Bit64u size)
     {
         void* ret = (void*) heap_start_addr;
         heap_start_addr += size;
-        LOG_DEBUG("===guest_mem allocate:0x%0lx,%lu\n",ret,size);
+        LOG_INFO("===guest_mem allocate:0x%0lx,%lu\n",ret,size);
         return ret;
     }
     LOG_ERROR("!!!!Full memory!!!\n");
@@ -271,7 +271,7 @@ void* host_malloc(Bit64u size)
             ptr = (void*)free_ptr->vaddr;
         }
         _used_mem[ptr] = size;
-        LOG_DEBUG("[host_malloc]0x%0lx,%u\n",ptr,size);
+        LOG_INFO("[host_malloc]0x%0lx,%u\n",ptr,size);
         return ptr;
     }
     
@@ -289,7 +289,7 @@ void* host_malloc(Bit64u size)
                 ptr = (void*)f->vaddr;
 //                break;
                 _used_mem[ptr] = f->size;
-                LOG_DEBUG("[host_malloc]0x%0lx,%u\n",ptr,f->size);
+                LOG_INFO("[host_malloc]0x%0lx,%u\n",ptr,f->size);
                 return ptr;
             }
             else
@@ -304,7 +304,7 @@ void* host_malloc(Bit64u size)
                 ptr = (void*)tmp->vaddr;
 //                break;
                 _used_mem[ptr] = tmp->size;
-                LOG_DEBUG("[host_malloc]0x%0lx,%u\n",ptr,f->size);
+                LOG_INFO("[host_malloc]0x%0lx,%u\n",ptr,f->size);
                 return ptr;
             }
         }
@@ -314,7 +314,7 @@ void* host_malloc(Bit64u size)
         ptr = do_guest_mem_allocate(size);
     
     _used_mem[ptr] = size;
-    LOG_DEBUG("[host_malloc]0x%0lx,%u\n",ptr,size);
+    LOG_INFO("[host_malloc]0x%0lx,%u\n",ptr,size);
     return ptr;
 }
 void host_free(void* ptr)
@@ -346,7 +346,7 @@ void host_free(void* ptr)
     }
     _used_mem[ptr] = 0;
     
-    LOG_DEBUG("[host_free]0x%0lx,%u\n",ptr,size);
+    LOG_INFO("[host_free]0x%0lx,%u\n",ptr,size);
 }
 
 void* host_realloc(void* ptr, Bit64u new_size)

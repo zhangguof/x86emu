@@ -121,12 +121,12 @@ static DWORD GetCurrentThreadId()
 //void __cdecl _lock(int locknum);
 static void _lock(int locknum)
 {
-    LOG_DEBUG("_lock:%d\n",locknum);
+    LOG_INFO("_lock:%d\n",locknum);
 }
 
 static void _unlock(int locknum)
 {
-    LOG_DEBUG("_unlock:%d\n",locknum);
+    LOG_INFO("_unlock:%d\n",locknum);
 }
 
 #define DEF_HOST_FUNC(func)\

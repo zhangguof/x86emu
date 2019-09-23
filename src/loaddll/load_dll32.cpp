@@ -217,7 +217,7 @@ static int import(void *image, IMAGE_IMPORT_DESCRIPTOR *dirent, char *dll)
         }
         
         if (get_export32(symname, &adr) < 0) {
-            LOG_DEBUG("unknown symbol: %s:%s", dll, symname);
+            LOG_WARN("unknown symbol: %s:%s", dll, symname);
      
             address_tbl[i] = (bx_phy_address) 0;
             if(unknow_sym_addr)
@@ -233,7 +233,7 @@ static int import(void *image, IMAGE_IMPORT_DESCRIPTOR *dirent, char *dll)
             }
             continue;
         } else {
-            LOG_DEBUG("found symbol: %s:%s: addr: %p, rva = %llu",
+            LOG_INFO("found symbol: %s:%s: addr: %p, rva = %llu",
                       dll, symname, adr, (uint64_t)address_tbl[i]);
             address_tbl[i] = (bx_phy_address)adr;
         }
@@ -318,7 +318,7 @@ static int read_exports(struct pe_image32 *pe)
                 //DBGLINKER("forwarder rva");
             }
         
-        LOG_DEBUG("export symbol: %s, at %p",
+        LOG_INFO("export symbol: %s, at %p",
                   (char *)((char*)host_image + *name_table),
                   (char*)pe->image + address);
         
@@ -377,7 +377,7 @@ static int fixup_imports(void *image, IMAGE_NT_HEADERS32 *nt_hdr)
     for (i = 0; dirent[i].Name; i++) {
         name = RVA2VA(host_image, dirent[i].Name, char*);
         
-        LOG_DEBUG("imports from dll: %s", name);
+//        LOG_DEBUG("imports from dll: %s", name);
         ret += import(image, &dirent[i], name);
     }
     return ret;
