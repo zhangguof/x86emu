@@ -345,6 +345,7 @@ void host_free(void* ptr)
 //        print_any_free_list();
     }
     _used_mem[ptr] = 0;
+    
     LOG_DEBUG("[host_free]0x%0lx,%u\n",ptr,size);
 }
 
@@ -383,4 +384,12 @@ void* host_calloc(Bit64u num, Bit64u size)
 //    memcpy(ptr_dst, ptr_src, old_size);
     memset(ptr_dst,0,mem_size);
     return ptr;
+}
+
+size_t host_malloc_usable_size(void* ptr)
+{
+    auto it = _used_mem.find(ptr);
+    if(it == _used_mem.end() || it->second==0)
+        return -1;
+    return it->second;
 }
