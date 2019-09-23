@@ -13,7 +13,7 @@ uint32_t used_gdt_des = 0;
 //填充gdt描述符表
 void init_descriptor(DESCRIPTOR *p_desc, u32 base, u32 limit, u16 attribute)
 {
-	printf("base:0x%0lx,limit:0x%0lx\n", base,limit);
+	// printf("base:0x%0lx,limit:0x%0lx\n", base,limit);
     p_desc->limit_low   = limit & 0x0ffff;
     p_desc->base_low    = base & 0x0ffff;
     p_desc->base_mid     = (base>>16) & 0x0ff;
