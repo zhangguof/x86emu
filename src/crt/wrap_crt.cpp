@@ -399,6 +399,7 @@ class WrapCRT:public HostCallerBase
     static DEC_HOST_FUNC(_invalid_parameter);
     static DEC_HOST_FUNC(setlocale);
     static DEC_HOST_FUNC(putc);
+    static DEC_HOST_FUNC(fputs);
     static DEC_HOST_FUNC(vprintf);
     static DEC_HOST_FUNC(vfprintf);
 
@@ -411,16 +412,30 @@ void WrapCRT::init_funcs()
     DEF_USER_HOST_CALL(WrapCRT, _invalid_parameter);
     DEF_USER_HOST_CALL(WrapCRT, setlocale);
     DEF_USER_HOST_CALL(WrapCRT, putc);
+    DEF_USER_HOST_CALL(WrapCRT, fputs);
     DEF_USER_HOST_CALL(WrapCRT, vprintf);
     DEF_USER_HOST_CALL(WrapCRT, vfprintf);
 }
-
-//static int w32_vprintf(char* fmt,void* ap)
-//{
-//    printf("%p,%p\n",fmt,ap);
-//    va_args va = {(uint8_t*)ap};
-//    return win_vprintf(fmt, &va);
-//}
+//int     fputs(const char * __restrict, FILE * __restrict) __DARWIN_ALIAS(fputs);
+static int win_fputs(const char* str, uint32_t handle)
+{
+    auto fs = get_file_stream(handle);
+    if(!fs) return EOF;
+    return fputs(str, fs);
+}
+DEF_HOST_FUNC(WrapCRT, fputs)
+{
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32 = {args};
+        typedef const char* T1;
+        typedef uint32_t T2;
+        auto arg1 = (T1) getMemAddr(w32.next<WIN32_PTR>());
+        auto arg2 = (T2) w32.next<T2>();
+        return win_fputs(arg1, arg2);
+    }
+    return 0;
+}
 
 DEF_HOST_FUNC(WrapCRT, vprintf)
 {
