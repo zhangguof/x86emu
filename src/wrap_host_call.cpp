@@ -456,10 +456,22 @@ uint64_t do_host_fun_ptr(WIN32_PTR ptr,uint64_t* args)
     return f(args);
 }
 
+static std::unordered_map<wrap_func_ptr_t, WIN32_PTR> wrap_func_cache;
+
+static WIN32_PTR check_func_cache(wrap_func_ptr_t pf)
+{
+    auto it = wrap_func_cache.find(pf);
+    if(it==wrap_func_cache.end()) return 0;
+    return it->second;
+}
+
 WIN32_PTR new_wrap_func(wrap_func_ptr_t pf,const char* name,uint16_t ret_n)
 {
+    uint32_t buf_addr32 = check_func_cache(pf);
+    if(buf_addr32!=0) return buf_addr32;
+    
     bx_phy_address buf_addr = (bx_phy_address)host_malloc(32);
-    uint32_t buf_addr32 = (uint32_t)buf_addr;
+    buf_addr32 = (uint32_t)buf_addr;
     uint8_t* buf = getMemAddr(buf_addr);
     CodeBuf code_buf = {buf};
      uint32_t idx = host_call_used_idx++;
@@ -471,6 +483,8 @@ WIN32_PTR new_wrap_func(wrap_func_ptr_t pf,const char* name,uint16_t ret_n)
     }
    
     (*p_user_host_call_tbl)[idx] = std::make_shared<HOST_FUN_C>(name,pf,idx);
+    
+    wrap_func_cache[pf] = buf_addr32;
     
     return buf_addr32;
     
