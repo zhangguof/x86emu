@@ -23,6 +23,8 @@ bool setup_nt_threadinfo(PEXCEPTION_HANDLER ExceptionHandler)
 {
    static EXCEPTION_FRAME ExceptionFrame;
    static NT_TIB ThreadInfo = {
+   	   .StackBase  = (void*)0x1efffff,
+   	   .StackLimit = (void*)0x1d00000,
        .Self = &ThreadInfo,
    };
    struct user_desc pebdescriptor = {

@@ -26,7 +26,7 @@
 #include "debug.hpp"
 
 extern "C"{
-    extern const bool DEBUG_DASM = false;
+    extern const bool DEBUG_DASM = false; //open disasm
 }
 
 
@@ -345,7 +345,7 @@ void Engine::load_base_dlls()
 {
     const char* base_dlls[] = {
         //win32 crt.
-//        "libs/msvcrt.dll",
+        "libs/msvcrt.dll",
         //mingw support dll.
         "libs/mingw/libwinpthread-1.dll",
         "libs/mingw/libgcc_s_sjlj-1.dll",

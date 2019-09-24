@@ -23,8 +23,8 @@ int testlua()
     
     luaL_openlibs(L);
 
-    // const char* lua_s = "io.write('Hello world, from ',_VERSION,'!\n')";
-    const char* lua_s = "print('Lua5.3 Hello world')";
+    const char* lua_s = "io.write('Hello world, from ',_VERSION,'!\\n')";
+    // const char* lua_s = "print('Lua5.3 Hello world')";
 
     // while (fgets(buff, sizeof(buff), stdin) != NULL)
     // {
