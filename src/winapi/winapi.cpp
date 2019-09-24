@@ -129,6 +129,13 @@ static void _unlock(int locknum)
     LOG_INFO("_unlock:%d\n",locknum);
 }
 
+static void Sleep(
+                  DWORD dwMilliseconds
+                  )
+{
+    LOG_DEBUG("Sleep:%u\n",dwMilliseconds);
+}
+
 #define DEF_HOST_FUNC(func)\
 uint64_t wrap_##func(uint64_t* args)
 
@@ -173,6 +180,16 @@ class WinApi:public HostCallerBase
         }
         return 0;
     }
+    static DEF_HOST_FUNC(Sleep)
+    {
+        if(is_cpu_mode32())
+        {
+            WIN32_ARGS w32 = {args};
+            uint32_t arg1 = w32.next<uint32_t>();
+            Sleep(arg1);
+        }
+        return 0;
+    }
     
 };
 //DWORD GetCurrentProcessId();
@@ -182,6 +199,7 @@ void WinApi::init_funcs()
     DEF_STD_USER_HOST_CALL(WinApi, GetCurrentThreadId, 0);
     DEF_STD_USER_HOST_CALL(WinApi, _lock, 0);//__cdecl
     DEF_STD_USER_HOST_CALL(WinApi, _unlock, 0); //__cdecl
+    DEF_STD_USER_HOST_CALL(WinApi,Sleep, 4);
 }
 
 static WinApi win_api;
