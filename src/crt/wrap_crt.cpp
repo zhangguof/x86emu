@@ -16,7 +16,7 @@
 
 #include "crt/wrap_crt.hpp"
 #include "wrap_host_call.hpp"
-
+#include "logger.hpp"
 //#include <stdarg.h>
 #include "utils.h"
 #include <locale.h>
@@ -157,11 +157,25 @@ DEF_HOST_FUNC(fopen)
     return  win_fopen(path, mode);
 }
 
+FILE* get_file_stream(uint32_t handle)
+{
+    auto it = fstreams.find(handle);
+    if(it==fstreams.end())
+    {
+        LOG_ERROR("unknow FILE*:0x%0x",handle);
+        return nullptr;
+    }
+    return it->second;
+}
+
 //int fclose( std::FILE* stream );
 uint32_t win_fclose(uint32_t handle)
 {
     auto it = fstreams.find(handle);
-    if(it==fstreams.end()) return -1;
+    if(it==fstreams.end()){
+        LOG_ERROR("fclose:unknow FILE*:0x%0x",handle);
+        return -1;
+    }
     FILE* s = it->second;
     auto ret = fclose(s);
     fstreams.erase(it);
@@ -186,9 +200,8 @@ DEF_HOST_FUNC(fclose)
 int win_vfprintf(uint32_t handle,const char* format,va_args* ap)
 {
     char buf[BUFF_SIZE];
-    auto it = fstreams.find(handle);
-    if(it == fstreams.end()) return  0;
-    FILE* s = it->second;
+    FILE* s = get_file_stream(handle);
+    if(!s) return 0;
     int size  = win_vsprintf(buf, format, ap);
     int ret = fwrite(buf, sizeof(char), size, s);
     return ret;
@@ -222,9 +235,8 @@ DEF_HOST_FUNC(fprintf)
 
 int win_fflush(uint32_t handle)
 {
-    auto it = fstreams.find(handle);
-    if(it==fstreams.end()) return -1;
-    FILE* s = it->second;
+    auto s = get_file_stream(handle);
+    if(!s) return -1;
     
     return fflush(s);
 }
@@ -256,9 +268,8 @@ DEF_HOST_FUNC(abort)
 size_t win_fwrite( const void *buffer, size_t size, size_t count,
               uint32_t handle )
 {
-    auto it = fstreams.find(handle);
-    if(it == fstreams.end()) return  0;
-    FILE* s = it->second;
+    auto s = get_file_stream(handle);
+    if(!s) return 0;
     return fwrite(buffer, size, count, s);
 }
 //
@@ -267,9 +278,8 @@ size_t win_fwrite( const void *buffer, size_t size, size_t count,
 
 size_t win_fread( void *buffer, size_t size, size_t count, uint32_t handle)
 {
-    auto it = fstreams.find(handle);
-    if(it == fstreams.end()) return  0;
-    FILE* s = it->second;
+    auto s = get_file_stream(handle);
+    if(!s) return 0;
     return fread(buffer, size, count, s);
 }
 
@@ -325,9 +335,8 @@ DEF_HOST_FUNC(fread)
 //int     fileno(FILE *);
 static int win_fileno(uint32_t handle)
 {
-    auto it = fstreams.find(handle);
-    if(it == fstreams.end()) return  0;
-    FILE* s = it->second;
+    auto s = get_file_stream(handle);
+    if(!s) return 0;
     return fileno(s);
 }
 
@@ -459,9 +468,8 @@ DEF_HOST_FUNC(WrapCRT,cls_test_func)
 
 static int win_fputc( int ch, uint32_t handle )
 {
-    auto it = fstreams.find(handle);
-    if(it == fstreams.end()) return  EOF;
-    FILE* s = it->second;
+    auto s = get_file_stream(handle);
+    if(!s) return EOF;
     return fputc(ch, s);
 }
 
