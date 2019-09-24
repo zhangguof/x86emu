@@ -16,13 +16,14 @@ extern "C" {
 #define IMPORT __declspec(dllimport)
 
 
-DLLAPI int  Double(int x);
-DLLAPI int  test_dll2();
+EXPORT int  test_dll2();
 DLLAPI int64_t test_64b(int a,int b,int64_t c);
-DLLAPI uint64_t test_dll3(int a,const char* name,uint64_t a64);
+
+typedef int (*funt_ptr_t)(int ,int );
+DLLAPI uint64_t test_dll3(int a,const char* name,uint64_t a64,funt_ptr_t fptr);
 
 
-typedef int (*p_func_t)(int);
+typedef int(*p_func_t)(int);
 
 struct call_funcs
 {

@@ -55,7 +55,8 @@ WINAPI int test_std(int a,int b,int c)
 }
 
 
-uint64_t test_dll3(int a,const char* name,uint64_t a64)
+
+uint64_t test_dll3(int a,const char* name,uint64_t a64,funt_ptr_t fptr)
 {
 	// puts(name);
 	// test_f1(a,0x200,"hello in test1\n",
@@ -64,8 +65,9 @@ uint64_t test_dll3(int a,const char* name,uint64_t a64)
 	// char buf[1024];
 	// snprintf(buf,1024,"%s,0x%0x\n","int:",0x1234567);
 	// puts(buf);
-	printf("int dll:test_dll3:%d,%s,0x%0llx\n",a,name,a64);
-	test_std(1,23,45);
+	printf("int dll:test_dll3:%d,%p,%s,0x%0llx\n",a,name,name,a64);
+	// test_std(1,23,45);
+	printf("funt_ptr:%p,%d\n",fptr,fptr(1111,2222));
 
 	return 0x123456789ABCDEF;
 }
