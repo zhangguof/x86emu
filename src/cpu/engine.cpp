@@ -333,7 +333,7 @@ void Engine::run()
     
     //call crt32 dll.
     call_win32_guest_method1("_crt32_pre_init", 0);//init gdt, fs reg!
-    call_win32_dll_entry(crt32_entry_addr); //call crt32.dll DllMain()
+//    call_win32_dll_entry(crt32_entry_addr); //call crt32.dll DllMain()
     
     load_base_dlls();
     
