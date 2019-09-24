@@ -11,8 +11,8 @@
 #include "engine.hpp"
 #include "logger.hpp"
 
-const Logger::LEVEL log_lv = Logger::LV_DEBUG;
-//const Logger::LEVEL log_lv = Logger::LV_ERROR;
+//const Logger::LEVEL log_lv = Logger::LV_INFO;
+const Logger::LEVEL log_lv = Logger::LV_ERROR;
 
 
 void test_vars();

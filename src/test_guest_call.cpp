@@ -44,17 +44,17 @@ void test_dll_func()
     //    g_engine->call_win32_guest_method1("test_call_ptr", 0);
     //    ESP = pre_esp;
     
-    printf("=====test2.dll======\n");
-    g_engine->load_dll32("test2.dll",nullptr,true);
-    
-    g_engine->call_win32_guest_method1("test_cpp", 0);
-    
-    
-    //    g_engine->load_dll32("libs/lua53_1.dll");
-    //    g_engine->load_dll32("testlua.dll");
+//    printf("=====test2.dll======\n");
+//    g_engine->load_dll32("test2.dll",nullptr,true);
+//
+//    g_engine->call_win32_guest_method1("test_cpp", 0);
     
     
-    //    g_engine->call_win32_guest_method1("testlua", 0);
-    //    printf("lua ret code:%d\n",int(g_engine->last_ret));
+        g_engine->load_dll32("libs/lua53_1.dll",nullptr,true);
+        g_engine->load_dll32("testlua.dll",nullptr,true);
+    
+    
+        g_engine->call_win32_guest_method1("testlua", 0);
+        printf("lua ret code:%d\n",int(g_engine->last_ret));
     
 }

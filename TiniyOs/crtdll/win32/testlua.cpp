@@ -2,7 +2,8 @@
 #include <string.h>
 
 #include "lua.hpp"
-#include "crt32.h"
+// #include "crt32.h"
+#define EXPORT __declspec(dllexport)
 
 extern "C" 
 {  
@@ -22,7 +23,8 @@ int testlua()
     
     luaL_openlibs(L);
 
-    const char* lua_s = "io.write('Hello world, from ',_VERSION,'!\n')";
+    // const char* lua_s = "io.write('Hello world, from ',_VERSION,'!\n')";
+    const char* lua_s = "print('Lua5.3 Hello world')";
 
     // while (fgets(buff, sizeof(buff), stdin) != NULL)
     // {
@@ -35,7 +37,13 @@ int testlua()
            lua_pop(L, 1);/* pop error message from the stack */
        }
     // }
-
-    lua_close(L);
+       printf("lua before close!\n");
+    // lua_close(L);
     return 123;
+}
+
+int main()
+{
+	testlua();
+	return 0;
 }
