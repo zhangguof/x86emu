@@ -281,32 +281,7 @@ void Engine::init()
     //here can load other dlls.
     
 }
-inline WIN32_PTR get_win32_ptr(void* ptr)
-{
-    uint64_t p = (uint64_t)ptr;
-    return (WIN32_PTR)(p&0xFFFFFFFF);
-}
-//int test_dll3(int a,const char* name,uint64 a64)
-uint64_t wrap_guest_test_dll3(int arg1,const char* arg2,uint64_t arg3)
-{
-    typedef int T1;
-    typedef WIN32_PTR T2;
-    typedef uint64_t T3;
-    auto len2 = strlen(arg2);
-    T2 _arg2 = get_win32_ptr(host_malloc(len2+1));
-    memcpy(getMemAddr(_arg2), arg2, len2);
-    auto pre_esp = ESP;
-    g_engine->cpu_ptr->push_64(arg3);
-    g_engine->cpu_ptr->push_32(_arg2);
-    g_engine->cpu_ptr->push_32(arg1);
-    
-    g_engine->call_win32_guest_method1("test_dll3", 0);
-    host_free((void*)_arg2);
-//    ESP = EBP;
-    ESP = pre_esp;
-    
-    return 0;
-}
+
 
 struct call_func
 {
@@ -332,7 +307,7 @@ void Engine::run()
     cpu_ptr->cpu_loop();//run in TiniyOs
     
     //call crt32 dll.
-    call_win32_guest_method1("_crt32_pre_init", 0);//init gdt, fs reg!
+    call_win32_guest_method("_crt32_pre_init");//init gdt, fs reg!
 //    call_win32_dll_entry(crt32_entry_addr); //call crt32.dll DllMain()
     
     load_base_dlls();
@@ -407,7 +382,7 @@ void Engine::call_win_guest_method1(const char* method,uint64_t arg1)
     sw_cpu_mode(pre_cpu_mode);
 }
 
-void Engine::call_win32_guest_method1(const char* method,uint64_t arg1)
+void Engine::call_win32_guest_method(const char* method)
 {
     auto pre_cpu_mode = cpu_ptr->cpu_mode;
     sw_cpu_mode(BX_MODE_LONG_COMPAT);
@@ -416,9 +391,7 @@ void Engine::call_win32_guest_method1(const char* method,uint64_t arg1)
     if(it!=global_sym_tbl_win32.end())
     {
         bx_phy_address fun_ptr = it->second;
-//        RCX = arg1;
-        
-//        cpu_ptr->push_64(call_host_ret_addr);
+
         cpu_ptr->push_32(call_host_win32_ret_addr);
         
         RIP = fun_ptr;
@@ -440,7 +413,8 @@ void Engine::call_win32_dll_entry(bx_phy_address addr)
     sw_cpu_mode(BX_MODE_LONG_COMPAT);
     
     bx_phy_address fun_ptr = addr;
-    auto pre_esp = ESP;
+
+    save_esp();
     cpu_ptr->push_32(0);
     cpu_ptr->push_32(DLL_PROCESS_ATTACH);
     cpu_ptr->push_32(0);
@@ -450,7 +424,8 @@ void Engine::call_win32_dll_entry(bx_phy_address addr)
     push_call(fun_ptr);
     
     cpu_ptr->cpu_loop();
-    ESP = pre_esp;
+
+    restore_esp();
     sw_cpu_mode(pre_cpu_mode);
 }
 
@@ -466,6 +441,17 @@ void Engine::sw_cpu_mode(uint32_t mode)
         cpu_ptr->sregs[BX_SEG_REG_CS].cache.u.segment.l = 1; // 64bit
         cpu_ptr->handleCpuModeChange();
     }
+}
+
+inline void Engine::save_esp()
+{
+    assert(pre_esp == -1); //not support reentry call
+    pre_esp = RSP;
+}
+inline void Engine::restore_esp()
+{
+    RSP = pre_esp;
+    pre_esp = -1;
 }
 
 
@@ -507,5 +493,6 @@ void Engine::print_call_trace_win32()
         printf("==addr:0x%0lx:%s\n",addr,name);
     }
 }
+
 
 

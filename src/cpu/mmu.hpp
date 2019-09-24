@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include "bochs.h"
 
-#endif /* mmu_hpp */
+/* mmu_hpp */
 //in long mode 64bit
 //use 4 level page table!
 //ref Intel® 64 and IA-32 Architectures Software Developer’s Manual
@@ -116,3 +116,4 @@ size_t host_malloc_usable_size(void* ptr);
 
 void init_mem_allocate(bx_phy_address start, bx_phy_address end);
 
+#endif

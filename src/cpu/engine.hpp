@@ -18,20 +18,10 @@
 
 
 
-struct export_funcs
-{
-    void* ptr;
-    char name[64];
-};
-
-//struct call_trace
-//{
-//    bx_phy_address addr;
-//};
-
-
 extern const Bit64u PAGE_BASE_ADDR;
 extern const Bit64u memSize;
+
+
 
 class Engine
 {
@@ -47,8 +37,8 @@ public:
     
     struct export_funcs* call_guess_method;
     uint64_t last_ret;
+    uint64_t pre_esp;
     
-//    std::shared_ptr<std::vector<uint64_t>> p_call_trace_win32;
     void push_call(uint64_t addr);
     void pop_call();
     void print_call_trace_win32();
@@ -57,11 +47,10 @@ public:
         cpu_ptr = nullptr;
         mem_ptr = nullptr;
         call_win32_unknow_sym_addr = 0;
-//        call_trace_win32
-//        p_call_trace_win32 = std::make_shared<std::vector<uint64_t>>(1);
-//        p_call_trace_win32->reserve(16);
+
         HOST_CALL_PTR32_addr = 0;
         crt32_entry_addr = 0;
+        pre_esp = -1;
     }
     void load_elf(const char* path);
     void load_dll32(const char* path,struct pe_image32** pe32 = nullptr,bool call_entry = false);
@@ -76,10 +65,14 @@ public:
     void run();
     void call_guest_method1(const char* method,uint64_t arg1);
     void call_win_guest_method1(const char* method,uint64_t arg1);
-    void call_win32_guest_method1(const char* method,uint64_t arg1);
+    
+    void call_win32_guest_method(const char* method);
     void call_win32_dll_entry(bx_phy_address addr);
     
+    
     void sw_cpu_mode(uint32_t mode);
+    void save_esp();
+    void restore_esp();
 
 };
 
@@ -111,6 +104,9 @@ inline bool is_cpu_mode32()
 {
     return BX_CPU(0)->cpu_mode == BX_MODE_LONG_COMPAT;
 }
+
+
+
 
 //for test
 extern void test_dll_func();

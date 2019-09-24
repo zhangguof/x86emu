@@ -93,32 +93,3 @@ void test_dll_func()
 //        printf("lua ret code:%d\n",int(g_engine->last_ret));
     
 }
-
-inline WIN32_PTR get_win32_ptr(void* ptr)
-{
-    uint64_t p = (uint64_t)ptr;
-    return (WIN32_PTR)(p&0xFFFFFFFF);
-}
-
-
-//int test_dll3(int a,const char* name,uint64 a64)
-uint64_t wrap_guest_test_dll3(int arg1,const char* arg2,uint64_t arg3)
-{
-    typedef int T1;
-    typedef WIN32_PTR T2;
-    typedef uint64_t T3;
-    auto len2 = strlen(arg2);
-    T2 _arg2 = get_win32_ptr(host_malloc(len2+1));
-    memcpy(getMemAddr(_arg2), arg2, len2);
-    auto pre_esp = ESP;
-    g_engine->cpu_ptr->push_64(arg3);
-    g_engine->cpu_ptr->push_32(_arg2);
-    g_engine->cpu_ptr->push_32(arg1);
-    
-    g_engine->call_win32_guest_method("test_dll3");
-    host_free((void*)_arg2);
-    //    ESP = EBP;
-    ESP = pre_esp;
-    
-    return 0;
-}

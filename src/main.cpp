@@ -11,19 +11,18 @@
 #include "engine.hpp"
 #include "logger.hpp"
 
+#include "wrap_host_call.hpp"
+
 //const Logger::LEVEL log_lv = Logger::LV_INFO;
 const Logger::LEVEL log_lv = Logger::LV_ERROR;
 
 
-void test_vars();
 
 int main()
 {
     get_logger(log_lv);
-    
     LOG_INFO("x86 simualte start!");
     
-
 //    Engine x86emu;
     auto p_x86emu = std::make_shared<Engine>();
     g_engine = p_x86emu;
