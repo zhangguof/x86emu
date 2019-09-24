@@ -380,49 +380,6 @@ DEF_HOST_FUNC(__acrt_iob_func)
 
 
 
-
-
- int print_test(const char* fmt,...)
-{
-//    VA_LIST va;
-//    auto pva = &va;
-//    va_start(pva,&fmt);
-//    auto arg1 = va_arg<int>::get(pva);
-//    auto arg2 = va_arg<uint64_t>::get(pva);
-//    auto arg3 = va_arg<const char*>::get(pva);
-//    printf("get vars %d,0x%0llx,%s\n",arg1,arg2,arg3);
-    char buf[1024];
-    va_list va;
-    va_start(va,fmt);
-    vsprintf(buf, fmt, va);
-//    auto arg1 = va_arg(va, int);
-//    auto arg2 = va_arg(va, uint64_t);
-//    auto arg3 = va_arg(va, const char*);
-//    printf("get vars %d,0x%0llx,%s\n",arg1,arg2,arg3);
-    puts(buf);
-    
-    return 0;
-    
-}
-
-void test_vars()
-{
-    char buf[1024];
-    char* pp = buf;
-//    const char* name = "hhhhhh\n";
-    const char* name2 = "ttttt";
-//    char* p = buf;
-//    *(uint64_t*)p = (uint64_t)&name;
-//    p+=sizeof(uint64_t);
-//    *(int*)p = (int)0x1234;
-//    p+=sizeof(int);
-//    *(uint64_t*)p =0x123456789ABCDEF;
-//    p+=sizeof(uint64_t);
-//    *(uint64_t*)p = (uint64_t)name2;
-    
-    print_test("%0x,0x%0llx,%s",0x1234,0x123456789ABCDEF,name2);
-}
-
 // using cls host call func!!
 #undef DEF_HOST_FUNC
 
@@ -443,6 +400,7 @@ class WrapCRT:public HostCallerBase
     static DEC_HOST_FUNC(setlocale);
     static DEC_HOST_FUNC(putc);
     static DEC_HOST_FUNC(vprintf);
+    static DEC_HOST_FUNC(vfprintf);
 
 };
 
@@ -454,6 +412,7 @@ void WrapCRT::init_funcs()
     DEF_USER_HOST_CALL(WrapCRT, setlocale);
     DEF_USER_HOST_CALL(WrapCRT, putc);
     DEF_USER_HOST_CALL(WrapCRT, vprintf);
+    DEF_USER_HOST_CALL(WrapCRT, vfprintf);
 }
 
 //static int w32_vprintf(char* fmt,void* ap)
@@ -478,6 +437,24 @@ DEF_HOST_FUNC(WrapCRT, vprintf)
         
     }
     return 0;
+}
+
+DEF_HOST_FUNC(WrapCRT, vfprintf)
+{
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32 = {args};
+        typedef uint32_t T1;
+        typedef const char* T2;
+        typedef uint8_t* T3;
+        auto arg1 = (T1) w32.next<T1>();
+        auto arg2 = (T2) getMemAddr(w32.next<WIN32_PTR>());
+        auto arg3 = (T3) getMemAddr(w32.next<WIN32_PTR>());
+        struct va_args arg_ptr = {arg3};
+        return win_vfprintf(arg1,arg2, &arg_ptr);
+    }
+    return 0;
+    
 }
 
 DEF_HOST_FUNC(WrapCRT, putc)

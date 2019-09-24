@@ -1,9 +1,11 @@
 // #include <stdio.h>
 #include <stdint.h>
 // #include <string.h>
+#include <stdarg.h>
 #include "crt32.h"
 // #include <time.h>
 // #include <stdlib.h>
+
 
 
 extern "C"
@@ -13,7 +15,6 @@ extern "C"
 
 	void* _stdios[3];
 	extern void init_stdio(void* s[3]);
-	// __attribute__((weak)) FILE* __acrt_iob_func(unsigned int);
 
 }
 
@@ -108,6 +109,7 @@ int DllMain()
 
 	set_stdio();
 	init_stdio(_stdios);
+	printf("stdio:%p,%p,%p\n",_stdios[0],_stdios[1],_stdios[2]);
 	
 	return 1;
 }

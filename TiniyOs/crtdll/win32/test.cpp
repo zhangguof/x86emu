@@ -77,10 +77,15 @@ void test_file();
 void test_vpritnf(const char* fmt,...)
 {
 	va_list ap;
+	va_list ap2;
 	va_start(ap,fmt);
+	va_start(ap2,fmt);
 	printf("start vprintf!!!!\n");
 	vprintf(fmt,ap);
+	vfprintf(stderr,fmt, ap2);
+
 	va_end(ap);
+	va_end(ap2);
 }
 
 int test_dll2()

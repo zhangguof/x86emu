@@ -21,6 +21,7 @@ extern "C" {
 DLLAPI int DllMain();
 DLLAPI void _crt32_pre_init();
 typedef void (__cdecl *_PVFV)(void);
+
 DLLAPI int _initterm(_PVFV* a,_PVFV* b);
 extern DLLAPI void exit(unsigned int);
 
@@ -38,6 +39,7 @@ typedef struct _iobuf FILE;
 
 extern EXPORT FILE _iob[3];
 extern DLLAPI int printf(const char*,...);
+extern DLLAPI int vprintf(const char*,va_list ap);
 
 
 #ifdef __cplusplus
