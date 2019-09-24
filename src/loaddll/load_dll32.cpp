@@ -52,7 +52,7 @@ static void unknown_symbol_stub(void)
 //copy to guest mem
 static int fix_pe_image(struct pe_image32 *pe,dll* pdll,bx_phy_address base_addr)
 {
-    void *image;
+    void *image; //guest addr
     IMAGE_SECTION_HEADER *sect_hdr;
     int i, sections;
     int image_size;
@@ -107,10 +107,20 @@ static int fix_pe_image(struct pe_image32 *pe,dll* pdll,bx_phy_address base_addr
             //            code_free(image);
             return -1;
         }
+        if(sect_hdr->SizeOfRawData==0)
+        {
+            char* dst = (char*)image + sect_hdr->VirtualAddress;
+            dst = (char*)getMemAddr((bx_phy_address)dst);
+            memset(dst, 0, sect_hdr->Misc.VirtualSize);
+        }
+        else
+        {
+            host_memcpy((char*)image+sect_hdr->VirtualAddress,
+                        (char*)pe->image + sect_hdr->PointerToRawData,
+                        sect_hdr->SizeOfRawData);
+        }
+
         
-        host_memcpy((char*)image+sect_hdr->VirtualAddress,
-                    (char*)pe->image + sect_hdr->PointerToRawData,
-                    sect_hdr->SizeOfRawData);
         
         sect_hdr++;
     }
