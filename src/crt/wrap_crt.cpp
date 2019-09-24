@@ -442,6 +442,7 @@ class WrapCRT:public HostCallerBase
     static DEC_HOST_FUNC(_invalid_parameter);
     static DEC_HOST_FUNC(setlocale);
     static DEC_HOST_FUNC(putc);
+    static DEC_HOST_FUNC(vprintf);
 
 };
 
@@ -452,6 +453,31 @@ void WrapCRT::init_funcs()
     DEF_USER_HOST_CALL(WrapCRT, _invalid_parameter);
     DEF_USER_HOST_CALL(WrapCRT, setlocale);
     DEF_USER_HOST_CALL(WrapCRT, putc);
+    DEF_USER_HOST_CALL(WrapCRT, vprintf);
+}
+
+//static int w32_vprintf(char* fmt,void* ap)
+//{
+//    printf("%p,%p\n",fmt,ap);
+//    va_args va = {(uint8_t*)ap};
+//    return win_vprintf(fmt, &va);
+//}
+
+DEF_HOST_FUNC(WrapCRT, vprintf)
+{
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32 = {args};
+        typedef char* T1;
+        typedef uint8_t* T2;
+        auto arg1 = (T1) getMemAddr(w32.next<WIN32_PTR>());
+        auto arg2 = (T2) getMemAddr(w32.next<WIN32_PTR>());
+//        return w32_vprintf(arg1, arg2);
+        struct va_args arg_ptr = {arg2};
+        return win_vprintf(arg1, &arg_ptr);
+        
+    }
+    return 0;
 }
 
 DEF_HOST_FUNC(WrapCRT, putc)
