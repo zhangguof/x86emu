@@ -9,7 +9,7 @@
 #ifndef mmu_hpp
 #define mmu_hpp
 
-#include <stdio.h>
+//#include <stdio.h>
 #include "bochs.h"
 
 /* mmu_hpp */

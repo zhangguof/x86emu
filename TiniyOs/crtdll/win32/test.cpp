@@ -16,6 +16,53 @@ extern "C" {
 #include "test.h"
 
 
+// struct IObject
+// {
+// 	const char* names;
+// 	uint32_t stridx[];
+// 	void* ptrs;
+// 	uint32_t num;
+// };
+// #include <unordered_map>
+// std::unordered_map<std::string, IObject> g_iobjects;
+
+// EXPORT void add_IObject(const char* obj_name,
+// 						char* names,uint32_t stridx,
+// 						void* ptrs,uint32_t num)
+// {
+// 	printf("add obj:%s\n",obj_name);
+// 	g_iobjects[obj_name] = {names,stridx,ptrs,num};
+// }
+
+class MyTest:public Interface
+{
+	void* get_fun_ptr(const char* name);
+    int get_fun_num();
+
+};
+
+void test()
+{
+	printf("int test!!\n");
+}
+
+void* MyTest::get_fun_ptr(const char* name)
+{
+	printf("in MyTest:%s\n",name);
+	// return (void*)test;
+
+}
+int MyTest::get_fun_num()
+{
+	return 42;
+}
+
+MyTest my_test;
+
+Interface* get_interface()
+{
+	return (Interface*)&my_test;
+}
 
 
 

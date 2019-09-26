@@ -34,6 +34,12 @@ struct call_funcs
 DLLAPI void init_call_funcs(call_funcs* tbl);
 DLLAPI void test_call_ptr(int (*ptr)(int,int));
 
+class Interface
+{
+	virtual void* get_fun_ptr(const char* name)=0;
+	virtual int get_fun_num() = 0;
+};
+DLLAPI Interface* get_interface();
 
 
 

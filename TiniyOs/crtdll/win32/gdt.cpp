@@ -38,7 +38,7 @@ void init_gdt()
 
 	*p_gdt_limt = GDT_SIZE * sizeof(DESCRIPTOR) - 1;
     *p_gdt_base = (u32)&gdt;
-    printf("try load gdt!\n");
+    // printf("try load gdt!\n");
     load_gdt();
 
 }

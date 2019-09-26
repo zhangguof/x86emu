@@ -9,48 +9,135 @@
 #ifndef utils_h
 #define utils_h
 
-//#include "bochs.h"
-//#include "engine.hpp"
-//#include "cpu/cpu"
+//template<typename T>
+//struct WrapPointer;
 //
-//#ifdef __cplusplus
-//extern "C" {
-//#endif
+//template <typename T>
+//struct t_getvalue
+//{
+//    typedef T   value;
+//};
 //
 //
-//    static inline Bit8u* getMemAddr(Bit64u addr)
-//    {
-//        Bit8u* ret = BX_MEM(0)->getHostMemAddr(BX_CPU(0), addr, BX_RW);
-//        return ret;
+//template <typename T>
+//struct t_getvalue<T*>
+//{
+//    typedef WrapPointer<T> value;
+//};
+//
+//
+//
+//template <typename T>
+//struct t_traits
+//{
+//    typedef typename T::pointer     pointer;
+//    typedef typename T::reference   reference;
+//    typedef typename T::value       value;
+//};
+//
+//template <typename T>
+//struct t_traits<T*> {
+//    typedef T*  pointer;
+//    //    typedef T&  reference;
+//    typedef WrapRef<T> reference;
+//    typedef T   value;
+//    //    typedef t_getvalue<T> value;
+//};
+
+
+
+/*
+ char a[16];
+ auto p = WrapPointer<char*>(a)
+ *p = 'c'
+ char** aa = nullptr
+ auto pp = WrapPointer<char**>(aa);
+ *pp = a;
+ */
+
+
+//template<typename T>
+//struct WrapPointer
+//{
+//    //    typedef typename t_traits<T>::pointer    pointer;
+//    //    typedef typename t_traits<T>::reference  reference;
+//    //    typedef typename t_traits<T>::value      value;
+//    typedef T* pointer;
+//    typedef T& reference;
+//    typedef T   value;
+//    
+//    
+//    uint32_t addr;
+//    void* host_ptr;
+//    WrapPointer(uint32_t p){
+//        addr = p;
+//        host_ptr = getMemAddr(p);
 //    }
-//
-//    static inline Bit8u* getGuestAddr(Bit64u  addr)
-//    {
-//        return BX_MEM(0)->getGuestMemAddr(BX_CPU(0), addr);
+//    WrapPointer(){
+//        addr = 0;
+//        host_ptr = 0;
 //    }
-//
-//    //void load_RAM_from_data(Bit8u* data, Bit32u len, bx_phy_address ramaddress);
-//    inline static void load_ram(Bit8u* data,Bit32u len,bx_phy_address ram_addr)
+//    pointer get() const
 //    {
-//        BX_MEM(0)->load_RAM_from_data(data,len,ram_addr);
+//        return (pointer)host_ptr;
 //    }
+//    reference operator*() const {
+//        
+//        //        return *((pointer)host_ptr);
+//        return reference((pointer)host_ptr);
+//    }
+//    
+//};
 //
-//    static inline void host_memcpy(char* guest_dst,char* src,Bit32u len)
+////auto p = WrapPointer<int*>;
+////as int** p;
+////
+//template<typename T>
+//struct WrapPointer<T*>
+//{
+//    //    typedef typename t_traits<T>::pointer    pointer;
+//    //    typedef typename t_traits<T>::reference  reference;
+//    //    typedef typename t_traits<T>::value      value;
+//    typedef T* pointer;
+//    typedef T& reference;
+//    typedef T   value;
+//    
+//    
+//    uint32_t addr;
+//    void* host_ptr;
+//    WrapPointer(uint32_t p){
+//        addr = p;
+//        host_ptr = getMemAddr(p);
+//    }
+//    WrapPointer(){
+//        addr = 0;
+//        host_ptr = 0;
+//    }
+//    pointer get() const
 //    {
-//        load_ram((Bit8u*)src, len, bx_phy_address(guest_dst));
+//        return (pointer)host_ptr;
 //    }
+//    reference operator*() const {
+//        
+//        //        return *((pointer)host_ptr);
+//        return reference((pointer)host_ptr);
+//    }
+//    
+//};
 //
-//    inline bool is_cpu_mode32()
+//template<typename T>
+//struct WrapRef
+//{
+//    T* val;
+//    WrapRef(T* v):val(v){}
+//    WrapRef<T>& operator=(T rhs)
 //    {
-//        return BX_CPU(0)->cpu_mode == BX_MODE_LONG_COMPAT;
+//        val = rhs;
+//        return *this;
 //    }
-//
-//
-//
-//
-//#ifdef __cplusplus
-//}
-//#endif
+//};
+
+
 
 
 #endif /* utils_h */

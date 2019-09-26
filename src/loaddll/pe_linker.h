@@ -1037,17 +1037,17 @@ bool process_extra_exports(void *imagebase, size_t base, const char *filename);
 int check_nt_hdr64(IMAGE_NT_HEADERS64 *nt_hdr);
 int check_nt_hdr32(IMAGE_NT_HEADERS32 *nt_hdr);
 
-static uint64_t get_next_page(uint64_t addr)
-{
-    //4k page alignment 1<<12
-    const uint64_t align = 0x1000;
-    if((addr & (align-1)) != 0)
-    {
-        //next page
-        addr = (addr + align) & (~(align-1));
-    }
-    return addr;
-}
+//static uint64_t get_next_page(uint64_t addr)
+//{
+//    //4k page alignment 1<<12
+//    const uint64_t align = 0x1000;
+//    if((addr & (align-1)) != 0)
+//    {
+//        //next page
+//        addr = (addr + align) & (~(align-1));
+//    }
+//    return addr;
+//}
 
 
 #endif

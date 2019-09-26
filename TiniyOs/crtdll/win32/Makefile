@@ -26,7 +26,7 @@ test.o: test.cpp
 	$(CXX) -c $^ -o $@ -I. -DBUILD_DLL_TEST $(CFLAGS)
 
 test2.dll: test2.o 
-	$(CC) -shared -o $@ $^  -L. 
+	$(CC) -shared -o $@ $^  -L.  -lcrt32
 
 test2.o: test2.cpp 
 	$(CXX) -c $^ -o $@ -I. -DBUILD_DLL_TEST $(CFLAGS)

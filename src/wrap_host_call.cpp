@@ -370,6 +370,20 @@ DEF_HOST_FUNC(getenv)
     }
 }
 
+extern uint32_t get_func_by_name(const char*);
+
+DEF_HOST_FUNC(get_func_by_name)
+{
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32 = {args};
+        const char* name = (const char*)getMemAddr(w32.next<WIN32_PTR>());
+        return get_func_by_name(name);
+    }
+    return 0;
+}
+
+
 
 /*
  0:    55                       push   ebp

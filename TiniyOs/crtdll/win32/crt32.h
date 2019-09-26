@@ -40,6 +40,7 @@ typedef struct _iobuf FILE;
 extern EXPORT FILE _iob[3];
 extern DLLAPI int printf(const char*,...);
 extern DLLAPI int vprintf(const char*,va_list ap);
+extern DLLAPI void* get_func_by_name(const char* name);
 
 
 #ifdef __cplusplus

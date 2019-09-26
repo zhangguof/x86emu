@@ -29,7 +29,7 @@ DEF_HOST_FUNC(fileno,29)
 
 
 
-
+DEF_HOST_FUNC(get_func_by_name, 94)
 DEF_HOST_FUNC(abort,95)
 DEF_HOST_FUNC(init_stdio,96)
 DEF_HOST_FUNC(exit,97)
