@@ -414,6 +414,7 @@
 #else
 
 // Unix like platforms
+#include <stdint.h>
 
 #if SIZEOF_UNSIGNED_CHAR != 1
 #  error "sizeof (unsigned char) != 1"
@@ -440,11 +441,11 @@
 #endif
 
 #if SIZEOF_UNSIGNED_LONG == 8
-  typedef unsigned long Bit64u;
-  typedef   signed long Bit64s;
+  typedef uint64_t Bit64u;
+  typedef   int64_t Bit64s;
 #elif SIZEOF_UNSIGNED_LONG_LONG == 8
-  typedef unsigned long long Bit64u;
-  typedef   signed long long Bit64s;
+  typedef uint64_t Bit64u;
+  typedef  int64_t Bit64s;
 #else
 #  error "can't find data type of 8 bytes"
 #endif
