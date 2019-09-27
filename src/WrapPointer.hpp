@@ -14,6 +14,27 @@
 //extern uint8_t* getMemAddr(uint64_t addr);
 
 extern uint32_t new_cosnt_buf(const char* str);
+template<typename T>
+struct Ref
+{
+    T* val;
+    Ref(T* v):val(v){}
+    Ref():val(0){}
+    T& get() const
+    {
+        return *val;
+    }
+    void init(T& r)
+    {
+        if(!val)
+            val = &r;
+    }
+    T& operator=(T r)
+    {
+        *val = r;
+        return get();
+    }
+};
 
 struct BaseWrapPointer
 {
@@ -25,7 +46,7 @@ struct BaseWrapPointer
     BaseWrapPointer();
     BaseWrapPointer(uint32_t addr);
     BaseWrapPointer(void* addr);
-    BaseWrapPointer(const BaseWrapPointer& p);
+//    BaseWrapPointer(const BaseWrapPointer& p);
     
     void set_ref(uint32_t* addr)
     {
@@ -112,5 +133,6 @@ struct WrapPointer<T*>:public BaseWrapPointer
         return *this;
     }
 };
+
 
 #endif /* WrapPointer_hpp */

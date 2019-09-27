@@ -83,6 +83,7 @@ struct traits_types<T*>
 //    virtual int get_fun_num() = 0;
 //};
 #include "WrapPointer.hpp"
+#include "WrapCls.hpp"
 
 #include <unordered_map>
 static std::unordered_map<std::string, uint32_t> win32funcs;
@@ -134,67 +135,45 @@ static uint64_t wrap_test(uint64_t* args)
 //};
 //
 //typedef void (*testf_t2)(struct TestCls* p);
-template<typename T>
-inline T get_data(uint8_t* ptr,uint32_t off)
+
+
+
+
+struct WrapTestCls:public BaseWrapCls
 {
-    auto ret = *(T*)(ptr+off);
-//    off+=sizeof(T);
-    return ret;
-}
-
-template<typename T>
-inline WrapPointer<T> get_pointer(uint8_t* ptr,uint32_t off)
-{
-//    auto ret = *(T*)(ptr+off);
-    WrapPointer<T> ret(*(uint32_t*)(ptr+off));
-//    off += sizeof(WIN32_PTR);
-    return ret;
-}
-
-template<typename T>
-inline WrapPointer<T> get_array(uint8_t* ptr,uint32_t off)
-{
-    //    auto ret = *(T*)(ptr+off);
-    WrapPointer<T> ret((void*)(ptr+off));
-    //    off += sizeof(WIN32_PTR);
-    return ret;
-}
-
-
-
-struct WrapTestCls
-{
-    uint8_t* host_ptr;
-    uint32_t guest_addr;
-    WrapTestCls(uint8_t* ptr,uint32_t addr){
-        host_ptr = ptr;
-        guest_addr = addr;
+    const uint32_t size = 24;
+    WrapTestCls(uint8_t* ptr,uint32_t addr):BaseWrapCls(ptr,addr)
+    {
+        bind();
+    }
+    WrapTestCls()
+    {
+        guest_addr = (uint32_t)(uint64_t)host_malloc(size);
+        host_ptr = getMemAddr(guest_addr);
+        bind();
         init();
-        
     }
     void init()
     {
-        uint32_t offset = 0;
-        _data.a = get_data<int>(host_ptr,0);
-        
+        _data.a = 87654321;
+        strncpy(_data.name.get(),"hhhxxx",10);
+    }
+    void bind()
+    {
+        assert(host_ptr!=nullptr);
+        _data.a.init(get_data<int>(host_ptr,0));
         _data.n = get_pointer<int>(host_ptr,4);
         _data.name = get_array<char>(host_ptr,8);
         _data.names = get_pointer<char**>(host_ptr,20);
-
-//        _data.n = get_data<WIN32_PTR>(host_ptr,4);
-//        _data.name = get_data<WIN32_PTR>(host_ptr,8);
-//        _data.names = get_data<WIN32_PTR>(host_ptr,20);
     }
-#pragma pack(push,4)
     struct Data
     {
-        int a;
+//        int &a;
+        Ref<int> a;
         WrapPointer<int> n;
         WrapPointer<char> name; //char buf[10]
         WrapPointer<char**> names;
     } _data;
-#pragma pack(pop)
-    
 };
 
 static uint64_t wrap_test2(uint64_t* args)
@@ -209,9 +188,11 @@ static uint64_t wrap_test2(uint64_t* args)
         *(obj._data.n) = 3211234;
         obj._data.names[0] = "Test in WrapTest2";
         strcpy(obj._data.name.get(), "hhxxddff");
-        printf("%d\n",obj._data.a);
+        obj._data.a = 33344455;
+        printf("a=%d\n",obj._data.a.get());
         
-        
+        WrapTestCls ret;
+        return ret.getaddr();
     }
     return 0;
 }

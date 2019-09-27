@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EA0363EE233A550B0071CD87 /* wrap_guest_call.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA0363EC233A550B0071CD87 /* wrap_guest_call.cpp */; };
 		EA0363F1233CF6CF0071CD87 /* WrapPointer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA0363EF233CF6CF0071CD87 /* WrapPointer.cpp */; };
+		EA0363F4233E22350071CD87 /* WrapCls.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA0363F2233E22350071CD87 /* WrapCls.cpp */; };
 		EA0ABB13231E896600EBC68C /* hcreate_r.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD73E2317DDA30038057E /* hcreate_r.c */; };
 		EA0ABB14231E897100EBC68C /* siphash24.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD7422317F4700038057E /* siphash24.c */; };
 		EA0ABB15231E897100EBC68C /* hdestroy_r.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD73F2317DDA30038057E /* hdestroy_r.c */; };
@@ -352,6 +353,8 @@
 		EA0363ED233A550B0071CD87 /* wrap_guest_call.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wrap_guest_call.hpp; sourceTree = "<group>"; };
 		EA0363EF233CF6CF0071CD87 /* WrapPointer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WrapPointer.cpp; sourceTree = "<group>"; };
 		EA0363F0233CF6CF0071CD87 /* WrapPointer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WrapPointer.hpp; sourceTree = "<group>"; };
+		EA0363F2233E22350071CD87 /* WrapCls.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WrapCls.cpp; sourceTree = "<group>"; };
+		EA0363F3233E22350071CD87 /* WrapCls.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WrapCls.hpp; sourceTree = "<group>"; };
 		EA0ABB0C231E895800EBC68C /* loaddll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = loaddll; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA326671231EF36B0026184F /* host_call.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = host_call.hpp; sourceTree = "<group>"; };
 		EA326672231EF4650026184F /* wrap_host_call.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wrap_host_call.cpp; sourceTree = "<group>"; };
@@ -1126,6 +1129,8 @@
 				EA4E84D223392C2800F89DFA /* test_guest_call.cpp */,
 				EA0363EF233CF6CF0071CD87 /* WrapPointer.cpp */,
 				EA0363F0233CF6CF0071CD87 /* WrapPointer.hpp */,
+				EA0363F2233E22350071CD87 /* WrapCls.cpp */,
+				EA0363F3233E22350071CD87 /* WrapCls.hpp */,
 				EAB724092306AE55000019F0 /* bochs */,
 				EAEA8CB523119C8800F8BEBD /* buffer.cpp */,
 				EAEA8CB623119C8800F8BEBD /* buffer.hpp */,
@@ -2248,6 +2253,7 @@
 				EAB726FF2306AE56000019F0 /* ret_far.cc in Sources */,
 				EAB727EF2306AE56000019F0 /* keymap.cc in Sources */,
 				EAB726E62306AE56000019F0 /* turion64_tyler.cc in Sources */,
+				EA0363F4233E22350071CD87 /* WrapCls.cpp in Sources */,
 				EAB727722306AE56000019F0 /* parallel.cc in Sources */,
 				EAB727872306AE56000019F0 /* keyboard.cc in Sources */,
 				EAB727172306AE56000019F0 /* avx2.cc in Sources */,

@@ -101,11 +101,15 @@ struct TestCls
 	int *n;
 	char name[10];
 	char ** names;
-
+	void check()
+	{
+		printf("%p,%p,%p,%p\n",a,n,name,names);
+		// printf("%d,%d,%s,%s\n",a,*n,name,names[0]);
+	}
 };
 
 typedef void (*testf_t)(int a,int* b,const char* c,char** names);
-typedef void (*testf_t2)(struct TestCls* p);
+typedef struct TestCls* (*testf_t2)(struct TestCls* p);
 
 EXPORT int test_cpp()
 {
@@ -137,7 +141,7 @@ EXPORT int test_cpp()
 
 
 	p = get_func_by_name("wrap_test2");
-	
+
 	struct TestCls t = {
 		.a=112233,
 		.n = &n,
@@ -145,7 +149,7 @@ EXPORT int test_cpp()
 	};
 	printf("size:%u,p:%p\n",sizeof(TestCls),p);
 printf("names:%p,%p\n",names,t.names);
-	((testf_t2)p)(&t);
+	auto ret = ((testf_t2)p)(&t);
 	printf("off:%u,%u,%u,%u\n",&TestCls::a,&TestCls::n,
 	&TestCls::name,&TestCls::names);
 	printf("names:%p,%p\n",names,t.names);
@@ -154,6 +158,11 @@ printf("names:%p,%p\n",names,t.names);
 
 	printf("%d,%d,%s\n",t.a,*(t.n),t.names[0]);
 	printf("buf:%s,%p\n",t.name,t.name);
+	t.check();
+	printf("==========================\n");
+
+	printf("ret === :%d,%s\n",ret->a,ret->name);
+	ret->check();
 
 	// try {
  //        std::cout << f(1e10) << '\n';

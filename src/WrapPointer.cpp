@@ -89,11 +89,11 @@ BaseWrapPointer::BaseWrapPointer(void* addr)
 {
     host_ptr = (uint8_t*)addr;
 }
-BaseWrapPointer::BaseWrapPointer(const BaseWrapPointer& p)
-{
-    this->win32addr = p.win32addr;
-    this->host_ptr = p.host_ptr;
-}
+//BaseWrapPointer::BaseWrapPointer(const BaseWrapPointer& p)
+//{
+//    this->win32addr = p.win32addr;
+//    this->host_ptr = p.host_ptr;
+//}
 
 //inline void BaseWrapPointer::set_ref(uint32_t* addr)
 //{
