@@ -14,6 +14,7 @@
 #include <string>
 static std::unordered_map<std::string, uint32_t> g_conststr_map;
 
+
 class ConstHostBuf
 {
 public:
@@ -66,5 +67,45 @@ uint32_t new_cosnt_buf(const char* str)
 {
     return const_str_buf.new_str(str);
 }
+
+//BaseWrapPointer
+ void BaseWrapPointer::set_addr(uint32_t addr)
+{
+    win32addr = addr;
+    host_ptr = getMemAddr(addr);
+}
+ BaseWrapPointer::BaseWrapPointer()
+{
+    win32addr = 0;
+    ref_win32addr = 0;
+    host_ptr = 0;
+}
+BaseWrapPointer::BaseWrapPointer(uint32_t addr)
+{
+    set_addr(addr);
+    ref_win32addr = 0;
+}
+BaseWrapPointer::BaseWrapPointer(void* addr)
+{
+    host_ptr = (uint8_t*)addr;
+}
+BaseWrapPointer::BaseWrapPointer(const BaseWrapPointer& p)
+{
+    this->win32addr = p.win32addr;
+    this->host_ptr = p.host_ptr;
+}
+
+//inline void BaseWrapPointer::set_ref(uint32_t* addr)
+//{
+//    ref_win32addr = addr;
+//}
+
+//inline BaseWrapPointer& BaseWrapPointer::operator=(uint32_t addr)
+//{
+//    set_addr(addr);
+//    if(ref_win32addr) *ref_win32addr = addr;
+//    return *this;
+//}
+
 
 
