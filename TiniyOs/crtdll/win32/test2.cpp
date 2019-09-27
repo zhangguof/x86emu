@@ -95,8 +95,17 @@ double f(double d)
 	printf("in fffff!\n");
     return d > 1e7 ? throw std::overflow_error("too big") : d;
 }
+struct TestCls
+{
+	int a;
+	int *n;
+	char name[10];
+	char ** names;
 
-typedef void (*testf_t)(int a,int* b,char* c,char** names);
+};
+
+typedef void (*testf_t)(int a,int* b,const char* c,char** names);
+typedef void (*testf_t2)(struct TestCls* p);
 
 EXPORT int test_cpp()
 {
@@ -113,7 +122,7 @@ EXPORT int test_cpp()
 	printf("get f:%p\n",p);
 	int a = 123;
 	int *b = &a;
-	char* c = "hello !!1";
+	const char* c = "hello !!1";
 	char x[]="hello world!";
 	// char* names = nullptr;
 	char* names[3];
@@ -125,6 +134,26 @@ EXPORT int test_cpp()
 	{
 		printf("%d:%s,%p\n",i,names[i],names[i]);
 	}
+
+
+	p = get_func_by_name("wrap_test2");
+	
+	struct TestCls t = {
+		.a=112233,
+		.n = &n,
+		.names = names
+	};
+	printf("size:%u,p:%p\n",sizeof(TestCls),p);
+printf("names:%p,%p\n",names,t.names);
+	((testf_t2)p)(&t);
+	printf("off:%u,%u,%u,%u\n",&TestCls::a,&TestCls::n,
+	&TestCls::name,&TestCls::names);
+	printf("names:%p,%p\n",names,t.names);
+	printf("%p,%p,%p\n",&t.n,t.names,t.names[0]);
+
+
+	printf("%d,%d,%s\n",t.a,*(t.n),t.names[0]);
+	printf("buf:%s,%p\n",t.name,t.name);
 
 	// try {
  //        std::cout << f(1e10) << '\n';

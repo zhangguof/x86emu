@@ -19,14 +19,20 @@ extern uint32_t new_cosnt_buf(const char* str);
 //template<typename T>
 struct BaseWrapPointer
 {
-    uint32_t win32adr;
+    uint32_t win32addr;
     uint32_t* ref_win32addr;
     uint8_t* host_ptr;
     void set_addr(uint32_t addr)
     {
-        win32adr = addr;
+        win32addr = addr;
 //        ref_win32addr = 0;
         host_ptr = getMemAddr(addr);
+    }
+    BaseWrapPointer()
+    {
+        win32addr = 0;
+        ref_win32addr = 0;
+        host_ptr = 0;
     }
     BaseWrapPointer(uint32_t addr)
     {
@@ -38,11 +44,16 @@ struct BaseWrapPointer
         set_addr(*addr);
         ref_win32addr = addr;
     }
+    BaseWrapPointer(void* addr)
+    {
+        host_ptr = (uint8_t*)addr;
+        
+    }
     BaseWrapPointer(const BaseWrapPointer& p)
     {
-        this->win32adr = p.win32adr;
+        this->win32addr = p.win32addr;
         this->host_ptr = p.host_ptr;
-        this->ref_win32addr = p.ref_win32addr;
+//        this->ref_win32addr = p.ref_win32addr;
     }
 
     BaseWrapPointer& operator=(uint32_t addr)
@@ -55,8 +66,11 @@ struct BaseWrapPointer
 template<typename T>
 struct WrapPointer:public BaseWrapPointer
 {
+    WrapPointer():BaseWrapPointer(){}
     WrapPointer(uint32_t addr):BaseWrapPointer(addr){}
     WrapPointer(uint32_t* addr):BaseWrapPointer(addr){}
+    WrapPointer(void* ptr):BaseWrapPointer(ptr){}
+    
     T* get() const
     {
         return (T*)host_ptr;
@@ -87,8 +101,11 @@ struct WrapPointer:public BaseWrapPointer
 template<typename T>
 struct WrapPointer<T*>:public BaseWrapPointer
 {
+    WrapPointer():BaseWrapPointer(){}
     WrapPointer(uint32_t addr):BaseWrapPointer(addr){}
     WrapPointer(uint32_t* addr):BaseWrapPointer(addr){}
+    WrapPointer(void* ptr):BaseWrapPointer(ptr){}
+    
     T** get() const
     {
         return (T**)host_ptr;

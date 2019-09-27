@@ -75,27 +75,7 @@ struct traits_types<T*>
 };
 
 
-//guest obj
-struct GuestObject
-{
-    void* obj; //ptr to host addr.
-    GuestObject(void* p):obj(p){}
-    template<typename T>
-    T _obj_get(size_t offset)
-    {
-        auto p = (T*)((char*)obj + offset);
-        return *p;
-    }
-};
-/*
- // for mingw win32
-class TestObj
-{
-    int a; //4
-    int b;//4
-    const char* name;//4
-};
-*/
+
 
 //class Interface
 //{
@@ -133,20 +113,104 @@ static uint64_t wrap_test(uint64_t* args)
         printf("%s\n",arg3.get());
         const char* names[]={"test1111","test22222","test33333"};
         int n  = sizeof(names) / sizeof(const char*);
-//        uint32_t buf = (uint32_t)(uint64_t)host_malloc(1024);
-//        uint8_t* host_buf = getMemAddr((bx_phy_address)buf);
         *arg2 = n;
         for(int i=0;i<n;++i)
         {
-//            arg4[i] = names[i]
-//            int len = strlen(names[i]);
-//            memcpy(host_buf,names[i],len+1);
+
             arg4[i] = names[i];
-//            host_buf+= len+1;
-//            buf += len+1;
+
         }
         
-//        *arg4 = arg3.win32adr;
+    }
+    return 0;
+}
+
+//struct TestCls
+//{
+//    int a;
+//    int *n;
+//    char name[10];
+//    char ** names;
+//};
+//
+//typedef void (*testf_t2)(struct TestCls* p);
+template<typename T>
+inline T get_data(uint8_t* ptr,uint32_t off)
+{
+    auto ret = *(T*)(ptr+off);
+//    off+=sizeof(T);
+    return ret;
+}
+
+template<typename T>
+inline WrapPointer<T> get_pointer(uint8_t* ptr,uint32_t off)
+{
+//    auto ret = *(T*)(ptr+off);
+    WrapPointer<T> ret(*(uint32_t*)(ptr+off));
+//    off += sizeof(WIN32_PTR);
+    return ret;
+}
+
+template<typename T>
+inline WrapPointer<T> get_array(uint8_t* ptr,uint32_t off)
+{
+    //    auto ret = *(T*)(ptr+off);
+    WrapPointer<T> ret((void*)(ptr+off));
+    //    off += sizeof(WIN32_PTR);
+    return ret;
+}
+
+
+
+struct WrapTestCls
+{
+    uint8_t* host_ptr;
+    uint32_t guest_addr;
+    WrapTestCls(uint8_t* ptr,uint32_t addr){
+        host_ptr = ptr;
+        guest_addr = addr;
+        init();
+        
+    }
+    void init()
+    {
+        uint32_t offset = 0;
+        _data.a = get_data<int>(host_ptr,0);
+        
+        _data.n = get_pointer<int>(host_ptr,4);
+        _data.name = get_array<char>(host_ptr,8);
+        _data.names = get_pointer<char**>(host_ptr,20);
+
+//        _data.n = get_data<WIN32_PTR>(host_ptr,4);
+//        _data.name = get_data<WIN32_PTR>(host_ptr,8);
+//        _data.names = get_data<WIN32_PTR>(host_ptr,20);
+    }
+#pragma pack(push,4)
+    struct Data
+    {
+        int a;
+        WrapPointer<int> n;
+        WrapPointer<char> name; //char buf[10]
+        WrapPointer<char**> names;
+    } _data;
+#pragma pack(pop)
+    
+};
+
+static uint64_t wrap_test2(uint64_t* args)
+{
+    printf("int wrap test2!\n");
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32 = {args};
+        WrapPointer<uint8_t> pobj = w32.next<WIN32_PTR>();
+        WrapTestCls obj(pobj.get(),pobj.win32addr);
+//        obj._data.name = "Test in wraptest2!";
+        *(obj._data.n) = 3211234;
+        obj._data.names[0] = "Test in WrapTest2";
+        strcpy(obj._data.name.get(), "hhxxddff");
+        printf("%d\n",obj._data.a);
+        
         
     }
     return 0;
@@ -160,24 +224,59 @@ void add_func_by_name(const char* name,host_fun_t ptr)
 
 
 
-
+/*
+ // for mingw win32
+ class TestObj
+ {
+ int a; //4
+ int b;//4
+ const char* name;//4
+ };
+ */
 
 //EXPORT void add_IObject(const char* obj_name,
 //                        char* names,uint32_t stridx[],
 //                        void* ptrs,uint32_t num)
 
-struct IObject
+//cls method
+//
+
+//typedef uint64_t (*host_cls_fun_t)(uint64_t* args);
+
+//uint32_t gen_cls_func_code()
+//{
+//
+//    return 0;
+//}
+
+struct IClass
 {
-    const char* obj_name;
-    void add_func(const char* name,host_fun_t pf)
+    const char* cls_name;
+    void* guest_obj;
+    std::unordered_map<std::string, uint32_t> cls_methods;
+    void add_method(const char* name,host_fun_t pf)
     {
-        
+        cls_methods[name] = new_wrap_func(pf, name);
     }
+    static uint64_t wrap_test(uint64_t* args)
+    {
+        return 0;
+    }
+#define DEF_CLS_METHOD(func) \
+add_method(#func, wrap_##func);
+    
+    
+    void init()
+    {
+        DEF_CLS_METHOD(test);
+    }
+#undef DEF_CLS_METHOD
 };
 
 void test_dll_func()
 {
     add_func_by_name("wrap_test", wrap_test);
+    add_func_by_name("wrap_test2", wrap_test2);
 //    WrapPointer ptr(0x400000);
 //    const char* p = ptr.get<const char>();
 //    printf("%s\n",p);
