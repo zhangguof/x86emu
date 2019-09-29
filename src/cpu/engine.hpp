@@ -68,6 +68,7 @@ public:
     
     void call_win32_guest_method(const char* method);
     void call_win32_dll_entry(bx_phy_address addr);
+    void call_win32_guest_addr(uint32_t addr);
     
     
     void sw_cpu_mode(uint32_t mode);

@@ -384,48 +384,43 @@ void Engine::call_win_guest_method1(const char* method,uint64_t arg1)
 
 void Engine::call_win32_guest_method(const char* method)
 {
-    auto pre_cpu_mode = cpu_ptr->cpu_mode;
-    sw_cpu_mode(BX_MODE_LONG_COMPAT);
     
     auto it = global_sym_tbl_win32.find(method);
     if(it!=global_sym_tbl_win32.end())
     {
-        bx_phy_address fun_ptr = it->second;
-
-        cpu_ptr->push_32(call_host_win32_ret_addr);
-        
-        RIP = fun_ptr;
-        push_call(fun_ptr);
-
-        cpu_ptr->cpu_loop();
-        
+        call_win32_guest_addr(it->second);
     }
     else
     {
         LOG_ERROR("can't find symbol :%s in global sym32bit tbl!\n",method);
+        
     }
-    sw_cpu_mode(pre_cpu_mode);
+
 }
 //BOOL WINAPI (*entry)(PVOID hinstDLL, DWORD fdwReason, PVOID lpvReserved);
 void Engine::call_win32_dll_entry(bx_phy_address addr)
 {
-    auto pre_cpu_mode = cpu_ptr->cpu_mode;
-    sw_cpu_mode(BX_MODE_LONG_COMPAT);
-    
-    bx_phy_address fun_ptr = addr;
-
     save_esp();
+    
     cpu_ptr->push_32(0);
     cpu_ptr->push_32(DLL_PROCESS_ATTACH);
     cpu_ptr->push_32(0);
-    cpu_ptr->push_32(call_host_win32_ret_addr);
+    call_win32_guest_addr(addr);
     
-    RIP = fun_ptr;
-    push_call(fun_ptr);
-    
-    cpu_ptr->cpu_loop();
-
     restore_esp();
+
+}
+
+void Engine::call_win32_guest_addr(uint32_t addr)
+{
+    auto pre_cpu_mode = cpu_ptr->cpu_mode;
+    sw_cpu_mode(BX_MODE_LONG_COMPAT);
+    
+    cpu_ptr->push_32(call_host_win32_ret_addr);
+    RIP = addr;
+    push_call(addr);
+    cpu_ptr->cpu_loop();
+    
     sw_cpu_mode(pre_cpu_mode);
 }
 
