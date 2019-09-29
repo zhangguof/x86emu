@@ -488,7 +488,8 @@ WIN32_PTR new_wrap_func(wrap_func_ptr_t pf,const char* name,uint16_t ret_n)
     buf_addr32 = (uint32_t)buf_addr;
     uint8_t* buf = getMemAddr(buf_addr);
     CodeBuf code_buf = {buf};
-     uint32_t idx = host_call_used_idx++;
+//     uint32_t idx = host_call_used_idx++;
+    uint32_t idx = buf_addr32;
     gen_wrap_func_code(&code_buf, idx, true,ret_n);
 //    user_wrap_func_tbl[buf_addr32] = pf;
     if(p_user_host_call_tbl == nullptr)

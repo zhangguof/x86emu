@@ -42,6 +42,27 @@ extern DLLAPI int printf(const char*,...);
 extern DLLAPI int vprintf(const char*,va_list ap);
 extern DLLAPI void* get_func_by_name(const char* name);
 
+//def host func
+// typedef void(*generic_func)(...);
+// typedef WINAPI void(*std_generic_func)(...);
+
+// #undef DEF_HOST_FUNC
+// #undef DEF_HOST_STD_FUNC
+
+// #define DEF_HOST_FUNC(func,idx) \
+// extern generic_func func;
+
+// #define DEF_HOST_STD_FUNC(func,idx,args) \
+// extern std_generic_func func;
+
+// #include "cpu/host_call.hpp"
+// #include "gen_code/wrap_gen_code.h"
+// #include "winapi/wrap_winapi.h"
+
+// #undef DEF_HOST_FUNC
+// #undef DEF_HOST_STD_FUNC
+
+extern void call_host_regist_funcs(const char** names,uint32_t addrs[],uint32_t size);
 
 #ifdef __cplusplus
 }

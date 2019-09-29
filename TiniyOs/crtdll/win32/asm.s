@@ -11,7 +11,8 @@ _%1:
 %1:
 	push ebp
 	mov ebp, esp
-	mov eax,%2
+	;mov eax,%2
+	mov eax,%1
 	jmp [HOST_CALL_PTR32]
 	leave
 	ret
@@ -27,7 +28,8 @@ _%1:
 %1:
 	push ebp
 	mov ebp, esp
-	mov eax,%2
+	;mov eax,%2
+	mov eax,%1
 	jmp [HOST_CALL_PTR32]
 	leave
 	ret %3
@@ -86,6 +88,18 @@ call_host_ret:
 	; leave
 	; ret
 
+global call_host_regist_funcs
+global _call_host_regist_funcs
+
+_call_host_regist_funcs:
+call_host_regist_funcs:
+	push ebp
+	mov ebp, esp
+	mov eax, 10;
+	jmp [HOST_CALL_PTR32]
+	leave
+	ret
+
 extern _gdt_ptr
 global _load_gdt
 global load_gdt
@@ -101,6 +115,21 @@ HOST_CALL_PTR32: dd 0x1FFFFFFD
 
 global _HOST_CALL_PTR32
 export HOST_CALL_PTR32
+
+global _regist_func_addrs
+global regist_func_addrs
+
+_regist_func_addrs:
+regist_func_addrs:
+%define DEF_HOST_FUNC(func,idx) dd func
+%define DEF_HOST_STD_FUNC(func,idx,args)  dd func
+
+%include "cpu/host_call.hpp"
+%include "gen_code/wrap_gen_code.h"
+%include "winapi/wrap_winapi.h"
+
+
+
 
 section .drectve
 ; export_dll 'call_host_ret'

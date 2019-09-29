@@ -18,6 +18,37 @@ extern "C"
 
 }
 
+const char* regist_func_names[]=
+{
+	#undef DEF_HOST_FUNC
+	#undef DEF_HOST_STD_FUNC
+
+	#define DEF_HOST_FUNC(func,idx) \
+	#func,
+
+	#define DEF_HOST_STD_FUNC(func,idx,args) \
+	#func,
+
+	#include "cpu/host_call.hpp"
+	#include "gen_code/wrap_gen_code.h"
+	#include "winapi/wrap_winapi.h"
+
+	#undef DEF_HOST_FUNC
+	#undef DEF_HOST_STD_FUNC
+
+};
+
+extern uint32_t regist_func_addrs;
+uint32_t* regist_func_addrs_ptr = &regist_func_addrs;
+
+// extern void call_host_regist_funcs(const char** names,uint32_t addrs[],int size);
+void init_funcs()
+{
+	uint32_t size = sizeof(regist_func_names) / sizeof(const char*);
+
+	call_host_regist_funcs(regist_func_names,regist_func_addrs_ptr,size);
+}
+
 
 bool setup_nt_threadinfo(PEXCEPTION_HANDLER ExceptionHandler)
 {
@@ -118,6 +149,7 @@ int DllMain()
 
 void _crt32_pre_init()
 {
+	init_funcs();
 	init_gdt();
 	setup_nt_threadinfo(ExceptionHandler);
 	DllMain();

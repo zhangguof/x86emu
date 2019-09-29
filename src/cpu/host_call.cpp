@@ -80,3 +80,30 @@ uint64_t do_call_host_func(Bit32u idx, uint64_t* args)
     return it->second->pf(args);
 }
 
+//regist_call_funcs(const char* names[], uint32_t addrs[], int size)
+#include "WrapPointer.hpp"
+uint64_t wrap_regist_call_funs(uint64_t* args)
+{
+    if(is_cpu_mode32())
+    {
+        WIN32_ARGS w32 = {args};
+        WrapPointer<const char*> names = w32.next<uint32_t>();
+        WrapPointer<uint32_t> addrs = w32.next<uint32_t>();
+        uint32_t size = w32.next<uint32_t>();
+        
+        for(uint32_t i = 0;i<size;++i)
+        {
+//            printf("regist func:%u,%s:%p\n",i,names[i].get(),addrs[i]);
+            auto p = host_func_table[i];
+            assert(strcmp(p.name, names[i].get())==0);
+            uint32_t addr = addrs[i];
+            (*p_user_host_call_tbl)[addr] =
+                    std::make_shared<HOST_FUN_C>(p.name,p.pf,addrs[i]);
+            
+            
+        }
+        
+    }
+    return 0;
+}
+
