@@ -62,7 +62,7 @@ public:
         return mem_ptr->getHostMemAddr(cpu_ptr, addr, BX_RW);
     }
     
-    void run();
+    void start();
     void call_guest_method1(const char* method,uint64_t arg1);
     void call_win_guest_method1(const char* method,uint64_t arg1);
     

@@ -292,7 +292,7 @@ struct call_func
 extern uint64_t wrap_test_func(uint64_t* args);
 
 
-void Engine::run()
+void Engine::start()
 {
     
     cpu_ptr->push_64(call_host_ret_addr); //ret address call_host_func
@@ -311,9 +311,6 @@ void Engine::run()
 //    call_win32_dll_entry(crt32_entry_addr); //call crt32.dll DllMain()
     
     load_base_dlls();
-    
-    //test it.
-    test_dll_func();
 }
 
 void Engine::load_base_dlls()
