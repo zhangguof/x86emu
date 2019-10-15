@@ -31,7 +31,10 @@ int main()
     p_x86emu->init();
 //    test_vars();
     
-    p_x86emu->run();
+    p_x86emu->start();
+    
+    //test it.
+    test_dll_func();
     
 //    exit(0);
 	return 0;
