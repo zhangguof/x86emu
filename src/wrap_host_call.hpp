@@ -102,7 +102,6 @@ public:
     HostCallerBase(){
         add_caller(this);
     }
-    static uint64_t wrap_base_test_func(uint64_t* args);
     virtual void init_funcs();
 };
 

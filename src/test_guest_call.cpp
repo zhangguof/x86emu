@@ -106,7 +106,7 @@ static uint64_t wrap_test(uint64_t* args)
     {
         WIN32_ARGS w32 = {args};
         int a = w32.next<int>();
-         WrapPointer<int> arg2(w32.next<uint32_t>());
+        WrapPointer<int> arg2(w32.next<uint32_t>());
 //        WrapPointer<int> arg2 = w32.next<uint32_t>();
         WrapPointer<char> arg3(w32.next<uint32_t>());
         WrapPointer<char*> arg4(w32.next<uint32_t>());
@@ -119,24 +119,11 @@ static uint64_t wrap_test(uint64_t* args)
         {
 
             arg4[i] = names[i];
-
         }
         
     }
     return 0;
 }
-
-//struct TestCls
-//{
-//    int a;
-//    int *n;
-//    char name[10];
-//    char ** names;
-//};
-//
-//typedef void (*testf_t2)(struct TestCls* p);
-
-
 
 
 struct WrapTestCls:public BaseWrapCls
@@ -168,7 +155,6 @@ struct WrapTestCls:public BaseWrapCls
     }
     struct Data
     {
-//        int &a;
         Ref<int> a;
         WrapPointer<int> n;
         WrapPointer<char> name; //char buf[10]
@@ -203,32 +189,64 @@ void add_func_by_name(const char* name,host_fun_t ptr)
     win32funcs[name] = addr;
 }
 
+struct SharedMem
+{
+    uint8_t* h_ptr;
+    uint32_t size;
+    uint32_t g_addr;
+    uint8_t* g_ptr;
+    SharedMem(uint8_t* ptr,uint32_t s):h_ptr(ptr),size(s){
+        g_addr = (uint32_t)(uint64_t)host_malloc(s);
+        g_ptr = getMemAddr(g_addr);
+    }
+    void host2guest()
+    {
+        memcpy(g_ptr, h_ptr, size);
+    }
+    void guest2host()
+    {
+        memcpy(h_ptr, g_ptr, size);
+    }
+    void sync()
+    {
+        
+    }
+    ~SharedMem()
+    {
+        void* ptr = (void*)g_addr;
+        host_free(ptr);
+    }
+};
 
 
-/*
- // for mingw win32
- class TestObj
- {
- int a; //4
- int b;//4
- const char* name;//4
- };
- */
+struct Test
+{
+    int a;
+    int *ptr_n;
+    const char* name;
+    Test(int x):a(x){
+        ptr_n = nullptr;
+        name = "hello";
+    }
+};
 
-//EXPORT void add_IObject(const char* obj_name,
-//                        char* names,uint32_t stridx[],
-//                        void* ptrs,uint32_t num)
+//gen code
+struct WrapTest
+{
+    struct Test* imp;
+    void* g_ptr;
+    struct ABI* ABI_Test;
 
-//cls method
-//
+    void _init_from_host(int x)
+    {
+        imp = new Test(x);
+    }
+    void _init_from_guest()
+    {
+        
+    }
+};
 
-//typedef uint64_t (*host_cls_fun_t)(uint64_t* args);
-
-//uint32_t gen_cls_func_code()
-//{
-//
-//    return 0;
-//}
 
 struct IClass
 {

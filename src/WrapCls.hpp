@@ -11,6 +11,9 @@
 
 #include <stdint.h>
 #include "WrapPointer.hpp"
+#include "wrap_host_call.hpp"
+#include "wrap_guest_call.hpp"
+
 
 struct BaseWrapCls
 {
@@ -51,7 +54,71 @@ inline WrapPointer<T> get_array(uint8_t* ptr,uint32_t off)
     //    off += sizeof(WIN32_PTR);
     return ret;
 }
+typedef uint64_t (*wrap_static_func_ptr)(uint64_t* args);
+//wrap guest function
+struct BaseWrapFunction
+{
+    uint32_t guest_addr;
+    bool is_host_imp;
+    //a func imp in host, call by guest
+    BaseWrapFunction(wrap_static_func_ptr pf);
+    //a func imp in guest, call by host.
+    BaseWrapFunction(uint32_t f_addr);
+};
+template<typename R,typename ...ARGS>
+struct WrapFunction;
 
+
+template<typename R,typename ...ARGS>
+struct WrapFunction<R(ARGS...)>
+{
+    uint32_t guest_addr;
+    WrapFunction(uint32_t addr):guest_addr(addr){}
+    WrapFunction():guest_addr(0){}
+    WrapFunction(host_fun_t hf){
+        uint32_t addr = new_wrap_func(hf,"");
+        guest_addr = addr;
+    }
+    
+//    template <typename T>
+    WrapFunction& operator=(uint32_t addr)
+    {
+//        callable_ = std::make_unique<CallableT<T>>(t);
+        guest_addr = addr;
+        
+    }
+    
+    R operator()(ARGS... args) const
+    {
+        assert(guest_addr);
+//        assert(callable_);
+//        return callable_->Invoke(args...);
+        wrap_win32_guest_call(guest_addr, args...);
+        return g_engine->last_ret;
+    }
+//private:
+//    class ICallable {
+//    public:
+//        virtual ~ICallable() = default;
+//        virtual R Invoke(ARGS...) = 0;
+//    };
+//
+//    template <typename T>
+//    class CallableT : public ICallable
+//    {
+//    public:
+//        CallableT(const T& t):t_(t) {}
+//        ~CallableT() override = default;
+//        R Invoke(ARGS... args) override
+//        {
+//            return t_(args...);
+//        }
+//    private:
+//        T t_;
+//    };
+//
+//    std::unique_ptr<ICallable> callable_;
+};
 
 
 

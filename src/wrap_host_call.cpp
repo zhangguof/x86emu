@@ -545,13 +545,7 @@ void HostCallerBase::init()
 
 void HostCallerBase::init_funcs()
 {
-    DEF_USER_HOST_CALL(HostCallerBase,base_test_func);
-}
-
-uint64_t HostCallerBase::wrap_base_test_func(uint64_t* args)
-{
-    printf("in HostCallerBase::wrap_base_test_func!\n");
-    return 0;
+//    DEF_USER_HOST_CALL(HostCallerBase,base_test_func);
 }
 
 
@@ -577,6 +571,8 @@ uint64_t wrap_test_func(uint64_t* args)
     }
     
 }
+
+
 
 
 
