@@ -253,5 +253,8 @@ class LoadLib:public HostCallerBase
 		DEF_STD_USER_HOST_CALL(LoadLib, GetModuleFileNameW,12);
     }
 };
+void init_caller_LoadLib()
+{
+    static LoadLib load_lib;
+}
 
-static LoadLib load_lib;

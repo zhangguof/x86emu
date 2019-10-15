@@ -219,8 +219,11 @@ void winMem::init_funcs()
 	DEF_STD_USER_HOST_CALL(winMem, VirtualFree,12);
     DEF_STD_USER_HOST_CALL(winMem, VirtualQuery,12);
 }
+void init_caller_winMem()
+{
+    static winMem win_mem;
 
-static winMem win_mem;
+}
 
 
 

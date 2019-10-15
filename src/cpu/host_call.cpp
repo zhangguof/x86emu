@@ -55,6 +55,8 @@ std::unordered_map<uint32_t,HOST_FUN_C*> host_call_hash_tbl;
 //typedef std::unordered_map<uint32_t, HOST_FUN_C*> HostCallTbl_t;
 //HostCallTbl_t* p_user_host_call_tbl = nullptr;
 
+extern void init_caller_objs();
+
 void init_host_call_tbl()
 {
     host_call_hash_tbl.clear();
@@ -64,6 +66,8 @@ void init_host_call_tbl()
         auto pt = host_func_table + i;
         host_call_hash_tbl[pt->idx] = pt;
     }
+    LOG_DEBUG("try init caller objs!\n");
+    init_caller_objs();
 }
 
 

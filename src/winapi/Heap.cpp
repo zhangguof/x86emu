@@ -246,5 +246,8 @@ void winHeap::init_funcs()
     DEF_STD_USER_HOST_CALL(winHeap, LocalFree,4);
 }
 
+void init_caller_winHeap()
+{
+    static winHeap win_heap;
+}
 
-static winHeap win_heap;

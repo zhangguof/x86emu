@@ -150,5 +150,7 @@ void winEvent::init_funcs()
 	DEF_STD_USER_HOST_CALL(winEvent, ResetEvent,4);
 }
 
-
-static winEvent win_event;
+void init_caller_winEvent()
+{
+    static winEvent win_event;
+}

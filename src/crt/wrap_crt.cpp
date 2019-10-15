@@ -565,8 +565,10 @@ DEF_HOST_FUNC(WrapCRT,setlocale)
     return 0;
 }
 
+void init_caller_WrapCRT()
+{
+    static WrapCRT wrap_crt;
+}
 
 
-
-WrapCRT wrap_crt;
 

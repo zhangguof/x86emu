@@ -87,7 +87,10 @@ DEF_HOST_FUNC(winEncodePointer, DecodePointer)
     return 0;
 }
 
-static winEncodePointer win_ep;
+void init_caller_winEncodePointer()
+{
+    static winEncodePointer win_ep;
+}
 
 
 

@@ -242,4 +242,8 @@ void SysTime::init_funcs()
     DEF_STD_USER_HOST_CALL(SysTime,GetProcessTimes,20);
 }
 
-static SysTime sys_time;
+void init_caller_SysTime()
+{
+    static SysTime sys_time;
+}
+

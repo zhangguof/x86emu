@@ -17,7 +17,7 @@
 #undef WINAPI
 #define WINAPI
 
-class winStrnigs:public HostCallerBase
+class winStrings:public HostCallerBase
 {
 #undef DECLARE_CRT_EXPORT
 #define DECLARE_CRT_EXPORT(name,func)\
@@ -39,15 +39,15 @@ static uint64_t wrap_##func(uint64_t* args);
 #define DEF_HOST_FUNC(cls,func) \
 uint64_t cls::wrap_##func(uint64_t* args)
 
-void winStrnigs::init_funcs()
+void winStrings::init_funcs()
 {
-    DEF_STD_USER_HOST_CALL(winStrnigs, MultiByteToWideChar,24);
-	DEF_STD_USER_HOST_CALL(winStrnigs, WideCharToMultiByte,32);
-	DEF_STD_USER_HOST_CALL(winStrnigs, GetStringTypeA,20);
-	DEF_STD_USER_HOST_CALL(winStrnigs, GetStringTypeW,16);
-	DEF_STD_USER_HOST_CALL(winStrnigs, RtlInitUnicodeString,8);
-	DEF_STD_USER_HOST_CALL(winStrnigs, UuidFromStringW,8);
-	DEF_STD_USER_HOST_CALL(winStrnigs, UuidCreate,4);
+    DEF_STD_USER_HOST_CALL(winStrings, MultiByteToWideChar,24);
+	DEF_STD_USER_HOST_CALL(winStrings, WideCharToMultiByte,32);
+	DEF_STD_USER_HOST_CALL(winStrings, GetStringTypeA,20);
+	DEF_STD_USER_HOST_CALL(winStrings, GetStringTypeW,16);
+	DEF_STD_USER_HOST_CALL(winStrings, RtlInitUnicodeString,8);
+	DEF_STD_USER_HOST_CALL(winStrings, UuidFromStringW,8);
+	DEF_STD_USER_HOST_CALL(winStrings, UuidCreate,4);
 }
 
 #define MB_ERR_INVALID_CHARS 8
@@ -94,7 +94,7 @@ STATIC int WINAPI MultiByteToWideChar(UINT CodePage, DWORD  dwFlags, PCHAR lpMul
     return i;
 }
 //STATIC int WINAPI MultiByteToWideChar(UINT CodePage, DWORD  dwFlags, PCHAR lpMultiByteStr, int cbMultiByte, PUSHORT lpWideCharStr, int cchWideChar)
-DEF_HOST_FUNC(winStrnigs, MultiByteToWideChar)
+DEF_HOST_FUNC(winStrings, MultiByteToWideChar)
 {
     if(is_cpu_mode32())
     {
@@ -161,7 +161,7 @@ STATIC int WINAPI WideCharToMultiByte(UINT CodePage, DWORD dwFlags, PVOID lpWide
 }
 //STATIC int WINAPI WideCharToMultiByte(UINT CodePage, DWORD dwFlags, PVOID lpWideCharStr, int cchWideChar, PVOID lpMultiByteStr, int cbMultiByte, PVOID lpDefaultChar, PVOID lpUsedDefaultChar)
 
-DEF_HOST_FUNC(winStrnigs, WideCharToMultiByte)
+DEF_HOST_FUNC(winStrings, WideCharToMultiByte)
 {
     if(is_cpu_mode32())
     {
@@ -204,7 +204,7 @@ STATIC BOOL WINAPI GetStringTypeA(DWORD locale, DWORD dwInfoType, PUSHORT lpSrcS
     return FALSE;
 }
 
-DEF_HOST_FUNC(winStrnigs, GetStringTypeA)
+DEF_HOST_FUNC(winStrings, GetStringTypeA)
 {
     if(is_cpu_mode32())
     {
@@ -243,7 +243,7 @@ STATIC BOOL WINAPI GetStringTypeW(DWORD dwInfoType, PUSHORT lpSrcStr, int cchSrc
     return FALSE;
 }
 
-DEF_HOST_FUNC(winStrnigs, GetStringTypeW)
+DEF_HOST_FUNC(winStrings, GetStringTypeW)
 {
     if(is_cpu_mode32())
     {
@@ -275,7 +275,7 @@ STATIC VOID WINAPI RtlInitUnicodeString(PUNICODE_STRING DestinationString, PWCHA
     DestinationString->Buffer = (PWCHAR)guest_src_addr;
 }
 
-DEF_HOST_FUNC(winStrnigs, RtlInitUnicodeString)
+DEF_HOST_FUNC(winStrings, RtlInitUnicodeString)
 {
     if(is_cpu_mode32())
     {
@@ -307,7 +307,7 @@ STATIC PVOID WINAPI UuidFromStringW(PUSHORT StringUuid, PBYTE Uuid)
     return 0;
 }
 
-DEF_HOST_FUNC(winStrnigs, UuidFromStringW)
+DEF_HOST_FUNC(winStrings, UuidFromStringW)
 {
     if(is_cpu_mode32())
     {
@@ -338,7 +338,7 @@ STATIC INT WINAPI UuidCreate(PBYTE Uuid)
     return 0;
 }
 
-DEF_HOST_FUNC(winStrnigs, UuidCreate)
+DEF_HOST_FUNC(winStrings, UuidCreate)
 {
     if(is_cpu_mode32())
     {
@@ -354,5 +354,8 @@ DEF_HOST_FUNC(winStrnigs, UuidCreate)
     return 0;
 }
 
+void init_caller_winStrings()
+{
+    static winStrings win_str;
+}
 
-static winStrnigs win_str;

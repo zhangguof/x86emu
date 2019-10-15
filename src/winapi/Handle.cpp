@@ -86,5 +86,8 @@ void winHandle::init_funcs()
     DEF_STD_USER_HOST_CALL(winHandle,DuplicateHandle,28);
     DEF_STD_USER_HOST_CALL(winHandle,SetHandleCount,4);
 }
+void init_caller_winHandle()
+{
+    static winHandle win_h;
+}
 
-static winHandle win_h;

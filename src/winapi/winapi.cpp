@@ -202,4 +202,7 @@ void WinApi::init_funcs()
     DEF_STD_USER_HOST_CALL(WinApi,Sleep, 4);
 }
 
-static WinApi win_api;
+void init_caller_WinApi()
+{
+    static WinApi win_api;
+}

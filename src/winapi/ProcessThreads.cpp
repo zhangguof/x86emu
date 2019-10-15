@@ -667,7 +667,12 @@ void winProcessThreads::init_funcs()
 
 }
 
-static winProcessThreads win_pt;
+void init_caller_winProcessThreads()
+{
+    static winProcessThreads win_pt;
+
+}
+
 
 
 
