@@ -10,19 +10,301 @@
 		EA0363EE233A550B0071CD87 /* wrap_guest_call.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA0363EC233A550B0071CD87 /* wrap_guest_call.cpp */; };
 		EA0363F1233CF6CF0071CD87 /* WrapPointer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA0363EF233CF6CF0071CD87 /* WrapPointer.cpp */; };
 		EA0363F4233E22350071CD87 /* WrapCls.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA0363F2233E22350071CD87 /* WrapCls.cpp */; };
-		EA0ABB13231E896600EBC68C /* hcreate_r.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD73E2317DDA30038057E /* hcreate_r.c */; };
-		EA0ABB14231E897100EBC68C /* siphash24.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD7422317F4700038057E /* siphash24.c */; };
-		EA0ABB15231E897100EBC68C /* hdestroy_r.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD73F2317DDA30038057E /* hdestroy_r.c */; };
-		EA0ABB16231E897100EBC68C /* load_dll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72623155B190038057E /* load_dll.cpp */; };
-		EA0ABB17231E897100EBC68C /* crt.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72F2317D1D40038057E /* crt.c */; };
-		EA0ABB18231E897100EBC68C /* pe_linker.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72B2317D1D40038057E /* pe_linker.c */; };
-		EA0ABB19231E897100EBC68C /* hsearch_r.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD73A2317DC7C0038057E /* hsearch_r.c */; };
-		EA0ABB1A231E897100EBC68C /* winstrings.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72C2317D1D40038057E /* winstrings.c */; };
-		EA0ABB1B231E8A2500EBC68C /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD720231524740038057E /* logger.cpp */; };
 		EA0ABB1D231E8CCA00EBC68C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB724082306AE55000019F0 /* main.cpp */; };
 		EA326674231EF4650026184F /* wrap_host_call.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA326672231EF4650026184F /* wrap_host_call.cpp */; };
 		EA326679231FF8E20026184F /* wrap_crt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA326677231FF8E20026184F /* wrap_crt.cpp */; };
 		EA326683232178A90026184F /* wrap_gen_code.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA32667D232171760026184F /* wrap_gen_code.cpp */; };
+		EA4C4D022355A9B80098124D /* x86loader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = EA4C4D012355A9B80098124D /* x86loader.hpp */; };
+		EA4C4D042355A9B80098124D /* x86loaderPriv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = EA4C4D032355A9B80098124D /* x86loaderPriv.hpp */; };
+		EA4C4D062355A9B80098124D /* x86loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4C4D052355A9B80098124D /* x86loader.cpp */; };
+		EA4C4D0A2355AA440098124D /* CriticalSection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84932334FFF900F89DFA /* CriticalSection.cpp */; };
+		EA4C4D0B2355AAAA0098124D /* SystemTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E849D2337AA7900F89DFA /* SystemTime.cpp */; };
+		EA4C4D0D2355AAAA0098124D /* EncodePointer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84BB2339003900F89DFA /* EncodePointer.cpp */; };
+		EA4C4D1C2355AAAA0098124D /* Handle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84A92338920F00F89DFA /* Handle.cpp */; };
+		EA4C4D1D2355AAAA0098124D /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84A52338812900F89DFA /* Event.cpp */; };
+		EA4C4D1E2355AAAA0098124D /* Heap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E849F23385BFC00F89DFA /* Heap.cpp */; };
+		EA4C4D1F2355AAAA0098124D /* Memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84A023385BFC00F89DFA /* Memory.cpp */; };
+		EA4C4D202355AAAA0098124D /* Strings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84A123385BFD00F89DFA /* Strings.cpp */; };
+		EA4C4D212355AAAA0098124D /* GetLastError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84952335025400F89DFA /* GetLastError.cpp */; };
+		EA4C4D222355AAAA0098124D /* ProcessThreads.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84A72338865200F89DFA /* ProcessThreads.cpp */; };
+		EA4C4D232355AAAA0098124D /* LoadLibrary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E849B23373A3700F89DFA /* LoadLibrary.cpp */; };
+		EA4C4D242355AAAA0098124D /* TlsAlloc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E8497233504A300F89DFA /* TlsAlloc.cpp */; };
+		EA4C4D252355AAAA0098124D /* winapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E848F2332119500F89DFA /* winapi.cpp */; };
+		EA4C4D262355AAB70098124D /* wrap_gen_code.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA32667D232171760026184F /* wrap_gen_code.cpp */; };
+		EA4C4D272355AABD0098124D /* __v_printf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAAEBDB52324F21D0084BFFD /* __v_printf.cpp */; };
+		EA4C4D282355AABD0098124D /* vsnprintf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAAEBDB62324F21D0084BFFD /* vsnprintf.cpp */; };
+		EA4C4D292355AABD0098124D /* vsprintf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAAEBDB72324F21D0084BFFD /* vsprintf.cpp */; };
+		EA4C4D2A2355AABD0098124D /* wrap_crt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA326677231FF8E20026184F /* wrap_crt.cpp */; };
+		EA4C4D2B2355AAC00098124D /* wrap_host_call.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA326672231EF4650026184F /* wrap_host_call.cpp */; };
+		EA4C4D2C2355AAC30098124D /* load_dll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72623155B190038057E /* load_dll.cpp */; };
+		EA4C4D2D2355AAC30098124D /* load_dll32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA8C4E4523229C110041FB08 /* load_dll32.cpp */; };
+		EA4C4D2E2355AAC70098124D /* host_sys_call.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB72820230BEEAF000019F0 /* host_sys_call.cpp */; };
+		EA4C4D2F2355AAC70098124D /* linux_sys_call_imp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB72824230BFAE5000019F0 /* linux_sys_call_imp.cpp */; };
+		EA4C4D302355AACB0098124D /* load_elf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB72809230944B2000019F0 /* load_elf.cpp */; };
+		EA4C4D312355AACB0098124D /* load_so.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAEA8CB2230F199400F8BEBD /* load_so.cpp */; };
+		EA4C4D332355AAD80098124D /* x86.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB724072306AE55000019F0 /* x86.cpp */; };
+		EA4C4D342355AAD80098124D /* engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB72819230ADD36000019F0 /* engine.cpp */; };
+		EA4C4D352355AAD80098124D /* mmu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB7281623098CA4000019F0 /* mmu.cpp */; };
+		EA4C4D362355AAD80098124D /* host_call.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAB7281D230ADFDC000019F0 /* host_call.cpp */; };
+		EA4C4D372355AADE0098124D /* wrap_guest_call.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA0363EC233A550B0071CD87 /* wrap_guest_call.cpp */; };
+		EA4C4D382355AAE20098124D /* WrapPointer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA0363EF233CF6CF0071CD87 /* WrapPointer.cpp */; };
+		EA4C4D392355AAE60098124D /* buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAEA8CB523119C8800F8BEBD /* buffer.cpp */; };
+		EA4C4D3A2355AAE90098124D /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD720231524740038057E /* logger.cpp */; };
+		EA4C4D4D2355AD2A0098124D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4C4D4C2355AD2A0098124D /* main.cpp */; };
+		EA4C4D512355AE170098124D /* libx86loader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4C4CFF2355A9B80098124D /* libx86loader.a */; };
+		EA4C4D522355AE310098124D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4E848B232F207900F89DFA /* libz.tbd */; };
+		EA4C4D552355AF5D0098124D /* main.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7240A2306AE55000019F0 /* main.cc */; };
+		EA4C4D562355AF5D0098124D /* osdep.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7241F2306AE55000019F0 /* osdep.cc */; };
+		EA4C4D572355AF610098124D /* misc_mem.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724262306AE55000019F0 /* misc_mem.cc */; };
+		EA4C4D582355AF610098124D /* memory.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724282306AE55000019F0 /* memory.cc */; };
+		EA4C4D592355AF630098124D /* logio.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724292306AE55000019F0 /* logio.cc */; };
+		EA4C4D5A2355AF670098124D /* load32bitOShack.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7242A2306AE55000019F0 /* load32bitOShack.cc */; };
+		EA4C4D5B2355AF6D0098124D /* instrument.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7242E2306AE55000019F0 /* instrument.cc */; };
+		EA4C4D5C2355AF7B0098124D /* proc_ctrl.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724402306AE55000019F0 /* proc_ctrl.cc */; };
+		EA4C4D5D2355AF7B0098124D /* load.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724412306AE55000019F0 /* load.cc */; };
+		EA4C4D5E2355AF7B0098124D /* init.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724422306AE55000019F0 /* init.cc */; };
+		EA4C4D5F2355AF7B0098124D /* soft_int.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724432306AE55000019F0 /* soft_int.cc */; };
+		EA4C4D602355AF7B0098124D /* generic_cpuid.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724452306AE55000019F0 /* generic_cpuid.cc */; };
+		EA4C4D612355AF7B0098124D /* svm.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724462306AE55000019F0 /* svm.cc */; };
+		EA4C4D622355AF7B0098124D /* flag_ctrl.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724472306AE55000019F0 /* flag_ctrl.cc */; };
+		EA4C4D632355AF7B0098124D /* data_xfer64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724482306AE55000019F0 /* data_xfer64.cc */; };
+		EA4C4D642355AF7B0098124D /* mult16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724492306AE55000019F0 /* mult16.cc */; };
+		EA4C4D652355AF7B0098124D /* mult32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7244A2306AE55000019F0 /* mult32.cc */; };
+		EA4C4D662355AF7B0098124D /* string.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7244B2306AE55000019F0 /* string.cc */; };
+		EA4C4D672355AF7B0098124D /* logical64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7244D2306AE55000019F0 /* logical64.cc */; };
+		EA4C4D682355AF7B0098124D /* bcd.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7244E2306AE55000019F0 /* bcd.cc */; };
+		EA4C4D692355AF7B0098124D /* rdrand.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7244F2306AE55000019F0 /* rdrand.cc */; };
+		EA4C4D6A2355AF7B0098124D /* bit64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724502306AE55000019F0 /* bit64.cc */; };
+		EA4C4D6B2355AF7B0098124D /* sse_pfp.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724512306AE55000019F0 /* sse_pfp.cc */; };
+		EA4C4D6C2355AF810098124D /* corei7_haswell_4770.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724562306AE55000019F0 /* corei7_haswell_4770.cc */; };
+		EA4C4D6D2355AF810098124D /* core_duo_t2400_yonah.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724582306AE55000019F0 /* core_duo_t2400_yonah.cc */; };
+		EA4C4D6E2355AF810098124D /* corei7_ivy_bridge_3770K.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7245E2306AE55000019F0 /* corei7_ivy_bridge_3770K.cc */; };
+		EA4C4D6F2355AF810098124D /* broadwell_ult.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724652306AE55000019F0 /* broadwell_ult.cc */; };
+		EA4C4D702355AF810098124D /* pentium.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724692306AE55000019F0 /* pentium.cc */; };
+		EA4C4D712355AF810098124D /* atom_n270.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7246B2306AE55000019F0 /* atom_n270.cc */; };
+		EA4C4D722355AF810098124D /* corei5_arrandale_m520.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7246C2306AE55000019F0 /* corei5_arrandale_m520.cc */; };
+		EA4C4D732355AF810098124D /* pentium_mmx.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7246D2306AE55000019F0 /* pentium_mmx.cc */; };
+		EA4C4D742355AF810098124D /* corei5_lynnfield_750.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724712306AE55000019F0 /* corei5_lynnfield_750.cc */; };
+		EA4C4D752355AF810098124D /* p3_katmai.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724742306AE55000019F0 /* p3_katmai.cc */; };
+		EA4C4D762355AF810098124D /* core2_penryn_t9600.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724752306AE55000019F0 /* core2_penryn_t9600.cc */; };
+		EA4C4D772355AF810098124D /* p2_klamath.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724762306AE55000019F0 /* p2_klamath.cc */; };
+		EA4C4D782355AF810098124D /* corei7_sandy_bridge_2600K.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7247E2306AE55000019F0 /* corei7_sandy_bridge_2600K.cc */; };
+		EA4C4D792355AF810098124D /* p4_willamette.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7247F2306AE55000019F0 /* p4_willamette.cc */; };
+		EA4C4D7A2355AF810098124D /* p4_prescott_celeron_336.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724802306AE55000019F0 /* p4_prescott_celeron_336.cc */; };
+		EA4C4D7B2355AF860098124D /* amd_k6_2_chomper.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724852306AE55000019F0 /* amd_k6_2_chomper.cc */; };
+		EA4C4D7C2355AF860098124D /* trinity_apu.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7248E2306AE55000019F0 /* trinity_apu.cc */; };
+		EA4C4D7D2355AF860098124D /* phenomx3_8650_toliman.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7248F2306AE55000019F0 /* phenomx3_8650_toliman.cc */; };
+		EA4C4D7E2355AF860098124D /* athlon64_clawhammer.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724912306AE55000019F0 /* athlon64_clawhammer.cc */; };
+		EA4C4D7F2355AF860098124D /* ryzen.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724922306AE55000019F0 /* ryzen.cc */; };
+		EA4C4D802355AF860098124D /* athlon64_venice.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724932306AE55000019F0 /* athlon64_venice.cc */; };
+		EA4C4D812355AF860098124D /* zambezi.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724962306AE55000019F0 /* zambezi.cc */; };
+		EA4C4D822355AF860098124D /* turion64_tyler.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724982306AE55000019F0 /* turion64_tyler.cc */; };
+		EA4C4D832355AF8A0098124D /* mmx.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7249D2306AE55000019F0 /* mmx.cc */; };
+		EA4C4D842355AF8A0098124D /* stack64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7249E2306AE55000019F0 /* stack64.cc */; };
+		EA4C4D852355AF8A0098124D /* paging.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724A02306AE55000019F0 /* paging.cc */; };
+		EA4C4D862355AF8A0098124D /* arith32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724A22306AE55000019F0 /* arith32.cc */; };
+		EA4C4D872355AF8A0098124D /* ctrl_xfer16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724A32306AE55000019F0 /* ctrl_xfer16.cc */; };
+		EA4C4D882355AF8A0098124D /* mult8.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724A42306AE55000019F0 /* mult8.cc */; };
+		EA4C4D892355AF8A0098124D /* vmexit.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724A72306AE55000019F0 /* vmexit.cc */; };
+		EA4C4D8A2355AF8A0098124D /* iret.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724A82306AE55000019F0 /* iret.cc */; };
+		EA4C4D8B2355AF8A0098124D /* sha.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724A92306AE55000019F0 /* sha.cc */; };
+		EA4C4D8C2355AF8A0098124D /* arith16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724AA2306AE55000019F0 /* arith16.cc */; };
+		EA4C4D8D2355AF8A0098124D /* ctrl_xfer32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724AB2306AE55000019F0 /* ctrl_xfer32.cc */; };
+		EA4C4D8E2355AF8A0098124D /* bmi32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724AF2306AE55000019F0 /* bmi32.cc */; };
+		EA4C4D8F2355AF900098124D /* fetchdecode32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724B82306AE55000019F0 /* fetchdecode32.cc */; };
+		EA4C4D902355AF900098124D /* fetchdecode64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724BD2306AE55000019F0 /* fetchdecode64.cc */; };
+		EA4C4D912355AF900098124D /* disasm.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724BF2306AE55000019F0 /* disasm.cc */; };
+		EA4C4D922355AF960098124D /* vmfunc.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724C02306AE55000019F0 /* vmfunc.cc */; };
+		EA4C4D932355AF960098124D /* protect_ctrl.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724C32306AE55000019F0 /* protect_ctrl.cc */; };
+		EA4C4D942355AF960098124D /* bit.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724C42306AE55000019F0 /* bit.cc */; };
+		EA4C4D952355AF960098124D /* shift64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724C62306AE55000019F0 /* shift64.cc */; };
+		EA4C4D962355AF960098124D /* stack.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724C72306AE55000019F0 /* stack.cc */; };
+		EA4C4D972355AF960098124D /* icache.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724C82306AE55000019F0 /* icache.cc */; };
+		EA4C4D982355AF960098124D /* segment_ctrl.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724C92306AE55000019F0 /* segment_ctrl.cc */; };
+		EA4C4D992355AF960098124D /* crc32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724CA2306AE55000019F0 /* crc32.cc */; };
+		EA4C4D9A2355AF960098124D /* ret_far.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724CD2306AE55000019F0 /* ret_far.cc */; };
+		EA4C4D9B2355AF960098124D /* data_xfer8.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724CE2306AE55000019F0 /* data_xfer8.cc */; };
+		EA4C4D9C2355AF960098124D /* ctrl_xfer_pro.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724CF2306AE55000019F0 /* ctrl_xfer_pro.cc */; };
+		EA4C4D9D2355AF960098124D /* flag_ctrl_pro.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D02306AE55000019F0 /* flag_ctrl_pro.cc */; };
+		EA4C4D9E2355AF960098124D /* cpu.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D12306AE55000019F0 /* cpu.cc */; };
+		EA4C4D9F2355AF960098124D /* xsave.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D22306AE55000019F0 /* xsave.cc */; };
+		EA4C4DA02355AF960098124D /* io.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D32306AE55000019F0 /* io.cc */; };
+		EA4C4DA12355AF960098124D /* shift16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D42306AE55000019F0 /* shift16.cc */; };
+		EA4C4DA22355AF960098124D /* bmi64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D52306AE55000019F0 /* bmi64.cc */; };
+		EA4C4DA32355AF960098124D /* vm8086.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D62306AE55000019F0 /* vm8086.cc */; };
+		EA4C4DA42355AF960098124D /* debugstuff.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D72306AE55000019F0 /* debugstuff.cc */; };
+		EA4C4DA52355AF960098124D /* jmp_far.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D82306AE55000019F0 /* jmp_far.cc */; };
+		EA4C4DA62355AF960098124D /* shift32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724D92306AE55000019F0 /* shift32.cc */; };
+		EA4C4DA72355AF960098124D /* aes.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724DA2306AE55000019F0 /* aes.cc */; };
+		EA4C4DA82355AF960098124D /* logical8.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724DB2306AE55000019F0 /* logical8.cc */; };
+		EA4C4DA92355AF960098124D /* call_far.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724DC2306AE55000019F0 /* call_far.cc */; };
+		EA4C4DAA2355AF9C0098124D /* avx512_mask16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724DF2306AE55000019F0 /* avx512_mask16.cc */; };
+		EA4C4DAB2355AF9C0098124D /* avx_cvt.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724E02306AE55000019F0 /* avx_cvt.cc */; };
+		EA4C4DAC2355AF9C0098124D /* avx512_mask32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724E12306AE55000019F0 /* avx512_mask32.cc */; };
+		EA4C4DAD2355AF9C0098124D /* avx512_pfp.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724E22306AE55000019F0 /* avx512_pfp.cc */; };
+		EA4C4DAE2355AF9C0098124D /* avx512_rcp14.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724E32306AE55000019F0 /* avx512_rcp14.cc */; };
+		EA4C4DAF2355AF9C0098124D /* avx512.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724E42306AE55000019F0 /* avx512.cc */; };
+		EA4C4DB02355AF9C0098124D /* avx512_mask8.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724E62306AE55000019F0 /* avx512_mask8.cc */; };
+		EA4C4DB12355AF9C0098124D /* avx2.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724E72306AE55000019F0 /* avx2.cc */; };
+		EA4C4DB22355AF9C0098124D /* avx_pfp.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724E82306AE55000019F0 /* avx_pfp.cc */; };
+		EA4C4DB32355AF9C0098124D /* avx512_move.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724E92306AE55000019F0 /* avx512_move.cc */; };
+		EA4C4DB42355AF9C0098124D /* avx512_cvt.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724EA2306AE55000019F0 /* avx512_cvt.cc */; };
+		EA4C4DB52355AF9C0098124D /* tbm32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724EB2306AE55000019F0 /* tbm32.cc */; };
+		EA4C4DB62355AF9C0098124D /* tbm64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724EC2306AE55000019F0 /* tbm64.cc */; };
+		EA4C4DB72355AF9C0098124D /* avx512_fma.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724ED2306AE55000019F0 /* avx512_fma.cc */; };
+		EA4C4DB82355AF9C0098124D /* xop.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724EE2306AE55000019F0 /* xop.cc */; };
+		EA4C4DB92355AF9C0098124D /* avx512_rsqrt14.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724EF2306AE55000019F0 /* avx512_rsqrt14.cc */; };
+		EA4C4DBA2355AF9C0098124D /* gather.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724F02306AE55000019F0 /* gather.cc */; };
+		EA4C4DBB2355AF9C0098124D /* avx.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724F12306AE55000019F0 /* avx.cc */; };
+		EA4C4DBC2355AF9C0098124D /* avx512_conflict.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724F22306AE55000019F0 /* avx512_conflict.cc */; };
+		EA4C4DBD2355AF9C0098124D /* avx_fma.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724F42306AE55000019F0 /* avx_fma.cc */; };
+		EA4C4DBE2355AF9C0098124D /* avx512_mask64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724F52306AE55000019F0 /* avx512_mask64.cc */; };
+		EA4C4DBF2355AFA10098124D /* cpuid.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724F62306AE55000019F0 /* cpuid.cc */; };
+		EA4C4DC02355AFA10098124D /* sse.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724F72306AE55000019F0 /* sse.cc */; };
+		EA4C4DC12355AFA10098124D /* msr.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724FA2306AE55000019F0 /* msr.cc */; };
+		EA4C4DC22355AFA10098124D /* access.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724FB2306AE55000019F0 /* access.cc */; };
+		EA4C4DC32355AFA10098124D /* vapic.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724FC2306AE55000019F0 /* vapic.cc */; };
+		EA4C4DC42355AFA10098124D /* arith64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724FD2306AE55000019F0 /* arith64.cc */; };
+		EA4C4DC52355AFA10098124D /* sse_string.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724FE2306AE55000019F0 /* sse_string.cc */; };
+		EA4C4DC62355AFA10098124D /* 3dnow.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB724FF2306AE55000019F0 /* 3dnow.cc */; };
+		EA4C4DC72355AFA10098124D /* ctrl_xfer64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725002306AE55000019F0 /* ctrl_xfer64.cc */; };
+		EA4C4DC82355AFA10098124D /* fpu_emu.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725022306AE55000019F0 /* fpu_emu.cc */; };
+		EA4C4DC92355AFA10098124D /* stack32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725032306AE55000019F0 /* stack32.cc */; };
+		EA4C4DCA2355AFA10098124D /* stack16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725042306AE55000019F0 /* stack16.cc */; };
+		EA4C4DCB2355AFA10098124D /* exception.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725062306AE55000019F0 /* exception.cc */; };
+		EA4C4DCC2355AFA10098124D /* event.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725072306AE55000019F0 /* event.cc */; };
+		EA4C4DCD2355AFA10098124D /* logical32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725082306AE55000019F0 /* logical32.cc */; };
+		EA4C4DCE2355AFA10098124D /* sse_rcp.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7250A2306AE55000019F0 /* sse_rcp.cc */; };
+		EA4C4DCF2355AFA10098124D /* bit16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7250B2306AE55000019F0 /* bit16.cc */; };
+		EA4C4DD02355AFA10098124D /* access2.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7250C2306AE55000019F0 /* access2.cc */; };
+		EA4C4DD12355AFA10098124D /* apic.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7250D2306AE55000019F0 /* apic.cc */; };
+		EA4C4DD22355AFA10098124D /* bit32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7250E2306AE55000019F0 /* bit32.cc */; };
+		EA4C4DD32355AFA10098124D /* logical16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7250F2306AE55000019F0 /* logical16.cc */; };
+		EA4C4DD42355AFA10098124D /* crregs.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725102306AE55000019F0 /* crregs.cc */; };
+		EA4C4DD52355AFA10098124D /* arith8.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725112306AE55000019F0 /* arith8.cc */; };
+		EA4C4DD62355AFA10098124D /* data_xfer32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725122306AE55000019F0 /* data_xfer32.cc */; };
+		EA4C4DD72355AFA70098124D /* fpu_cmov.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725152306AE55000019F0 /* fpu_cmov.cc */; };
+		EA4C4DD82355AFA70098124D /* fpu_misc.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725162306AE55000019F0 /* fpu_misc.cc */; };
+		EA4C4DD92355AFA70098124D /* fpu.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725192306AE55000019F0 /* fpu.cc */; };
+		EA4C4DDA2355AFA70098124D /* fyl2x.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7251A2306AE55000019F0 /* fyl2x.cc */; };
+		EA4C4DDB2355AFA70098124D /* softfloat-muladd.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7251C2306AE55000019F0 /* softfloat-muladd.cc */; };
+		EA4C4DDC2355AFA70098124D /* softfloatx80.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7251D2306AE55000019F0 /* softfloatx80.cc */; };
+		EA4C4DDD2355AFA70098124D /* fpu_load_store.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7251F2306AE55000019F0 /* fpu_load_store.cc */; };
+		EA4C4DDE2355AFA70098124D /* fprem.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725202306AE55000019F0 /* fprem.cc */; };
+		EA4C4DDF2355AFA70098124D /* softfloat.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725212306AE55000019F0 /* softfloat.cc */; };
+		EA4C4DE02355AFA70098124D /* fpu_compare.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725232306AE55000019F0 /* fpu_compare.cc */; };
+		EA4C4DE12355AFA80098124D /* fpatan.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725242306AE55000019F0 /* fpatan.cc */; };
+		EA4C4DE22355AFA80098124D /* softfloat16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725262306AE55000019F0 /* softfloat16.cc */; };
+		EA4C4DE32355AFA80098124D /* poly.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725282306AE55000019F0 /* poly.cc */; };
+		EA4C4DE42355AFA80098124D /* softfloat-round-pack.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725292306AE55000019F0 /* softfloat-round-pack.cc */; };
+		EA4C4DE52355AFA80098124D /* fpu_const.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7252A2306AE55000019F0 /* fpu_const.cc */; };
+		EA4C4DE62355AFA80098124D /* f2xm1.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7252B2306AE55000019F0 /* f2xm1.cc */; };
+		EA4C4DE72355AFA80098124D /* fsincos.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7252C2306AE55000019F0 /* fsincos.cc */; };
+		EA4C4DE82355AFA80098124D /* fpu_arith.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725302306AE55000019F0 /* fpu_arith.cc */; };
+		EA4C4DE92355AFA80098124D /* fpu_trans.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725312306AE55000019F0 /* fpu_trans.cc */; };
+		EA4C4DEA2355AFA80098124D /* softfloat-specialize.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725342306AE55000019F0 /* softfloat-specialize.cc */; };
+		EA4C4DEB2355AFA80098124D /* ferr.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725352306AE55000019F0 /* ferr.cc */; };
+		EA4C4DEC2355AFA80098124D /* vmx.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725372306AE55000019F0 /* vmx.cc */; };
+		EA4C4DED2355AFA80098124D /* mult64.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725382306AE55000019F0 /* mult64.cc */; };
+		EA4C4DEE2355AFA80098124D /* data_xfer16.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725392306AE55000019F0 /* data_xfer16.cc */; };
+		EA4C4DEF2355AFA80098124D /* vmcs.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7253A2306AE55000019F0 /* vmcs.cc */; };
+		EA4C4DF02355AFA80098124D /* sse_move.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7253B2306AE55000019F0 /* sse_move.cc */; };
+		EA4C4DF12355AFA80098124D /* segment_ctrl_pro.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7253C2306AE55000019F0 /* segment_ctrl_pro.cc */; };
+		EA4C4DF22355AFA80098124D /* shift8.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7253E2306AE55000019F0 /* shift8.cc */; };
+		EA4C4DF32355AFA80098124D /* smm.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7253F2306AE55000019F0 /* smm.cc */; };
+		EA4C4DF42355AFA80098124D /* tasking.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725402306AE55000019F0 /* tasking.cc */; };
+		EA4C4DF52355AFAC0098124D /* dis_decode.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725482306AE55000019F0 /* dis_decode.cc */; };
+		EA4C4DF62355AFAC0098124D /* syntax.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725492306AE55000019F0 /* syntax.cc */; };
+		EA4C4DF72355AFAC0098124D /* dis_groups.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7254F2306AE55000019F0 /* dis_groups.cc */; };
+		EA4C4DF82355AFAC0098124D /* resolve.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725502306AE55000019F0 /* resolve.cc */; };
+		EA4C4DF92355AFB00098124D /* linux.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725522306AE55000019F0 /* linux.cc */; };
+		EA4C4DFA2355AFB00098124D /* symbols.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725542306AE55000019F0 /* symbols.cc */; };
+		EA4C4DFB2355AFB00098124D /* dbg_main.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7255B2306AE55000019F0 /* dbg_main.cc */; };
+		EA4C4DFC2355AFB30098124D /* plugin.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7255F2306AE55000019F0 /* plugin.cc */; };
+		EA4C4DFD2355AFB30098124D /* pc_system.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725612306AE55000019F0 /* pc_system.cc */; };
+		EA4C4DFE2355AFB70098124D /* parallel.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725652306AE55000019F0 /* parallel.cc */; };
+		EA4C4DFF2355AFB70098124D /* harddrv.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725662306AE55000019F0 /* harddrv.cc */; };
+		EA4C4E002355AFB70098124D /* pit.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7256A2306AE55000019F0 /* pit.cc */; };
+		EA4C4E012355AFBB0098124D /* vmware4.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7256C2306AE55000019F0 /* vmware4.cc */; };
+		EA4C4E022355AFBB0098124D /* hdimage.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7256D2306AE55000019F0 /* hdimage.cc */; };
+		EA4C4E032355AFBB0098124D /* cdrom_win32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7256E2306AE55000019F0 /* cdrom_win32.cc */; };
+		EA4C4E042355AFBB0098124D /* vvfat.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7256F2306AE55000019F0 /* vvfat.cc */; };
+		EA4C4E052355AFBB0098124D /* cdrom_misc.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725762306AE55000019F0 /* cdrom_misc.cc */; };
+		EA4C4E062355AFBB0098124D /* vbox.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725782306AE55000019F0 /* vbox.cc */; };
+		EA4C4E072355AFBB0098124D /* cdrom_osx.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7257B2306AE56000019F0 /* cdrom_osx.cc */; };
+		EA4C4E082355AFBB0098124D /* cdrom_amigaos.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7257C2306AE56000019F0 /* cdrom_amigaos.cc */; };
+		EA4C4E092355AFBB0098124D /* vpc-img.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725822306AE56000019F0 /* vpc-img.cc */; };
+		EA4C4E0A2355AFBB0098124D /* vmware3.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725832306AE56000019F0 /* vmware3.cc */; };
+		EA4C4E0B2355AFBB0098124D /* cdrom.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725842306AE56000019F0 /* cdrom.cc */; };
+		EA4C4E0C2355AFCA0098124D /* slowdown_timer.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725862306AE56000019F0 /* slowdown_timer.cc */; };
+		EA4C4E0D2355AFCF0098124D /* speaker.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725882306AE56000019F0 /* speaker.cc */; };
+		EA4C4E0E2355AFD10098124D /* virt_timer.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7258A2306AE56000019F0 /* virt_timer.cc */; };
+		EA4C4E0F2355AFD80098124D /* floppy.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7258B2306AE56000019F0 /* floppy.cc */; };
+		EA4C4E102355AFDE0098124D /* pit82c54.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7258D2306AE56000019F0 /* pit82c54.cc */; };
+		EA4C4E112355AFDE0098124D /* keyboard.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7258E2306AE56000019F0 /* keyboard.cc */; };
+		EA4C4E122355AFDE0098124D /* acpi.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7258F2306AE56000019F0 /* acpi.cc */; };
+		EA4C4E132355AFDE0098124D /* biosdev.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725912306AE56000019F0 /* biosdev.cc */; };
+		EA4C4E142355AFDE0098124D /* devices.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725922306AE56000019F0 /* devices.cc */; };
+		EA4C4E152355AFDE0098124D /* iodebug.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725932306AE56000019F0 /* iodebug.cc */; };
+		EA4C4E162355AFDE0098124D /* unmapped.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725952306AE56000019F0 /* unmapped.cc */; };
+		EA4C4E172355AFDE0098124D /* pci2isa.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725962306AE56000019F0 /* pci2isa.cc */; };
+		EA4C4E182355AFDE0098124D /* serial_raw.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725982306AE56000019F0 /* serial_raw.cc */; };
+		EA4C4E192355AFDE0098124D /* pic.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725DD2306AE56000019F0 /* pic.cc */; };
+		EA4C4E1A2355AFDE0098124D /* serial.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725DF2306AE56000019F0 /* serial.cc */; };
+		EA4C4E1B2355AFDE0098124D /* extfpuirq.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725E12306AE56000019F0 /* extfpuirq.cc */; };
+		EA4C4E1C2355AFDE0098124D /* busmouse.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB725E22306AE56000019F0 /* busmouse.cc */; };
+		EA4C4E1D2355AFDE0098124D /* pcidev.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726092306AE56000019F0 /* pcidev.cc */; };
+		EA4C4E1E2355AFDE0098124D /* dma.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7260A2306AE56000019F0 /* dma.cc */; };
+		EA4C4E1F2355AFE40098124D /* vga.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7260D2306AE56000019F0 /* vga.cc */; };
+		EA4C4E202355AFE40098124D /* vgacore.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726102306AE56000019F0 /* vgacore.cc */; };
+		EA4C4E212355AFE40098124D /* svga_cirrus.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726152306AE56000019F0 /* svga_cirrus.cc */; };
+		EA4C4E222355AFE40098124D /* voodoo.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7261A2306AE56000019F0 /* voodoo.cc */; };
+		EA4C4E232355AFE80098124D /* pci_ide.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7261D2306AE56000019F0 /* pci_ide.cc */; };
+		EA4C4E242355AFE80098124D /* ioapic.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7263B2306AE56000019F0 /* ioapic.cc */; };
+		EA4C4E252355AFE80098124D /* scancodes.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7263C2306AE56000019F0 /* scancodes.cc */; };
+		EA4C4E262355AFE80098124D /* pci.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7263D2306AE56000019F0 /* pci.cc */; };
+		EA4C4E272355AFE80098124D /* cmos.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726402306AE56000019F0 /* cmos.cc */; };
+		EA4C4E282355AFEF0098124D /* wxdialog.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726422306AE56000019F0 /* wxdialog.cc */; };
+		EA4C4E292355AFEF0098124D /* nogui.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726432306AE56000019F0 /* nogui.cc */; };
+		EA4C4E2A2355AFEF0098124D /* sdl.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726452306AE56000019F0 /* sdl.cc */; };
+		EA4C4E2B2355AFEF0098124D /* wx.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726612306AE56000019F0 /* wx.cc */; };
+		EA4C4E2C2355AFEF0098124D /* textconfig.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726632306AE56000019F0 /* textconfig.cc */; };
+		EA4C4E2D2355AFEF0098124D /* svga.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726642306AE56000019F0 /* svga.cc */; };
+		EA4C4E2E2355AFEF0098124D /* gui.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726682306AE56000019F0 /* gui.cc */; };
+		EA4C4E2F2355AFEF0098124D /* macintosh.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7266A2306AE56000019F0 /* macintosh.cc */; };
+		EA4C4E302355AFEF0098124D /* gtk_enh_dbg_osdep.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7266B2306AE56000019F0 /* gtk_enh_dbg_osdep.cc */; };
+		EA4C4E312355AFEF0098124D /* enh_dbg.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7266E2306AE56000019F0 /* enh_dbg.cc */; };
+		EA4C4E322355AFEF0098124D /* rfb.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726812306AE56000019F0 /* rfb.cc */; };
+		EA4C4E332355AFEF0098124D /* sdl2.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726832306AE56000019F0 /* sdl2.cc */; };
+		EA4C4E342355AFEF0098124D /* term.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726852306AE56000019F0 /* term.cc */; };
+		EA4C4E352355AFEF0098124D /* vncsrv.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726862306AE56000019F0 /* vncsrv.cc */; };
+		EA4C4E362355AFEF0098124D /* keymap.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726882306AE56000019F0 /* keymap.cc */; };
+		EA4C4E372355AFEF0098124D /* x.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726892306AE56000019F0 /* x.cc */; };
+		EA4C4E382355AFEF0098124D /* carbon.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7268A2306AE56000019F0 /* carbon.cc */; };
+		EA4C4E392355AFEF0098124D /* win32.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7268B2306AE56000019F0 /* win32.cc */; };
+		EA4C4E3A2355AFEF0098124D /* siminterface.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7268F2306AE56000019F0 /* siminterface.cc */; };
+		EA4C4E3B2355AFEF0098124D /* paramtree.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726952306AE56000019F0 /* paramtree.cc */; };
+		EA4C4E3C2355AFEF0098124D /* wxmain.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726962306AE56000019F0 /* wxmain.cc */; };
+		EA4C4E3D2355AFEF0098124D /* amigaos.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726982306AE56000019F0 /* amigaos.cc */; };
+		EA4C4E3E2355AFEF0098124D /* scrollwin.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726992306AE56000019F0 /* scrollwin.cc */; };
+		EA4C4E3F2355AFEF0098124D /* win32_enh_dbg_osdep.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB7269B2306AE56000019F0 /* win32_enh_dbg_osdep.cc */; };
+		EA4C4E402355AFFD0098124D /* crc.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726A02306AE56000019F0 /* crc.cc */; };
+		EA4C4E412355AFFD0098124D /* config.cc in Sources */ = {isa = PBXBuildFile; fileRef = EAB726A42306AE56000019F0 /* config.cc */; };
+		EA4C4E422355B03C0098124D /* test_guest_call.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84D223392C2800F89DFA /* test_guest_call.cpp */; };
+		EA4C4E432355B04E0098124D /* __lltostr.c in Sources */ = {isa = PBXBuildFile; fileRef = EAAEBDBD2324F7430084BFFD /* __lltostr.c */; };
+		EA4C4E442355B0540098124D /* __ltostr.c in Sources */ = {isa = PBXBuildFile; fileRef = EAAEBDBC2324F7430084BFFD /* __ltostr.c */; };
+		EA4C4E452355B0540098124D /* __dtostr.c in Sources */ = {isa = PBXBuildFile; fileRef = EA4E84992337246300F89DFA /* __dtostr.c */; };
+		EA4C4E462355B06A0098124D /* debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E8483232F12A900F89DFA /* debug.cpp */; };
+		EA4C4E472355B0960098124D /* hcreate_r.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD73E2317DDA30038057E /* hcreate_r.c */; };
+		EA4C4E482355B0960098124D /* siphash24.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD7422317F4700038057E /* siphash24.c */; };
+		EA4C4E492355B0960098124D /* hdestroy_r.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD73F2317DDA30038057E /* hdestroy_r.c */; };
+		EA4C4E4A2355B09A0098124D /* crt.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72F2317D1D40038057E /* crt.c */; };
+		EA4C4E4B2355B09D0098124D /* pe_linker.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72B2317D1D40038057E /* pe_linker.c */; };
+		EA4C4E4C2355B0A20098124D /* hsearch_r.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD73A2317DC7C0038057E /* hsearch_r.c */; };
+		EA4C4E4D2355B0A20098124D /* winstrings.c in Sources */ = {isa = PBXBuildFile; fileRef = EA7CD72C2317D1D40038057E /* winstrings.c */; };
+		EA4C4E4F2355B1030098124D /* libdwarf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4E8487232F141600F89DFA /* libdwarf.a */; };
+		EA4C4E522355B5E80098124D /* init_host_caller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4C4E502355B5E80098124D /* init_host_caller.cpp */; };
+		EA4C4E532355B7D00098124D /* init_host_caller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4C4E502355B5E80098124D /* init_host_caller.cpp */; };
 		EA4E8485232F12A900F89DFA /* debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA4E8483232F12A900F89DFA /* debug.cpp */; };
 		EA4E8488232F141600F89DFA /* libdwarf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4E8487232F141600F89DFA /* libdwarf.a */; };
 		EA4E848C232F207900F89DFA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4E848B232F207900F89DFA /* libz.tbd */; };
@@ -328,7 +610,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		EA0ABB0A231E895800EBC68C /* CopyFiles */ = {
+		EA4C4D482355AD2A0098124D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -355,7 +637,6 @@
 		EA0363F0233CF6CF0071CD87 /* WrapPointer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WrapPointer.hpp; sourceTree = "<group>"; };
 		EA0363F2233E22350071CD87 /* WrapCls.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WrapCls.cpp; sourceTree = "<group>"; };
 		EA0363F3233E22350071CD87 /* WrapCls.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WrapCls.hpp; sourceTree = "<group>"; };
-		EA0ABB0C231E895800EBC68C /* loaddll */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = loaddll; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA326671231EF36B0026184F /* host_call.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = host_call.hpp; sourceTree = "<group>"; };
 		EA326672231EF4650026184F /* wrap_host_call.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wrap_host_call.cpp; sourceTree = "<group>"; };
 		EA326675231EF5800026184F /* wrap_host_call.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wrap_host_call.hpp; sourceTree = "<group>"; };
@@ -363,6 +644,14 @@
 		EA326678231FF8E20026184F /* wrap_crt.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wrap_crt.hpp; sourceTree = "<group>"; };
 		EA32667D232171760026184F /* wrap_gen_code.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wrap_gen_code.cpp; sourceTree = "<group>"; };
 		EA32667E232171760026184F /* wrap_gen_code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wrap_gen_code.h; sourceTree = "<group>"; };
+		EA4C4CFF2355A9B80098124D /* libx86loader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libx86loader.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA4C4D012355A9B80098124D /* x86loader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = x86loader.hpp; sourceTree = "<group>"; };
+		EA4C4D032355A9B80098124D /* x86loaderPriv.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = x86loaderPriv.hpp; sourceTree = "<group>"; };
+		EA4C4D052355A9B80098124D /* x86loader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = x86loader.cpp; sourceTree = "<group>"; };
+		EA4C4D4A2355AD2A0098124D /* test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA4C4D4C2355AD2A0098124D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		EA4C4E502355B5E80098124D /* init_host_caller.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = init_host_caller.cpp; sourceTree = "<group>"; };
+		EA4C4E512355B5E80098124D /* host_caller_objs.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = host_caller_objs.hpp; sourceTree = "<group>"; };
 		EA4E8483232F12A900F89DFA /* debug.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = debug.cpp; sourceTree = "<group>"; };
 		EA4E8484232F12A900F89DFA /* debug.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = debug.hpp; sourceTree = "<group>"; };
 		EA4E8487232F141600F89DFA /* libdwarf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdwarf.a; path = ../../libs/libdwarf.a; sourceTree = "<group>"; };
@@ -961,10 +1250,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		EA0ABB09231E895800EBC68C /* Frameworks */ = {
+		EA4C4CFD2355A9B80098124D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA4C4D472355AD2A0098124D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA4C4D522355AE310098124D /* libz.tbd in Frameworks */,
+				EA4C4E4F2355B1030098124D /* libdwarf.a in Frameworks */,
+				EA4C4D512355AE170098124D /* libx86loader.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1003,6 +1302,24 @@
 				EA32667E232171760026184F /* wrap_gen_code.h */,
 			);
 			path = gen_code;
+			sourceTree = "<group>";
+		};
+		EA4C4D002355A9B80098124D /* x86loader */ = {
+			isa = PBXGroup;
+			children = (
+				EA4C4D012355A9B80098124D /* x86loader.hpp */,
+				EA4C4D032355A9B80098124D /* x86loaderPriv.hpp */,
+				EA4C4D052355A9B80098124D /* x86loader.cpp */,
+			);
+			path = x86loader;
+			sourceTree = "<group>";
+		};
+		EA4C4D4B2355AD2A0098124D /* test */ = {
+			isa = PBXGroup;
+			children = (
+				EA4C4D4C2355AD2A0098124D /* main.cpp */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		EA4E8482232F126900F89DFA /* debug */ = {
@@ -1095,6 +1412,8 @@
 			isa = PBXGroup;
 			children = (
 				EAB724042306AE55000019F0 /* src */,
+				EA4C4D002355A9B80098124D /* x86loader */,
+				EA4C4D4B2355AD2A0098124D /* test */,
 				EAB71E542306AD95000019F0 /* Products */,
 				EA4E8486232F141500F89DFA /* Frameworks */,
 			);
@@ -1104,7 +1423,8 @@
 			isa = PBXGroup;
 			children = (
 				EAB71E532306AD95000019F0 /* x86emu */,
-				EA0ABB0C231E895800EBC68C /* loaddll */,
+				EA4C4CFF2355A9B80098124D /* libx86loader.a */,
+				EA4C4D4A2355AD2A0098124D /* test */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1119,6 +1439,8 @@
 				EA326672231EF4650026184F /* wrap_host_call.cpp */,
 				EAAEBDC0232545DE0084BFFD /* utils.h */,
 				EA326675231EF5800026184F /* wrap_host_call.hpp */,
+				EA4C4E502355B5E80098124D /* init_host_caller.cpp */,
+				EA4C4E512355B5E80098124D /* host_caller_objs.hpp */,
 				EA7CD72523155AF20038057E /* loaddll */,
 				EAB7281F230BEE7E000019F0 /* sys_call */,
 				EAB72805230944B2000019F0 /* loadelf */,
@@ -1870,22 +2192,51 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		EA4C4CFB2355A9B80098124D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA4C4D022355A9B80098124D /* x86loader.hpp in Headers */,
+				EA4C4D042355A9B80098124D /* x86loaderPriv.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		EA0ABB0B231E895800EBC68C /* loaddll */ = {
+		EA4C4CFE2355A9B80098124D /* x86loader */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EA0ABB12231E895800EBC68C /* Build configuration list for PBXNativeTarget "loaddll" */;
+			buildConfigurationList = EA4C4D092355A9B80098124D /* Build configuration list for PBXNativeTarget "x86loader" */;
 			buildPhases = (
-				EA0ABB08231E895800EBC68C /* Sources */,
-				EA0ABB09231E895800EBC68C /* Frameworks */,
-				EA0ABB0A231E895800EBC68C /* CopyFiles */,
+				EA4C4CFB2355A9B80098124D /* Headers */,
+				EA4C4CFC2355A9B80098124D /* Sources */,
+				EA4C4CFD2355A9B80098124D /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = loaddll;
-			productName = loaddll;
-			productReference = EA0ABB0C231E895800EBC68C /* loaddll */;
+			name = x86loader;
+			productName = x86loader;
+			productReference = EA4C4CFF2355A9B80098124D /* libx86loader.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		EA4C4D492355AD2A0098124D /* test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA4C4D4E2355AD2A0098124D /* Build configuration list for PBXNativeTarget "test" */;
+			buildPhases = (
+				EA4C4D462355AD2A0098124D /* Sources */,
+				EA4C4D472355AD2A0098124D /* Frameworks */,
+				EA4C4D482355AD2A0098124D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = test;
+			productName = test;
+			productReference = EA4C4D4A2355AD2A0098124D /* test */;
 			productType = "com.apple.product-type.tool";
 		};
 		EAB71E522306AD95000019F0 /* x86emu */ = {
@@ -1914,8 +2265,11 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = tony;
 				TargetAttributes = {
-					EA0ABB0B231E895800EBC68C = {
-						CreatedOnToolsVersion = 10.2.1;
+					EA4C4CFE2355A9B80098124D = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					EA4C4D492355AD2A0098124D = {
+						CreatedOnToolsVersion = 11.1;
 					};
 					EAB71E522306AD95000019F0 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -1935,25 +2289,309 @@
 			projectRoot = "";
 			targets = (
 				EAB71E522306AD95000019F0 /* x86emu */,
-				EA0ABB0B231E895800EBC68C /* loaddll */,
+				EA4C4CFE2355A9B80098124D /* x86loader */,
+				EA4C4D492355AD2A0098124D /* test */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		EA0ABB08231E895800EBC68C /* Sources */ = {
+		EA4C4CFC2355A9B80098124D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA0ABB15231E897100EBC68C /* hdestroy_r.c in Sources */,
-				EA0ABB16231E897100EBC68C /* load_dll.cpp in Sources */,
-				EA0ABB1A231E897100EBC68C /* winstrings.c in Sources */,
-				EA0ABB19231E897100EBC68C /* hsearch_r.c in Sources */,
-				EA0ABB17231E897100EBC68C /* crt.c in Sources */,
-				EA0ABB14231E897100EBC68C /* siphash24.c in Sources */,
-				EA0ABB1B231E8A2500EBC68C /* logger.cpp in Sources */,
-				EA0ABB13231E896600EBC68C /* hcreate_r.c in Sources */,
-				EA0ABB18231E897100EBC68C /* pe_linker.c in Sources */,
+				EA4C4DD22355AFA10098124D /* bit32.cc in Sources */,
+				EA4C4DBA2355AF9C0098124D /* gather.cc in Sources */,
+				EA4C4D982355AF960098124D /* segment_ctrl.cc in Sources */,
+				EA4C4DAD2355AF9C0098124D /* avx512_pfp.cc in Sources */,
+				EA4C4D5F2355AF7B0098124D /* soft_int.cc in Sources */,
+				EA4C4DEC2355AFA80098124D /* vmx.cc in Sources */,
+				EA4C4DF82355AFAC0098124D /* resolve.cc in Sources */,
+				EA4C4DFA2355AFB00098124D /* symbols.cc in Sources */,
+				EA4C4DFC2355AFB30098124D /* plugin.cc in Sources */,
+				EA4C4DD32355AFA10098124D /* logical16.cc in Sources */,
+				EA4C4E032355AFBB0098124D /* cdrom_win32.cc in Sources */,
+				EA4C4E142355AFDE0098124D /* devices.cc in Sources */,
+				EA4C4DE72355AFA80098124D /* fsincos.cc in Sources */,
+				EA4C4E4B2355B09D0098124D /* pe_linker.c in Sources */,
+				EA4C4E002355AFB70098124D /* pit.cc in Sources */,
+				EA4C4DAE2355AF9C0098124D /* avx512_rcp14.cc in Sources */,
+				EA4C4E102355AFDE0098124D /* pit82c54.cc in Sources */,
+				EA4C4E062355AFBB0098124D /* vbox.cc in Sources */,
+				EA4C4DD82355AFA70098124D /* fpu_misc.cc in Sources */,
+				EA4C4D5D2355AF7B0098124D /* load.cc in Sources */,
+				EA4C4D882355AF8A0098124D /* mult8.cc in Sources */,
+				EA4C4D362355AAD80098124D /* host_call.cpp in Sources */,
+				EA4C4DB82355AF9C0098124D /* xop.cc in Sources */,
+				EA4C4DA52355AF960098124D /* jmp_far.cc in Sources */,
+				EA4C4D222355AAAA0098124D /* ProcessThreads.cpp in Sources */,
+				EA4C4D692355AF7B0098124D /* rdrand.cc in Sources */,
+				EA4C4D9B2355AF960098124D /* data_xfer8.cc in Sources */,
+				EA4C4E182355AFDE0098124D /* serial_raw.cc in Sources */,
+				EA4C4DC02355AFA10098124D /* sse.cc in Sources */,
+				EA4C4DF42355AFA80098124D /* tasking.cc in Sources */,
+				EA4C4DF22355AFA80098124D /* shift8.cc in Sources */,
+				EA4C4D5E2355AF7B0098124D /* init.cc in Sources */,
+				EA4C4DA12355AF960098124D /* shift16.cc in Sources */,
+				EA4C4D9C2355AF960098124D /* ctrl_xfer_pro.cc in Sources */,
+				EA4C4D372355AADE0098124D /* wrap_guest_call.cpp in Sources */,
+				EA4C4D382355AAE20098124D /* WrapPointer.cpp in Sources */,
+				EA4C4D2A2355AABD0098124D /* wrap_crt.cpp in Sources */,
+				EA4C4D0A2355AA440098124D /* CriticalSection.cpp in Sources */,
+				EA4C4DC72355AFA10098124D /* ctrl_xfer64.cc in Sources */,
+				EA4C4D952355AF960098124D /* shift64.cc in Sources */,
+				EA4C4D2F2355AAC70098124D /* linux_sys_call_imp.cpp in Sources */,
+				EA4C4DE22355AFA80098124D /* softfloat16.cc in Sources */,
+				EA4C4DB72355AF9C0098124D /* avx512_fma.cc in Sources */,
+				EA4C4DB52355AF9C0098124D /* tbm32.cc in Sources */,
+				EA4C4E1B2355AFDE0098124D /* extfpuirq.cc in Sources */,
+				EA4C4D7D2355AF860098124D /* phenomx3_8650_toliman.cc in Sources */,
+				EA4C4D892355AF8A0098124D /* vmexit.cc in Sources */,
+				EA4C4D282355AABD0098124D /* vsnprintf.cpp in Sources */,
+				EA4C4DE52355AFA80098124D /* fpu_const.cc in Sources */,
+				EA4C4E1E2355AFDE0098124D /* dma.cc in Sources */,
+				EA4C4DE12355AFA80098124D /* fpatan.cc in Sources */,
+				EA4C4DE82355AFA80098124D /* fpu_arith.cc in Sources */,
+				EA4C4D602355AF7B0098124D /* generic_cpuid.cc in Sources */,
+				EA4C4E322355AFEF0098124D /* rfb.cc in Sources */,
+				EA4C4E132355AFDE0098124D /* biosdev.cc in Sources */,
+				EA4C4DDA2355AFA70098124D /* fyl2x.cc in Sources */,
+				EA4C4DBF2355AFA10098124D /* cpuid.cc in Sources */,
+				EA4C4D6E2355AF810098124D /* corei7_ivy_bridge_3770K.cc in Sources */,
+				EA4C4E392355AFEF0098124D /* win32.cc in Sources */,
+				EA4C4DCF2355AFA10098124D /* bit16.cc in Sources */,
+				EA4C4D7F2355AF860098124D /* ryzen.cc in Sources */,
+				EA4C4E372355AFEF0098124D /* x.cc in Sources */,
+				EA4C4D232355AAAA0098124D /* LoadLibrary.cpp in Sources */,
+				EA4C4E212355AFE40098124D /* svga_cirrus.cc in Sources */,
+				EA4C4DBD2355AF9C0098124D /* avx_fma.cc in Sources */,
+				EA4C4D792355AF810098124D /* p4_willamette.cc in Sources */,
+				EA4C4E472355B0960098124D /* hcreate_r.c in Sources */,
+				EA4C4DA72355AF960098124D /* aes.cc in Sources */,
+				EA4C4DF02355AFA80098124D /* sse_move.cc in Sources */,
+				EA4C4D612355AF7B0098124D /* svm.cc in Sources */,
+				EA4C4DEB2355AFA80098124D /* ferr.cc in Sources */,
+				EA4C4DDD2355AFA70098124D /* fpu_load_store.cc in Sources */,
+				EA4C4D332355AAD80098124D /* x86.cpp in Sources */,
+				EA4C4E3D2355AFEF0098124D /* amigaos.cc in Sources */,
+				EA4C4D6B2355AF7B0098124D /* sse_pfp.cc in Sources */,
+				EA4C4D6C2355AF810098124D /* corei7_haswell_4770.cc in Sources */,
+				EA4C4DDF2355AFA70098124D /* softfloat.cc in Sources */,
+				EA4C4DB32355AF9C0098124D /* avx512_move.cc in Sources */,
+				EA4C4D262355AAB70098124D /* wrap_gen_code.cpp in Sources */,
+				EA4C4D672355AF7B0098124D /* logical64.cc in Sources */,
+				EA4C4D1F2355AAAA0098124D /* Memory.cpp in Sources */,
+				EA4C4D652355AF7B0098124D /* mult32.cc in Sources */,
+				EA4C4E092355AFBB0098124D /* vpc-img.cc in Sources */,
+				EA4C4D252355AAAA0098124D /* winapi.cpp in Sources */,
+				EA4C4D392355AAE60098124D /* buffer.cpp in Sources */,
+				EA4C4E0B2355AFBB0098124D /* cdrom.cc in Sources */,
+				EA4C4DF12355AFA80098124D /* segment_ctrl_pro.cc in Sources */,
+				EA4C4E3E2355AFEF0098124D /* scrollwin.cc in Sources */,
+				EA4C4DC22355AFA10098124D /* access.cc in Sources */,
+				EA4C4D992355AF960098124D /* crc32.cc in Sources */,
+				EA4C4E072355AFBB0098124D /* cdrom_osx.cc in Sources */,
+				EA4C4DA62355AF960098124D /* shift32.cc in Sources */,
+				EA4C4DCA2355AFA10098124D /* stack16.cc in Sources */,
+				EA4C4D1C2355AAAA0098124D /* Handle.cpp in Sources */,
+				EA4C4D272355AABD0098124D /* __v_printf.cpp in Sources */,
+				EA4C4D312355AACB0098124D /* load_so.cpp in Sources */,
+				EA4C4D6D2355AF810098124D /* core_duo_t2400_yonah.cc in Sources */,
+				EA4C4E262355AFE80098124D /* pci.cc in Sources */,
+				EA4C4E202355AFE40098124D /* vgacore.cc in Sources */,
+				EA4C4D782355AF810098124D /* corei7_sandy_bridge_2600K.cc in Sources */,
+				EA4C4E0C2355AFCA0098124D /* slowdown_timer.cc in Sources */,
+				EA4C4E1D2355AFDE0098124D /* pcidev.cc in Sources */,
+				EA4C4DBE2355AF9C0098124D /* avx512_mask64.cc in Sources */,
+				EA4C4D572355AF610098124D /* misc_mem.cc in Sources */,
+				EA4C4DED2355AFA80098124D /* mult64.cc in Sources */,
+				EA4C4E412355AFFD0098124D /* config.cc in Sources */,
+				EA4C4D2C2355AAC30098124D /* load_dll.cpp in Sources */,
+				EA4C4E452355B0540098124D /* __dtostr.c in Sources */,
+				EA4C4E1A2355AFDE0098124D /* serial.cc in Sources */,
+				EA4C4DBB2355AF9C0098124D /* avx.cc in Sources */,
+				EA4C4D5A2355AF670098124D /* load32bitOShack.cc in Sources */,
+				EA4C4D0B2355AAAA0098124D /* SystemTime.cpp in Sources */,
+				EA4C4D6A2355AF7B0098124D /* bit64.cc in Sources */,
+				EA4C4E272355AFE80098124D /* cmos.cc in Sources */,
+				EA4C4D582355AF610098124D /* memory.cc in Sources */,
+				EA4C4E0E2355AFD10098124D /* virt_timer.cc in Sources */,
+				EA4C4E012355AFBB0098124D /* vmware4.cc in Sources */,
+				EA4C4E532355B7D00098124D /* init_host_caller.cpp in Sources */,
+				EA4C4DF62355AFAC0098124D /* syntax.cc in Sources */,
+				EA4C4D962355AF960098124D /* stack.cc in Sources */,
+				EA4C4D8E2355AF8A0098124D /* bmi32.cc in Sources */,
+				EA4C4D742355AF810098124D /* corei5_lynnfield_750.cc in Sources */,
+				EA4C4E4C2355B0A20098124D /* hsearch_r.c in Sources */,
+				EA4C4D562355AF5D0098124D /* osdep.cc in Sources */,
+				EA4C4D762355AF810098124D /* core2_penryn_t9600.cc in Sources */,
+				EA4C4E152355AFDE0098124D /* iodebug.cc in Sources */,
+				EA4C4DB42355AF9C0098124D /* avx512_cvt.cc in Sources */,
+				EA4C4E242355AFE80098124D /* ioapic.cc in Sources */,
+				EA4C4DEA2355AFA80098124D /* softfloat-specialize.cc in Sources */,
+				EA4C4D932355AF960098124D /* protect_ctrl.cc in Sources */,
+				EA4C4D732355AF810098124D /* pentium_mmx.cc in Sources */,
+				EA4C4DAF2355AF9C0098124D /* avx512.cc in Sources */,
+				EA4C4DC52355AFA10098124D /* sse_string.cc in Sources */,
+				EA4C4D552355AF5D0098124D /* main.cc in Sources */,
+				EA4C4DB92355AF9C0098124D /* avx512_rsqrt14.cc in Sources */,
+				EA4C4D342355AAD80098124D /* engine.cpp in Sources */,
+				EA4C4E2F2355AFEF0098124D /* macintosh.cc in Sources */,
+				EA4C4E3C2355AFEF0098124D /* wxmain.cc in Sources */,
+				EA4C4D202355AAAA0098124D /* Strings.cpp in Sources */,
+				EA4C4E482355B0960098124D /* siphash24.c in Sources */,
+				EA4C4D7C2355AF860098124D /* trinity_apu.cc in Sources */,
+				EA4C4E342355AFEF0098124D /* term.cc in Sources */,
+				EA4C4D9F2355AF960098124D /* xsave.cc in Sources */,
+				EA4C4D872355AF8A0098124D /* ctrl_xfer16.cc in Sources */,
+				EA4C4DCD2355AFA10098124D /* logical32.cc in Sources */,
+				EA4C4D832355AF8A0098124D /* mmx.cc in Sources */,
+				EA4C4D8C2355AF8A0098124D /* arith16.cc in Sources */,
+				EA4C4E2C2355AFEF0098124D /* textconfig.cc in Sources */,
+				EA4C4DA22355AF960098124D /* bmi64.cc in Sources */,
+				EA4C4DD52355AFA10098124D /* arith8.cc in Sources */,
+				EA4C4D3A2355AAE90098124D /* logger.cpp in Sources */,
+				EA4C4D642355AF7B0098124D /* mult16.cc in Sources */,
+				EA4C4E232355AFE80098124D /* pci_ide.cc in Sources */,
+				EA4C4DA82355AF960098124D /* logical8.cc in Sources */,
+				EA4C4D802355AF860098124D /* athlon64_venice.cc in Sources */,
+				EA4C4E0D2355AFCF0098124D /* speaker.cc in Sources */,
+				EA4C4D862355AF8A0098124D /* arith32.cc in Sources */,
+				EA4C4E1F2355AFE40098124D /* vga.cc in Sources */,
+				EA4C4DE02355AFA70098124D /* fpu_compare.cc in Sources */,
+				EA4C4E0A2355AFBB0098124D /* vmware3.cc in Sources */,
+				EA4C4D682355AF7B0098124D /* bcd.cc in Sources */,
+				EA4C4D7A2355AF810098124D /* p4_prescott_celeron_336.cc in Sources */,
+				EA4C4D212355AAAA0098124D /* GetLastError.cpp in Sources */,
+				EA4C4D8B2355AF8A0098124D /* sha.cc in Sources */,
+				EA4C4DC92355AFA10098124D /* stack32.cc in Sources */,
+				EA4C4D632355AF7B0098124D /* data_xfer64.cc in Sources */,
+				EA4C4DC12355AFA10098124D /* msr.cc in Sources */,
+				EA4C4E3A2355AFEF0098124D /* siminterface.cc in Sources */,
+				EA4C4E2D2355AFEF0098124D /* svga.cc in Sources */,
+				EA4C4E222355AFE40098124D /* voodoo.cc in Sources */,
+				EA4C4DD72355AFA70098124D /* fpu_cmov.cc in Sources */,
+				EA4C4DEF2355AFA80098124D /* vmcs.cc in Sources */,
+				EA4C4DFD2355AFB30098124D /* pc_system.cc in Sources */,
+				EA4C4DB02355AF9C0098124D /* avx512_mask8.cc in Sources */,
+				EA4C4DF72355AFAC0098124D /* dis_groups.cc in Sources */,
+				EA4C4D592355AF630098124D /* logio.cc in Sources */,
+				EA4C4DF52355AFAC0098124D /* dis_decode.cc in Sources */,
+				EA4C4E402355AFFD0098124D /* crc.cc in Sources */,
+				EA4C4DEE2355AFA80098124D /* data_xfer16.cc in Sources */,
+				EA4C4E0F2355AFD80098124D /* floppy.cc in Sources */,
+				EA4C4E352355AFEF0098124D /* vncsrv.cc in Sources */,
+				EA4C4DFB2355AFB00098124D /* dbg_main.cc in Sources */,
+				EA4C4D242355AAAA0098124D /* TlsAlloc.cpp in Sources */,
+				EA4C4E292355AFEF0098124D /* nogui.cc in Sources */,
+				EA4C4D912355AF900098124D /* disasm.cc in Sources */,
+				EA4C4D902355AF900098124D /* fetchdecode64.cc in Sources */,
+				EA4C4DCC2355AFA10098124D /* event.cc in Sources */,
+				EA4C4DA32355AF960098124D /* vm8086.cc in Sources */,
+				EA4C4D5B2355AF6D0098124D /* instrument.cc in Sources */,
+				EA4C4DDE2355AFA70098124D /* fprem.cc in Sources */,
+				EA4C4DF32355AFA80098124D /* smm.cc in Sources */,
+				EA4C4D772355AF810098124D /* p2_klamath.cc in Sources */,
+				EA4C4D302355AACB0098124D /* load_elf.cpp in Sources */,
+				EA4C4DA02355AF960098124D /* io.cc in Sources */,
+				EA4C4E442355B0540098124D /* __ltostr.c in Sources */,
+				EA4C4E362355AFEF0098124D /* keymap.cc in Sources */,
+				EA4C4E332355AFEF0098124D /* sdl2.cc in Sources */,
+				EA4C4DB12355AF9C0098124D /* avx2.cc in Sources */,
+				EA4C4D662355AF7B0098124D /* string.cc in Sources */,
+				EA4C4DA42355AF960098124D /* debugstuff.cc in Sources */,
+				EA4C4D2B2355AAC00098124D /* wrap_host_call.cpp in Sources */,
+				EA4C4D292355AABD0098124D /* vsprintf.cpp in Sources */,
+				EA4C4DB62355AF9C0098124D /* tbm64.cc in Sources */,
+				EA4C4D942355AF960098124D /* bit.cc in Sources */,
+				EA4C4DD92355AFA70098124D /* fpu.cc in Sources */,
+				EA4C4D752355AF810098124D /* p3_katmai.cc in Sources */,
+				EA4C4D8D2355AF8A0098124D /* ctrl_xfer32.cc in Sources */,
+				EA4C4D9E2355AF960098124D /* cpu.cc in Sources */,
+				EA4C4D972355AF960098124D /* icache.cc in Sources */,
+				EA4C4D822355AF860098124D /* turion64_tyler.cc in Sources */,
+				EA4C4E162355AFDE0098124D /* unmapped.cc in Sources */,
+				EA4C4E3F2355AFEF0098124D /* win32_enh_dbg_osdep.cc in Sources */,
+				EA4C4E312355AFEF0098124D /* enh_dbg.cc in Sources */,
+				EA4C4DD02355AFA10098124D /* access2.cc in Sources */,
+				EA4C4E082355AFBB0098124D /* cdrom_amigaos.cc in Sources */,
+				EA4C4DA92355AF960098124D /* call_far.cc in Sources */,
+				EA4C4D8F2355AF900098124D /* fetchdecode32.cc in Sources */,
+				EA4C4D922355AF960098124D /* vmfunc.cc in Sources */,
+				EA4C4D1D2355AAAA0098124D /* Event.cpp in Sources */,
+				EA4C4D852355AF8A0098124D /* paging.cc in Sources */,
+				EA4C4E4D2355B0A20098124D /* winstrings.c in Sources */,
+				EA4C4D8A2355AF8A0098124D /* iret.cc in Sources */,
+				EA4C4DD12355AFA10098124D /* apic.cc in Sources */,
+				EA4C4D712355AF810098124D /* atom_n270.cc in Sources */,
+				EA4C4DAB2355AF9C0098124D /* avx_cvt.cc in Sources */,
+				EA4C4DDB2355AFA70098124D /* softfloat-muladd.cc in Sources */,
+				EA4C4E4A2355B09A0098124D /* crt.c in Sources */,
+				EA4C4DCE2355AFA10098124D /* sse_rcp.cc in Sources */,
+				EA4C4E2B2355AFEF0098124D /* wx.cc in Sources */,
+				EA4C4DD42355AFA10098124D /* crregs.cc in Sources */,
+				EA4C4E122355AFDE0098124D /* acpi.cc in Sources */,
+				EA4C4DE42355AFA80098124D /* softfloat-round-pack.cc in Sources */,
+				EA4C4E052355AFBB0098124D /* cdrom_misc.cc in Sources */,
+				EA4C4E492355B0960098124D /* hdestroy_r.c in Sources */,
+				EA4C4D352355AAD80098124D /* mmu.cpp in Sources */,
+				EA4C4DC42355AFA10098124D /* arith64.cc in Sources */,
+				EA4C4DC32355AFA10098124D /* vapic.cc in Sources */,
+				EA4C4DC62355AFA10098124D /* 3dnow.cc in Sources */,
+				EA4C4DE62355AFA80098124D /* f2xm1.cc in Sources */,
+				EA4C4DBC2355AF9C0098124D /* avx512_conflict.cc in Sources */,
+				EA4C4E192355AFDE0098124D /* pic.cc in Sources */,
+				EA4C4D5C2355AF7B0098124D /* proc_ctrl.cc in Sources */,
+				EA4C4E282355AFEF0098124D /* wxdialog.cc in Sources */,
+				EA4C4E252355AFE80098124D /* scancodes.cc in Sources */,
+				EA4C4D6F2355AF810098124D /* broadwell_ult.cc in Sources */,
+				EA4C4DF92355AFB00098124D /* linux.cc in Sources */,
+				EA4C4DCB2355AFA10098124D /* exception.cc in Sources */,
+				EA4C4E172355AFDE0098124D /* pci2isa.cc in Sources */,
+				EA4C4DD62355AFA10098124D /* data_xfer32.cc in Sources */,
+				EA4C4D7B2355AF860098124D /* amd_k6_2_chomper.cc in Sources */,
+				EA4C4D1E2355AAAA0098124D /* Heap.cpp in Sources */,
+				EA4C4D812355AF860098124D /* zambezi.cc in Sources */,
+				EA4C4DB22355AF9C0098124D /* avx_pfp.cc in Sources */,
+				EA4C4D2D2355AAC30098124D /* load_dll32.cpp in Sources */,
+				EA4C4E1C2355AFDE0098124D /* busmouse.cc in Sources */,
+				EA4C4DE32355AFA80098124D /* poly.cc in Sources */,
+				EA4C4E382355AFEF0098124D /* carbon.cc in Sources */,
+				EA4C4E042355AFBB0098124D /* vvfat.cc in Sources */,
+				EA4C4DAA2355AF9C0098124D /* avx512_mask16.cc in Sources */,
+				EA4C4E3B2355AFEF0098124D /* paramtree.cc in Sources */,
+				EA4C4D842355AF8A0098124D /* stack64.cc in Sources */,
+				EA4C4D2E2355AAC70098124D /* host_sys_call.cpp in Sources */,
+				EA4C4D9A2355AF960098124D /* ret_far.cc in Sources */,
+				EA4C4DFF2355AFB70098124D /* harddrv.cc in Sources */,
+				EA4C4E432355B04E0098124D /* __lltostr.c in Sources */,
+				EA4C4D7E2355AF860098124D /* athlon64_clawhammer.cc in Sources */,
+				EA4C4E302355AFEF0098124D /* gtk_enh_dbg_osdep.cc in Sources */,
+				EA4C4E462355B06A0098124D /* debug.cpp in Sources */,
+				EA4C4D702355AF810098124D /* pentium.cc in Sources */,
+				EA4C4E112355AFDE0098124D /* keyboard.cc in Sources */,
+				EA4C4D062355A9B80098124D /* x86loader.cpp in Sources */,
+				EA4C4D622355AF7B0098124D /* flag_ctrl.cc in Sources */,
+				EA4C4DFE2355AFB70098124D /* parallel.cc in Sources */,
+				EA4C4DE92355AFA80098124D /* fpu_trans.cc in Sources */,
+				EA4C4E2E2355AFEF0098124D /* gui.cc in Sources */,
+				EA4C4D9D2355AF960098124D /* flag_ctrl_pro.cc in Sources */,
+				EA4C4D0D2355AAAA0098124D /* EncodePointer.cpp in Sources */,
+				EA4C4DC82355AFA10098124D /* fpu_emu.cc in Sources */,
+				EA4C4D722355AF810098124D /* corei5_arrandale_m520.cc in Sources */,
+				EA4C4E022355AFBB0098124D /* hdimage.cc in Sources */,
+				EA4C4E2A2355AFEF0098124D /* sdl.cc in Sources */,
+				EA4C4DAC2355AF9C0098124D /* avx512_mask32.cc in Sources */,
+				EA4C4DDC2355AFA70098124D /* softfloatx80.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA4C4D462355AD2A0098124D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA4C4E422355B03C0098124D /* test_guest_call.cpp in Sources */,
+				EA4C4D4D2355AD2A0098124D /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1977,6 +2615,7 @@
 				EAB7278A2306AE56000019F0 /* devices.cc in Sources */,
 				EAB727CC2306AE56000019F0 /* pci_ide.cc in Sources */,
 				EAB7277B2306AE56000019F0 /* vbox.cc in Sources */,
+				EA4C4E522355B5E80098124D /* init_host_caller.cpp in Sources */,
 				EAB726C72306AE56000019F0 /* mult16.cc in Sources */,
 				EAB7275C2306AE56000019F0 /* dis_tables_x87.inc in Sources */,
 				EAB727862306AE56000019F0 /* pit82c54.cc in Sources */,
@@ -2274,28 +2913,52 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		EA0ABB10231E895800EBC68C /* Debug */ = {
+		EA4C4D072355A9B80098124D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QZCGQLBGFN;
-				OTHER_CFLAGS = (
-					"-DCONFIG_X86_64",
-					"-DTESTLOADER",
-				);
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		EA4C4D082355A9B80098124D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QZCGQLBGFN;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		EA4C4D4F2355AD2A0098124D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QZCGQLBGFN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		EA0ABB11231E895800EBC68C /* Release */ = {
+		EA4C4D502355AD2A0098124D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QZCGQLBGFN;
-				OTHER_CFLAGS = (
-					"-DCONFIG_X86_64",
-					"-DTESTLOADER",
-				);
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -2351,6 +3014,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../../libs";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -2412,6 +3076,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../../libs";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -2452,11 +3117,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EA0ABB12231E895800EBC68C /* Build configuration list for PBXNativeTarget "loaddll" */ = {
+		EA4C4D092355A9B80098124D /* Build configuration list for PBXNativeTarget "x86loader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EA0ABB10231E895800EBC68C /* Debug */,
-				EA0ABB11231E895800EBC68C /* Release */,
+				EA4C4D072355A9B80098124D /* Debug */,
+				EA4C4D082355A9B80098124D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA4C4D4E2355AD2A0098124D /* Build configuration list for PBXNativeTarget "test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA4C4D4F2355AD2A0098124D /* Debug */,
+				EA4C4D502355AD2A0098124D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
