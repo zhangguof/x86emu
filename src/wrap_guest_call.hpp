@@ -76,6 +76,20 @@ uint64_t wrap_win32_guest_call(const char* name,ARGS... args)
     
 }
 
+template<typename... ARGS>
+uint64_t wrap_win32_guest_call(uint32_t addr,ARGS... args)
+{
+    g_engine->save_esp();
+    do_push_args(args...);
+    
+    g_engine->call_win32_guest_addr(addr);
+    
+    auto ret = g_engine->last_ret;
+    g_engine->restore_esp();
+    return ret;
+    
+}
+
 
 
 
