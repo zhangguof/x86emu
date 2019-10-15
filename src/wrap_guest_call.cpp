@@ -16,7 +16,7 @@ HostMem::HostMem()
     size = 0;
 }
 HostMem::HostMem(size_t sz){
-    alloca(sz);
+    alloc(sz);
 }
 void HostMem::alloc(size_t sz)
 {
